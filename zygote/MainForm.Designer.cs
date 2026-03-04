@@ -38,6 +38,17 @@
             buttonSystem = new Button();
             buttonScripts = new Button();
             groupBoxStart = new GroupBox();
+            buttonVersionToday = new Button();
+            label5 = new Label();
+            textBoxStartStartingRoom = new TextBox();
+            label4 = new Label();
+            textBoxStartVersion = new TextBox();
+            textBoxStartIntroduction = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            textBoxStartGameTitle = new TextBox();
+            label1 = new Label();
+            textBoxStartGameName = new TextBox();
             groupBoxRooms = new GroupBox();
             groupBoxItems = new GroupBox();
             groupBoxMessages = new GroupBox();
@@ -46,11 +57,14 @@
             groupBoxCommands = new GroupBox();
             groupBoxScripts = new GroupBox();
             groupBoxSystem = new GroupBox();
-            panel1 = new Panel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            panel1.SuspendLayout();
+            panelToolbar = new Panel();
+            buttonFileSave = new Button();
+            buttonFileOpen = new Button();
+            buttonFileNew = new Button();
+            buttonFunctions = new Button();
+            groupBoxFunctions = new GroupBox();
+            groupBoxStart.SuspendLayout();
+            panelToolbar.SuspendLayout();
             SuspendLayout();
             // 
             // buttonStart
@@ -125,7 +139,7 @@
             // 
             // buttonSystem
             // 
-            buttonSystem.Location = new Point(3, 496);
+            buttonSystem.Location = new Point(3, 552);
             buttonSystem.Name = "buttonSystem";
             buttonSystem.Size = new Size(96, 50);
             buttonSystem.TabIndex = 8;
@@ -146,12 +160,115 @@
             // groupBoxStart
             // 
             groupBoxStart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxStart.Controls.Add(buttonVersionToday);
+            groupBoxStart.Controls.Add(label5);
+            groupBoxStart.Controls.Add(textBoxStartStartingRoom);
+            groupBoxStart.Controls.Add(label4);
+            groupBoxStart.Controls.Add(textBoxStartVersion);
+            groupBoxStart.Controls.Add(textBoxStartIntroduction);
+            groupBoxStart.Controls.Add(label3);
+            groupBoxStart.Controls.Add(label2);
+            groupBoxStart.Controls.Add(textBoxStartGameTitle);
+            groupBoxStart.Controls.Add(label1);
+            groupBoxStart.Controls.Add(textBoxStartGameName);
             groupBoxStart.Location = new Point(105, 40);
             groupBoxStart.Name = "groupBoxStart";
             groupBoxStart.Size = new Size(1066, 705);
             groupBoxStart.TabIndex = 10;
             groupBoxStart.TabStop = false;
             groupBoxStart.Text = "Start";
+            // 
+            // buttonVersionToday
+            // 
+            buttonVersionToday.Location = new Point(1007, 22);
+            buttonVersionToday.Name = "buttonVersionToday";
+            buttonVersionToday.Size = new Size(53, 23);
+            buttonVersionToday.TabIndex = 12;
+            buttonVersionToday.Text = "Today";
+            buttonVersionToday.UseVisualStyleBackColor = true;
+            buttonVersionToday.Click += buttonVersionToday_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(20, 258);
+            label5.Name = "label5";
+            label5.Size = new Size(83, 15);
+            label5.TabIndex = 11;
+            label5.Text = "Starting Room";
+            // 
+            // textBoxStartStartingRoom
+            // 
+            textBoxStartStartingRoom.Location = new Point(109, 255);
+            textBoxStartStartingRoom.Name = "textBoxStartStartingRoom";
+            textBoxStartStartingRoom.Size = new Size(205, 23);
+            textBoxStartStartingRoom.TabIndex = 10;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(814, 26);
+            label4.Name = "label4";
+            label4.Size = new Size(45, 15);
+            label4.TabIndex = 9;
+            label4.Text = "Version";
+            // 
+            // textBoxStartVersion
+            // 
+            textBoxStartVersion.Location = new Point(865, 23);
+            textBoxStartVersion.Name = "textBoxStartVersion";
+            textBoxStartVersion.Size = new Size(136, 23);
+            textBoxStartVersion.TabIndex = 8;
+            // 
+            // textBoxStartIntroduction
+            // 
+            textBoxStartIntroduction.Location = new Point(109, 82);
+            textBoxStartIntroduction.Multiline = true;
+            textBoxStartIntroduction.Name = "textBoxStartIntroduction";
+            textBoxStartIntroduction.ScrollBars = ScrollBars.Vertical;
+            textBoxStartIntroduction.Size = new Size(951, 167);
+            textBoxStartIntroduction.TabIndex = 7;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(20, 85);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 15);
+            label3.TabIndex = 6;
+            label3.Text = "Introduction";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(20, 54);
+            label2.Name = "label2";
+            label2.Size = new Size(64, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Game Title";
+            // 
+            // textBoxStartGameTitle
+            // 
+            textBoxStartGameTitle.Location = new Point(109, 51);
+            textBoxStartGameTitle.Name = "textBoxStartGameTitle";
+            textBoxStartGameTitle.Size = new Size(273, 23);
+            textBoxStartGameTitle.TabIndex = 4;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(20, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(73, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Game Name";
+            // 
+            // textBoxStartGameName
+            // 
+            textBoxStartGameName.Location = new Point(109, 22);
+            textBoxStartGameName.Name = "textBoxStartGameName";
+            textBoxStartGameName.Size = new Size(195, 23);
+            textBoxStartGameName.TabIndex = 2;
             // 
             // groupBoxRooms
             // 
@@ -241,51 +358,73 @@
             groupBoxSystem.Text = "System";
             groupBoxSystem.Visible = false;
             // 
-            // panel1
+            // panelToolbar
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1184, 34);
-            panel1.TabIndex = 19;
+            panelToolbar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelToolbar.Controls.Add(buttonFileSave);
+            panelToolbar.Controls.Add(buttonFileOpen);
+            panelToolbar.Controls.Add(buttonFileNew);
+            panelToolbar.Location = new Point(0, 0);
+            panelToolbar.Name = "panelToolbar";
+            panelToolbar.Size = new Size(1184, 34);
+            panelToolbar.TabIndex = 19;
             // 
-            // button1
+            // buttonFileSave
             // 
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(72, 34);
-            button1.TabIndex = 0;
-            button1.Text = "New";
-            button1.UseVisualStyleBackColor = true;
+            buttonFileSave.Location = new Point(159, 0);
+            buttonFileSave.Name = "buttonFileSave";
+            buttonFileSave.Size = new Size(72, 34);
+            buttonFileSave.TabIndex = 2;
+            buttonFileSave.Text = "Save";
+            buttonFileSave.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonFileOpen
             // 
-            button2.Location = new Point(78, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(72, 34);
-            button2.TabIndex = 1;
-            button2.Text = "Open";
-            button2.UseVisualStyleBackColor = true;
+            buttonFileOpen.Location = new Point(81, 0);
+            buttonFileOpen.Name = "buttonFileOpen";
+            buttonFileOpen.Size = new Size(72, 34);
+            buttonFileOpen.TabIndex = 1;
+            buttonFileOpen.Text = "Open";
+            buttonFileOpen.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonFileNew
             // 
-            button3.Location = new Point(156, 0);
-            button3.Name = "button3";
-            button3.Size = new Size(72, 34);
-            button3.TabIndex = 2;
-            button3.Text = "Save";
-            button3.UseVisualStyleBackColor = true;
+            buttonFileNew.Location = new Point(3, 0);
+            buttonFileNew.Name = "buttonFileNew";
+            buttonFileNew.Size = new Size(72, 34);
+            buttonFileNew.TabIndex = 0;
+            buttonFileNew.Text = "New";
+            buttonFileNew.UseVisualStyleBackColor = true;
+            // 
+            // buttonFunctions
+            // 
+            buttonFunctions.Location = new Point(3, 496);
+            buttonFunctions.Name = "buttonFunctions";
+            buttonFunctions.Size = new Size(96, 50);
+            buttonFunctions.TabIndex = 21;
+            buttonFunctions.Text = "Functions";
+            buttonFunctions.UseVisualStyleBackColor = true;
+            buttonFunctions.Click += buttonFunctions_Click;
+            // 
+            // groupBoxFunctions
+            // 
+            groupBoxFunctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxFunctions.Location = new Point(105, 40);
+            groupBoxFunctions.Name = "groupBoxFunctions";
+            groupBoxFunctions.Size = new Size(1066, 705);
+            groupBoxFunctions.TabIndex = 22;
+            groupBoxFunctions.TabStop = false;
+            groupBoxFunctions.Text = "Functions";
+            groupBoxFunctions.Visible = false;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1183, 757);
-            Controls.Add(panel1);
-            Controls.Add(groupBoxStart);
+            Controls.Add(groupBoxFunctions);
+            Controls.Add(buttonFunctions);
+            Controls.Add(panelToolbar);
             Controls.Add(buttonSystem);
             Controls.Add(buttonScripts);
             Controls.Add(buttonCommands);
@@ -303,12 +442,15 @@
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
+            Controls.Add(groupBoxStart);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zygote";
-            panel1.ResumeLayout(false);
+            groupBoxStart.ResumeLayout(false);
+            groupBoxStart.PerformLayout();
+            panelToolbar.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -331,9 +473,22 @@
         private GroupBox groupBoxCommands;
         private GroupBox groupBoxScripts;
         private GroupBox groupBoxSystem;
-        private Panel panel1;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Panel panelToolbar;
+        private Button buttonFileSave;
+        private Button buttonFileOpen;
+        private Button buttonFileNew;
+        private TextBox textBoxStartGameName;
+        private TextBox textBoxStartIntroduction;
+        private Label label3;
+        private Label label2;
+        private TextBox textBoxStartGameTitle;
+        private Label label1;
+        private Label label4;
+        private TextBox textBoxStartVersion;
+        private Label label5;
+        private TextBox textBoxStartStartingRoom;
+        private Button buttonVersionToday;
+        private Button buttonFunctions;
+        private GroupBox groupBoxFunctions;
     }
 }

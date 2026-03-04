@@ -55,6 +55,12 @@ namespace zygote
             groupBoxScripts.Visible = true;
         }
 
+        private void buttonFunctions_Click(object sender, EventArgs e)
+        {
+            HideAll();
+            groupBoxFunctions.Visible = true;
+        }
+
         private void buttonSystem_Click(object sender, EventArgs e)
         {
             HideAll();
@@ -71,7 +77,13 @@ namespace zygote
             groupBoxVocabulary.Visible = false;
             groupBoxCommands.Visible = false;
             groupBoxScripts.Visible = false;
+            groupBoxFunctions.Visible = false;
             groupBoxSystem.Visible = false;
+        }
+
+        private void buttonVersionToday_Click(object sender, EventArgs e)
+        {
+            textBoxStartVersion.Text = DateTime.Today.ToString("yyyy.MM.dd");
         }
     }
 }
