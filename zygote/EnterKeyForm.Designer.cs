@@ -32,7 +32,7 @@
             textBoxKey = new TextBox();
             buttonOK = new Button();
             buttonCancel = new Button();
-            label1 = new Label();
+            labelError = new Label();
             SuspendLayout();
             // 
             // labelKey
@@ -73,16 +73,16 @@
             buttonCancel.UseVisualStyleBackColor = true;
             buttonCancel.Click += buttonCancel_Click;
             // 
-            // label1
+            // labelError
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.Red;
-            label1.Location = new Point(12, 53);
-            label1.Name = "label1";
-            label1.Size = new Size(32, 15);
-            label1.TabIndex = 4;
-            label1.Text = "Error";
-            label1.Visible = false;
+            labelError.AutoSize = true;
+            labelError.ForeColor = Color.Red;
+            labelError.Location = new Point(12, 53);
+            labelError.Name = "labelError";
+            labelError.Size = new Size(32, 15);
+            labelError.TabIndex = 4;
+            labelError.Text = "Error";
+            labelError.Visible = false;
             // 
             // EnterKeyForm
             // 
@@ -91,7 +91,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
             ClientSize = new Size(489, 84);
-            Controls.Add(label1);
+            Controls.Add(labelError);
             Controls.Add(buttonCancel);
             Controls.Add(buttonOK);
             Controls.Add(textBoxKey);
@@ -112,6 +112,6 @@
         private TextBox textBoxKey;
         private Button buttonOK;
         private Button buttonCancel;
-        private Label label1;
+        private Label labelError;
     }
 }

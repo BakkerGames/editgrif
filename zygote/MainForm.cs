@@ -88,16 +88,38 @@ namespace zygote
 
         private void buttonFunctionsAdd_Click(object sender, EventArgs e)
         {
-            var dialog = new EnterKeyForm();
-            dialog.ShowDialog();
-            if (dialog.DialogResult == DialogResult.OK && !string.IsNullOrEmpty(dialog.Key))
+            var dialog = new EnterKeyForm
             {
-                if (listBoxFunctions.Items.Contains(dialog.Key))
+                IsFunctionKey = true
+            };
+            dialog.ShowDialog();
+            var newKey = dialog.Key;
+            if (dialog.DialogResult == DialogResult.OK && !string.IsNullOrEmpty(newKey))
+            {
+                if (newKey.Contains('('))
                 {
-                    MessageBox.Show($"Key already exists: {dialog.Key}");
-                    return;
+                    var keyStart = newKey[..(newKey.IndexOf('(') + 1)];
+                    foreach (var key in listBoxFunctions.Items)
+                    {
+                        if (key != null && key.ToString()!.StartsWith(keyStart, StringComparison.OrdinalIgnoreCase))
+                        {
+                            MessageBox.Show($"Key already exists: {newKey}");
+                            return;
+                        }
+                    }
                 }
-                listBoxFunctions.Items.Add(dialog.Key);
+                else
+                {
+                    foreach (var key in listBoxFunctions.Items)
+                    {
+                        if (key != null && key.ToString()!.Equals(newKey, StringComparison.OrdinalIgnoreCase))
+                        {
+                            MessageBox.Show($"Key already exists: {newKey}");
+                            return;
+                        }
+                    }
+                }
+                listBoxFunctions.Items.Add(newKey);
             }
         }
     }
