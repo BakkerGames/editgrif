@@ -46,11 +46,16 @@
             groupBoxCommands = new GroupBox();
             groupBoxScripts = new GroupBox();
             groupBoxSystem = new GroupBox();
+            panel1 = new Panel();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // buttonStart
             // 
-            buttonStart.Location = new Point(3, 40);
+            buttonStart.Location = new Point(3, 48);
             buttonStart.Name = "buttonStart";
             buttonStart.Size = new Size(96, 50);
             buttonStart.TabIndex = 0;
@@ -60,7 +65,7 @@
             // 
             // buttonRooms
             // 
-            buttonRooms.Location = new Point(3, 96);
+            buttonRooms.Location = new Point(3, 104);
             buttonRooms.Name = "buttonRooms";
             buttonRooms.Size = new Size(96, 50);
             buttonRooms.TabIndex = 1;
@@ -70,7 +75,7 @@
             // 
             // buttonItems
             // 
-            buttonItems.Location = new Point(3, 152);
+            buttonItems.Location = new Point(3, 160);
             buttonItems.Name = "buttonItems";
             buttonItems.Size = new Size(96, 50);
             buttonItems.TabIndex = 2;
@@ -80,7 +85,7 @@
             // 
             // buttonMessages
             // 
-            buttonMessages.Location = new Point(3, 208);
+            buttonMessages.Location = new Point(3, 216);
             buttonMessages.Name = "buttonMessages";
             buttonMessages.Size = new Size(96, 50);
             buttonMessages.TabIndex = 3;
@@ -90,7 +95,7 @@
             // 
             // buttonValues
             // 
-            buttonValues.Location = new Point(3, 264);
+            buttonValues.Location = new Point(3, 272);
             buttonValues.Name = "buttonValues";
             buttonValues.Size = new Size(96, 50);
             buttonValues.TabIndex = 4;
@@ -100,7 +105,7 @@
             // 
             // buttonVocabulary
             // 
-            buttonVocabulary.Location = new Point(3, 320);
+            buttonVocabulary.Location = new Point(3, 328);
             buttonVocabulary.Name = "buttonVocabulary";
             buttonVocabulary.Size = new Size(96, 50);
             buttonVocabulary.TabIndex = 5;
@@ -110,7 +115,7 @@
             // 
             // buttonCommands
             // 
-            buttonCommands.Location = new Point(3, 376);
+            buttonCommands.Location = new Point(3, 384);
             buttonCommands.Name = "buttonCommands";
             buttonCommands.Size = new Size(96, 50);
             buttonCommands.TabIndex = 6;
@@ -120,7 +125,7 @@
             // 
             // buttonSystem
             // 
-            buttonSystem.Location = new Point(3, 488);
+            buttonSystem.Location = new Point(3, 496);
             buttonSystem.Name = "buttonSystem";
             buttonSystem.Size = new Size(96, 50);
             buttonSystem.TabIndex = 8;
@@ -130,7 +135,7 @@
             // 
             // buttonScripts
             // 
-            buttonScripts.Location = new Point(3, 432);
+            buttonScripts.Location = new Point(3, 440);
             buttonScripts.Name = "buttonScripts";
             buttonScripts.Size = new Size(96, 50);
             buttonScripts.TabIndex = 7;
@@ -141,9 +146,9 @@
             // groupBoxStart
             // 
             groupBoxStart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxStart.Location = new Point(105, 31);
+            groupBoxStart.Location = new Point(105, 40);
             groupBoxStart.Name = "groupBoxStart";
-            groupBoxStart.Size = new Size(1066, 714);
+            groupBoxStart.Size = new Size(1066, 705);
             groupBoxStart.TabIndex = 10;
             groupBoxStart.TabStop = false;
             groupBoxStart.Text = "Start";
@@ -151,9 +156,9 @@
             // groupBoxRooms
             // 
             groupBoxRooms.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxRooms.Location = new Point(105, 31);
+            groupBoxRooms.Location = new Point(105, 40);
             groupBoxRooms.Name = "groupBoxRooms";
-            groupBoxRooms.Size = new Size(1066, 714);
+            groupBoxRooms.Size = new Size(1066, 705);
             groupBoxRooms.TabIndex = 11;
             groupBoxRooms.TabStop = false;
             groupBoxRooms.Text = "Rooms";
@@ -162,9 +167,9 @@
             // groupBoxItems
             // 
             groupBoxItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxItems.Location = new Point(105, 31);
+            groupBoxItems.Location = new Point(105, 40);
             groupBoxItems.Name = "groupBoxItems";
-            groupBoxItems.Size = new Size(1066, 714);
+            groupBoxItems.Size = new Size(1066, 705);
             groupBoxItems.TabIndex = 12;
             groupBoxItems.TabStop = false;
             groupBoxItems.Text = "Items";
@@ -173,9 +178,9 @@
             // groupBoxMessages
             // 
             groupBoxMessages.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxMessages.Location = new Point(105, 31);
+            groupBoxMessages.Location = new Point(105, 40);
             groupBoxMessages.Name = "groupBoxMessages";
-            groupBoxMessages.Size = new Size(1066, 714);
+            groupBoxMessages.Size = new Size(1066, 705);
             groupBoxMessages.TabIndex = 13;
             groupBoxMessages.TabStop = false;
             groupBoxMessages.Text = "Messages";
@@ -184,9 +189,9 @@
             // groupBoxValues
             // 
             groupBoxValues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxValues.Location = new Point(105, 31);
+            groupBoxValues.Location = new Point(105, 40);
             groupBoxValues.Name = "groupBoxValues";
-            groupBoxValues.Size = new Size(1066, 714);
+            groupBoxValues.Size = new Size(1066, 705);
             groupBoxValues.TabIndex = 14;
             groupBoxValues.TabStop = false;
             groupBoxValues.Text = "Values";
@@ -195,9 +200,9 @@
             // groupBoxVocabulary
             // 
             groupBoxVocabulary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxVocabulary.Location = new Point(105, 31);
+            groupBoxVocabulary.Location = new Point(105, 40);
             groupBoxVocabulary.Name = "groupBoxVocabulary";
-            groupBoxVocabulary.Size = new Size(1066, 714);
+            groupBoxVocabulary.Size = new Size(1066, 705);
             groupBoxVocabulary.TabIndex = 15;
             groupBoxVocabulary.TabStop = false;
             groupBoxVocabulary.Text = "Vocabulary";
@@ -206,9 +211,9 @@
             // groupBoxCommands
             // 
             groupBoxCommands.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxCommands.Location = new Point(105, 31);
+            groupBoxCommands.Location = new Point(105, 40);
             groupBoxCommands.Name = "groupBoxCommands";
-            groupBoxCommands.Size = new Size(1066, 714);
+            groupBoxCommands.Size = new Size(1066, 705);
             groupBoxCommands.TabIndex = 16;
             groupBoxCommands.TabStop = false;
             groupBoxCommands.Text = "Commands";
@@ -217,9 +222,9 @@
             // groupBoxScripts
             // 
             groupBoxScripts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxScripts.Location = new Point(105, 31);
+            groupBoxScripts.Location = new Point(105, 40);
             groupBoxScripts.Name = "groupBoxScripts";
-            groupBoxScripts.Size = new Size(1066, 714);
+            groupBoxScripts.Size = new Size(1066, 705);
             groupBoxScripts.TabIndex = 17;
             groupBoxScripts.TabStop = false;
             groupBoxScripts.Text = "Scripts";
@@ -228,27 +233,58 @@
             // groupBoxSystem
             // 
             groupBoxSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxSystem.Location = new Point(105, 31);
+            groupBoxSystem.Location = new Point(105, 40);
             groupBoxSystem.Name = "groupBoxSystem";
-            groupBoxSystem.Size = new Size(1066, 714);
+            groupBoxSystem.Size = new Size(1066, 705);
             groupBoxSystem.TabIndex = 18;
             groupBoxSystem.TabStop = false;
             groupBoxSystem.Text = "System";
             groupBoxSystem.Visible = false;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1184, 34);
+            panel1.TabIndex = 19;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(72, 34);
+            button1.TabIndex = 0;
+            button1.Text = "New";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(78, 0);
+            button2.Name = "button2";
+            button2.Size = new Size(72, 34);
+            button2.TabIndex = 1;
+            button2.Text = "Open";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(156, 0);
+            button3.Name = "button3";
+            button3.Size = new Size(72, 34);
+            button3.TabIndex = 2;
+            button3.Text = "Save";
+            button3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1183, 757);
-            Controls.Add(groupBoxSystem);
-            Controls.Add(groupBoxScripts);
-            Controls.Add(groupBoxCommands);
-            Controls.Add(groupBoxVocabulary);
-            Controls.Add(groupBoxValues);
-            Controls.Add(groupBoxMessages);
-            Controls.Add(groupBoxItems);
-            Controls.Add(groupBoxRooms);
+            Controls.Add(panel1);
             Controls.Add(groupBoxStart);
             Controls.Add(buttonSystem);
             Controls.Add(buttonScripts);
@@ -259,10 +295,20 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxSystem);
+            Controls.Add(groupBoxScripts);
+            Controls.Add(groupBoxCommands);
+            Controls.Add(groupBoxVocabulary);
+            Controls.Add(groupBoxValues);
+            Controls.Add(groupBoxMessages);
+            Controls.Add(groupBoxItems);
+            Controls.Add(groupBoxRooms);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zygote";
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -285,5 +331,9 @@
         private GroupBox groupBoxCommands;
         private GroupBox groupBoxScripts;
         private GroupBox groupBoxSystem;
+        private Panel panel1;
+        private Button button3;
+        private Button button2;
+        private Button button1;
     }
 }
