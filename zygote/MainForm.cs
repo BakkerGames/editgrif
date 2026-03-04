@@ -85,5 +85,20 @@ namespace zygote
         {
             textBoxStartVersion.Text = DateTime.Today.ToString("yyyy.MM.dd");
         }
+
+        private void buttonFunctionsAdd_Click(object sender, EventArgs e)
+        {
+            var dialog = new EnterKeyForm();
+            dialog.ShowDialog();
+            if (dialog.DialogResult == DialogResult.OK && !string.IsNullOrEmpty(dialog.Key))
+            {
+                if (listBoxFunctions.Items.Contains(dialog.Key))
+                {
+                    MessageBox.Show($"Key already exists: {dialog.Key}");
+                    return;
+                }
+                listBoxFunctions.Items.Add(dialog.Key);
+            }
+        }
     }
 }

@@ -63,8 +63,14 @@
             buttonFileNew = new Button();
             buttonFunctions = new Button();
             groupBoxFunctions = new GroupBox();
+            listBoxFunctions = new ListBox();
+            buttonFunctionsAdd = new Button();
+            buttonFunctionsRename = new Button();
+            buttonFunctionsDelete = new Button();
+            richTextBoxFunctions = new RichTextBox();
             groupBoxStart.SuspendLayout();
             panelToolbar.SuspendLayout();
+            groupBoxFunctions.SuspendLayout();
             SuspendLayout();
             // 
             // buttonStart
@@ -243,7 +249,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(20, 54);
             label2.Name = "label2";
-            label2.Size = new Size(64, 15);
+            label2.Size = new Size(63, 15);
             label2.TabIndex = 5;
             label2.Text = "Game Title";
             // 
@@ -409,6 +415,11 @@
             // groupBoxFunctions
             // 
             groupBoxFunctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxFunctions.Controls.Add(richTextBoxFunctions);
+            groupBoxFunctions.Controls.Add(buttonFunctionsDelete);
+            groupBoxFunctions.Controls.Add(buttonFunctionsRename);
+            groupBoxFunctions.Controls.Add(buttonFunctionsAdd);
+            groupBoxFunctions.Controls.Add(listBoxFunctions);
             groupBoxFunctions.Location = new Point(105, 40);
             groupBoxFunctions.Name = "groupBoxFunctions";
             groupBoxFunctions.Size = new Size(1066, 705);
@@ -416,6 +427,53 @@
             groupBoxFunctions.TabStop = false;
             groupBoxFunctions.Text = "Functions";
             groupBoxFunctions.Visible = false;
+            // 
+            // listBoxFunctions
+            // 
+            listBoxFunctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxFunctions.FormattingEnabled = true;
+            listBoxFunctions.IntegralHeight = false;
+            listBoxFunctions.Location = new Point(8, 52);
+            listBoxFunctions.Name = "listBoxFunctions";
+            listBoxFunctions.Size = new Size(184, 647);
+            listBoxFunctions.TabIndex = 0;
+            // 
+            // buttonFunctionsAdd
+            // 
+            buttonFunctionsAdd.Location = new Point(6, 23);
+            buttonFunctionsAdd.Name = "buttonFunctionsAdd";
+            buttonFunctionsAdd.Size = new Size(58, 23);
+            buttonFunctionsAdd.TabIndex = 1;
+            buttonFunctionsAdd.Text = "Add";
+            buttonFunctionsAdd.UseVisualStyleBackColor = true;
+            buttonFunctionsAdd.Click += buttonFunctionsAdd_Click;
+            // 
+            // buttonFunctionsRename
+            // 
+            buttonFunctionsRename.Location = new Point(70, 22);
+            buttonFunctionsRename.Name = "buttonFunctionsRename";
+            buttonFunctionsRename.Size = new Size(58, 23);
+            buttonFunctionsRename.TabIndex = 2;
+            buttonFunctionsRename.Text = "Rename";
+            buttonFunctionsRename.UseVisualStyleBackColor = true;
+            // 
+            // buttonFunctionsDelete
+            // 
+            buttonFunctionsDelete.Location = new Point(134, 23);
+            buttonFunctionsDelete.Name = "buttonFunctionsDelete";
+            buttonFunctionsDelete.Size = new Size(58, 23);
+            buttonFunctionsDelete.TabIndex = 3;
+            buttonFunctionsDelete.Text = "Delete";
+            buttonFunctionsDelete.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxFunctions
+            // 
+            richTextBoxFunctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxFunctions.Location = new Point(198, 51);
+            richTextBoxFunctions.Name = "richTextBoxFunctions";
+            richTextBoxFunctions.Size = new Size(862, 648);
+            richTextBoxFunctions.TabIndex = 4;
+            richTextBoxFunctions.Text = "";
             // 
             // MainForm
             // 
@@ -451,6 +509,7 @@
             groupBoxStart.ResumeLayout(false);
             groupBoxStart.PerformLayout();
             panelToolbar.ResumeLayout(false);
+            groupBoxFunctions.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -490,5 +549,10 @@
         private Button buttonVersionToday;
         private Button buttonFunctions;
         private GroupBox groupBoxFunctions;
+        private Button buttonFunctionsDelete;
+        private Button buttonFunctionsRename;
+        private Button buttonFunctionsAdd;
+        private ListBox listBoxFunctions;
+        private RichTextBox richTextBoxFunctions;
     }
 }
