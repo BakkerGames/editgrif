@@ -52,41 +52,41 @@
             groupBoxRooms = new GroupBox();
             groupBoxItems = new GroupBox();
             groupBoxMessages = new GroupBox();
-            richTextBox6 = new RichTextBox();
+            richTextBoxMessages = new RichTextBox();
             button16 = new Button();
             button17 = new Button();
             button18 = new Button();
-            listBox6 = new ListBox();
+            listBoxMessages = new ListBox();
             groupBoxValues = new GroupBox();
-            richTextBox5 = new RichTextBox();
+            richTextBoxValues = new RichTextBox();
             button13 = new Button();
             button14 = new Button();
             button15 = new Button();
-            listBox5 = new ListBox();
+            listBoxValues = new ListBox();
             groupBoxVocabulary = new GroupBox();
-            richTextBox4 = new RichTextBox();
+            richTextBoxVocabulary = new RichTextBox();
             button10 = new Button();
             button11 = new Button();
             button12 = new Button();
-            listBox4 = new ListBox();
+            listBoxVocabulary = new ListBox();
             groupBoxCommands = new GroupBox();
-            richTextBox3 = new RichTextBox();
+            richTextBoxCommands = new RichTextBox();
             button7 = new Button();
             button8 = new Button();
             button9 = new Button();
-            listBox3 = new ListBox();
+            listBoxCommands = new ListBox();
             groupBoxScripts = new GroupBox();
-            richTextBox2 = new RichTextBox();
+            richTextBoxScripts = new RichTextBox();
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
-            listBox2 = new ListBox();
+            listBoxScripts = new ListBox();
             groupBoxSystem = new GroupBox();
-            richTextBox1 = new RichTextBox();
+            richTextBoxSystem = new RichTextBox();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
-            listBox1 = new ListBox();
+            listBoxSystem = new ListBox();
             panelToolbar = new Panel();
             buttonFileSave = new Button();
             buttonFileOpen = new Button();
@@ -285,7 +285,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(20, 54);
             label2.Name = "label2";
-            label2.Size = new Size(63, 15);
+            label2.Size = new Size(64, 15);
             label2.TabIndex = 5;
             label2.Text = "Game Title";
             // 
@@ -337,11 +337,11 @@
             // groupBoxMessages
             // 
             groupBoxMessages.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxMessages.Controls.Add(richTextBox6);
+            groupBoxMessages.Controls.Add(richTextBoxMessages);
             groupBoxMessages.Controls.Add(button16);
             groupBoxMessages.Controls.Add(button17);
             groupBoxMessages.Controls.Add(button18);
-            groupBoxMessages.Controls.Add(listBox6);
+            groupBoxMessages.Controls.Add(listBoxMessages);
             groupBoxMessages.Location = new Point(105, 40);
             groupBoxMessages.Name = "groupBoxMessages";
             groupBoxMessages.Size = new Size(1066, 705);
@@ -350,14 +350,14 @@
             groupBoxMessages.Text = "Messages";
             groupBoxMessages.Visible = false;
             // 
-            // richTextBox6
+            // richTextBoxMessages
             // 
-            richTextBox6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBox6.Location = new Point(198, 52);
-            richTextBox6.Name = "richTextBox6";
-            richTextBox6.Size = new Size(862, 647);
-            richTextBox6.TabIndex = 9;
-            richTextBox6.Text = "";
+            richTextBoxMessages.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxMessages.Location = new Point(198, 52);
+            richTextBoxMessages.Name = "richTextBoxMessages";
+            richTextBoxMessages.Size = new Size(862, 647);
+            richTextBoxMessages.TabIndex = 9;
+            richTextBoxMessages.Text = "";
             // 
             // button16
             // 
@@ -386,24 +386,25 @@
             button18.Text = "Add";
             button18.UseVisualStyleBackColor = true;
             // 
-            // listBox6
+            // listBoxMessages
             // 
-            listBox6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listBox6.FormattingEnabled = true;
-            listBox6.IntegralHeight = false;
-            listBox6.Location = new Point(8, 52);
-            listBox6.Name = "listBox6";
-            listBox6.Size = new Size(184, 647);
-            listBox6.TabIndex = 5;
+            listBoxMessages.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxMessages.FormattingEnabled = true;
+            listBoxMessages.IntegralHeight = false;
+            listBoxMessages.Location = new Point(8, 52);
+            listBoxMessages.Name = "listBoxMessages";
+            listBoxMessages.Size = new Size(184, 647);
+            listBoxMessages.TabIndex = 5;
+            listBoxMessages.SelectedIndexChanged += listBoxMessages_SelectedIndexChanged;
             // 
             // groupBoxValues
             // 
             groupBoxValues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxValues.Controls.Add(richTextBox5);
+            groupBoxValues.Controls.Add(richTextBoxValues);
             groupBoxValues.Controls.Add(button13);
             groupBoxValues.Controls.Add(button14);
             groupBoxValues.Controls.Add(button15);
-            groupBoxValues.Controls.Add(listBox5);
+            groupBoxValues.Controls.Add(listBoxValues);
             groupBoxValues.Location = new Point(105, 40);
             groupBoxValues.Name = "groupBoxValues";
             groupBoxValues.Size = new Size(1066, 705);
@@ -412,14 +413,14 @@
             groupBoxValues.Text = "Values";
             groupBoxValues.Visible = false;
             // 
-            // richTextBox5
+            // richTextBoxValues
             // 
-            richTextBox5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBox5.Location = new Point(198, 52);
-            richTextBox5.Name = "richTextBox5";
-            richTextBox5.Size = new Size(862, 647);
-            richTextBox5.TabIndex = 9;
-            richTextBox5.Text = "";
+            richTextBoxValues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxValues.Location = new Point(198, 52);
+            richTextBoxValues.Name = "richTextBoxValues";
+            richTextBoxValues.Size = new Size(862, 647);
+            richTextBoxValues.TabIndex = 9;
+            richTextBoxValues.Text = "";
             // 
             // button13
             // 
@@ -448,24 +449,25 @@
             button15.Text = "Add";
             button15.UseVisualStyleBackColor = true;
             // 
-            // listBox5
+            // listBoxValues
             // 
-            listBox5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listBox5.FormattingEnabled = true;
-            listBox5.IntegralHeight = false;
-            listBox5.Location = new Point(8, 52);
-            listBox5.Name = "listBox5";
-            listBox5.Size = new Size(184, 647);
-            listBox5.TabIndex = 5;
+            listBoxValues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxValues.FormattingEnabled = true;
+            listBoxValues.IntegralHeight = false;
+            listBoxValues.Location = new Point(8, 52);
+            listBoxValues.Name = "listBoxValues";
+            listBoxValues.Size = new Size(184, 647);
+            listBoxValues.TabIndex = 5;
+            listBoxValues.SelectedIndexChanged += listBoxValues_SelectedIndexChanged;
             // 
             // groupBoxVocabulary
             // 
             groupBoxVocabulary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxVocabulary.Controls.Add(richTextBox4);
+            groupBoxVocabulary.Controls.Add(richTextBoxVocabulary);
             groupBoxVocabulary.Controls.Add(button10);
             groupBoxVocabulary.Controls.Add(button11);
             groupBoxVocabulary.Controls.Add(button12);
-            groupBoxVocabulary.Controls.Add(listBox4);
+            groupBoxVocabulary.Controls.Add(listBoxVocabulary);
             groupBoxVocabulary.Location = new Point(105, 40);
             groupBoxVocabulary.Name = "groupBoxVocabulary";
             groupBoxVocabulary.Size = new Size(1066, 705);
@@ -474,14 +476,14 @@
             groupBoxVocabulary.Text = "Vocabulary";
             groupBoxVocabulary.Visible = false;
             // 
-            // richTextBox4
+            // richTextBoxVocabulary
             // 
-            richTextBox4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBox4.Location = new Point(198, 52);
-            richTextBox4.Name = "richTextBox4";
-            richTextBox4.Size = new Size(862, 647);
-            richTextBox4.TabIndex = 9;
-            richTextBox4.Text = "";
+            richTextBoxVocabulary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxVocabulary.Location = new Point(198, 52);
+            richTextBoxVocabulary.Name = "richTextBoxVocabulary";
+            richTextBoxVocabulary.Size = new Size(862, 647);
+            richTextBoxVocabulary.TabIndex = 9;
+            richTextBoxVocabulary.Text = "";
             // 
             // button10
             // 
@@ -510,24 +512,25 @@
             button12.Text = "Add";
             button12.UseVisualStyleBackColor = true;
             // 
-            // listBox4
+            // listBoxVocabulary
             // 
-            listBox4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listBox4.FormattingEnabled = true;
-            listBox4.IntegralHeight = false;
-            listBox4.Location = new Point(8, 52);
-            listBox4.Name = "listBox4";
-            listBox4.Size = new Size(184, 647);
-            listBox4.TabIndex = 5;
+            listBoxVocabulary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxVocabulary.FormattingEnabled = true;
+            listBoxVocabulary.IntegralHeight = false;
+            listBoxVocabulary.Location = new Point(8, 52);
+            listBoxVocabulary.Name = "listBoxVocabulary";
+            listBoxVocabulary.Size = new Size(184, 647);
+            listBoxVocabulary.TabIndex = 5;
+            listBoxVocabulary.SelectedIndexChanged += listBoxVocabulary_SelectedIndexChanged;
             // 
             // groupBoxCommands
             // 
             groupBoxCommands.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxCommands.Controls.Add(richTextBox3);
+            groupBoxCommands.Controls.Add(richTextBoxCommands);
             groupBoxCommands.Controls.Add(button7);
             groupBoxCommands.Controls.Add(button8);
             groupBoxCommands.Controls.Add(button9);
-            groupBoxCommands.Controls.Add(listBox3);
+            groupBoxCommands.Controls.Add(listBoxCommands);
             groupBoxCommands.Location = new Point(105, 40);
             groupBoxCommands.Name = "groupBoxCommands";
             groupBoxCommands.Size = new Size(1066, 705);
@@ -536,14 +539,14 @@
             groupBoxCommands.Text = "Commands";
             groupBoxCommands.Visible = false;
             // 
-            // richTextBox3
+            // richTextBoxCommands
             // 
-            richTextBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBox3.Location = new Point(198, 52);
-            richTextBox3.Name = "richTextBox3";
-            richTextBox3.Size = new Size(862, 647);
-            richTextBox3.TabIndex = 9;
-            richTextBox3.Text = "";
+            richTextBoxCommands.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxCommands.Location = new Point(198, 52);
+            richTextBoxCommands.Name = "richTextBoxCommands";
+            richTextBoxCommands.Size = new Size(862, 647);
+            richTextBoxCommands.TabIndex = 9;
+            richTextBoxCommands.Text = "";
             // 
             // button7
             // 
@@ -572,24 +575,25 @@
             button9.Text = "Add";
             button9.UseVisualStyleBackColor = true;
             // 
-            // listBox3
+            // listBoxCommands
             // 
-            listBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listBox3.FormattingEnabled = true;
-            listBox3.IntegralHeight = false;
-            listBox3.Location = new Point(8, 52);
-            listBox3.Name = "listBox3";
-            listBox3.Size = new Size(184, 647);
-            listBox3.TabIndex = 5;
+            listBoxCommands.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxCommands.FormattingEnabled = true;
+            listBoxCommands.IntegralHeight = false;
+            listBoxCommands.Location = new Point(8, 52);
+            listBoxCommands.Name = "listBoxCommands";
+            listBoxCommands.Size = new Size(184, 647);
+            listBoxCommands.TabIndex = 5;
+            listBoxCommands.SelectedIndexChanged += listBoxCommands_SelectedIndexChanged;
             // 
             // groupBoxScripts
             // 
             groupBoxScripts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxScripts.Controls.Add(richTextBox2);
+            groupBoxScripts.Controls.Add(richTextBoxScripts);
             groupBoxScripts.Controls.Add(button4);
             groupBoxScripts.Controls.Add(button5);
             groupBoxScripts.Controls.Add(button6);
-            groupBoxScripts.Controls.Add(listBox2);
+            groupBoxScripts.Controls.Add(listBoxScripts);
             groupBoxScripts.Location = new Point(105, 40);
             groupBoxScripts.Name = "groupBoxScripts";
             groupBoxScripts.Size = new Size(1066, 705);
@@ -598,14 +602,14 @@
             groupBoxScripts.Text = "Scripts";
             groupBoxScripts.Visible = false;
             // 
-            // richTextBox2
+            // richTextBoxScripts
             // 
-            richTextBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBox2.Location = new Point(198, 52);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(862, 647);
-            richTextBox2.TabIndex = 9;
-            richTextBox2.Text = "";
+            richTextBoxScripts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxScripts.Location = new Point(198, 52);
+            richTextBoxScripts.Name = "richTextBoxScripts";
+            richTextBoxScripts.Size = new Size(862, 647);
+            richTextBoxScripts.TabIndex = 9;
+            richTextBoxScripts.Text = "";
             // 
             // button4
             // 
@@ -634,24 +638,26 @@
             button6.Text = "Add";
             button6.UseVisualStyleBackColor = true;
             // 
-            // listBox2
+            // listBoxScripts
             // 
-            listBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listBox2.FormattingEnabled = true;
-            listBox2.IntegralHeight = false;
-            listBox2.Location = new Point(8, 52);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(184, 647);
-            listBox2.TabIndex = 5;
+            listBoxScripts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxScripts.FormattingEnabled = true;
+            listBoxScripts.IntegralHeight = false;
+            listBoxScripts.Location = new Point(8, 52);
+            listBoxScripts.Name = "listBoxScripts";
+            listBoxScripts.Size = new Size(184, 647);
+            listBoxScripts.Sorted = true;
+            listBoxScripts.TabIndex = 5;
+            listBoxScripts.SelectedIndexChanged += listBoxScripts_SelectedIndexChanged;
             // 
             // groupBoxSystem
             // 
             groupBoxSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxSystem.Controls.Add(richTextBox1);
+            groupBoxSystem.Controls.Add(richTextBoxSystem);
             groupBoxSystem.Controls.Add(button1);
             groupBoxSystem.Controls.Add(button2);
             groupBoxSystem.Controls.Add(button3);
-            groupBoxSystem.Controls.Add(listBox1);
+            groupBoxSystem.Controls.Add(listBoxSystem);
             groupBoxSystem.Location = new Point(105, 40);
             groupBoxSystem.Name = "groupBoxSystem";
             groupBoxSystem.Size = new Size(1066, 705);
@@ -660,14 +666,14 @@
             groupBoxSystem.Text = "System";
             groupBoxSystem.Visible = false;
             // 
-            // richTextBox1
+            // richTextBoxSystem
             // 
-            richTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBox1.Location = new Point(198, 52);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(862, 647);
-            richTextBox1.TabIndex = 9;
-            richTextBox1.Text = "";
+            richTextBoxSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxSystem.Location = new Point(198, 52);
+            richTextBoxSystem.Name = "richTextBoxSystem";
+            richTextBoxSystem.Size = new Size(862, 647);
+            richTextBoxSystem.TabIndex = 9;
+            richTextBoxSystem.Text = "";
             // 
             // button1
             // 
@@ -696,15 +702,16 @@
             button3.Text = "Add";
             button3.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // listBoxSystem
             // 
-            listBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listBox1.FormattingEnabled = true;
-            listBox1.IntegralHeight = false;
-            listBox1.Location = new Point(8, 52);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(184, 647);
-            listBox1.TabIndex = 5;
+            listBoxSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxSystem.FormattingEnabled = true;
+            listBoxSystem.IntegralHeight = false;
+            listBoxSystem.Location = new Point(8, 52);
+            listBoxSystem.Name = "listBoxSystem";
+            listBoxSystem.Size = new Size(184, 647);
+            listBoxSystem.TabIndex = 5;
+            listBoxSystem.SelectedIndexChanged += listBoxSystem_SelectedIndexChanged;
             // 
             // panelToolbar
             // 
@@ -734,6 +741,7 @@
             buttonFileOpen.TabIndex = 1;
             buttonFileOpen.Text = "Open";
             buttonFileOpen.UseVisualStyleBackColor = true;
+            buttonFileOpen.Click += buttonFileOpen_Click;
             // 
             // buttonFileNew
             // 
@@ -816,6 +824,7 @@
             listBoxFunctions.Name = "listBoxFunctions";
             listBoxFunctions.Size = new Size(184, 647);
             listBoxFunctions.TabIndex = 0;
+            listBoxFunctions.SelectedIndexChanged += listBoxFunctions_SelectedIndexChanged;
             // 
             // MainForm
             // 
@@ -833,6 +842,8 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxItems);
+            Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
@@ -841,8 +852,6 @@
             Controls.Add(groupBoxVocabulary);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
-            Controls.Add(groupBoxItems);
-            Controls.Add(groupBoxRooms);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "MainForm";
@@ -902,35 +911,35 @@
         private Button buttonFunctionsAdd;
         private ListBox listBoxFunctions;
         private RichTextBox richTextBoxFunctions;
-        private RichTextBox richTextBox6;
+        private RichTextBox richTextBoxMessages;
         private Button button16;
         private Button button17;
         private Button button18;
-        private ListBox listBox6;
-        private RichTextBox richTextBox5;
+        private ListBox listBoxMessages;
+        private RichTextBox richTextBoxValues;
         private Button button13;
         private Button button14;
         private Button button15;
-        private ListBox listBox5;
-        private RichTextBox richTextBox4;
+        private ListBox listBoxValues;
+        private RichTextBox richTextBoxVocabulary;
         private Button button10;
         private Button button11;
         private Button button12;
-        private ListBox listBox4;
-        private RichTextBox richTextBox3;
+        private ListBox listBoxVocabulary;
+        private RichTextBox richTextBoxCommands;
         private Button button7;
         private Button button8;
         private Button button9;
-        private ListBox listBox3;
-        private RichTextBox richTextBox2;
+        private ListBox listBoxCommands;
+        private RichTextBox richTextBoxScripts;
         private Button button4;
         private Button button5;
         private Button button6;
-        private ListBox listBox2;
-        private RichTextBox richTextBox1;
+        private ListBox listBoxScripts;
+        private RichTextBox richTextBoxSystem;
         private Button button1;
         private Button button2;
         private Button button3;
-        private ListBox listBox1;
+        private ListBox listBoxSystem;
     }
 }
