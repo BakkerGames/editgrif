@@ -781,6 +781,7 @@
             // richTextBoxFunctions
             // 
             richTextBoxFunctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxFunctions.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBoxFunctions.Location = new Point(198, 52);
             richTextBoxFunctions.Name = "richTextBoxFunctions";
             richTextBoxFunctions.Size = new Size(862, 647);
@@ -842,9 +843,6 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
-            Controls.Add(groupBoxItems);
-            Controls.Add(groupBoxRooms);
-            Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
             Controls.Add(groupBoxScripts);
@@ -852,6 +850,9 @@
             Controls.Add(groupBoxVocabulary);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
+            Controls.Add(groupBoxItems);
+            Controls.Add(groupBoxRooms);
+            Controls.Add(groupBoxStart);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "MainForm";

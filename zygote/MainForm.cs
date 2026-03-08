@@ -241,8 +241,33 @@ namespace zygote
             else
             {
                 var key = (string)(listbox?.SelectedItem ?? "");
-                rtb.Text = Dags.PrettyScript(grod.Get(key, true));
+                rtb.Clear();
+                var script = grod.Get(key, true);
+                if (script != null)
+                {
+                    var items = Dags.ColorizeScript(script);
+                    foreach (var item in items)
+                    {
+                        rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
+                    }
+                }
             }
+        }
+
+        private static Color GetColorValue(TextColorEnum textColor)
+        {
+            return textColor switch
+            {
+                TextColorEnum.Default => Color.Black,
+                TextColorEnum.PunctuationColor => Color.Gray,
+                TextColorEnum.TokenColor => Color.Cyan,
+                TextColorEnum.IfColor => Color.Blue,
+                TextColorEnum.ForColor => Color.Yellow,
+                TextColorEnum.QuoteColor => Color.Green,
+                TextColorEnum.ParameterColor => Color.Magenta,
+                TextColorEnum.CommentColor => Color.LightGray,
+                _ => Color.Black,
+            };
         }
     }
 }
