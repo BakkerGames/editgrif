@@ -259,13 +259,13 @@ namespace zygote
             return textColor switch
             {
                 TextColorEnum.Default => Color.Black,
-                TextColorEnum.PunctuationColor => Color.Gray,
+                TextColorEnum.PunctuationColor => Color.LightGray,
                 TextColorEnum.TokenColor => Color.Cyan,
                 TextColorEnum.IfColor => Color.Blue,
-                TextColorEnum.ForColor => Color.Yellow,
-                TextColorEnum.QuoteColor => Color.Green,
+                TextColorEnum.ForColor => Color.Orange,
+                TextColorEnum.QuoteColor => Color.ForestGreen,
                 TextColorEnum.ParameterColor => Color.Magenta,
-                TextColorEnum.CommentColor => Color.LightGray,
+                TextColorEnum.CommentColor => Color.ForestGreen,
                 _ => Color.Black,
             };
         }

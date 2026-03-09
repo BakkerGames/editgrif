@@ -222,6 +222,7 @@
             // 
             // buttonVersionToday
             // 
+            buttonVersionToday.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonVersionToday.Location = new Point(1007, 22);
             buttonVersionToday.Name = "buttonVersionToday";
             buttonVersionToday.Size = new Size(53, 23);
@@ -248,6 +249,7 @@
             // 
             // label4
             // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Location = new Point(814, 26);
             label4.Name = "label4";
@@ -257,6 +259,7 @@
             // 
             // textBoxStartVersion
             // 
+            textBoxStartVersion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             textBoxStartVersion.Location = new Point(865, 23);
             textBoxStartVersion.Name = "textBoxStartVersion";
             textBoxStartVersion.Size = new Size(136, 23);
@@ -264,6 +267,7 @@
             // 
             // textBoxStartIntroduction
             // 
+            textBoxStartIntroduction.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxStartIntroduction.Location = new Point(109, 82);
             textBoxStartIntroduction.Multiline = true;
             textBoxStartIntroduction.Name = "textBoxStartIntroduction";
@@ -353,6 +357,7 @@
             // richTextBoxMessages
             // 
             richTextBoxMessages.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxMessages.Font = new Font("Consolas", 14.25F);
             richTextBoxMessages.Location = new Point(198, 52);
             richTextBoxMessages.Name = "richTextBoxMessages";
             richTextBoxMessages.Size = new Size(862, 647);
@@ -416,6 +421,7 @@
             // richTextBoxValues
             // 
             richTextBoxValues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxValues.Font = new Font("Consolas", 14.25F);
             richTextBoxValues.Location = new Point(198, 52);
             richTextBoxValues.Name = "richTextBoxValues";
             richTextBoxValues.Size = new Size(862, 647);
@@ -479,6 +485,7 @@
             // richTextBoxVocabulary
             // 
             richTextBoxVocabulary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxVocabulary.Font = new Font("Consolas", 14.25F);
             richTextBoxVocabulary.Location = new Point(198, 52);
             richTextBoxVocabulary.Name = "richTextBoxVocabulary";
             richTextBoxVocabulary.Size = new Size(862, 647);
@@ -542,6 +549,7 @@
             // richTextBoxCommands
             // 
             richTextBoxCommands.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxCommands.Font = new Font("Consolas", 14.25F);
             richTextBoxCommands.Location = new Point(198, 52);
             richTextBoxCommands.Name = "richTextBoxCommands";
             richTextBoxCommands.Size = new Size(862, 647);
@@ -605,6 +613,7 @@
             // richTextBoxScripts
             // 
             richTextBoxScripts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxScripts.Font = new Font("Consolas", 14.25F);
             richTextBoxScripts.Location = new Point(198, 52);
             richTextBoxScripts.Name = "richTextBoxScripts";
             richTextBoxScripts.Size = new Size(862, 647);
@@ -669,6 +678,7 @@
             // richTextBoxSystem
             // 
             richTextBoxSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxSystem.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBoxSystem.Location = new Point(198, 52);
             richTextBoxSystem.Name = "richTextBoxSystem";
             richTextBoxSystem.Size = new Size(862, 647);
@@ -781,7 +791,7 @@
             // richTextBoxFunctions
             // 
             richTextBoxFunctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBoxFunctions.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            richTextBoxFunctions.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBoxFunctions.Location = new Point(198, 52);
             richTextBoxFunctions.Name = "richTextBoxFunctions";
             richTextBoxFunctions.Size = new Size(862, 647);
@@ -843,6 +853,7 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
             Controls.Add(groupBoxScripts);
@@ -852,9 +863,6 @@
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
-            Controls.Add(groupBoxStart);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zygote";
