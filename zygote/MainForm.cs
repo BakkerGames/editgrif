@@ -213,12 +213,41 @@ namespace zygote
             {
                 FillListBox(grod, $"{prefix}.", listBoxCommands);
             }
-            var scriptList = grod.Get("system.prefix.script", true)?.Split(',') ?? ["script"];
+            var scriptList = grod.Get("system.prefix.script", true)?.Split(',') ?? ["script", "background"];
             foreach (var prefix in scriptList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxScripts);
             }
+            var roomList = grod.Get("system.prefix.room", true)?.Split(',') ?? ["room"];
+            var itemList = grod.Get("system.prefix.item", true)?.Split(',') ?? ["item"];
             FillListBox(grod, "@", listBoxFunctions);
+            foreach (var key in grod.Keys(true, true))
+            {
+                if (key.StartsWith('@')) continue;
+                if (!key.Contains('.'))
+                {
+                    listBoxValues.Items.Add(key);
+                }
+                else
+                {
+                    var prefix = key[..key.IndexOf('.')];
+                    if (!systemList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !messageList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !valueList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !verbList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !nounList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !adjectiveList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !prepositionList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !articleList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !commandList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !roomList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !itemList.Contains(prefix, StringComparer.OrdinalIgnoreCase))
+                    {
+                        listBoxValues.Items.Add(key);
+                    }
+                }
+            }
         }
 
         private static void FillListBox(Grod grod, string prefix, ListBox listbox)
