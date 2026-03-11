@@ -168,16 +168,57 @@ namespace zygote
 
         private void LoadData(Grod grod)
         {
-            FillListBox(grod, "message.", listBoxMessages);
-            FillListBox(grod, "value.", listBoxValues);
-            FillListBox(grod, "verb.", listBoxVocabulary);
-            FillListBox(grod, "noun.", listBoxVocabulary);
-            FillListBox(grod, "adjective.", listBoxVocabulary);
-            FillListBox(grod, "preposition.", listBoxVocabulary);
-            FillListBox(grod, "command.", listBoxCommands);
-            FillListBox(grod, "script.", listBoxScripts);
+            var systemList = grod.Get("system.prefix.system", true)?.Split(',') ?? ["system"];
+            foreach (var prefix in systemList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxSystem);
+            }
+            var messageList = grod.Get("system.prefix.message", true)?.Split(',') ?? ["message"];
+            foreach (var prefix in messageList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxMessages);
+            }
+            var valueList = grod.Get("system.prefix.zzz", true)?.Split(',') ?? ["value"];
+            foreach (var prefix in valueList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxValues);
+            }
+            var verbList = grod.Get("system.prefix.verb", true)?.Split(',') ?? ["verb"];
+            foreach (var prefix in verbList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
+            }
+            var nounList = grod.Get("system.prefix.noun", true)?.Split(',') ?? ["noun"];
+            foreach (var prefix in nounList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
+            }
+            var adjectiveList = grod.Get("system.prefix.adjective", true)?.Split(',') ?? ["adjective"];
+            foreach (var prefix in adjectiveList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
+            }
+            var prepositionList = grod.Get("system.prefix.preposition", true)?.Split(',') ?? ["preposition"];
+            foreach (var prefix in prepositionList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
+            }
+            var articleList = grod.Get("system.prefix.article", true)?.Split(',') ?? ["article"];
+            foreach (var prefix in articleList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
+            }
+            var commandList = grod.Get("system.prefix.command", true)?.Split(',') ?? ["command"];
+            foreach (var prefix in commandList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxCommands);
+            }
+            var scriptList = grod.Get("system.prefix.script", true)?.Split(',') ?? ["script"];
+            foreach (var prefix in scriptList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxScripts);
+            }
             FillListBox(grod, "@", listBoxFunctions);
-            FillListBox(grod, "system.", listBoxSystem);
         }
 
         private static void FillListBox(Grod grod, string prefix, ListBox listbox)
