@@ -273,7 +273,20 @@ namespace zygote
         {
             foreach (var prefix in roomList)
             {
-
+                var keys = grod.Keys(prefix, true, false);
+                keys.Sort(Grod.CompareKeys);
+                foreach (var key in keys)
+                {
+                    var pos = key.IndexOf('.', prefix.Length + 1);
+                    if (pos >= 0)
+                    {
+                        var name = key[(prefix.Length + 1)..pos];
+                        if (!listBoxRooms.Items.Contains(name))
+                        {
+                            listBoxRooms.Items.Add(name);
+                        }
+                    }
+                }
             }
         }
 
@@ -281,7 +294,20 @@ namespace zygote
         {
             foreach (var prefix in itemList)
             {
-
+                var keys = grod.Keys(prefix, true, false);
+                keys.Sort(Grod.CompareKeys);
+                foreach (var key in keys)
+                {
+                    var pos = key.IndexOf('.', prefix.Length + 1);
+                    if (pos >= 0)
+                    {
+                        var name = key[(prefix.Length + 1)..pos];
+                        if (!listBoxItems.Items.Contains(name))
+                        {
+                            listBoxItems.Items.Add(name);
+                        }
+                    }
+                }
             }
         }
 
@@ -356,6 +382,20 @@ namespace zygote
                 TextColorEnum.CommentColor => Color.ForestGreen,
                 _ => Color.Black,
             };
+        }
+
+        private void listBoxRooms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxRooms.SelectedIndex < 0) return;
+            textBoxRoomsShortDesc.Text = grod.Get($"room.{listBoxRooms.SelectedItem}.shortdesc", true);
+            textBoxRoomsLongDesc.Text = grod.Get($"room.{listBoxRooms.SelectedItem}.longdesc", true);
+        }
+
+        private void listBoxItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxItems.SelectedIndex < 0) return;
+            textBoxItemsShortDesc.Text = grod.Get($"item.{listBoxItems.SelectedItem}.shortdesc", true);
+            textBoxItemsLongDesc.Text = grod.Get($"item.{listBoxItems.SelectedItem}.longdesc", true);
         }
     }
 }
