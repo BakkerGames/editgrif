@@ -219,7 +219,9 @@ namespace zygote
                 FillListBox(grod, $"{prefix}.", listBoxScripts);
             }
             var roomList = grod.Get("system.prefix.room", true)?.Split(',') ?? ["room"];
+            FillRooms(grod, roomList);
             var itemList = grod.Get("system.prefix.item", true)?.Split(',') ?? ["item"];
+            FillItems(grod, itemList);
             FillListBox(grod, "@", listBoxFunctions);
             foreach (var key in grod.Keys(true, true))
             {
@@ -265,6 +267,22 @@ namespace zygote
                 listbox.Items.Add(key);
             }
             listbox.EndUpdate();
+        }
+
+        private void FillRooms(Grod grod, string[] roomList)
+        {
+            foreach (var prefix in roomList)
+            {
+
+            }
+        }
+
+        private void FillItems(Grod grod, string[] itemList)
+        {
+            foreach (var prefix in itemList)
+            {
+
+            }
         }
 
         private void listBoxFunctions_SelectedIndexChanged(object sender, EventArgs e)

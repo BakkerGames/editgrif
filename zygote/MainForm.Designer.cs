@@ -39,53 +39,54 @@
             buttonScripts = new Button();
             groupBoxStart = new GroupBox();
             buttonVersionToday = new Button();
-            label5 = new Label();
+            labelStartStartingRoom = new Label();
             textBoxStartStartingRoom = new TextBox();
-            label4 = new Label();
+            labelStartVersion = new Label();
             textBoxStartVersion = new TextBox();
             textBoxStartIntroduction = new TextBox();
-            label3 = new Label();
-            label2 = new Label();
+            labelStartIntroduction = new Label();
+            labelStartGameTitle = new Label();
             textBoxStartGameTitle = new TextBox();
-            label1 = new Label();
+            labelStartGameName = new Label();
             textBoxStartGameName = new TextBox();
             groupBoxRooms = new GroupBox();
+            listBoxRooms = new ListBox();
             groupBoxItems = new GroupBox();
             groupBoxMessages = new GroupBox();
             richTextBoxMessages = new RichTextBox();
-            button16 = new Button();
-            button17 = new Button();
-            button18 = new Button();
+            buttonMessagesDelete = new Button();
+            buttonMessagesRename = new Button();
+            buttonMessagesAdd = new Button();
             listBoxMessages = new ListBox();
             groupBoxValues = new GroupBox();
             richTextBoxValues = new RichTextBox();
-            button13 = new Button();
-            button14 = new Button();
-            button15 = new Button();
+            buttonValuesDelete = new Button();
+            buttonValuesRename = new Button();
+            buttonValuesAdd = new Button();
             listBoxValues = new ListBox();
             groupBoxVocabulary = new GroupBox();
             richTextBoxVocabulary = new RichTextBox();
-            button10 = new Button();
-            button11 = new Button();
-            button12 = new Button();
+            buttonVocabularyDelete = new Button();
+            buttonVocabularyRename = new Button();
+            buttonVocabularyAdd = new Button();
             listBoxVocabulary = new ListBox();
             groupBoxCommands = new GroupBox();
             richTextBoxCommands = new RichTextBox();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
+            buttonCommandsDelete = new Button();
+            buttonCommandsRename = new Button();
+            buttonCommandsAdd = new Button();
             listBoxCommands = new ListBox();
             groupBoxScripts = new GroupBox();
             richTextBoxScripts = new RichTextBox();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            buttonScriptsDelete = new Button();
+            buttonScriptsRename = new Button();
+            buttonScriptsAdd = new Button();
             listBoxScripts = new ListBox();
             groupBoxSystem = new GroupBox();
             richTextBoxSystem = new RichTextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            buttonSystemDelete = new Button();
+            buttonSystemRename = new Button();
+            buttonSystemAdd = new Button();
             listBoxSystem = new ListBox();
             panelToolbar = new Panel();
             buttonFileSave = new Button();
@@ -98,7 +99,16 @@
             buttonFunctionsRename = new Button();
             buttonFunctionsAdd = new Button();
             listBoxFunctions = new ListBox();
+            listBoxItems = new ListBox();
+            buttonItemsDelete = new Button();
+            buttonItemsRename = new Button();
+            buttonItemsAdd = new Button();
+            buttonRoomsAdd = new Button();
+            buttonRoomsRename = new Button();
+            buttonRoomsDelete = new Button();
             groupBoxStart.SuspendLayout();
+            groupBoxRooms.SuspendLayout();
+            groupBoxItems.SuspendLayout();
             groupBoxMessages.SuspendLayout();
             groupBoxValues.SuspendLayout();
             groupBoxVocabulary.SuspendLayout();
@@ -203,15 +213,15 @@
             // 
             groupBoxStart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxStart.Controls.Add(buttonVersionToday);
-            groupBoxStart.Controls.Add(label5);
+            groupBoxStart.Controls.Add(labelStartStartingRoom);
             groupBoxStart.Controls.Add(textBoxStartStartingRoom);
-            groupBoxStart.Controls.Add(label4);
+            groupBoxStart.Controls.Add(labelStartVersion);
             groupBoxStart.Controls.Add(textBoxStartVersion);
             groupBoxStart.Controls.Add(textBoxStartIntroduction);
-            groupBoxStart.Controls.Add(label3);
-            groupBoxStart.Controls.Add(label2);
+            groupBoxStart.Controls.Add(labelStartIntroduction);
+            groupBoxStart.Controls.Add(labelStartGameTitle);
             groupBoxStart.Controls.Add(textBoxStartGameTitle);
-            groupBoxStart.Controls.Add(label1);
+            groupBoxStart.Controls.Add(labelStartGameName);
             groupBoxStart.Controls.Add(textBoxStartGameName);
             groupBoxStart.Location = new Point(105, 40);
             groupBoxStart.Name = "groupBoxStart";
@@ -231,14 +241,14 @@
             buttonVersionToday.UseVisualStyleBackColor = true;
             buttonVersionToday.Click += buttonVersionToday_Click;
             // 
-            // label5
+            // labelStartStartingRoom
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(20, 258);
-            label5.Name = "label5";
-            label5.Size = new Size(83, 15);
-            label5.TabIndex = 11;
-            label5.Text = "Starting Room";
+            labelStartStartingRoom.AutoSize = true;
+            labelStartStartingRoom.Location = new Point(20, 258);
+            labelStartStartingRoom.Name = "labelStartStartingRoom";
+            labelStartStartingRoom.Size = new Size(83, 15);
+            labelStartStartingRoom.TabIndex = 11;
+            labelStartStartingRoom.Text = "Starting Room";
             // 
             // textBoxStartStartingRoom
             // 
@@ -247,15 +257,15 @@
             textBoxStartStartingRoom.Size = new Size(205, 23);
             textBoxStartStartingRoom.TabIndex = 10;
             // 
-            // label4
+            // labelStartVersion
             // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label4.AutoSize = true;
-            label4.Location = new Point(814, 26);
-            label4.Name = "label4";
-            label4.Size = new Size(45, 15);
-            label4.TabIndex = 9;
-            label4.Text = "Version";
+            labelStartVersion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            labelStartVersion.AutoSize = true;
+            labelStartVersion.Location = new Point(814, 26);
+            labelStartVersion.Name = "labelStartVersion";
+            labelStartVersion.Size = new Size(45, 15);
+            labelStartVersion.TabIndex = 9;
+            labelStartVersion.Text = "Version";
             // 
             // textBoxStartVersion
             // 
@@ -275,23 +285,23 @@
             textBoxStartIntroduction.Size = new Size(951, 167);
             textBoxStartIntroduction.TabIndex = 7;
             // 
-            // label3
+            // labelStartIntroduction
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(20, 85);
-            label3.Name = "label3";
-            label3.Size = new Size(73, 15);
-            label3.TabIndex = 6;
-            label3.Text = "Introduction";
+            labelStartIntroduction.AutoSize = true;
+            labelStartIntroduction.Location = new Point(20, 85);
+            labelStartIntroduction.Name = "labelStartIntroduction";
+            labelStartIntroduction.Size = new Size(73, 15);
+            labelStartIntroduction.TabIndex = 6;
+            labelStartIntroduction.Text = "Introduction";
             // 
-            // label2
+            // labelStartGameTitle
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(20, 54);
-            label2.Name = "label2";
-            label2.Size = new Size(64, 15);
-            label2.TabIndex = 5;
-            label2.Text = "Game Title";
+            labelStartGameTitle.AutoSize = true;
+            labelStartGameTitle.Location = new Point(20, 54);
+            labelStartGameTitle.Name = "labelStartGameTitle";
+            labelStartGameTitle.Size = new Size(64, 15);
+            labelStartGameTitle.TabIndex = 5;
+            labelStartGameTitle.Text = "Game Title";
             // 
             // textBoxStartGameTitle
             // 
@@ -300,14 +310,14 @@
             textBoxStartGameTitle.Size = new Size(273, 23);
             textBoxStartGameTitle.TabIndex = 4;
             // 
-            // label1
+            // labelStartGameName
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(20, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(73, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Game Name";
+            labelStartGameName.AutoSize = true;
+            labelStartGameName.Location = new Point(20, 25);
+            labelStartGameName.Name = "labelStartGameName";
+            labelStartGameName.Size = new Size(73, 15);
+            labelStartGameName.TabIndex = 3;
+            labelStartGameName.Text = "Game Name";
             // 
             // textBoxStartGameName
             // 
@@ -319,6 +329,10 @@
             // groupBoxRooms
             // 
             groupBoxRooms.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxRooms.Controls.Add(buttonRoomsDelete);
+            groupBoxRooms.Controls.Add(buttonRoomsRename);
+            groupBoxRooms.Controls.Add(buttonRoomsAdd);
+            groupBoxRooms.Controls.Add(listBoxRooms);
             groupBoxRooms.Location = new Point(105, 40);
             groupBoxRooms.Name = "groupBoxRooms";
             groupBoxRooms.Size = new Size(1066, 705);
@@ -327,9 +341,22 @@
             groupBoxRooms.Text = "Rooms";
             groupBoxRooms.Visible = false;
             // 
+            // listBoxRooms
+            // 
+            listBoxRooms.FormattingEnabled = true;
+            listBoxRooms.IntegralHeight = false;
+            listBoxRooms.Location = new Point(8, 52);
+            listBoxRooms.Name = "listBoxRooms";
+            listBoxRooms.Size = new Size(184, 647);
+            listBoxRooms.TabIndex = 0;
+            // 
             // groupBoxItems
             // 
             groupBoxItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxItems.Controls.Add(buttonItemsAdd);
+            groupBoxItems.Controls.Add(buttonItemsRename);
+            groupBoxItems.Controls.Add(buttonItemsDelete);
+            groupBoxItems.Controls.Add(listBoxItems);
             groupBoxItems.Location = new Point(105, 40);
             groupBoxItems.Name = "groupBoxItems";
             groupBoxItems.Size = new Size(1066, 705);
@@ -342,9 +369,9 @@
             // 
             groupBoxMessages.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxMessages.Controls.Add(richTextBoxMessages);
-            groupBoxMessages.Controls.Add(button16);
-            groupBoxMessages.Controls.Add(button17);
-            groupBoxMessages.Controls.Add(button18);
+            groupBoxMessages.Controls.Add(buttonMessagesDelete);
+            groupBoxMessages.Controls.Add(buttonMessagesRename);
+            groupBoxMessages.Controls.Add(buttonMessagesAdd);
             groupBoxMessages.Controls.Add(listBoxMessages);
             groupBoxMessages.Location = new Point(105, 40);
             groupBoxMessages.Name = "groupBoxMessages";
@@ -364,32 +391,32 @@
             richTextBoxMessages.TabIndex = 9;
             richTextBoxMessages.Text = "";
             // 
-            // button16
+            // buttonMessagesDelete
             // 
-            button16.Location = new Point(134, 23);
-            button16.Name = "button16";
-            button16.Size = new Size(58, 23);
-            button16.TabIndex = 8;
-            button16.Text = "Delete";
-            button16.UseVisualStyleBackColor = true;
+            buttonMessagesDelete.Location = new Point(134, 23);
+            buttonMessagesDelete.Name = "buttonMessagesDelete";
+            buttonMessagesDelete.Size = new Size(58, 23);
+            buttonMessagesDelete.TabIndex = 8;
+            buttonMessagesDelete.Text = "Delete";
+            buttonMessagesDelete.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // buttonMessagesRename
             // 
-            button17.Location = new Point(70, 23);
-            button17.Name = "button17";
-            button17.Size = new Size(58, 23);
-            button17.TabIndex = 7;
-            button17.Text = "Rename";
-            button17.UseVisualStyleBackColor = true;
+            buttonMessagesRename.Location = new Point(70, 23);
+            buttonMessagesRename.Name = "buttonMessagesRename";
+            buttonMessagesRename.Size = new Size(58, 23);
+            buttonMessagesRename.TabIndex = 7;
+            buttonMessagesRename.Text = "Rename";
+            buttonMessagesRename.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // buttonMessagesAdd
             // 
-            button18.Location = new Point(6, 23);
-            button18.Name = "button18";
-            button18.Size = new Size(58, 23);
-            button18.TabIndex = 6;
-            button18.Text = "Add";
-            button18.UseVisualStyleBackColor = true;
+            buttonMessagesAdd.Location = new Point(6, 23);
+            buttonMessagesAdd.Name = "buttonMessagesAdd";
+            buttonMessagesAdd.Size = new Size(58, 23);
+            buttonMessagesAdd.TabIndex = 6;
+            buttonMessagesAdd.Text = "Add";
+            buttonMessagesAdd.UseVisualStyleBackColor = true;
             // 
             // listBoxMessages
             // 
@@ -406,9 +433,9 @@
             // 
             groupBoxValues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxValues.Controls.Add(richTextBoxValues);
-            groupBoxValues.Controls.Add(button13);
-            groupBoxValues.Controls.Add(button14);
-            groupBoxValues.Controls.Add(button15);
+            groupBoxValues.Controls.Add(buttonValuesDelete);
+            groupBoxValues.Controls.Add(buttonValuesRename);
+            groupBoxValues.Controls.Add(buttonValuesAdd);
             groupBoxValues.Controls.Add(listBoxValues);
             groupBoxValues.Location = new Point(105, 40);
             groupBoxValues.Name = "groupBoxValues";
@@ -428,32 +455,32 @@
             richTextBoxValues.TabIndex = 9;
             richTextBoxValues.Text = "";
             // 
-            // button13
+            // buttonValuesDelete
             // 
-            button13.Location = new Point(134, 23);
-            button13.Name = "button13";
-            button13.Size = new Size(58, 23);
-            button13.TabIndex = 8;
-            button13.Text = "Delete";
-            button13.UseVisualStyleBackColor = true;
+            buttonValuesDelete.Location = new Point(134, 23);
+            buttonValuesDelete.Name = "buttonValuesDelete";
+            buttonValuesDelete.Size = new Size(58, 23);
+            buttonValuesDelete.TabIndex = 8;
+            buttonValuesDelete.Text = "Delete";
+            buttonValuesDelete.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // buttonValuesRename
             // 
-            button14.Location = new Point(70, 23);
-            button14.Name = "button14";
-            button14.Size = new Size(58, 23);
-            button14.TabIndex = 7;
-            button14.Text = "Rename";
-            button14.UseVisualStyleBackColor = true;
+            buttonValuesRename.Location = new Point(70, 23);
+            buttonValuesRename.Name = "buttonValuesRename";
+            buttonValuesRename.Size = new Size(58, 23);
+            buttonValuesRename.TabIndex = 7;
+            buttonValuesRename.Text = "Rename";
+            buttonValuesRename.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // buttonValuesAdd
             // 
-            button15.Location = new Point(6, 23);
-            button15.Name = "button15";
-            button15.Size = new Size(58, 23);
-            button15.TabIndex = 6;
-            button15.Text = "Add";
-            button15.UseVisualStyleBackColor = true;
+            buttonValuesAdd.Location = new Point(6, 23);
+            buttonValuesAdd.Name = "buttonValuesAdd";
+            buttonValuesAdd.Size = new Size(58, 23);
+            buttonValuesAdd.TabIndex = 6;
+            buttonValuesAdd.Text = "Add";
+            buttonValuesAdd.UseVisualStyleBackColor = true;
             // 
             // listBoxValues
             // 
@@ -470,9 +497,9 @@
             // 
             groupBoxVocabulary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxVocabulary.Controls.Add(richTextBoxVocabulary);
-            groupBoxVocabulary.Controls.Add(button10);
-            groupBoxVocabulary.Controls.Add(button11);
-            groupBoxVocabulary.Controls.Add(button12);
+            groupBoxVocabulary.Controls.Add(buttonVocabularyDelete);
+            groupBoxVocabulary.Controls.Add(buttonVocabularyRename);
+            groupBoxVocabulary.Controls.Add(buttonVocabularyAdd);
             groupBoxVocabulary.Controls.Add(listBoxVocabulary);
             groupBoxVocabulary.Location = new Point(105, 40);
             groupBoxVocabulary.Name = "groupBoxVocabulary";
@@ -492,32 +519,32 @@
             richTextBoxVocabulary.TabIndex = 9;
             richTextBoxVocabulary.Text = "";
             // 
-            // button10
+            // buttonVocabularyDelete
             // 
-            button10.Location = new Point(134, 23);
-            button10.Name = "button10";
-            button10.Size = new Size(58, 23);
-            button10.TabIndex = 8;
-            button10.Text = "Delete";
-            button10.UseVisualStyleBackColor = true;
+            buttonVocabularyDelete.Location = new Point(134, 23);
+            buttonVocabularyDelete.Name = "buttonVocabularyDelete";
+            buttonVocabularyDelete.Size = new Size(58, 23);
+            buttonVocabularyDelete.TabIndex = 8;
+            buttonVocabularyDelete.Text = "Delete";
+            buttonVocabularyDelete.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // buttonVocabularyRename
             // 
-            button11.Location = new Point(70, 23);
-            button11.Name = "button11";
-            button11.Size = new Size(58, 23);
-            button11.TabIndex = 7;
-            button11.Text = "Rename";
-            button11.UseVisualStyleBackColor = true;
+            buttonVocabularyRename.Location = new Point(70, 23);
+            buttonVocabularyRename.Name = "buttonVocabularyRename";
+            buttonVocabularyRename.Size = new Size(58, 23);
+            buttonVocabularyRename.TabIndex = 7;
+            buttonVocabularyRename.Text = "Rename";
+            buttonVocabularyRename.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // buttonVocabularyAdd
             // 
-            button12.Location = new Point(6, 23);
-            button12.Name = "button12";
-            button12.Size = new Size(58, 23);
-            button12.TabIndex = 6;
-            button12.Text = "Add";
-            button12.UseVisualStyleBackColor = true;
+            buttonVocabularyAdd.Location = new Point(6, 23);
+            buttonVocabularyAdd.Name = "buttonVocabularyAdd";
+            buttonVocabularyAdd.Size = new Size(58, 23);
+            buttonVocabularyAdd.TabIndex = 6;
+            buttonVocabularyAdd.Text = "Add";
+            buttonVocabularyAdd.UseVisualStyleBackColor = true;
             // 
             // listBoxVocabulary
             // 
@@ -534,9 +561,9 @@
             // 
             groupBoxCommands.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxCommands.Controls.Add(richTextBoxCommands);
-            groupBoxCommands.Controls.Add(button7);
-            groupBoxCommands.Controls.Add(button8);
-            groupBoxCommands.Controls.Add(button9);
+            groupBoxCommands.Controls.Add(buttonCommandsDelete);
+            groupBoxCommands.Controls.Add(buttonCommandsRename);
+            groupBoxCommands.Controls.Add(buttonCommandsAdd);
             groupBoxCommands.Controls.Add(listBoxCommands);
             groupBoxCommands.Location = new Point(105, 40);
             groupBoxCommands.Name = "groupBoxCommands";
@@ -556,32 +583,32 @@
             richTextBoxCommands.TabIndex = 9;
             richTextBoxCommands.Text = "";
             // 
-            // button7
+            // buttonCommandsDelete
             // 
-            button7.Location = new Point(134, 23);
-            button7.Name = "button7";
-            button7.Size = new Size(58, 23);
-            button7.TabIndex = 8;
-            button7.Text = "Delete";
-            button7.UseVisualStyleBackColor = true;
+            buttonCommandsDelete.Location = new Point(134, 23);
+            buttonCommandsDelete.Name = "buttonCommandsDelete";
+            buttonCommandsDelete.Size = new Size(58, 23);
+            buttonCommandsDelete.TabIndex = 8;
+            buttonCommandsDelete.Text = "Delete";
+            buttonCommandsDelete.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // buttonCommandsRename
             // 
-            button8.Location = new Point(70, 23);
-            button8.Name = "button8";
-            button8.Size = new Size(58, 23);
-            button8.TabIndex = 7;
-            button8.Text = "Rename";
-            button8.UseVisualStyleBackColor = true;
+            buttonCommandsRename.Location = new Point(70, 23);
+            buttonCommandsRename.Name = "buttonCommandsRename";
+            buttonCommandsRename.Size = new Size(58, 23);
+            buttonCommandsRename.TabIndex = 7;
+            buttonCommandsRename.Text = "Rename";
+            buttonCommandsRename.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // buttonCommandsAdd
             // 
-            button9.Location = new Point(6, 23);
-            button9.Name = "button9";
-            button9.Size = new Size(58, 23);
-            button9.TabIndex = 6;
-            button9.Text = "Add";
-            button9.UseVisualStyleBackColor = true;
+            buttonCommandsAdd.Location = new Point(6, 23);
+            buttonCommandsAdd.Name = "buttonCommandsAdd";
+            buttonCommandsAdd.Size = new Size(58, 23);
+            buttonCommandsAdd.TabIndex = 6;
+            buttonCommandsAdd.Text = "Add";
+            buttonCommandsAdd.UseVisualStyleBackColor = true;
             // 
             // listBoxCommands
             // 
@@ -598,9 +625,9 @@
             // 
             groupBoxScripts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxScripts.Controls.Add(richTextBoxScripts);
-            groupBoxScripts.Controls.Add(button4);
-            groupBoxScripts.Controls.Add(button5);
-            groupBoxScripts.Controls.Add(button6);
+            groupBoxScripts.Controls.Add(buttonScriptsDelete);
+            groupBoxScripts.Controls.Add(buttonScriptsRename);
+            groupBoxScripts.Controls.Add(buttonScriptsAdd);
             groupBoxScripts.Controls.Add(listBoxScripts);
             groupBoxScripts.Location = new Point(105, 40);
             groupBoxScripts.Name = "groupBoxScripts";
@@ -620,32 +647,32 @@
             richTextBoxScripts.TabIndex = 9;
             richTextBoxScripts.Text = "";
             // 
-            // button4
+            // buttonScriptsDelete
             // 
-            button4.Location = new Point(134, 23);
-            button4.Name = "button4";
-            button4.Size = new Size(58, 23);
-            button4.TabIndex = 8;
-            button4.Text = "Delete";
-            button4.UseVisualStyleBackColor = true;
+            buttonScriptsDelete.Location = new Point(134, 23);
+            buttonScriptsDelete.Name = "buttonScriptsDelete";
+            buttonScriptsDelete.Size = new Size(58, 23);
+            buttonScriptsDelete.TabIndex = 8;
+            buttonScriptsDelete.Text = "Delete";
+            buttonScriptsDelete.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // buttonScriptsRename
             // 
-            button5.Location = new Point(70, 23);
-            button5.Name = "button5";
-            button5.Size = new Size(58, 23);
-            button5.TabIndex = 7;
-            button5.Text = "Rename";
-            button5.UseVisualStyleBackColor = true;
+            buttonScriptsRename.Location = new Point(70, 23);
+            buttonScriptsRename.Name = "buttonScriptsRename";
+            buttonScriptsRename.Size = new Size(58, 23);
+            buttonScriptsRename.TabIndex = 7;
+            buttonScriptsRename.Text = "Rename";
+            buttonScriptsRename.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // buttonScriptsAdd
             // 
-            button6.Location = new Point(6, 23);
-            button6.Name = "button6";
-            button6.Size = new Size(58, 23);
-            button6.TabIndex = 6;
-            button6.Text = "Add";
-            button6.UseVisualStyleBackColor = true;
+            buttonScriptsAdd.Location = new Point(6, 23);
+            buttonScriptsAdd.Name = "buttonScriptsAdd";
+            buttonScriptsAdd.Size = new Size(58, 23);
+            buttonScriptsAdd.TabIndex = 6;
+            buttonScriptsAdd.Text = "Add";
+            buttonScriptsAdd.UseVisualStyleBackColor = true;
             // 
             // listBoxScripts
             // 
@@ -663,9 +690,9 @@
             // 
             groupBoxSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBoxSystem.Controls.Add(richTextBoxSystem);
-            groupBoxSystem.Controls.Add(button1);
-            groupBoxSystem.Controls.Add(button2);
-            groupBoxSystem.Controls.Add(button3);
+            groupBoxSystem.Controls.Add(buttonSystemDelete);
+            groupBoxSystem.Controls.Add(buttonSystemRename);
+            groupBoxSystem.Controls.Add(buttonSystemAdd);
             groupBoxSystem.Controls.Add(listBoxSystem);
             groupBoxSystem.Location = new Point(105, 40);
             groupBoxSystem.Name = "groupBoxSystem";
@@ -685,32 +712,32 @@
             richTextBoxSystem.TabIndex = 9;
             richTextBoxSystem.Text = "";
             // 
-            // button1
+            // buttonSystemDelete
             // 
-            button1.Location = new Point(134, 23);
-            button1.Name = "button1";
-            button1.Size = new Size(58, 23);
-            button1.TabIndex = 8;
-            button1.Text = "Delete";
-            button1.UseVisualStyleBackColor = true;
+            buttonSystemDelete.Location = new Point(134, 23);
+            buttonSystemDelete.Name = "buttonSystemDelete";
+            buttonSystemDelete.Size = new Size(58, 23);
+            buttonSystemDelete.TabIndex = 8;
+            buttonSystemDelete.Text = "Delete";
+            buttonSystemDelete.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonSystemRename
             // 
-            button2.Location = new Point(70, 23);
-            button2.Name = "button2";
-            button2.Size = new Size(58, 23);
-            button2.TabIndex = 7;
-            button2.Text = "Rename";
-            button2.UseVisualStyleBackColor = true;
+            buttonSystemRename.Location = new Point(70, 23);
+            buttonSystemRename.Name = "buttonSystemRename";
+            buttonSystemRename.Size = new Size(58, 23);
+            buttonSystemRename.TabIndex = 7;
+            buttonSystemRename.Text = "Rename";
+            buttonSystemRename.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonSystemAdd
             // 
-            button3.Location = new Point(6, 23);
-            button3.Name = "button3";
-            button3.Size = new Size(58, 23);
-            button3.TabIndex = 6;
-            button3.Text = "Add";
-            button3.UseVisualStyleBackColor = true;
+            buttonSystemAdd.Location = new Point(6, 23);
+            buttonSystemAdd.Name = "buttonSystemAdd";
+            buttonSystemAdd.Size = new Size(58, 23);
+            buttonSystemAdd.TabIndex = 6;
+            buttonSystemAdd.Text = "Add";
+            buttonSystemAdd.UseVisualStyleBackColor = true;
             // 
             // listBoxSystem
             // 
@@ -837,6 +864,69 @@
             listBoxFunctions.TabIndex = 0;
             listBoxFunctions.SelectedIndexChanged += listBoxFunctions_SelectedIndexChanged;
             // 
+            // listBoxItems
+            // 
+            listBoxItems.FormattingEnabled = true;
+            listBoxItems.IntegralHeight = false;
+            listBoxItems.Location = new Point(8, 52);
+            listBoxItems.Name = "listBoxItems";
+            listBoxItems.Size = new Size(184, 647);
+            listBoxItems.TabIndex = 11;
+            // 
+            // buttonItemsDelete
+            // 
+            buttonItemsDelete.Location = new Point(134, 23);
+            buttonItemsDelete.Name = "buttonItemsDelete";
+            buttonItemsDelete.Size = new Size(58, 23);
+            buttonItemsDelete.TabIndex = 12;
+            buttonItemsDelete.Text = "Delete";
+            buttonItemsDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonItemsRename
+            // 
+            buttonItemsRename.Location = new Point(70, 23);
+            buttonItemsRename.Name = "buttonItemsRename";
+            buttonItemsRename.Size = new Size(58, 23);
+            buttonItemsRename.TabIndex = 13;
+            buttonItemsRename.Text = "Rename";
+            buttonItemsRename.UseVisualStyleBackColor = true;
+            // 
+            // buttonItemsAdd
+            // 
+            buttonItemsAdd.Location = new Point(6, 23);
+            buttonItemsAdd.Name = "buttonItemsAdd";
+            buttonItemsAdd.Size = new Size(58, 23);
+            buttonItemsAdd.TabIndex = 14;
+            buttonItemsAdd.Text = "Add";
+            buttonItemsAdd.UseVisualStyleBackColor = true;
+            // 
+            // buttonRoomsAdd
+            // 
+            buttonRoomsAdd.Location = new Point(6, 23);
+            buttonRoomsAdd.Name = "buttonRoomsAdd";
+            buttonRoomsAdd.Size = new Size(58, 23);
+            buttonRoomsAdd.TabIndex = 15;
+            buttonRoomsAdd.Text = "Add";
+            buttonRoomsAdd.UseVisualStyleBackColor = true;
+            // 
+            // buttonRoomsRename
+            // 
+            buttonRoomsRename.Location = new Point(70, 23);
+            buttonRoomsRename.Name = "buttonRoomsRename";
+            buttonRoomsRename.Size = new Size(58, 23);
+            buttonRoomsRename.TabIndex = 16;
+            buttonRoomsRename.Text = "Rename";
+            buttonRoomsRename.UseVisualStyleBackColor = true;
+            // 
+            // buttonRoomsDelete
+            // 
+            buttonRoomsDelete.Location = new Point(134, 23);
+            buttonRoomsDelete.Name = "buttonRoomsDelete";
+            buttonRoomsDelete.Size = new Size(58, 23);
+            buttonRoomsDelete.TabIndex = 17;
+            buttonRoomsDelete.Text = "Delete";
+            buttonRoomsDelete.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -853,6 +943,7 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
@@ -862,12 +953,13 @@
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
-            Controls.Add(groupBoxRooms);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zygote";
             groupBoxStart.ResumeLayout(false);
             groupBoxStart.PerformLayout();
+            groupBoxRooms.ResumeLayout(false);
+            groupBoxItems.ResumeLayout(false);
             groupBoxMessages.ResumeLayout(false);
             groupBoxValues.ResumeLayout(false);
             groupBoxVocabulary.ResumeLayout(false);
@@ -904,13 +996,13 @@
         private Button buttonFileNew;
         private TextBox textBoxStartGameName;
         private TextBox textBoxStartIntroduction;
-        private Label label3;
-        private Label label2;
+        private Label labelStartIntroduction;
+        private Label labelStartGameTitle;
         private TextBox textBoxStartGameTitle;
-        private Label label1;
-        private Label label4;
+        private Label labelStartGameName;
+        private Label labelStartVersion;
         private TextBox textBoxStartVersion;
-        private Label label5;
+        private Label labelStartStartingRoom;
         private TextBox textBoxStartStartingRoom;
         private Button buttonVersionToday;
         private Button buttonFunctions;
@@ -921,34 +1013,42 @@
         private ListBox listBoxFunctions;
         private RichTextBox richTextBoxFunctions;
         private RichTextBox richTextBoxMessages;
-        private Button button16;
-        private Button button17;
-        private Button button18;
+        private Button buttonMessagesDelete;
+        private Button buttonMessagesRename;
+        private Button buttonMessagesAdd;
         private ListBox listBoxMessages;
         private RichTextBox richTextBoxValues;
-        private Button button13;
-        private Button button14;
-        private Button button15;
+        private Button buttonValuesDelete;
+        private Button buttonValuesRename;
+        private Button buttonValuesAdd;
         private ListBox listBoxValues;
         private RichTextBox richTextBoxVocabulary;
-        private Button button10;
-        private Button button11;
-        private Button button12;
+        private Button buttonVocabularyDelete;
+        private Button buttonVocabularyRename;
+        private Button buttonVocabularyAdd;
         private ListBox listBoxVocabulary;
         private RichTextBox richTextBoxCommands;
-        private Button button7;
-        private Button button8;
-        private Button button9;
+        private Button buttonCommandsDelete;
+        private Button buttonCommandsRename;
+        private Button buttonCommandsAdd;
         private ListBox listBoxCommands;
         private RichTextBox richTextBoxScripts;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Button buttonScriptsDelete;
+        private Button buttonScriptsRename;
+        private Button buttonScriptsAdd;
         private ListBox listBoxScripts;
         private RichTextBox richTextBoxSystem;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button buttonSystemDelete;
+        private Button buttonSystemRename;
+        private Button buttonSystemAdd;
         private ListBox listBoxSystem;
+        private ListBox listBoxRooms;
+        private Button buttonRoomsDelete;
+        private Button buttonRoomsRename;
+        private Button buttonRoomsAdd;
+        private Button buttonItemsAdd;
+        private Button buttonItemsRename;
+        private Button buttonItemsDelete;
+        private ListBox listBoxItems;
     }
 }
