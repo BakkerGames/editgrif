@@ -308,7 +308,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 54);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(64, 15);
+            labelStartGameTitle.Size = new Size(63, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -360,7 +360,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 177);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(30, 15);
+            labelRoomsExits.Size = new Size(31, 15);
             labelRoomsExits.TabIndex = 8;
             labelRoomsExits.Text = "Exits";
             // 
@@ -542,6 +542,7 @@
             // richTextBoxMessages
             // 
             richTextBoxMessages.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxMessages.DetectUrls = false;
             richTextBoxMessages.Font = new Font("Consolas", 14.25F);
             richTextBoxMessages.Location = new Point(198, 52);
             richTextBoxMessages.Name = "richTextBoxMessages";
@@ -606,6 +607,7 @@
             // richTextBoxValues
             // 
             richTextBoxValues.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxValues.DetectUrls = false;
             richTextBoxValues.Font = new Font("Consolas", 14.25F);
             richTextBoxValues.Location = new Point(198, 52);
             richTextBoxValues.Name = "richTextBoxValues";
@@ -670,6 +672,7 @@
             // richTextBoxVocabulary
             // 
             richTextBoxVocabulary.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxVocabulary.DetectUrls = false;
             richTextBoxVocabulary.Font = new Font("Consolas", 14.25F);
             richTextBoxVocabulary.Location = new Point(198, 52);
             richTextBoxVocabulary.Name = "richTextBoxVocabulary";
@@ -734,6 +737,7 @@
             // richTextBoxCommands
             // 
             richTextBoxCommands.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxCommands.DetectUrls = false;
             richTextBoxCommands.Font = new Font("Consolas", 14.25F);
             richTextBoxCommands.Location = new Point(198, 52);
             richTextBoxCommands.Name = "richTextBoxCommands";
@@ -798,6 +802,7 @@
             // richTextBoxScripts
             // 
             richTextBoxScripts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxScripts.DetectUrls = false;
             richTextBoxScripts.Font = new Font("Consolas", 14.25F);
             richTextBoxScripts.Location = new Point(198, 52);
             richTextBoxScripts.Name = "richTextBoxScripts";
@@ -863,6 +868,7 @@
             // richTextBoxSystem
             // 
             richTextBoxSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxSystem.DetectUrls = false;
             richTextBoxSystem.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBoxSystem.Location = new Point(198, 52);
             richTextBoxSystem.Name = "richTextBoxSystem";
@@ -976,6 +982,7 @@
             // richTextBoxFunctions
             // 
             richTextBoxFunctions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxFunctions.DetectUrls = false;
             richTextBoxFunctions.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBoxFunctions.Location = new Point(198, 52);
             richTextBoxFunctions.Name = "richTextBoxFunctions";
@@ -1038,6 +1045,7 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
@@ -1047,7 +1055,6 @@
             Controls.Add(groupBoxVocabulary);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
-            Controls.Add(groupBoxItems);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zygote";

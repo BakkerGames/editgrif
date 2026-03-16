@@ -168,6 +168,15 @@ namespace zygote
 
         private void LoadData(Grod grod)
         {
+            listBoxRooms.Items.Clear();
+            listBoxItems.Items.Clear();
+            listBoxValues.Items.Clear();
+            listBoxMessages.Items.Clear();
+            listBoxVocabulary.Items.Clear();
+            listBoxCommands.Items.Clear();
+            listBoxScripts.Items.Clear();
+            listBoxFunctions.Items.Clear();
+            listBoxSystem.Items.Clear();
             var systemList = grod.Get("system.prefix.system", true)?.Split(',') ?? ["system"];
             foreach (var prefix in systemList)
             {
@@ -223,12 +232,13 @@ namespace zygote
             var itemList = grod.Get("system.prefix.item", true)?.Split(',') ?? ["item"];
             FillItems(grod, itemList);
             FillListBox(grod, "@", listBoxFunctions);
+            List<string> extraKeys = [];
             foreach (var key in grod.Keys(true, true))
             {
                 if (key.StartsWith('@')) continue;
                 if (!key.Contains('.'))
                 {
-                    listBoxValues.Items.Add(key);
+                    extraKeys.Add(key);
                 }
                 else
                 {
@@ -246,15 +256,22 @@ namespace zygote
                         !roomList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !itemList.Contains(prefix, StringComparer.OrdinalIgnoreCase))
                     {
-                        listBoxValues.Items.Add(key);
+                        extraKeys.Add(key);
                     }
                 }
             }
+            AddListBox(extraKeys, listBoxValues);
         }
 
         private static void FillListBox(Grod grod, string prefix, ListBox listbox)
         {
             var keys = grod.Keys(prefix, true, true) ?? [];
+            AddListBox(keys, listbox);
+        }
+
+        private static void AddListBox(List<string> keys, ListBox listbox)
+        {
+            if (keys.Count == 0) return;
             foreach (var item in listbox.Items)
             {
                 keys.Add((string)item);
@@ -273,7 +290,7 @@ namespace zygote
         {
             foreach (var prefix in roomList)
             {
-                var keys = grod.Keys(prefix, true, false);
+                var keys = grod.Keys($"{prefix}.", true, false);
                 keys.Sort(Grod.CompareKeys);
                 foreach (var key in keys)
                 {
@@ -294,7 +311,7 @@ namespace zygote
         {
             foreach (var prefix in itemList)
             {
-                var keys = grod.Keys(prefix, true, false);
+                var keys = grod.Keys($"{prefix}.", true, false);
                 keys.Sort(Grod.CompareKeys);
                 foreach (var key in keys)
                 {
