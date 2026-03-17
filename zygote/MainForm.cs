@@ -6,6 +6,12 @@ namespace zygote
     {
         Grod grod = new();
 
+        string roomPrefix = "room";
+        string itemPrefix = "item";
+        string shortDescSuffix = "shortdesc";
+        string longDescSuffix = "longdesc";
+        string locationSuffix = "location";
+
         public MainForm()
         {
             InitializeComponent();
@@ -155,7 +161,7 @@ namespace zygote
             var dialog = new OpenFileDialog
             {
                 CheckFileExists = true,
-                Filter = "Grif files|*.grif|GrifStack files|*.grifstack"
+                Filter = "Grif files|*.grif*"
             };
             var result = dialog.ShowDialog();
             if (result == DialogResult.OK)
@@ -187,7 +193,7 @@ namespace zygote
             {
                 FillListBox(grod, $"{prefix}.", listBoxMessages);
             }
-            var valueList = grod.Get("system.prefix.zzz", true)?.Split(',') ?? ["value"];
+            var valueList = grod.Get("system.prefix.value", true)?.Split(',') ?? ["value"];
             foreach (var prefix in valueList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxValues);
@@ -227,10 +233,12 @@ namespace zygote
             {
                 FillListBox(grod, $"{prefix}.", listBoxScripts);
             }
-            var roomList = grod.Get("system.prefix.room", true)?.Split(',') ?? ["room"];
-            FillRooms(grod, roomList);
-            var itemList = grod.Get("system.prefix.item", true)?.Split(',') ?? ["item"];
-            FillItems(grod, itemList);
+            roomPrefix = grod.Get("system.prefix.room", true) ?? "room";
+            itemPrefix = grod.Get("system.prefix.item", true) ?? "item";
+            shortDescSuffix = grod.Get("system.suffix.shortdesc", true) ?? "shortdesc";
+            longDescSuffix = grod.Get("system.suffix.longdesc", true) ?? "longdesc";
+            FillRooms(grod);
+            FillItems(grod);
             FillListBox(grod, "@", listBoxFunctions);
             List<string> extraKeys = [];
             foreach (var key in grod.Keys(true, true))
@@ -253,8 +261,8 @@ namespace zygote
                         !articleList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !commandList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !roomList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !itemList.Contains(prefix, StringComparer.OrdinalIgnoreCase))
+                        !roomPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
+                        !itemPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase))
                     {
                         extraKeys.Add(key);
                     }
@@ -286,43 +294,37 @@ namespace zygote
             listbox.EndUpdate();
         }
 
-        private void FillRooms(Grod grod, string[] roomList)
+        private void FillRooms(Grod grod)
         {
-            foreach (var prefix in roomList)
+            var keys = grod.Keys($"{roomPrefix}.", true, false);
+            keys.Sort(Grod.CompareKeys);
+            foreach (var key in keys)
             {
-                var keys = grod.Keys($"{prefix}.", true, false);
-                keys.Sort(Grod.CompareKeys);
-                foreach (var key in keys)
+                var pos = key.IndexOf('.', roomPrefix.Length + 1);
+                if (pos >= 0)
                 {
-                    var pos = key.IndexOf('.', prefix.Length + 1);
-                    if (pos >= 0)
+                    var name = key[(roomPrefix.Length + 1)..pos];
+                    if (!listBoxRooms.Items.Contains(name))
                     {
-                        var name = key[(prefix.Length + 1)..pos];
-                        if (!listBoxRooms.Items.Contains(name))
-                        {
-                            listBoxRooms.Items.Add(name);
-                        }
+                        listBoxRooms.Items.Add(name);
                     }
                 }
             }
         }
 
-        private void FillItems(Grod grod, string[] itemList)
+        private void FillItems(Grod grod)
         {
-            foreach (var prefix in itemList)
+            var keys = grod.Keys($"{itemPrefix}.", true, false);
+            keys.Sort(Grod.CompareKeys);
+            foreach (var key in keys)
             {
-                var keys = grod.Keys($"{prefix}.", true, false);
-                keys.Sort(Grod.CompareKeys);
-                foreach (var key in keys)
+                var pos = key.IndexOf('.', itemPrefix.Length + 1);
+                if (pos >= 0)
                 {
-                    var pos = key.IndexOf('.', prefix.Length + 1);
-                    if (pos >= 0)
+                    var name = key[(itemPrefix.Length + 1)..pos];
+                    if (!listBoxItems.Items.Contains(name))
                     {
-                        var name = key[(prefix.Length + 1)..pos];
-                        if (!listBoxItems.Items.Contains(name))
-                        {
-                            listBoxItems.Items.Add(name);
-                        }
+                        listBoxItems.Items.Add(name);
                     }
                 }
             }
@@ -363,24 +365,18 @@ namespace zygote
             ListBoxSelected(listBoxMessages, richTextBoxMessages);
         }
 
-        private void ListBoxSelected(ListBox listbox, RichTextBox rtb)
+        private void ListBoxSelected(ListBox listbox, RichTextBox rtb, string prefix = "")
         {
-            if (listbox.SelectedIndex < 0)
+            rtb.Clear();
+            if (listbox.SelectedIndex < 0) return;
+            var key = prefix + (string)(listbox.Items[listbox.SelectedIndex] ?? "");
+            var script = grod.Get(key, true);
+            if (script != null)
             {
-                rtb.Text = "";
-            }
-            else
-            {
-                var key = (string)(listbox?.SelectedItem ?? "");
-                rtb.Clear();
-                var script = grod.Get(key, true);
-                if (script != null)
+                var items = Dags.ColorizeScript(script);
+                foreach (var item in items)
                 {
-                    var items = Dags.ColorizeScript(script);
-                    foreach (var item in items)
-                    {
-                        rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
-                    }
+                    rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
                 }
             }
         }
@@ -403,16 +399,54 @@ namespace zygote
 
         private void listBoxRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBoxRoomsShortDesc.Text = "";
+            textBoxRoomsLongDesc.Text = "";
             if (listBoxRooms.SelectedIndex < 0) return;
-            textBoxRoomsShortDesc.Text = grod.Get($"room.{listBoxRooms.SelectedItem}.shortdesc", true);
-            textBoxRoomsLongDesc.Text = grod.Get($"room.{listBoxRooms.SelectedItem}.longdesc", true);
+            textBoxRoomsShortDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{shortDescSuffix}", true);
+            textBoxRoomsLongDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{longDescSuffix}", true);
         }
 
         private void listBoxItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBoxItemsShortDesc.Text = "";
+            textBoxItemsLongDesc.Text = "";
+            textBoxItemsLocation.Text = "";
+            listBoxItemsOther.Items.Clear();
+            richTextBoxItemsOther.Clear();
+            if (listBoxItems.SelectedIndex < 0)
+            {
+                return;
+            }
+            var itemNum = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
+            var keys = grod.Keys($"{itemPrefix}.{itemNum}.", true, true) ?? [];
+            var prefixLen = $"{itemPrefix}.{itemNum}.".Length;
+            foreach (var key in keys)
+            {
+                if (key.EndsWith($".{shortDescSuffix}", StringComparison.OrdinalIgnoreCase))
+                {
+                    textBoxItemsShortDesc.Text = grod.Get(key, true);
+                }
+                else if (key.EndsWith($".{longDescSuffix}", StringComparison.OrdinalIgnoreCase))
+                {
+                    textBoxItemsLongDesc.Text = grod.Get(key, true);
+                }
+                else if (key.EndsWith($".{locationSuffix}", StringComparison.OrdinalIgnoreCase))
+                {
+                    textBoxItemsLocation.Text = grod.Get(key, true);
+                }
+                else
+                {
+                    listBoxItemsOther.Items.Add(key[prefixLen..]);
+                }
+            }
+        }
+
+        private void listBoxItemsOther_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0) return;
-            textBoxItemsShortDesc.Text = grod.Get($"item.{listBoxItems.SelectedItem}.shortdesc", true);
-            textBoxItemsLongDesc.Text = grod.Get($"item.{listBoxItems.SelectedItem}.longdesc", true);
+            var itemNum = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
+            ListBoxSelected(listBoxItemsOther, richTextBoxItemsOther, $"{itemPrefix}.{itemNum}.");
         }
     }
 }

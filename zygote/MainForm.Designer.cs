@@ -50,7 +50,6 @@
             labelStartGameName = new Label();
             textBoxStartGameName = new TextBox();
             groupBoxRooms = new GroupBox();
-            labelRoomsExits = new Label();
             textBoxRoomsLongDesc = new TextBox();
             labelRoomsLongDesc = new Label();
             textBoxRoomsShortDesc = new TextBox();
@@ -60,6 +59,13 @@
             buttonRoomsAdd = new Button();
             listBoxRooms = new ListBox();
             groupBoxItems = new GroupBox();
+            richTextBoxItemsOther = new RichTextBox();
+            buttonItemsOtherAdd = new Button();
+            buttonItemsOtherRename = new Button();
+            buttonItemsOtherDelete = new Button();
+            listBoxItemsOther = new ListBox();
+            textBoxItemsLocation = new TextBox();
+            labelItemsLocation = new Label();
             textBoxItemsLongDesc = new TextBox();
             labelItemsLongDesc = new Label();
             textBoxItemsShortDesc = new TextBox();
@@ -338,7 +344,6 @@
             // groupBoxRooms
             // 
             groupBoxRooms.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBoxRooms.Controls.Add(labelRoomsExits);
             groupBoxRooms.Controls.Add(textBoxRoomsLongDesc);
             groupBoxRooms.Controls.Add(labelRoomsLongDesc);
             groupBoxRooms.Controls.Add(textBoxRoomsShortDesc);
@@ -354,15 +359,6 @@
             groupBoxRooms.TabStop = false;
             groupBoxRooms.Text = "Rooms";
             groupBoxRooms.Visible = false;
-            // 
-            // labelRoomsExits
-            // 
-            labelRoomsExits.AutoSize = true;
-            labelRoomsExits.Location = new Point(198, 177);
-            labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
-            labelRoomsExits.TabIndex = 8;
-            labelRoomsExits.Text = "Exits";
             // 
             // textBoxRoomsLongDesc
             // 
@@ -437,6 +433,13 @@
             // groupBoxItems
             // 
             groupBoxItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxItems.Controls.Add(richTextBoxItemsOther);
+            groupBoxItems.Controls.Add(buttonItemsOtherAdd);
+            groupBoxItems.Controls.Add(buttonItemsOtherRename);
+            groupBoxItems.Controls.Add(buttonItemsOtherDelete);
+            groupBoxItems.Controls.Add(listBoxItemsOther);
+            groupBoxItems.Controls.Add(textBoxItemsLocation);
+            groupBoxItems.Controls.Add(labelItemsLocation);
             groupBoxItems.Controls.Add(textBoxItemsLongDesc);
             groupBoxItems.Controls.Add(labelItemsLongDesc);
             groupBoxItems.Controls.Add(textBoxItemsShortDesc);
@@ -453,8 +456,75 @@
             groupBoxItems.Text = "Items";
             groupBoxItems.Visible = false;
             // 
+            // richTextBoxItemsOther
+            // 
+            richTextBoxItemsOther.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxItemsOther.DetectUrls = false;
+            richTextBoxItemsOther.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            richTextBoxItemsOther.Location = new Point(388, 243);
+            richTextBoxItemsOther.Name = "richTextBoxItemsOther";
+            richTextBoxItemsOther.Size = new Size(672, 456);
+            richTextBoxItemsOther.TabIndex = 25;
+            richTextBoxItemsOther.Text = "";
+            // 
+            // buttonItemsOtherAdd
+            // 
+            buttonItemsOtherAdd.Location = new Point(198, 214);
+            buttonItemsOtherAdd.Name = "buttonItemsOtherAdd";
+            buttonItemsOtherAdd.Size = new Size(58, 23);
+            buttonItemsOtherAdd.TabIndex = 24;
+            buttonItemsOtherAdd.Text = "Add";
+            buttonItemsOtherAdd.UseVisualStyleBackColor = true;
+            // 
+            // buttonItemsOtherRename
+            // 
+            buttonItemsOtherRename.Location = new Point(262, 214);
+            buttonItemsOtherRename.Name = "buttonItemsOtherRename";
+            buttonItemsOtherRename.Size = new Size(58, 23);
+            buttonItemsOtherRename.TabIndex = 23;
+            buttonItemsOtherRename.Text = "Rename";
+            buttonItemsOtherRename.UseVisualStyleBackColor = true;
+            // 
+            // buttonItemsOtherDelete
+            // 
+            buttonItemsOtherDelete.Location = new Point(326, 214);
+            buttonItemsOtherDelete.Name = "buttonItemsOtherDelete";
+            buttonItemsOtherDelete.Size = new Size(58, 23);
+            buttonItemsOtherDelete.TabIndex = 22;
+            buttonItemsOtherDelete.Text = "Delete";
+            buttonItemsOtherDelete.UseVisualStyleBackColor = true;
+            // 
+            // listBoxItemsOther
+            // 
+            listBoxItemsOther.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxItemsOther.FormattingEnabled = true;
+            listBoxItemsOther.IntegralHeight = false;
+            listBoxItemsOther.Location = new Point(198, 243);
+            listBoxItemsOther.Name = "listBoxItemsOther";
+            listBoxItemsOther.Size = new Size(184, 456);
+            listBoxItemsOther.TabIndex = 21;
+            listBoxItemsOther.SelectedIndexChanged += listBoxItemsOther_SelectedIndexChanged;
+            // 
+            // textBoxItemsLocation
+            // 
+            textBoxItemsLocation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxItemsLocation.Location = new Point(274, 177);
+            textBoxItemsLocation.Name = "textBoxItemsLocation";
+            textBoxItemsLocation.Size = new Size(786, 23);
+            textBoxItemsLocation.TabIndex = 20;
+            // 
+            // labelItemsLocation
+            // 
+            labelItemsLocation.AutoSize = true;
+            labelItemsLocation.Location = new Point(198, 180);
+            labelItemsLocation.Name = "labelItemsLocation";
+            labelItemsLocation.Size = new Size(53, 15);
+            labelItemsLocation.TabIndex = 19;
+            labelItemsLocation.Text = "Location";
+            // 
             // textBoxItemsLongDesc
             // 
+            textBoxItemsLongDesc.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxItemsLongDesc.Location = new Point(274, 81);
             textBoxItemsLongDesc.Multiline = true;
             textBoxItemsLongDesc.Name = "textBoxItemsLongDesc";
@@ -472,6 +542,7 @@
             // 
             // textBoxItemsShortDesc
             // 
+            textBoxItemsShortDesc.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxItemsShortDesc.Location = new Point(274, 52);
             textBoxItemsShortDesc.Name = "textBoxItemsShortDesc";
             textBoxItemsShortDesc.Size = new Size(786, 23);
@@ -515,6 +586,7 @@
             // 
             // listBoxItems
             // 
+            listBoxItems.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             listBoxItems.FormattingEnabled = true;
             listBoxItems.IntegralHeight = false;
             listBoxItems.Location = new Point(8, 52);
@@ -1045,7 +1117,6 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
-            Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
@@ -1055,6 +1126,7 @@
             Controls.Add(groupBoxVocabulary);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
+            Controls.Add(groupBoxItems);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Zygote";
@@ -1163,5 +1235,13 @@
         private Label labelItemsLongDesc;
         private TextBox textBoxItemsShortDesc;
         private Label labelItemsShortDesc;
+        private TextBox textBoxItemsLocation;
+        private Label labelItemsLocation;
+        private ListBox listBoxItemsOther;
+        private Button buttonItemsOtherAdd;
+        private Button buttonItemsOtherRename;
+        private Button buttonItemsOtherDelete;
+        private RichTextBox richTextBoxItemsOther;
+        private RichTextBox richTextBox1;
     }
 }
