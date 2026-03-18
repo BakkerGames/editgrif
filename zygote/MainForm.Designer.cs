@@ -50,6 +50,18 @@
             labelStartGameName = new Label();
             textBoxStartGameName = new TextBox();
             groupBoxRooms = new GroupBox();
+            labelRoomsExits = new Label();
+            richTextBoxRoomsExits = new RichTextBox();
+            buttonRoomsExitsDelete = new Button();
+            buttonRoomsExitsRename = new Button();
+            buttonRoomsExitsAdd = new Button();
+            labelRoomsOther = new Label();
+            listBoxRoomsExits = new ListBox();
+            richTextBoxRoomsOther = new RichTextBox();
+            buttonRoomsOtherDelete = new Button();
+            buttonRoomsOtherRename = new Button();
+            buttonRoomsOtherAdd = new Button();
+            listBoxRoomsOther = new ListBox();
             textBoxRoomsLongDesc = new TextBox();
             labelRoomsLongDesc = new Label();
             textBoxRoomsShortDesc = new TextBox();
@@ -344,6 +356,18 @@
             // groupBoxRooms
             // 
             groupBoxRooms.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxRooms.Controls.Add(labelRoomsExits);
+            groupBoxRooms.Controls.Add(richTextBoxRoomsExits);
+            groupBoxRooms.Controls.Add(buttonRoomsExitsDelete);
+            groupBoxRooms.Controls.Add(buttonRoomsExitsRename);
+            groupBoxRooms.Controls.Add(buttonRoomsExitsAdd);
+            groupBoxRooms.Controls.Add(labelRoomsOther);
+            groupBoxRooms.Controls.Add(listBoxRoomsExits);
+            groupBoxRooms.Controls.Add(richTextBoxRoomsOther);
+            groupBoxRooms.Controls.Add(buttonRoomsOtherDelete);
+            groupBoxRooms.Controls.Add(buttonRoomsOtherRename);
+            groupBoxRooms.Controls.Add(buttonRoomsOtherAdd);
+            groupBoxRooms.Controls.Add(listBoxRoomsOther);
             groupBoxRooms.Controls.Add(textBoxRoomsLongDesc);
             groupBoxRooms.Controls.Add(labelRoomsLongDesc);
             groupBoxRooms.Controls.Add(textBoxRoomsShortDesc);
@@ -359,6 +383,115 @@
             groupBoxRooms.TabStop = false;
             groupBoxRooms.Text = "Rooms";
             groupBoxRooms.Visible = false;
+            // 
+            // labelRoomsExits
+            // 
+            labelRoomsExits.AutoSize = true;
+            labelRoomsExits.Location = new Point(198, 206);
+            labelRoomsExits.Name = "labelRoomsExits";
+            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.TabIndex = 21;
+            labelRoomsExits.Text = "Exits";
+            // 
+            // richTextBoxRoomsExits
+            // 
+            richTextBoxRoomsExits.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxRoomsExits.Location = new Point(464, 206);
+            richTextBoxRoomsExits.Name = "richTextBoxRoomsExits";
+            richTextBoxRoomsExits.Size = new Size(596, 228);
+            richTextBoxRoomsExits.TabIndex = 20;
+            richTextBoxRoomsExits.Text = "";
+            // 
+            // buttonRoomsExitsDelete
+            // 
+            buttonRoomsExitsDelete.Location = new Point(402, 177);
+            buttonRoomsExitsDelete.Name = "buttonRoomsExitsDelete";
+            buttonRoomsExitsDelete.Size = new Size(58, 23);
+            buttonRoomsExitsDelete.TabIndex = 19;
+            buttonRoomsExitsDelete.Text = "Delete";
+            buttonRoomsExitsDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonRoomsExitsRename
+            // 
+            buttonRoomsExitsRename.Location = new Point(338, 177);
+            buttonRoomsExitsRename.Name = "buttonRoomsExitsRename";
+            buttonRoomsExitsRename.Size = new Size(58, 23);
+            buttonRoomsExitsRename.TabIndex = 18;
+            buttonRoomsExitsRename.Text = "Rename";
+            buttonRoomsExitsRename.UseVisualStyleBackColor = true;
+            // 
+            // buttonRoomsExitsAdd
+            // 
+            buttonRoomsExitsAdd.Location = new Point(274, 177);
+            buttonRoomsExitsAdd.Name = "buttonRoomsExitsAdd";
+            buttonRoomsExitsAdd.Size = new Size(58, 23);
+            buttonRoomsExitsAdd.TabIndex = 17;
+            buttonRoomsExitsAdd.Text = "Add";
+            buttonRoomsExitsAdd.UseVisualStyleBackColor = true;
+            // 
+            // labelRoomsOther
+            // 
+            labelRoomsOther.AutoSize = true;
+            labelRoomsOther.Location = new Point(198, 470);
+            labelRoomsOther.Name = "labelRoomsOther";
+            labelRoomsOther.Size = new Size(37, 15);
+            labelRoomsOther.TabIndex = 16;
+            labelRoomsOther.Text = "Other";
+            // 
+            // listBoxRoomsExits
+            // 
+            listBoxRoomsExits.FormattingEnabled = true;
+            listBoxRoomsExits.IntegralHeight = false;
+            listBoxRoomsExits.Location = new Point(274, 206);
+            listBoxRoomsExits.Name = "listBoxRoomsExits";
+            listBoxRoomsExits.Size = new Size(184, 228);
+            listBoxRoomsExits.TabIndex = 15;
+            // 
+            // richTextBoxRoomsOther
+            // 
+            richTextBoxRoomsOther.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxRoomsOther.Location = new Point(464, 470);
+            richTextBoxRoomsOther.Name = "richTextBoxRoomsOther";
+            richTextBoxRoomsOther.Size = new Size(596, 228);
+            richTextBoxRoomsOther.TabIndex = 13;
+            richTextBoxRoomsOther.Text = "";
+            // 
+            // buttonRoomsOtherDelete
+            // 
+            buttonRoomsOtherDelete.Location = new Point(400, 441);
+            buttonRoomsOtherDelete.Name = "buttonRoomsOtherDelete";
+            buttonRoomsOtherDelete.Size = new Size(58, 23);
+            buttonRoomsOtherDelete.TabIndex = 12;
+            buttonRoomsOtherDelete.Text = "Delete";
+            buttonRoomsOtherDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonRoomsOtherRename
+            // 
+            buttonRoomsOtherRename.Location = new Point(338, 441);
+            buttonRoomsOtherRename.Name = "buttonRoomsOtherRename";
+            buttonRoomsOtherRename.Size = new Size(58, 23);
+            buttonRoomsOtherRename.TabIndex = 11;
+            buttonRoomsOtherRename.Text = "Rename";
+            buttonRoomsOtherRename.UseVisualStyleBackColor = true;
+            // 
+            // buttonRoomsOtherAdd
+            // 
+            buttonRoomsOtherAdd.Location = new Point(274, 441);
+            buttonRoomsOtherAdd.Name = "buttonRoomsOtherAdd";
+            buttonRoomsOtherAdd.Size = new Size(58, 23);
+            buttonRoomsOtherAdd.TabIndex = 10;
+            buttonRoomsOtherAdd.Text = "Add";
+            buttonRoomsOtherAdd.UseVisualStyleBackColor = true;
+            // 
+            // listBoxRoomsOther
+            // 
+            listBoxRoomsOther.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxRoomsOther.FormattingEnabled = true;
+            listBoxRoomsOther.IntegralHeight = false;
+            listBoxRoomsOther.Location = new Point(274, 470);
+            listBoxRoomsOther.Name = "listBoxRoomsOther";
+            listBoxRoomsOther.Size = new Size(184, 228);
+            listBoxRoomsOther.TabIndex = 9;
             // 
             // textBoxRoomsLongDesc
             // 
@@ -1230,7 +1363,12 @@
         private TextBox textBoxRoomsShortDesc;
         private Label labelRoomsLongDesc;
         private TextBox textBoxRoomsLongDesc;
-        private Label labelRoomsExits;
+        private ListBox listBoxRoomsExits;
+        private Button buttonRoomsExitsDelete;
+        private Button buttonRoomsExitsRename;
+        private Button buttonRoomsExitsAdd;
+        private Label labelRoomsOther;
+        private RichTextBox richTextBoxRoomsExits;
         private TextBox textBoxItemsLongDesc;
         private Label labelItemsLongDesc;
         private TextBox textBoxItemsShortDesc;
@@ -1242,6 +1380,11 @@
         private Button buttonItemsOtherRename;
         private Button buttonItemsOtherDelete;
         private RichTextBox richTextBoxItemsOther;
-        private RichTextBox richTextBox1;
+        private RichTextBox richTextBoxRoomsOther;
+        private ListBox listBoxRoomsOther;
+        private Button buttonRoomsOtherDelete;
+        private Button buttonRoomsOtherRename;
+        private Button buttonRoomsOtherAdd;
+        private Label labelRoomsExits;
     }
 }
