@@ -1,16 +1,13 @@
 using GrifLib;
+using static GrifLib.Common;
+using static zygote.StaticRoutines;
+using static zygote.ConfigValues;
 
 namespace zygote
 {
     public partial class MainForm : Form
     {
         Grod grod = new();
-
-        string roomPrefix = "room";
-        string itemPrefix = "item";
-        string shortDescSuffix = "shortdesc";
-        string longDescSuffix = "longdesc";
-        string locationSuffix = "location";
 
         public MainForm()
         {
@@ -183,67 +180,66 @@ namespace zygote
             listBoxScripts.Items.Clear();
             listBoxFunctions.Items.Clear();
             listBoxSystem.Items.Clear();
-            var systemList = grod.Get("system.prefix.system", true)?.Split(',') ?? ["system"];
+
+            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_SYSTEM.Split(',');
             foreach (var prefix in systemList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxSystem);
             }
-            var messageList = grod.Get("system.prefix.message", true)?.Split(',') ?? ["message"];
+
+            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_MESSAGE.Split(',');
             foreach (var prefix in messageList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxMessages);
             }
-            var valueList = grod.Get("system.prefix.value", true)?.Split(',') ?? ["value"];
+
+            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_VALUE.Split(',');
             foreach (var prefix in valueList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxValues);
             }
-            var verbList = grod.Get("system.prefix.verb", true)?.Split(',') ?? ["verb"];
-            foreach (var prefix in verbList)
+
+            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
+            foreach (var prefix in vocabularyList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxVocabulary);
             }
-            var nounList = grod.Get("system.prefix.noun", true)?.Split(',') ?? ["noun"];
-            foreach (var prefix in nounList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
-            }
-            var adjectiveList = grod.Get("system.prefix.adjective", true)?.Split(',') ?? ["adjective"];
-            foreach (var prefix in adjectiveList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
-            }
-            var prepositionList = grod.Get("system.prefix.preposition", true)?.Split(',') ?? ["preposition"];
-            foreach (var prefix in prepositionList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
-            }
-            var articleList = grod.Get("system.prefix.article", true)?.Split(',') ?? ["article"];
-            foreach (var prefix in articleList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
-            }
-            var commandList = grod.Get("system.prefix.command", true)?.Split(',') ?? ["command"];
+
+            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_COMMAND.Split(',');
             foreach (var prefix in commandList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxCommands);
             }
-            var scriptList = grod.Get("system.prefix.script", true)?.Split(',') ?? ["script", "background"];
+
+            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_SCRIPT.Split(',');
             foreach (var prefix in scriptList)
             {
                 FillListBox(grod, $"{prefix}.", listBoxScripts);
             }
-            roomPrefix = grod.Get("system.prefix.room", true) ?? "room";
-            itemPrefix = grod.Get("system.prefix.item", true) ?? "item";
-            shortDescSuffix = grod.Get("system.suffix.shortdesc", true) ?? "shortdesc";
-            longDescSuffix = grod.Get("system.suffix.longdesc", true) ?? "longdesc";
-            FillRooms(grod);
-            FillItems(grod);
-            FillListBox(grod, "@", listBoxFunctions);
+
+            // these are all the prefixes used for rooms, longdesc, shortdesc, exits
+            var roomList = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_ROOM.Split(',');
+            FillRooms(grod, roomList);
+
+            // these are all the prefixes used for items, longdesc, shortdesc, locations
+            var itemList = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_ITEM.Split(',');
+            FillItems(grod, itemList);
+
+            // function keys all start with '@'
+            FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
+
             List<string> extraKeys = [];
             foreach (var key in grod.Keys(true, true))
             {
-                if (key.StartsWith('@')) continue;
+                if (key.StartsWith(SCRIPT_CHAR)) continue;
                 if (!key.Contains('.'))
                 {
                     extraKeys.Add(key);
@@ -254,15 +250,11 @@ namespace zygote
                     if (!systemList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !messageList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !valueList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !verbList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !nounList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !adjectiveList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !prepositionList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !articleList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !vocabularyList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !commandList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !roomPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
-                        !itemPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase))
+                        !roomList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                        !itemList.Contains(prefix, StringComparer.OrdinalIgnoreCase))
                     {
                         extraKeys.Add(key);
                     }
@@ -294,107 +286,77 @@ namespace zygote
             listbox.EndUpdate();
         }
 
-        private void FillRooms(Grod grod)
+        private void FillRooms(Grod grod, string[] prefixes)
         {
-            var keys = grod.Keys($"{roomPrefix}.", true, false);
-            keys.Sort(Grod.CompareKeys);
-            foreach (var key in keys)
-            {
-                var pos = key.IndexOf('.', roomPrefix.Length + 1);
-                if (pos >= 0)
-                {
-                    var name = key[(roomPrefix.Length + 1)..pos];
-                    if (!listBoxRooms.Items.Contains(name))
-                    {
-                        listBoxRooms.Items.Add(name);
-                    }
-                }
-            }
+            // TODO needs to check for patterns for longdesc, shortdesc, exits, and all others
+            //var keys = grod.Keys($"{roomPrefix}.", true, false);
+            //keys.Sort(Grod.CompareKeys);
+            //foreach (var key in keys)
+            //{
+            //    var pos = key.IndexOf('.', roomPrefix.Length + 1);
+            //    if (pos >= 0)
+            //    {
+            //        var name = key[(roomPrefix.Length + 1)..pos];
+            //        if (!listBoxRooms.Items.Contains(name))
+            //        {
+            //            listBoxRooms.Items.Add(name);
+            //        }
+            //    }
+            //}
         }
 
-        private void FillItems(Grod grod)
+        private void FillItems(Grod grod, string[] prefixes)
         {
-            var keys = grod.Keys($"{itemPrefix}.", true, false);
-            keys.Sort(Grod.CompareKeys);
-            foreach (var key in keys)
-            {
-                var pos = key.IndexOf('.', itemPrefix.Length + 1);
-                if (pos >= 0)
-                {
-                    var name = key[(itemPrefix.Length + 1)..pos];
-                    if (!listBoxItems.Items.Contains(name))
-                    {
-                        listBoxItems.Items.Add(name);
-                    }
-                }
-            }
+            // TODO needs to check for patterns for longdesc, shortdesc, location, and all others
+            //var keys = grod.Keys($"{itemPrefix}.", true, false);
+            //keys.Sort(Grod.CompareKeys);
+            //foreach (var key in keys)
+            //{
+            //    var pos = key.IndexOf('.', itemPrefix.Length + 1);
+            //    if (pos >= 0)
+            //    {
+            //        var name = key[(itemPrefix.Length + 1)..pos];
+            //        if (!listBoxItems.Items.Contains(name))
+            //        {
+            //            listBoxItems.Items.Add(name);
+            //        }
+            //    }
+            //}
         }
 
         private void listBoxFunctions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxSelected(listBoxFunctions, richTextBoxFunctions);
+            ListBoxSelected(grod, listBoxFunctions, richTextBoxFunctions);
         }
 
         private void listBoxSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxSelected(listBoxSystem, richTextBoxSystem);
+            ListBoxSelected(grod, listBoxSystem, richTextBoxSystem);
         }
 
         private void listBoxScripts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxSelected(listBoxScripts, richTextBoxScripts);
+            ListBoxSelected(grod, listBoxScripts, richTextBoxScripts);
         }
 
         private void listBoxCommands_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxSelected(listBoxCommands, richTextBoxCommands);
+            ListBoxSelected(grod, listBoxCommands, richTextBoxCommands);
         }
 
         private void listBoxVocabulary_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxSelected(listBoxVocabulary, richTextBoxVocabulary);
+            ListBoxSelected(grod, listBoxVocabulary, richTextBoxVocabulary);
         }
 
         private void listBoxValues_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxSelected(listBoxValues, richTextBoxValues);
+            ListBoxSelected(grod, listBoxValues, richTextBoxValues);
         }
 
         private void listBoxMessages_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListBoxSelected(listBoxMessages, richTextBoxMessages);
-        }
-
-        private void ListBoxSelected(ListBox listbox, RichTextBox rtb, string prefix = "")
-        {
-            rtb.Clear();
-            if (listbox.SelectedIndex < 0) return;
-            var key = prefix + (string)(listbox.Items[listbox.SelectedIndex] ?? "");
-            var script = grod.Get(key, true);
-            if (script != null)
-            {
-                var items = Dags.ColorizeScript(script);
-                foreach (var item in items)
-                {
-                    rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
-                }
-            }
-        }
-
-        private static Color GetColorValue(TextColorEnum textColor)
-        {
-            return textColor switch
-            {
-                TextColorEnum.Default => Color.Black,
-                TextColorEnum.PunctuationColor => Color.LightGray,
-                TextColorEnum.TokenColor => Color.Cyan,
-                TextColorEnum.IfColor => Color.Blue,
-                TextColorEnum.ForColor => Color.Orange,
-                TextColorEnum.QuoteColor => Color.ForestGreen,
-                TextColorEnum.ParameterColor => Color.Magenta,
-                TextColorEnum.CommentColor => Color.ForestGreen,
-                _ => Color.Black,
-            };
+            ListBoxSelected(grod, listBoxMessages, richTextBoxMessages);
         }
 
         private void listBoxRooms_SelectedIndexChanged(object sender, EventArgs e)
@@ -402,8 +364,9 @@ namespace zygote
             textBoxRoomsShortDesc.Text = "";
             textBoxRoomsLongDesc.Text = "";
             if (listBoxRooms.SelectedIndex < 0) return;
-            textBoxRoomsShortDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{shortDescSuffix}", true);
-            textBoxRoomsLongDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{longDescSuffix}", true);
+            // TODO need to check for patterns, not prefixes
+            //textBoxRoomsShortDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{shortDescSuffix}", true);
+            //textBoxRoomsLongDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{longDescSuffix}", true);
         }
 
         private void listBoxItems_SelectedIndexChanged(object sender, EventArgs e)
@@ -418,27 +381,28 @@ namespace zygote
                 return;
             }
             var itemNum = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
-            var keys = grod.Keys($"{itemPrefix}.{itemNum}.", true, true) ?? [];
-            var prefixLen = $"{itemPrefix}.{itemNum}.".Length;
-            foreach (var key in keys)
-            {
-                if (key.EndsWith($".{shortDescSuffix}", StringComparison.OrdinalIgnoreCase))
-                {
-                    textBoxItemsShortDesc.Text = grod.Get(key, true);
-                }
-                else if (key.EndsWith($".{longDescSuffix}", StringComparison.OrdinalIgnoreCase))
-                {
-                    textBoxItemsLongDesc.Text = grod.Get(key, true);
-                }
-                else if (key.EndsWith($".{locationSuffix}", StringComparison.OrdinalIgnoreCase))
-                {
-                    textBoxItemsLocation.Text = grod.Get(key, true);
-                }
-                else
-                {
-                    listBoxItemsOther.Items.Add(key[prefixLen..]);
-                }
-            }
+            // TODO need to check for patterns, not prefixes
+            //var keys = grod.Keys($"{itemPrefix}.{itemNum}.", true, true) ?? [];
+            //var prefixLen = $"{itemPrefix}.{itemNum}.".Length;
+            //foreach (var key in keys)
+            //{
+            //    if (key.EndsWith($".{shortDescSuffix}", StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        textBoxItemsShortDesc.Text = grod.Get(key, true);
+            //    }
+            //    else if (key.EndsWith($".{longDescSuffix}", StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        textBoxItemsLongDesc.Text = grod.Get(key, true);
+            //    }
+            //    else if (key.EndsWith($".{locationSuffix}", StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        textBoxItemsLocation.Text = grod.Get(key, true);
+            //    }
+            //    else
+            //    {
+            //        listBoxItemsOther.Items.Add(key[prefixLen..]);
+            //    }
+            //}
         }
 
         private void listBoxItemsOther_SelectedIndexChanged(object sender, EventArgs e)
@@ -446,7 +410,8 @@ namespace zygote
             richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0) return;
             var itemNum = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
-            ListBoxSelected(listBoxItemsOther, richTextBoxItemsOther, $"{itemPrefix}.{itemNum}.");
+            // TODO need to check for patterns, not prefixes
+            //ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, $"{itemPrefix}.{itemNum}.");
         }
     }
 }

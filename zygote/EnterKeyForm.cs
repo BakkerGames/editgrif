@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using static GrifLib.Common;
 
 namespace zygote;
 
@@ -59,7 +60,7 @@ public partial class EnterKeyForm : Form
         for (int index = 0; index < key.Length; index++)
         {
             char c = key[index];
-            if (index == 0 && functionKey && c != '@')
+            if (index == 0 && functionKey && c != SCRIPT_CHAR)
             {
                 return false;
             }
@@ -79,7 +80,7 @@ public partial class EnterKeyForm : Form
             }
             else
             {
-                if (c == '@')
+                if (c == SCRIPT_CHAR)
                 {
                     if (index > 0) return false;
                     lastComma = false;
