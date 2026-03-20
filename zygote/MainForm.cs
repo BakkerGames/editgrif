@@ -1,4 +1,3 @@
-using System.Xml.Linq;
 using GrifLib;
 using static GrifLib.Common;
 using static zygote.ConfigValues;
@@ -13,9 +12,7 @@ namespace zygote
         public MainForm()
         {
             InitializeComponent();
-            HideAll();
-            groupBoxStart.Visible = true;
-            buttonStart.BackColor = Color.LightGreen;
+            SelectTab(buttonStart, groupBoxStart);
         }
 
         #region Menu Buttons
@@ -42,75 +39,60 @@ namespace zygote
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxStart.Visible = true;
-            buttonStart.BackColor = Color.LightGreen;
+            SelectTab(buttonStart, groupBoxStart);
         }
 
         private void buttonRooms_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxRooms.Visible = true;
-            buttonRooms.BackColor = Color.LightGreen;
+            SelectTab(buttonRooms, groupBoxRooms);
         }
 
         private void buttonItems_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxItems.Visible = true;
-            buttonItems.BackColor = Color.LightGreen;
+            SelectTab(buttonItems, groupBoxItems);
         }
 
         private void buttonMessages_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxMessages.Visible = true;
-            buttonMessages.BackColor = Color.LightGreen;
+            SelectTab(buttonMessages, groupBoxMessages);
         }
 
         private void buttonValues_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxValues.Visible = true;
-            buttonValues.BackColor = Color.LightGreen;
+            SelectTab(buttonValues, groupBoxValues);
         }
 
         private void buttonVocabulary_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxVocabulary.Visible = true;
-            buttonVocabulary.BackColor = Color.LightGreen;
+            SelectTab(buttonVocabulary, groupBoxVocabulary);
         }
 
         private void buttonCommands_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxCommands.Visible = true;
-            buttonCommands.BackColor = Color.LightGreen;
+            SelectTab(buttonCommands, groupBoxCommands);
         }
 
         private void buttonScripts_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxScripts.Visible = true;
-            buttonScripts.BackColor = Color.LightGreen;
+            SelectTab(buttonScripts, groupBoxScripts);
         }
 
         private void buttonFunctions_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxFunctions.Visible = true;
-            buttonFunctions.BackColor = Color.LightGreen;
+            SelectTab(buttonFunctions, groupBoxFunctions);
         }
 
         private void buttonSystem_Click(object sender, EventArgs e)
         {
-            HideAll();
-            groupBoxSystem.Visible = true;
-            buttonSystem.BackColor = Color.LightGreen;
+            SelectTab(buttonSystem, groupBoxSystem);
         }
 
-        #endregion
+        private void SelectTab(Button button, GroupBox groupBox)
+        {
+            HideAll();
+            groupBox.Visible = true;
+            button.BackColor = Color.LightGreen;
+        }
 
         private void HideAll()
         {
@@ -135,6 +117,8 @@ namespace zygote
             groupBoxFunctions.Visible = false;
             groupBoxSystem.Visible = false;
         }
+
+        #endregion
 
         private void buttonVersionToday_Click(object sender, EventArgs e)
         {
@@ -265,56 +249,38 @@ namespace zygote
 
             var roomList = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_ROOM.Split(',');
-            FillRoomsItems(grod, roomList, listBoxRooms);
+            FillListBoxFromPrefixUnique(grod, roomList, listBoxRooms);
 
             var itemList = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_ITEM.Split(',');
-            FillRoomsItems(grod, itemList, listBoxItems);
+            FillListBoxFromPrefixUnique(grod, itemList, listBoxItems);
 
             var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_MESSAGE.Split(',');
-            foreach (var prefix in messageList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxMessages);
-            }
+            FillListBoxFromPrefixes(grod, messageList, listBoxMessages);
 
             var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_VALUE.Split(',');
-            foreach (var prefix in valueList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxValues);
-            }
+            FillListBoxFromPrefixes(grod, valueList, listBoxValues);
 
             var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
-            foreach (var prefix in vocabularyList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxVocabulary);
-            }
+            FillListBoxFromPrefixes(grod, vocabularyList, listBoxVocabulary);
 
             var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_COMMAND.Split(',');
-            foreach (var prefix in commandList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxCommands);
-            }
+            FillListBoxFromPrefixes(grod, commandList, listBoxCommands);
 
             var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_SCRIPT.Split(',');
-            foreach (var prefix in scriptList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxScripts);
-            }
+            FillListBoxFromPrefixes(grod, scriptList, listBoxScripts);
 
             // function keys all start with '@'
             FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
 
             var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_SYSTEM.Split(',');
-            foreach (var prefix in systemList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxSystem);
-            }
+            FillListBoxFromPrefixes(grod, systemList, listBoxSystem);
 
             List<string> extraKeys = [];
             foreach (var key in grod.Keys(true, true))
@@ -347,71 +313,6 @@ namespace zygote
         {
             var keys = grod.Keys(prefix, true, true) ?? [];
             AddListBox(keys, listbox);
-        }
-
-        private static void AddListBox(List<string> keys, ListBox listbox)
-        {
-            if (keys.Count == 0) return;
-            foreach (var item in listbox.Items)
-            {
-                keys.Add((string)item);
-            }
-            keys.Sort(Grod.CompareKeys);
-            listbox.BeginUpdate();
-            listbox.Items.Clear();
-            foreach (var key in keys)
-            {
-                listbox.Items.Add(key);
-            }
-            listbox.EndUpdate();
-        }
-
-        private void FillRoomsItems(Grod grod, string[] prefixes, ListBox listbox)
-        {
-            List<string> allKeys = [];
-            foreach (var prefix in prefixes)
-            {
-                var keys = grod.Keys($"{prefix}.", true, false);
-                foreach (var key in keys)
-                {
-                    var pos = key.IndexOf('.', prefix.Length + 1);
-                    if (pos >= 0)
-                    {
-                        var name = key[(prefix.Length + 1)..pos];
-                        if (!allKeys.Contains(name))
-                        {
-                            allKeys.Add(name);
-                        }
-                    }
-                }
-            }
-            allKeys.Sort(Grod.CompareKeys);
-            foreach (var name in allKeys)
-            {
-                if (!listbox.Items.Contains(name))
-                {
-                    listbox.Items.Add(name);
-                }
-            }
-        }
-
-        private void FillItems(Grod grod, string[] prefixes)
-        {
-            // TODO needs to check for patterns for longdesc, shortdesc, location, and all others
-            //var keys = grod.Keys($"{itemPrefix}.", true, false);
-            //keys.Sort(Grod.CompareKeys);
-            //foreach (var key in keys)
-            //{
-            //    var pos = key.IndexOf('.', itemPrefix.Length + 1);
-            //    if (pos >= 0)
-            //    {
-            //        var name = key[(itemPrefix.Length + 1)..pos];
-            //        if (!listBoxItems.Items.Contains(name))
-            //        {
-            //            listBoxItems.Items.Add(name);
-            //        }
-            //    }
-            //}
         }
 
         private void listBoxFunctions_SelectedIndexChanged(object sender, EventArgs e)
