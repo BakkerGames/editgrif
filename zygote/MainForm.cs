@@ -247,39 +247,37 @@ namespace zygote
             ClearFunctionsTab();
             ClearSystemTab();
 
-            var roomList = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_ROOM.Split(',');
+            var roomList = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ROOM.Split(',');
             FillListBoxFromPrefixUnique(grod, roomList, listBoxRooms);
+            roomPatternShortDesc = grod.Get(SYSTEM_PATTERN_ROOM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_SHORTDESC;
+            roomPatternLongDesc = grod.Get(SYSTEM_PATTERN_ROOM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_LONGDESC;
+            roomPatternExit = grod.Get(SYSTEM_PATTERN_ROOM_EXIT_KEY, true) ?? DEFAULT_PATTERN_ROOM_EXIT;
 
-            var itemList = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_ITEM.Split(',');
+            var itemList = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ITEM.Split(',');
             FillListBoxFromPrefixUnique(grod, itemList, listBoxItems);
+            itemPatternShortDesc = grod.Get(SYSTEM_PATTERN_ITEM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_SHORTDESC;
+            itemPatternLongDesc = grod.Get(SYSTEM_PATTERN_ITEM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_LONGDESC;
+            itemPatternLocation = grod.Get(SYSTEM_PATTERN_ITEM_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ITEM_LOCATION;
 
-            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_MESSAGE.Split(',');
+            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_MESSAGE.Split(',');
             FillListBoxFromPrefixes(grod, messageList, listBoxMessages);
 
-            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_VALUE.Split(',');
+            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VALUE.Split(',');
             FillListBoxFromPrefixes(grod, valueList, listBoxValues);
 
-            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
+            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
             FillListBoxFromPrefixes(grod, vocabularyList, listBoxVocabulary);
 
-            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_COMMAND.Split(',');
+            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_COMMAND.Split(',');
             FillListBoxFromPrefixes(grod, commandList, listBoxCommands);
 
-            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_SCRIPT.Split(',');
+            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SCRIPT.Split(',');
             FillListBoxFromPrefixes(grod, scriptList, listBoxScripts);
 
             // function keys all start with '@'
             FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
 
-            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_SYSTEM.Split(',');
+            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SYSTEM.Split(',');
             FillListBoxFromPrefixes(grod, systemList, listBoxSystem);
 
             List<string> extraKeys = [];
@@ -355,6 +353,9 @@ namespace zygote
             textBoxRoomsShortDesc.Text = "";
             textBoxRoomsLongDesc.Text = "";
             if (listBoxRooms.SelectedIndex < 0) return;
+            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
+            textBoxRoomsShortDesc.Text = grod.Get(roomPatternShortDesc.Replace("{room}", roomName), true) ?? "";
+            textBoxRoomsLongDesc.Text = grod.Get(roomPatternLongDesc.Replace("{room}", roomName), true) ?? "";
             // TODO need to check for patterns, not prefixes
             //textBoxRoomsShortDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{shortDescSuffix}", true);
             //textBoxRoomsLongDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{longDescSuffix}", true);

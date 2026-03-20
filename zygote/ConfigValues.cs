@@ -23,8 +23,21 @@ internal static class ConfigValues
     internal const string DEFAULT_PATTERN_ROOM_SHORTDESC = "room.{room}.shortdesc";
     internal const string DEFAULT_PATTERN_ROOM_LONGDESC = "room.{room}.longdesc";
     internal const string DEFAULT_PATTERN_ROOM_EXIT = "room.{room}.exit.{exit}";
-
     internal const string DEFAULT_PATTERN_ITEM_SHORTDESC = "item.{item}.shortdesc";
     internal const string DEFAULT_PATTERN_ITEM_LONGDESC = "item.{item}.longdesc";
     internal const string DEFAULT_PATTERN_ITEM_LOCATION = "item.{item}.location";
+
+    internal const string SYSTEM_PATTERN_ROOM_SHORTDESC_KEY = "system.pattern.room.shortdesc";
+    internal const string SYSTEM_PATTERN_ROOM_LONGDESC_KEY = "system.pattern.room.longdesc";
+    internal const string SYSTEM_PATTERN_ROOM_EXIT_KEY = "system.pattern.room.exit";
+    internal const string SYSTEM_PATTERN_ITEM_SHORTDESC_KEY = "system.pattern.item.shortdesc";
+    internal const string SYSTEM_PATTERN_ITEM_LONGDESC_KEY = "system.pattern.item.longdesc";
+    internal const string SYSTEM_PATTERN_ITEM_LOCATION_KEY = "system.pattern.item.location";
+
+    internal static string roomPatternShortDesc = "";
+    internal static string roomPatternLongDesc = "";
+    internal static string roomPatternExit = "";
+    internal static string itemPatternShortDesc = "";
+    internal static string itemPatternLongDesc = "";
+    internal static string itemPatternLocation = "";
 }
