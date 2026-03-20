@@ -326,7 +326,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 54);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(63, 15);
+            labelStartGameTitle.Size = new Size(64, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -389,7 +389,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 206);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.Size = new Size(30, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -555,6 +555,7 @@
             // 
             // listBoxRooms
             // 
+            listBoxRooms.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             listBoxRooms.FormattingEnabled = true;
             listBoxRooms.IntegralHeight = false;
             listBoxRooms.Location = new Point(8, 52);

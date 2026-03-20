@@ -1,7 +1,8 @@
+using System.Xml.Linq;
 using GrifLib;
 using static GrifLib.Common;
-using static zygote.StaticRoutines;
 using static zygote.ConfigValues;
+using static zygote.StaticRoutines;
 
 namespace zygote
 {
@@ -16,6 +17,28 @@ namespace zygote
             groupBoxStart.Visible = true;
             buttonStart.BackColor = Color.LightGreen;
         }
+
+        #region Menu Buttons
+
+        private void buttonFileOpen_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                CheckFileExists = true,
+                Filter = "Grif files|*.grif*"
+            };
+            var result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                grod = IO.OpenFile(dialog.FileName) ?? new();
+                if (grod == null) return;
+                LoadData(grod);
+            }
+        }
+
+        #endregion
+
+        #region Tab Buttons
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
@@ -87,6 +110,8 @@ namespace zygote
             buttonSystem.BackColor = Color.LightGreen;
         }
 
+        #endregion
+
         private void HideAll()
         {
             buttonStart.BackColor = SystemColors.Control;
@@ -153,40 +178,98 @@ namespace zygote
             }
         }
 
-        private void buttonFileOpen_Click(object sender, EventArgs e)
+        private void ClearStartTab()
         {
-            var dialog = new OpenFileDialog
-            {
-                CheckFileExists = true,
-                Filter = "Grif files|*.grif*"
-            };
-            var result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                grod = IO.OpenFile(dialog.FileName) ?? new();
-                if (grod == null) return;
-                LoadData(grod);
-            }
+            textBoxStartGameName.Text = "";
+            textBoxStartGameTitle.Text = "";
+            textBoxStartVersion.Text = "";
+            textBoxStartIntroduction.Text = "";
+            textBoxStartStartingRoom.Text = "";
+        }
+
+        private void ClearRoomsTab()
+        {
+            listBoxRooms.Items.Clear();
+            textBoxRoomsShortDesc.Text = "";
+            textBoxRoomsLongDesc.Text = "";
+            listBoxRoomsExits.Items.Clear();
+            richTextBoxRoomsExits.Clear();
+            listBoxRoomsOther.Items.Clear();
+            richTextBoxRoomsOther.Clear();
+        }
+
+        private void ClearItemsTab()
+        {
+            listBoxItems.Items.Clear();
+            textBoxItemsShortDesc.Text = "";
+            textBoxItemsLongDesc.Text = "";
+            textBoxItemsLocation.Text = "";
+            listBoxItemsOther.Items.Clear();
+            richTextBoxItemsOther.Clear();
+        }
+
+        private void ClearMessagesTab()
+        {
+            listBoxMessages.Items.Clear();
+            richTextBoxMessages.Clear();
+        }
+
+        private void ClearValuesTab()
+        {
+            listBoxValues.Items.Clear();
+            richTextBoxValues.Clear();
+        }
+
+        private void ClearVocabularyTab()
+        {
+            listBoxVocabulary.Items.Clear();
+            richTextBoxVocabulary.Clear();
+        }
+
+        private void ClearCommandsTab()
+        {
+            listBoxCommands.Items.Clear();
+            richTextBoxCommands.Clear();
+        }
+
+        private void ClearScriptsTab()
+        {
+            listBoxScripts.Items.Clear();
+            richTextBoxScripts.Clear();
+        }
+
+        private void ClearFunctionsTab()
+        {
+            listBoxFunctions.Items.Clear();
+            richTextBoxFunctions.Clear();
+        }
+
+        private void ClearSystemTab()
+        {
+            listBoxSystem.Items.Clear();
+            richTextBoxSystem.Clear();
         }
 
         private void LoadData(Grod grod)
         {
-            listBoxRooms.Items.Clear();
-            listBoxItems.Items.Clear();
-            listBoxValues.Items.Clear();
-            listBoxMessages.Items.Clear();
-            listBoxVocabulary.Items.Clear();
-            listBoxCommands.Items.Clear();
-            listBoxScripts.Items.Clear();
-            listBoxFunctions.Items.Clear();
-            listBoxSystem.Items.Clear();
+            ClearStartTab();
+            ClearRoomsTab();
+            ClearItemsTab();
+            ClearMessagesTab();
+            ClearValuesTab();
+            ClearVocabularyTab();
+            ClearCommandsTab();
+            ClearScriptsTab();
+            ClearFunctionsTab();
+            ClearSystemTab();
 
-            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_SYSTEM.Split(',');
-            foreach (var prefix in systemList)
-            {
-                FillListBox(grod, $"{prefix}.", listBoxSystem);
-            }
+            var roomList = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_ROOM.Split(',');
+            FillRoomsItems(grod, roomList, listBoxRooms);
+
+            var itemList = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_ITEM.Split(',');
+            FillRoomsItems(grod, itemList, listBoxItems);
 
             var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_MESSAGE.Split(',');
@@ -223,18 +306,15 @@ namespace zygote
                 FillListBox(grod, $"{prefix}.", listBoxScripts);
             }
 
-            // these are all the prefixes used for rooms, longdesc, shortdesc, exits
-            var roomList = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_ROOM.Split(',');
-            FillRooms(grod, roomList);
-
-            // these are all the prefixes used for items, longdesc, shortdesc, locations
-            var itemList = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_ITEM.Split(',');
-            FillItems(grod, itemList);
-
             // function keys all start with '@'
             FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
+
+            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_SYSTEM.Split(',');
+            foreach (var prefix in systemList)
+            {
+                FillListBox(grod, $"{prefix}.", listBoxSystem);
+            }
 
             List<string> extraKeys = [];
             foreach (var key in grod.Keys(true, true))
@@ -286,23 +366,33 @@ namespace zygote
             listbox.EndUpdate();
         }
 
-        private void FillRooms(Grod grod, string[] prefixes)
+        private void FillRoomsItems(Grod grod, string[] prefixes, ListBox listbox)
         {
-            // TODO needs to check for patterns for longdesc, shortdesc, exits, and all others
-            //var keys = grod.Keys($"{roomPrefix}.", true, false);
-            //keys.Sort(Grod.CompareKeys);
-            //foreach (var key in keys)
-            //{
-            //    var pos = key.IndexOf('.', roomPrefix.Length + 1);
-            //    if (pos >= 0)
-            //    {
-            //        var name = key[(roomPrefix.Length + 1)..pos];
-            //        if (!listBoxRooms.Items.Contains(name))
-            //        {
-            //            listBoxRooms.Items.Add(name);
-            //        }
-            //    }
-            //}
+            List<string> allKeys = [];
+            foreach (var prefix in prefixes)
+            {
+                var keys = grod.Keys($"{prefix}.", true, false);
+                foreach (var key in keys)
+                {
+                    var pos = key.IndexOf('.', prefix.Length + 1);
+                    if (pos >= 0)
+                    {
+                        var name = key[(prefix.Length + 1)..pos];
+                        if (!allKeys.Contains(name))
+                        {
+                            allKeys.Add(name);
+                        }
+                    }
+                }
+            }
+            allKeys.Sort(Grod.CompareKeys);
+            foreach (var name in allKeys)
+            {
+                if (!listbox.Items.Contains(name))
+                {
+                    listbox.Items.Add(name);
+                }
+            }
         }
 
         private void FillItems(Grod grod, string[] prefixes)

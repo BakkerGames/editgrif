@@ -11,12 +11,12 @@ internal static class StaticRoutines
             TextColorEnum.Default => Color.Black,
             TextColorEnum.PunctuationColor => Color.LightGray,
             TextColorEnum.ParenthesisColor => Color.Brown,
-            TextColorEnum.TokenColor => Color.Cyan,
-            TextColorEnum.IfColor => Color.Blue,
-            TextColorEnum.ForColor => Color.Orange,
+            TextColorEnum.TokenColor => Color.Blue,
+            TextColorEnum.IfColor => Color.DeepSkyBlue,
+            TextColorEnum.ForColor => Color.DeepPink,
             TextColorEnum.QuoteColor => Color.ForestGreen,
-            TextColorEnum.ParameterColor => Color.Magenta,
-            TextColorEnum.CommentColor => Color.ForestGreen,
+            TextColorEnum.ParameterColor => Color.DeepPink,
+            TextColorEnum.CommentColor => Color.LightGreen,
             _ => Color.Black,
         };
     }
