@@ -446,6 +446,7 @@
             listBoxRoomsExits.Name = "listBoxRoomsExits";
             listBoxRoomsExits.Size = new Size(184, 228);
             listBoxRoomsExits.TabIndex = 15;
+            listBoxRoomsExits.SelectedIndexChanged += listBoxRoomsExits_SelectedIndexChanged;
             // 
             // richTextBoxRoomsOther
             // 
@@ -492,6 +493,7 @@
             listBoxRoomsOther.Name = "listBoxRoomsOther";
             listBoxRoomsOther.Size = new Size(184, 228);
             listBoxRoomsOther.TabIndex = 9;
+            listBoxRoomsOther.SelectedIndexChanged += listBoxRoomsOther_SelectedIndexChanged;
             // 
             // textBoxRoomsLongDesc
             // 

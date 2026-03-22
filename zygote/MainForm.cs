@@ -247,17 +247,11 @@ namespace zygote
             ClearFunctionsTab();
             ClearSystemTab();
 
-            var roomList = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ROOM.Split(',');
-            FillListBoxFromPrefixUnique(grod, roomList, listBoxRooms);
-            roomPatternShortDesc = grod.Get(SYSTEM_PATTERN_ROOM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_SHORTDESC;
-            roomPatternLongDesc = grod.Get(SYSTEM_PATTERN_ROOM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_LONGDESC;
-            roomPatternExit = grod.Get(SYSTEM_PATTERN_ROOM_EXIT_KEY, true) ?? DEFAULT_PATTERN_ROOM_EXIT;
+            var roomPrefix = DEFAULT_PREFIX_ROOM;
+            FillListBoxFromPrefixUnique(grod, [roomPrefix], listBoxRooms);
 
-            var itemList = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ITEM.Split(',');
-            FillListBoxFromPrefixUnique(grod, itemList, listBoxItems);
-            itemPatternShortDesc = grod.Get(SYSTEM_PATTERN_ITEM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_SHORTDESC;
-            itemPatternLongDesc = grod.Get(SYSTEM_PATTERN_ITEM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_LONGDESC;
-            itemPatternLocation = grod.Get(SYSTEM_PATTERN_ITEM_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ITEM_LOCATION;
+            var itemPrefix = DEFAULT_PREFIX_ITEM;
+            FillListBoxFromPrefixUnique(grod, [itemPrefix], listBoxItems);
 
             var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_MESSAGE.Split(',');
             FillListBoxFromPrefixes(grod, messageList, listBoxMessages);
@@ -297,8 +291,8 @@ namespace zygote
                         !vocabularyList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !commandList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                         !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !roomList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !itemList.Contains(prefix, StringComparer.OrdinalIgnoreCase))
+                        !roomPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
+                        !itemPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase))
                     {
                         extraKeys.Add(key);
                     }
@@ -352,13 +346,33 @@ namespace zygote
         {
             textBoxRoomsShortDesc.Text = "";
             textBoxRoomsLongDesc.Text = "";
+            listBoxRoomsExits.Items.Clear();
+            richTextBoxRoomsExits.Clear();
+            listBoxRoomsOther.Items.Clear();
+            richTextBoxRoomsOther.Clear();
             if (listBoxRooms.SelectedIndex < 0) return;
             var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
-            textBoxRoomsShortDesc.Text = grod.Get(roomPatternShortDesc.Replace("{room}", roomName), true) ?? "";
-            textBoxRoomsLongDesc.Text = grod.Get(roomPatternLongDesc.Replace("{room}", roomName), true) ?? "";
-            // TODO need to check for patterns, not prefixes
-            //textBoxRoomsShortDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{shortDescSuffix}", true);
-            //textBoxRoomsLongDesc.Text = grod.Get($"{roomPrefix}.{listBoxRooms.SelectedItem}.{longDescSuffix}", true);
+            var shortDescKey = DEFAULT_PATTERN_ROOM_SHORTDESC.Replace("{room}", roomName);
+            textBoxRoomsShortDesc.Text = grod.Get(shortDescKey, true) ?? "";
+            var longDescKey = DEFAULT_PATTERN_ROOM_LONGDESC.Replace("{room}", roomName);
+            textBoxRoomsLongDesc.Text = grod.Get(longDescKey, true) ?? "";
+            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName);
+            var exitsKeys = grod.Keys(exitsPrefix, true, true);
+            foreach (var key in exitsKeys)
+            {
+                var exitKey = key[exitsPrefix.Length..];
+                listBoxRoomsExits.Items.Add(exitKey);
+            }
+            var otherPrefix = $"{DEFAULT_PREFIX_ROOM}.{roomName}.";
+            var otherKeys = grod.Keys(otherPrefix, true, true);
+            foreach (var key in otherKeys)
+            {
+                if (key.Equals(shortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(longDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.StartsWith(exitsPrefix, StringComparison.OrdinalIgnoreCase)) continue;
+                var otherKey = key[otherPrefix.Length..];
+                listBoxRoomsOther.Items.Add(otherKey);
+            }
         }
 
         private void listBoxItems_SelectedIndexChanged(object sender, EventArgs e)
@@ -368,42 +382,54 @@ namespace zygote
             textBoxItemsLocation.Text = "";
             listBoxItemsOther.Items.Clear();
             richTextBoxItemsOther.Clear();
-            if (listBoxItems.SelectedIndex < 0)
+            if (listBoxItems.SelectedIndex < 0) return;
+            var itemName = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
+            var shortDescKey = DEFAULT_PATTERN_ITEM_SHORTDESC.Replace("{item}", itemName);
+            textBoxItemsShortDesc.Text = grod.Get(shortDescKey, true) ?? "";
+            var longDescKey = DEFAULT_PATTERN_ITEM_LONGDESC.Replace("{item}", itemName);
+            textBoxItemsLongDesc.Text = grod.Get(longDescKey, true) ?? "";
+            var locationKey = DEFAULT_PATTERN_ITEM_LOCATION.Replace("{item}", itemName);
+            textBoxItemsLocation.Text = grod.Get(locationKey, true) ?? "";
+            var otherPrefix = $"{DEFAULT_PREFIX_ITEM}.{itemName}.";
+            var otherKeys = grod.Keys(otherPrefix, true, true);
+            foreach (var key in otherKeys)
             {
-                return;
+                if (key.Equals(shortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(longDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(locationKey, StringComparison.OrdinalIgnoreCase)) continue;
+                var otherKey = key[otherPrefix.Length..];
+                listBoxItemsOther.Items.Add(otherKey);
             }
-            var itemNum = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
-            // TODO need to check for patterns, not prefixes
-            //var keys = grod.Keys($"{itemPrefix}.{itemNum}.", true, true) ?? [];
-            //var prefixLen = $"{itemPrefix}.{itemNum}.".Length;
-            //foreach (var key in keys)
-            //{
-            //    if (key.EndsWith($".{shortDescSuffix}", StringComparison.OrdinalIgnoreCase))
-            //    {
-            //        textBoxItemsShortDesc.Text = grod.Get(key, true);
-            //    }
-            //    else if (key.EndsWith($".{longDescSuffix}", StringComparison.OrdinalIgnoreCase))
-            //    {
-            //        textBoxItemsLongDesc.Text = grod.Get(key, true);
-            //    }
-            //    else if (key.EndsWith($".{locationSuffix}", StringComparison.OrdinalIgnoreCase))
-            //    {
-            //        textBoxItemsLocation.Text = grod.Get(key, true);
-            //    }
-            //    else
-            //    {
-            //        listBoxItemsOther.Items.Add(key[prefixLen..]);
-            //    }
-            //}
         }
 
         private void listBoxItemsOther_SelectedIndexChanged(object sender, EventArgs e)
         {
             richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0) return;
-            var itemNum = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
-            // TODO need to check for patterns, not prefixes
-            //ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, $"{itemPrefix}.{itemNum}.");
+            if (listBoxItemsOther.SelectedIndex < 0) return;
+            var itemName = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
+            var otherPrefix = $"{DEFAULT_PREFIX_ITEM}.{itemName}.";
+            ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
+        }
+
+        private void listBoxRoomsExits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            richTextBoxRoomsExits.Clear();
+            if (listBoxRooms.SelectedIndex < 0) return;
+            if (listBoxRoomsExits.SelectedIndex < 0) return;
+            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
+            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName);
+            ListBoxSelected(grod, listBoxRoomsExits, richTextBoxRoomsExits, exitsPrefix);
+        }
+
+        private void listBoxRoomsOther_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            richTextBoxRoomsOther.Clear();
+            if (listBoxRooms.SelectedIndex < 0) return;
+            if (listBoxRoomsOther.SelectedIndex < 0) return;
+            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
+            var otherPrefix = $"{DEFAULT_PREFIX_ROOM}.{roomName}.";
+            ListBoxSelected(grod, listBoxRoomsOther, richTextBoxRoomsOther, otherPrefix);
         }
     }
 }
