@@ -12,9 +12,7 @@ internal static class ConfigValues
     internal const string DEFAULT_PREFIX_VOCABULARY = "verb,noun,adjective,preposition,article";
 
     internal const string SYSTEM_PREFIX_COMMAND_KEY = "system.prefix.command";
-    //internal const string SYSTEM_PREFIX_ITEM_KEY = "system.prefix.item";
     internal const string SYSTEM_PREFIX_MESSAGE_KEY = "system.prefix.message";
-    //internal const string SYSTEM_PREFIX_ROOM_KEY = "system.prefix.room";
     internal const string SYSTEM_PREFIX_SCRIPT_KEY = "system.prefix.script";
     internal const string SYSTEM_PREFIX_SYSTEM_KEY = "system.prefix.system";
     internal const string SYSTEM_PREFIX_VALUE_KEY = "system.prefix.value";
@@ -26,18 +24,4 @@ internal static class ConfigValues
     internal const string DEFAULT_PATTERN_ITEM_SHORTDESC = "item.{item}.shortdesc";
     internal const string DEFAULT_PATTERN_ITEM_LONGDESC = "item.{item}.longdesc";
     internal const string DEFAULT_PATTERN_ITEM_LOCATION = "item.{item}.location";
-
-    //internal const string SYSTEM_PATTERN_ROOM_SHORTDESC_KEY = "system.pattern.room.shortdesc";
-    //internal const string SYSTEM_PATTERN_ROOM_LONGDESC_KEY = "system.pattern.room.longdesc";
-    //internal const string SYSTEM_PATTERN_ROOM_EXIT_KEY = "system.pattern.room.exit";
-    //internal const string SYSTEM_PATTERN_ITEM_SHORTDESC_KEY = "system.pattern.item.shortdesc";
-    //internal const string SYSTEM_PATTERN_ITEM_LONGDESC_KEY = "system.pattern.item.longdesc";
-    //internal const string SYSTEM_PATTERN_ITEM_LOCATION_KEY = "system.pattern.item.location";
-
-    //internal static string roomPatternShortDesc = "";
-    //internal static string roomPatternLongDesc = "";
-    //internal static string roomPatternExit = "";
-    //internal static string itemPatternShortDesc = "";
-    //internal static string itemPatternLongDesc = "";
-    //internal static string itemPatternLocation = "";
 }

@@ -167,7 +167,7 @@ namespace zygote
             textBoxStartGameName.Text = "";
             textBoxStartGameTitle.Text = "";
             textBoxStartVersion.Text = "";
-            textBoxStartIntroduction.Text = "";
+            richTextBoxStartIntroduction.Text = "";
             textBoxStartStartingRoom.Text = "";
         }
 
@@ -247,6 +247,8 @@ namespace zygote
             ClearFunctionsTab();
             ClearSystemTab();
 
+            FillStartTab();
+
             var roomPrefix = DEFAULT_PREFIX_ROOM;
             FillListBoxFromPrefixUnique(grod, [roomPrefix], listBoxRooms);
 
@@ -299,6 +301,24 @@ namespace zygote
                 }
             }
             AddListBox(extraKeys, listBoxValues);
+        }
+
+        private void FillStartTab()
+        {
+            textBoxStartGameName.Text = grod.Get("system.gamename", true) ?? "";
+            textBoxStartGameTitle.Text = grod.Get("system.gametitle", true) ?? "";
+            textBoxStartVersion.Text = grod.Get("system.version", true) ?? "";
+            richTextBoxStartIntroduction.Clear();
+            var script = grod.Get("system.intro", true);
+            if (script != null)
+            {
+                var items = Dags.ColorizeScript(script);
+                foreach (var item in items)
+                {
+                    richTextBoxStartIntroduction.AppendText(item.Text, GetColorValue(item.ColorValue));
+                }
+            }
+            textBoxStartStartingRoom.Text = grod.Get("value.room", true) ?? "";
         }
 
         private static void FillListBox(Grod grod, string prefix, ListBox listbox)
