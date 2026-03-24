@@ -305,11 +305,11 @@ namespace zygote
 
         private void FillStartTab()
         {
-            textBoxStartGameName.Text = grod.Get("system.gamename", true) ?? "";
-            textBoxStartGameTitle.Text = grod.Get("system.gametitle", true) ?? "";
-            textBoxStartVersion.Text = grod.Get("system.version", true) ?? "";
+            textBoxStartGameName.Text = grod.Get(SYSTEM_GAMENAME, true) ?? "";
+            textBoxStartGameTitle.Text = grod.Get(SYSTEM_GAMETITLE, true) ?? "";
+            textBoxStartVersion.Text = grod.Get(SYSTEM_VERSION, true) ?? "";
             richTextBoxStartIntroduction.Clear();
-            var script = grod.Get("system.intro", true);
+            var script = grod.Get(SYSTEM_INTRO, true);
             if (script != null)
             {
                 var items = Dags.ColorizeScript(script);
@@ -318,7 +318,14 @@ namespace zygote
                     richTextBoxStartIntroduction.AppendText(item.Text, GetColorValue(item.ColorValue));
                 }
             }
-            textBoxStartStartingRoom.Text = grod.Get("value.room", true) ?? "";
+            textBoxStartStartingRoom.Text = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? "";
+            var directionPrefix = $"{DEFAULT_PREFIX_DIRECTION}.";
+            var directionKeys = grod.Keys(directionPrefix, true, true);
+            foreach (var key in directionKeys)
+            {
+                var directionKey = key[directionPrefix.Length..];
+                listBoxStartDirection.Items.Add(directionKey);
+            }
         }
 
         private static void FillListBox(Grod grod, string prefix, ListBox listbox)
@@ -371,18 +378,21 @@ namespace zygote
             listBoxRoomsOther.Items.Clear();
             richTextBoxRoomsOther.Clear();
             if (listBoxRooms.SelectedIndex < 0) return;
+
             var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
             var shortDescKey = DEFAULT_PATTERN_ROOM_SHORTDESC.Replace("{room}", roomName);
             textBoxRoomsShortDesc.Text = grod.Get(shortDescKey, true) ?? "";
             var longDescKey = DEFAULT_PATTERN_ROOM_LONGDESC.Replace("{room}", roomName);
             textBoxRoomsLongDesc.Text = grod.Get(longDescKey, true) ?? "";
-            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName);
+
+            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName).Replace("{direction}", "");
             var exitsKeys = grod.Keys(exitsPrefix, true, true);
             foreach (var key in exitsKeys)
             {
                 var exitKey = key[exitsPrefix.Length..];
                 listBoxRoomsExits.Items.Add(exitKey);
             }
+
             var otherPrefix = $"{DEFAULT_PREFIX_ROOM}.{roomName}.";
             var otherKeys = grod.Keys(otherPrefix, true, true);
             foreach (var key in otherKeys)
@@ -450,6 +460,14 @@ namespace zygote
             var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
             var otherPrefix = $"{DEFAULT_PREFIX_ROOM}.{roomName}.";
             ListBoxSelected(grod, listBoxRoomsOther, richTextBoxRoomsOther, otherPrefix);
+        }
+
+        private void listBoxStartDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            richTextBoxStartDirections.Clear();
+            if (listBoxStartDirection.SelectedIndex < 0) return;
+            var directionPrefix = $"{DEFAULT_PREFIX_DIRECTION}.";
+            ListBoxSelected(grod, listBoxStartDirection, richTextBoxStartDirections, directionPrefix);
         }
     }
 }
