@@ -247,64 +247,6 @@ namespace zygote
             ClearFunctionsTab();
             ClearSystemTab();
 
-            FillStartTab();
-
-            var roomPrefix = DEFAULT_PREFIX_ROOM;
-            FillListBoxFromPrefixUnique(grod, [roomPrefix], listBoxRooms);
-
-            var itemPrefix = DEFAULT_PREFIX_ITEM;
-            FillListBoxFromPrefixUnique(grod, [itemPrefix], listBoxItems);
-
-            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_MESSAGE.Split(',');
-            FillListBoxFromPrefixes(grod, messageList, listBoxMessages);
-
-            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VALUE.Split(',');
-            FillListBoxFromPrefixes(grod, valueList, listBoxValues);
-
-            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
-            FillListBoxFromPrefixes(grod, vocabularyList, listBoxVocabulary);
-
-            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_COMMAND.Split(',');
-            FillListBoxFromPrefixes(grod, commandList, listBoxCommands);
-
-            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SCRIPT.Split(',');
-            FillListBoxFromPrefixes(grod, scriptList, listBoxScripts);
-
-            // function keys all start with '@'
-            FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
-
-            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SYSTEM.Split(',');
-            FillListBoxFromPrefixes(grod, systemList, listBoxSystem);
-
-            List<string> extraKeys = [];
-            foreach (var key in grod.Keys(true, true))
-            {
-                if (key.StartsWith(SCRIPT_CHAR)) continue;
-                if (!key.Contains('.'))
-                {
-                    extraKeys.Add(key);
-                }
-                else
-                {
-                    var prefix = key[..key.IndexOf('.')];
-                    if (!systemList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !messageList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !valueList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !vocabularyList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !commandList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                        !roomPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
-                        !itemPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase))
-                    {
-                        extraKeys.Add(key);
-                    }
-                }
-            }
-            AddListBox(extraKeys, listBoxValues);
-        }
-
-        private void FillStartTab()
-        {
             textBoxStartGameName.Text = grod.Get(SYSTEM_GAMENAME, true) ?? "";
             textBoxStartGameTitle.Text = grod.Get(SYSTEM_GAMETITLE, true) ?? "";
             textBoxStartVersion.Text = grod.Get(SYSTEM_VERSION, true) ?? "";
@@ -318,14 +260,83 @@ namespace zygote
                     richTextBoxStartIntroduction.AppendText(item.Text, GetColorValue(item.ColorValue));
                 }
             }
-            textBoxStartStartingRoom.Text = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? "";
-            var directionPrefix = $"{DEFAULT_PREFIX_DIRECTION}.";
-            var directionKeys = grod.Keys(directionPrefix, true, true);
-            foreach (var key in directionKeys)
+            var playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION;
+            if (!string.IsNullOrEmpty(playerLocationKey))
             {
-                var directionKey = key[directionPrefix.Length..];
-                listBoxStartDirection.Items.Add(directionKey);
+                textBoxStartStartingRoom.Text = grod.Get(playerLocationKey, true) ?? "";
             }
+            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_DIRECTION.Split(',');
+            FillListBoxFromPrefixUnique(grod, directionList, listBoxStartDirection);
+
+            var roomPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_ROOM.Split(',');
+            if (roomPrefix.Length != 1)
+            {
+                throw new SystemException("Room can only have one prefix");
+            }
+            FillListBoxFromPrefixUnique(grod, roomPrefix, listBoxRooms);
+
+            var itemPrefix = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_ITEM.Split(',');
+            if (itemPrefix.Length != 1)
+            {
+                throw new SystemException("Item can only have one prefix");
+            }
+            FillListBoxFromPrefixUnique(grod, itemPrefix, listBoxItems);
+
+            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_MESSAGE.Split(',');
+            FillListBoxFromPrefixes(grod, messageList, listBoxMessages);
+
+            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_VALUE.Split(',');
+            FillListBoxFromPrefixes(grod, valueList, listBoxValues);
+
+            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
+            FillListBoxFromPrefixes(grod, vocabularyList, listBoxVocabulary);
+
+            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_COMMAND.Split(',');
+            FillListBoxFromPrefixes(grod, commandList, listBoxCommands);
+
+            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_SCRIPT.Split(',');
+            FillListBoxFromPrefixes(grod, scriptList, listBoxScripts);
+
+            // function keys all start with '@'
+            FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
+
+            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',')
+                ?? DEFAULT_PREFIX_SYSTEM.Split(',');
+            FillListBoxFromPrefixes(grod, systemList, listBoxSystem);
+
+            List<string> extraKeys = [];
+            foreach (var key in grod.Keys(true, true))
+            {
+                if (key.StartsWith(SCRIPT_CHAR)) continue;
+                if (!key.Contains('.'))
+                {
+                    extraKeys.Add(key);
+                    continue;
+                }
+                var prefix = key[..key.IndexOf('.')];
+                if (!systemList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !messageList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !valueList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !vocabularyList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !commandList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !directionList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !roomPrefix.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !itemPrefix.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !key.Equals(playerLocationKey, StringComparison.OrdinalIgnoreCase))
+                {
+                    extraKeys.Add(key);
+                }
+            }
+            AddListBox(extraKeys, listBoxValues);
         }
 
         private static void FillListBox(Grod grod, string prefix, ListBox listbox)
@@ -448,7 +459,7 @@ namespace zygote
             if (listBoxRooms.SelectedIndex < 0) return;
             if (listBoxRoomsExits.SelectedIndex < 0) return;
             var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
-            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName);
+            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName).Replace("{direction}", "");
             ListBoxSelected(grod, listBoxRoomsExits, richTextBoxRoomsExits, exitsPrefix);
         }
 
