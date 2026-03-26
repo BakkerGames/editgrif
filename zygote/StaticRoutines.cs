@@ -106,4 +106,13 @@ internal static class StaticRoutines
         }
         listbox.EndUpdate();
     }
+
+    internal static void FillGrodFromListBox(Grod grod, Grod newGrod, string prefix, ListBox listbox)
+    {
+        foreach (var item in listbox.Items)
+        {
+            var key = $"{prefix}.{item}";
+            newGrod.Set(key, grod.Get(key, true));
+        }
+    }
 }

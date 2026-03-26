@@ -1227,6 +1227,7 @@
             buttonFileSave.TabIndex = 2;
             buttonFileSave.Text = "Save";
             buttonFileSave.UseVisualStyleBackColor = true;
+            buttonFileSave.Click += buttonFileSave_Click;
             // 
             // buttonFileOpen
             // 

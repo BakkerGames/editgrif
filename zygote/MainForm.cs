@@ -260,13 +260,17 @@ namespace zygote
                     richTextBoxStartIntroduction.AppendText(item.Text, GetColorValue(item.ColorValue));
                 }
             }
-            var playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION;
+            var playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION_KEY;
             if (!string.IsNullOrEmpty(playerLocationKey))
             {
                 textBoxStartStartingRoom.Text = grod.Get(playerLocationKey, true) ?? "";
             }
             var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',')
                 ?? DEFAULT_PREFIX_DIRECTION.Split(',');
+            if (directionList.Length != 1)
+            {
+                throw new SystemException("Direction can only have one prefix");
+            }
             FillListBoxFromPrefixUnique(grod, directionList, listBoxStartDirection);
 
             var roomPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
@@ -479,6 +483,23 @@ namespace zygote
             if (listBoxStartDirection.SelectedIndex < 0) return;
             var directionPrefix = $"{DEFAULT_PREFIX_DIRECTION}.";
             ListBoxSelected(grod, listBoxStartDirection, richTextBoxStartDirections, directionPrefix);
+        }
+
+        private void buttonFileSave_Click(object sender, EventArgs e)
+        {
+            var newGrod = new Grod();
+            newGrod.Set(SYSTEM_GAMENAME, textBoxStartGameName.Text);
+            newGrod.Set(SYSTEM_GAMETITLE, textBoxStartGameTitle.Text);
+            newGrod.Set(SYSTEM_VERSION, textBoxStartVersion.Text);
+            newGrod.Set(SYSTEM_INTRO, richTextBoxStartIntroduction.Text);
+            var playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION_KEY;
+            newGrod.Set(playerLocationKey, textBoxStartStartingRoom.Text);
+            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',')
+            ?? DEFAULT_PREFIX_DIRECTION.Split(',');
+            FillGrodFromListBox(grod, newGrod, directionList[0], listBoxStartDirection);
+            IO.WriteGrif("C:\\Temp\\test.grif", newGrod.Items(false, true), false);
+            /*
+            */
         }
     }
 }

@@ -29,11 +29,11 @@ internal static class ConfigValues
     internal const string DEFAULT_PATTERN_ITEM_LONGDESC = "item.{item}.longdesc";
     internal const string DEFAULT_PATTERN_ITEM_LOCATION = "item.{item}.location";
 
-    internal const string DEFAULT_PLAYER_LOCATION = "player.location";
-
     internal const string SYSTEM_GAMENAME = "system.gamename";
     internal const string SYSTEM_GAMETITLE = "system.gametitle";
     internal const string SYSTEM_VERSION = "system.version";
     internal const string SYSTEM_INTRO = "system.intro";
+
+    internal const string DEFAULT_PLAYER_LOCATION_KEY = "player.location";
     internal const string SYSTEM_PLAYER_LOCATION = "system.player.location";
 }
