@@ -130,6 +130,7 @@
             buttonSystemAdd = new Button();
             listBoxSystem = new ListBox();
             panelToolbar = new Panel();
+            comboBoxFileNames = new ComboBox();
             buttonFileSave = new Button();
             buttonFileOpen = new Button();
             buttonFileNew = new Button();
@@ -1211,6 +1212,7 @@
             // panelToolbar
             // 
             panelToolbar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelToolbar.Controls.Add(comboBoxFileNames);
             panelToolbar.Controls.Add(buttonFileSave);
             panelToolbar.Controls.Add(buttonFileOpen);
             panelToolbar.Controls.Add(buttonFileNew);
@@ -1218,6 +1220,16 @@
             panelToolbar.Name = "panelToolbar";
             panelToolbar.Size = new Size(1184, 34);
             panelToolbar.TabIndex = 0;
+            // 
+            // comboBoxFileNames
+            // 
+            comboBoxFileNames.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxFileNames.FormattingEnabled = true;
+            comboBoxFileNames.Location = new Point(237, 5);
+            comboBoxFileNames.Name = "comboBoxFileNames";
+            comboBoxFileNames.Size = new Size(231, 23);
+            comboBoxFileNames.TabIndex = 3;
+            comboBoxFileNames.SelectedIndexChanged += comboBoxFileNames_SelectedIndexChanged;
             // 
             // buttonFileSave
             // 
@@ -1483,5 +1495,6 @@
         private Button buttonStartDirectionsRename;
         private Button buttonStartDirectionsAdd;
         private Label labelItemsOther;
+        private ComboBox comboBoxFileNames;
     }
 }

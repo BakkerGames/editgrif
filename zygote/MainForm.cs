@@ -8,6 +8,7 @@ namespace zygote
     public partial class MainForm : Form
     {
         Grod grod = new();
+        string basePath = "";
 
         public MainForm()
         {
@@ -25,11 +26,28 @@ namespace zygote
                 Filter = "Grif files|*.grif*"
             };
             var result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
+            if (result != DialogResult.OK) return;
+            var filename = dialog.FileName;
+            basePath = Path.GetDirectoryName(filename) ?? "";
+            filename = Path.GetFileName(filename);
+            ClearData();
+            comboBoxFileNames.SelectedIndex = -1;
+            comboBoxFileNames.Items.Clear();
+            if (Path.GetExtension(filename).Equals(STACK_EXTENSION, StringComparison.OrdinalIgnoreCase))
             {
-                grod = IO.OpenFile(dialog.FileName) ?? new();
-                if (grod == null) return;
-                LoadData(grod);
+                var lines = File.ReadAllLines(Path.Combine(basePath, filename));
+                foreach (var line in lines)
+                {
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        comboBoxFileNames.Items.Add(line);
+                    }
+                }
+            }
+            else
+            {
+                comboBoxFileNames.Items.Add(filename);
+                comboBoxFileNames.SelectedIndex = 0;
             }
         }
 
@@ -234,7 +252,7 @@ namespace zygote
             richTextBoxSystem.Clear();
         }
 
-        private void LoadData(Grod grod)
+        private void ClearData()
         {
             ClearStartTab();
             ClearRoomsTab();
@@ -246,6 +264,11 @@ namespace zygote
             ClearScriptsTab();
             ClearFunctionsTab();
             ClearSystemTab();
+        }
+
+        private void LoadData(Grod grod)
+        {
+            ClearData();
 
             textBoxStartGameName.Text = grod.Get(SYSTEM_GAMENAME, true) ?? "";
             textBoxStartGameTitle.Text = grod.Get(SYSTEM_GAMETITLE, true) ?? "";
@@ -265,55 +288,46 @@ namespace zygote
             {
                 textBoxStartStartingRoom.Text = grod.Get(playerLocationKey, true) ?? "";
             }
-            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_DIRECTION.Split(',');
+            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_DIRECTION.Split(',');
             if (directionList.Length != 1)
             {
                 throw new SystemException("Direction can only have one prefix");
             }
             FillListBoxFromPrefixUnique(grod, directionList, listBoxStartDirection);
 
-            var roomPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_ROOM.Split(',');
+            var roomPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ROOM.Split(',');
             if (roomPrefix.Length != 1)
             {
                 throw new SystemException("Room can only have one prefix");
             }
             FillListBoxFromPrefixUnique(grod, roomPrefix, listBoxRooms);
 
-            var itemPrefix = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_ITEM.Split(',');
+            var itemPrefix = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ITEM.Split(',');
             if (itemPrefix.Length != 1)
             {
                 throw new SystemException("Item can only have one prefix");
             }
             FillListBoxFromPrefixUnique(grod, itemPrefix, listBoxItems);
 
-            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_MESSAGE.Split(',');
+            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_MESSAGE.Split(',');
             FillListBoxFromPrefixes(grod, messageList, listBoxMessages);
 
-            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_VALUE.Split(',');
+            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VALUE.Split(',');
             FillListBoxFromPrefixes(grod, valueList, listBoxValues);
 
-            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
+            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
             FillListBoxFromPrefixes(grod, vocabularyList, listBoxVocabulary);
 
-            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_COMMAND.Split(',');
+            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_COMMAND.Split(',');
             FillListBoxFromPrefixes(grod, commandList, listBoxCommands);
 
-            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_SCRIPT.Split(',');
+            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SCRIPT.Split(',');
             FillListBoxFromPrefixes(grod, scriptList, listBoxScripts);
 
             // function keys all start with '@'
             FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
 
-            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',')
-                ?? DEFAULT_PREFIX_SYSTEM.Split(',');
+            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SYSTEM.Split(',');
             FillListBoxFromPrefixes(grod, systemList, listBoxSystem);
 
             List<string> extraKeys = [];
@@ -494,12 +508,20 @@ namespace zygote
             newGrod.Set(SYSTEM_INTRO, richTextBoxStartIntroduction.Text);
             var playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION_KEY;
             newGrod.Set(playerLocationKey, textBoxStartStartingRoom.Text);
-            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',')
-            ?? DEFAULT_PREFIX_DIRECTION.Split(',');
+            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_DIRECTION.Split(',');
             FillGrodFromListBox(grod, newGrod, directionList[0], listBoxStartDirection);
+
+            // TODO ### temp file for now
             IO.WriteGrif("C:\\Temp\\test.grif", newGrod.Items(false, true), false);
-            /*
-            */
+        }
+
+        private void comboBoxFileNames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxFileNames.SelectedIndex < 0) return;
+            var filename = comboBoxFileNames.SelectedItem?.ToString() ?? "";
+            grod = IO.OpenFile(Path.Combine(basePath, filename)) ?? new();
+            if (grod == null) return;
+            LoadData(grod);
         }
     }
 }
