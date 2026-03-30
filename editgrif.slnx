@@ -1,4 +1,3 @@
 <Solution>
-  <Project Path="../grif2/griflib/griflib.csproj" />
   <Project Path="editgrif/editgrif.csproj" />
 </Solution>
