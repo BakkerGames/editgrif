@@ -1,4 +1,4 @@
-﻿namespace zygote;
+﻿namespace editgrif;
 
 internal static class ConfigValues
 {

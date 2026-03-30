@@ -1,9 +1,9 @@
 using GrifLib;
 using static GrifLib.Common;
-using static zygote.ConfigValues;
-using static zygote.StaticRoutines;
+using static editgrif.ConfigValues;
+using static editgrif.StaticRoutines;
 
-namespace zygote
+namespace editgrif
 {
     public partial class MainForm : Form
     {

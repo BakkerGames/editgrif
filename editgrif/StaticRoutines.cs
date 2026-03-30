@@ -1,6 +1,6 @@
 ﻿using GrifLib;
 
-namespace zygote;
+namespace editgrif;
 
 internal static class StaticRoutines
 {

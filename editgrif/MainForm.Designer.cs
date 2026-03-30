@@ -1,4 +1,4 @@
-﻿namespace zygote
+﻿namespace editgrif
 {
     partial class MainForm
     {
@@ -1364,7 +1364,7 @@
             Controls.Add(groupBoxItems);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Zygote";
+            Text = "Edit Grif";
             groupBoxStart.ResumeLayout(false);
             groupBoxStart.PerformLayout();
             groupBoxRooms.ResumeLayout(false);

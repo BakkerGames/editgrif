@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using static GrifLib.Common;
 
-namespace zygote;
+namespace editgrif;
 
 public partial class EnterKeyForm : Form
 {

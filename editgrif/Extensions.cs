@@ -1,4 +1,4 @@
-﻿namespace zygote;
+﻿namespace editgrif;
 
 public static class RichTextBoxExtensions
 {
