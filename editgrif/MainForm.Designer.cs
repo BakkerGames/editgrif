@@ -595,6 +595,7 @@
             textBoxRoomsShortDesc.Name = "textBoxRoomsShortDesc";
             textBoxRoomsShortDesc.Size = new Size(786, 23);
             textBoxRoomsShortDesc.TabIndex = 5;
+            textBoxRoomsShortDesc.TextChanged += textBoxRoomsShortDesc_TextChanged;
             // 
             // labelRoomsShortDesc
             // 

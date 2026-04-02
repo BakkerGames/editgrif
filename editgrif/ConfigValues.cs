@@ -24,6 +24,7 @@ internal static class ConfigValues
 
     internal const string DEFAULT_PATTERN_ROOM_SHORTDESC = "room.{room}.shortdesc";
     internal const string DEFAULT_PATTERN_ROOM_LONGDESC = "room.{room}.longdesc";
+    internal const string DEFAULT_PATTERN_ROOM_EXIT_PREFIX = "room.{room}.exit.";
     internal const string DEFAULT_PATTERN_ROOM_EXIT = "room.{room}.exit.{direction}";
     internal const string DEFAULT_PATTERN_ITEM_SHORTDESC = "item.{item}.shortdesc";
     internal const string DEFAULT_PATTERN_ITEM_LONGDESC = "item.{item}.longdesc";

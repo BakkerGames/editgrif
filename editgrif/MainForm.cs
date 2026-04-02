@@ -8,7 +8,9 @@ namespace editgrif
     public partial class MainForm : Form
     {
         Grod grod = new();
+        Grod overlay = new();
         string basePath = "";
+        bool loading = false;
 
         public MainForm()
         {
@@ -49,6 +51,13 @@ namespace editgrif
                 comboBoxFileNames.Items.Add(filename);
                 comboBoxFileNames.SelectedIndex = 0;
             }
+        }
+
+        private void buttonFileSave_Click(object sender, EventArgs e)
+        {
+            // TODO ### temp file for now
+            IO.WriteGrif("C:\\Temp\\testgrod.grif", grod.Parent!.Items(true, true), false);
+            IO.WriteGrif("C:\\Temp\\testgrod.grifwip", overlay.Items(false, true), false);
         }
 
         #endregion
@@ -187,6 +196,7 @@ namespace editgrif
             textBoxStartVersion.Text = "";
             richTextBoxStartIntroduction.Text = "";
             textBoxStartStartingRoom.Text = "";
+            listBoxStartDirection.Items.Clear();
         }
 
         private void ClearRoomsTab()
@@ -268,6 +278,8 @@ namespace editgrif
 
         private void LoadData(Grod grod)
         {
+            var saveLoading = loading;
+
             ClearData();
 
             textBoxStartGameName.Text = grod.Get(SYSTEM_GAMENAME, true) ?? "";
@@ -355,51 +367,71 @@ namespace editgrif
                 }
             }
             AddListBox(extraKeys, listBoxValues);
-        }
 
-        private static void FillListBox(Grod grod, string prefix, ListBox listbox)
-        {
-            var keys = grod.Keys(prefix, true, true) ?? [];
-            AddListBox(keys, listbox);
+            loading = saveLoading;
         }
 
         private void listBoxFunctions_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             ListBoxSelected(grod, listBoxFunctions, richTextBoxFunctions);
+            loading = saveLoading;
         }
 
         private void listBoxSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             ListBoxSelected(grod, listBoxSystem, richTextBoxSystem);
+            loading = saveLoading;
         }
 
         private void listBoxScripts_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             ListBoxSelected(grod, listBoxScripts, richTextBoxScripts);
+            loading = saveLoading;
         }
 
         private void listBoxCommands_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             ListBoxSelected(grod, listBoxCommands, richTextBoxCommands);
+            loading = saveLoading;
         }
 
         private void listBoxVocabulary_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             ListBoxSelected(grod, listBoxVocabulary, richTextBoxVocabulary);
+            loading = saveLoading;
         }
 
         private void listBoxValues_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             ListBoxSelected(grod, listBoxValues, richTextBoxValues);
+            loading = saveLoading;
         }
 
         private void listBoxMessages_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             ListBoxSelected(grod, listBoxMessages, richTextBoxMessages);
+            loading = saveLoading;
         }
 
         private void listBoxRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
+
             textBoxRoomsShortDesc.Text = "";
             textBoxRoomsLongDesc.Text = "";
             listBoxRoomsExits.Items.Clear();
@@ -414,7 +446,7 @@ namespace editgrif
             var longDescKey = DEFAULT_PATTERN_ROOM_LONGDESC.Replace("{room}", roomName);
             textBoxRoomsLongDesc.Text = grod.Get(longDescKey, true) ?? "";
 
-            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName).Replace("{direction}", "");
+            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT_PREFIX.Replace("{room}", roomName);
             var exitsKeys = grod.Keys(exitsPrefix, true, true);
             foreach (var key in exitsKeys)
             {
@@ -432,10 +464,14 @@ namespace editgrif
                 var otherKey = key[otherPrefix.Length..];
                 listBoxRoomsOther.Items.Add(otherKey);
             }
+
+            loading = saveLoading;
         }
 
         private void listBoxItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             textBoxItemsShortDesc.Text = "";
             textBoxItemsLongDesc.Text = "";
             textBoxItemsLocation.Text = "";
@@ -459,69 +495,82 @@ namespace editgrif
                 var otherKey = key[otherPrefix.Length..];
                 listBoxItemsOther.Items.Add(otherKey);
             }
+            loading = saveLoading;
         }
 
         private void listBoxItemsOther_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0) return;
             if (listBoxItemsOther.SelectedIndex < 0) return;
             var itemName = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
             var otherPrefix = $"{DEFAULT_PREFIX_ITEM}.{itemName}.";
             ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
+            loading = saveLoading;
         }
 
         private void listBoxRoomsExits_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             richTextBoxRoomsExits.Clear();
             if (listBoxRooms.SelectedIndex < 0) return;
             if (listBoxRoomsExits.SelectedIndex < 0) return;
             var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
-            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT.Replace("{room}", roomName).Replace("{direction}", "");
+            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT_PREFIX.Replace("{room}", roomName);
             ListBoxSelected(grod, listBoxRoomsExits, richTextBoxRoomsExits, exitsPrefix);
+            loading = saveLoading;
         }
 
         private void listBoxRoomsOther_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             richTextBoxRoomsOther.Clear();
             if (listBoxRooms.SelectedIndex < 0) return;
             if (listBoxRoomsOther.SelectedIndex < 0) return;
             var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
             var otherPrefix = $"{DEFAULT_PREFIX_ROOM}.{roomName}.";
             ListBoxSelected(grod, listBoxRoomsOther, richTextBoxRoomsOther, otherPrefix);
+            loading = saveLoading;
         }
 
         private void listBoxStartDirection_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             richTextBoxStartDirections.Clear();
             if (listBoxStartDirection.SelectedIndex < 0) return;
             var directionPrefix = $"{DEFAULT_PREFIX_DIRECTION}.";
             ListBoxSelected(grod, listBoxStartDirection, richTextBoxStartDirections, directionPrefix);
-        }
-
-        private void buttonFileSave_Click(object sender, EventArgs e)
-        {
-            var newGrod = new Grod();
-            newGrod.Set(SYSTEM_GAMENAME, textBoxStartGameName.Text);
-            newGrod.Set(SYSTEM_GAMETITLE, textBoxStartGameTitle.Text);
-            newGrod.Set(SYSTEM_VERSION, textBoxStartVersion.Text);
-            newGrod.Set(SYSTEM_INTRO, richTextBoxStartIntroduction.Text);
-            var playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION_KEY;
-            newGrod.Set(playerLocationKey, textBoxStartStartingRoom.Text);
-            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_DIRECTION.Split(',');
-            FillGrodFromListBox(grod, newGrod, directionList[0], listBoxStartDirection);
-
-            // TODO ### temp file for now
-            IO.WriteGrif("C:\\Temp\\test.grif", newGrod.Items(false, true), false);
+            loading = saveLoading;
         }
 
         private void comboBoxFileNames_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var saveLoading = loading;
+            loading = true;
             if (comboBoxFileNames.SelectedIndex < 0) return;
             var filename = comboBoxFileNames.SelectedItem?.ToString() ?? "";
             grod = IO.OpenFile(Path.Combine(basePath, filename)) ?? new();
             if (grod == null) return;
             LoadData(grod);
+            overlay = new()
+            {
+                Parent = grod
+            };
+            grod = overlay;
+            loading = saveLoading;
+        }
+
+        private void textBoxRoomsShortDesc_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
+            var shortDescKey = DEFAULT_PATTERN_ROOM_SHORTDESC.Replace("{room}", roomName);
+            overlay.Set(shortDescKey, textBoxRoomsShortDesc.Text);
         }
     }
 }

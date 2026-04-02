@@ -37,6 +37,12 @@ internal static class StaticRoutines
         }
     }
 
+    internal static void FillListBox(Grod grod, string prefix, ListBox listbox)
+    {
+        var keys = grod.Keys(prefix, true, true) ?? [];
+        AddListBox(keys, listbox);
+    }
+
     internal static void AddListBox(List<string> keys, ListBox listbox)
     {
         if (keys.Count == 0) return;
@@ -107,12 +113,18 @@ internal static class StaticRoutines
         listbox.EndUpdate();
     }
 
-    internal static void FillGrodFromListBox(Grod grod, Grod newGrod, string prefix, ListBox listbox)
+    internal static void SetValue(Grod newGrod, string key, string? value)
+    {
+        if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value)) return;
+        newGrod.Set(key, value);
+    }
+
+    internal static void SetValuesFromListBox(Grod grod, Grod newGrod, string prefix, ListBox listbox)
     {
         foreach (var item in listbox.Items)
         {
             var key = $"{prefix}.{item}";
-            newGrod.Set(key, grod.Get(key, true));
+            SetValue(newGrod, key, grod.Get(key, true));
         }
     }
 }
