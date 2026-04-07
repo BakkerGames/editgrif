@@ -21,11 +21,14 @@ internal static class StaticRoutines
         };
     }
 
-    internal static void ListBoxSelected(Grod grod, ListBox listbox, RichTextBox rtb, string prefix = "")
+    internal static string? ListBoxSelected(Grod grod, ListBox listbox, RichTextBox rtb, string prefix = "")
     {
         rtb.Clear();
-        if (listbox.SelectedIndex < 0) return;
-        var key = prefix + (string)(listbox.Items[listbox.SelectedIndex] ?? "");
+        if (listbox.SelectedIndex < 0)
+        {
+            return null;
+        }
+        var key = prefix + listbox.Items[listbox.SelectedIndex].ToString();
         var script = grod.Get(key, true);
         if (script != null)
         {
@@ -35,6 +38,7 @@ internal static class StaticRoutines
                 rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
             }
         }
+        return key;
     }
 
     internal static void FillListBox(Grod grod, string prefix, ListBox listbox)
@@ -125,6 +129,19 @@ internal static class StaticRoutines
         {
             var key = $"{prefix}.{item}";
             SetValue(newGrod, key, grod.Get(key, true));
+        }
+    }
+
+    internal static void FillRichTextBox(RichTextBox rtb, string? script)
+    {
+        rtb.Clear();
+        if (script != null)
+        {
+            var items = Dags.ColorizeScript(script);
+            foreach (var item in items)
+            {
+                rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ using GrifLib;
 using static GrifLib.Common;
 using static editgrif.ConfigValues;
 using static editgrif.StaticRoutines;
+using static editgrif.CurrentValues;
 
 namespace editgrif
 {
@@ -194,7 +195,7 @@ namespace editgrif
             textBoxStartGameName.Text = "";
             textBoxStartGameTitle.Text = "";
             textBoxStartVersion.Text = "";
-            richTextBoxStartIntroduction.Text = "";
+            richTextBoxStartIntroduction.Clear();
             textBoxStartStartingRoom.Text = "";
             listBoxStartDirection.Items.Clear();
         }
@@ -282,64 +283,73 @@ namespace editgrif
 
             ClearData();
 
-            textBoxStartGameName.Text = grod.Get(SYSTEM_GAMENAME, true) ?? "";
-            textBoxStartGameTitle.Text = grod.Get(SYSTEM_GAMETITLE, true) ?? "";
-            textBoxStartVersion.Text = grod.Get(SYSTEM_VERSION, true) ?? "";
-            richTextBoxStartIntroduction.Clear();
-            var script = grod.Get(SYSTEM_INTRO, true);
-            if (script != null)
-            {
-                var items = Dags.ColorizeScript(script);
-                foreach (var item in items)
-                {
-                    richTextBoxStartIntroduction.AppendText(item.Text, GetColorValue(item.ColorValue));
-                }
-            }
-            var playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION_KEY;
-            if (!string.IsNullOrEmpty(playerLocationKey))
-            {
-                textBoxStartStartingRoom.Text = grod.Get(playerLocationKey, true) ?? "";
-            }
-            var directionList = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_DIRECTION.Split(',');
-            if (directionList.Length != 1)
-            {
-                throw new SystemException("Direction can only have one prefix");
-            }
-            FillListBoxFromPrefixUnique(grod, directionList, listBoxStartDirection);
+            playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION_KEY;
+            directionPrefix = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true) ?? DEFAULT_PREFIX_DIRECTION;
 
-            var roomPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ROOM.Split(',');
-            if (roomPrefix.Length != 1)
+            roomsPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true) ?? DEFAULT_PREFIX_ROOM;
+            roomsShortDescPattern = grod.Get(SYSTEM_PREFIX_ROOM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_SHORTDESC;
+            roomsLongDescPattern = grod.Get(SYSTEM_PREFIX_ROOM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_LONGDESC;
+            roomsExitsPattern = grod.Get(SYSTEM_PREFIX_ROOM_EXIT_KEY, true) ?? DEFAULT_PATTERN_ROOM_EXIT;
+
+            itemsPrefix = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true) ?? DEFAULT_PREFIX_ITEM;
+            itemsShortDescPattern = grod.Get(SYSTEM_PREFIX_ITEM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_SHORTDESC;
+            itemsLongDescPattern = grod.Get(SYSTEM_PREFIX_ITEM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_LONGDESC;
+            itemsLocationPattern = grod.Get(SYSTEM_PREFIX_ITEM_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ITEM_LOCATION;
+
+            messagePrefixes = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true) ?? DEFAULT_PREFIX_MESSAGE;
+            valuesPrefixes = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true) ?? DEFAULT_PREFIX_VALUE;
+            vocabularyPrefixes = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true) ?? DEFAULT_PREFIX_VOCABULARY;
+            commandsPrefix = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true) ?? DEFAULT_PREFIX_COMMAND;
+            scriptsPrefixes = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true) ?? DEFAULT_PREFIX_SCRIPT;
+            systemPrefixes = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true) ?? DEFAULT_PREFIX_SYSTEM;
+
+            if (roomsPrefix.Split(',').Length > 1)
             {
                 throw new SystemException("Room can only have one prefix");
             }
-            FillListBoxFromPrefixUnique(grod, roomPrefix, listBoxRooms);
-
-            var itemPrefix = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_ITEM.Split(',');
-            if (itemPrefix.Length != 1)
+            if (itemsPrefix.Split(',').Length > 1)
             {
                 throw new SystemException("Item can only have one prefix");
             }
-            FillListBoxFromPrefixUnique(grod, itemPrefix, listBoxItems);
+            if (directionPrefix.Split(',').Length > 1)
+            {
+                throw new SystemException("Direction can only have one prefix");
+            }
+            if (commandsPrefix.Split(',').Length > 1)
+            {
+                throw new SystemException("Command can only have one prefix");
+            }
 
-            var messageList = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_MESSAGE.Split(',');
+            textBoxStartGameName.Text = grod.Get(SYSTEM_GAMENAME, true) ?? "";
+            textBoxStartGameTitle.Text = grod.Get(SYSTEM_GAMETITLE, true) ?? "";
+            textBoxStartVersion.Text = grod.Get(SYSTEM_VERSION, true) ?? "";
+            var script = grod.Get(SYSTEM_INTRO, true);
+            FillRichTextBox(richTextBoxStartIntroduction, script);
+            textBoxStartStartingRoom.Text = grod.Get(playerLocationKey, true) ?? "";
+            FillListBoxFromPrefixUnique(grod, [directionPrefix], listBoxStartDirection);
+
+            FillListBoxFromPrefixUnique(grod, [roomsPrefix], listBoxRooms);
+
+            FillListBoxFromPrefixUnique(grod, [itemsPrefix], listBoxItems);
+
+            var messageList = messagePrefixes.Split(',');
             FillListBoxFromPrefixes(grod, messageList, listBoxMessages);
 
-            var valueList = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VALUE.Split(',');
+            var valueList = valuesPrefixes.Split(',');
             FillListBoxFromPrefixes(grod, valueList, listBoxValues);
 
-            var vocabularyList = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_VOCABULARY.Split(',');
+            var vocabularyList = vocabularyPrefixes.Split(',');
             FillListBoxFromPrefixes(grod, vocabularyList, listBoxVocabulary);
 
-            var commandList = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_COMMAND.Split(',');
-            FillListBoxFromPrefixes(grod, commandList, listBoxCommands);
+            FillListBoxFromPrefixes(grod, [commandsPrefix], listBoxCommands);
 
-            var scriptList = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SCRIPT.Split(',');
+            var scriptList = scriptsPrefixes.Split(',');
             FillListBoxFromPrefixes(grod, scriptList, listBoxScripts);
 
             // function keys all start with '@'
             FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
 
-            var systemList = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true)?.Split(',') ?? DEFAULT_PREFIX_SYSTEM.Split(',');
+            var systemList = systemPrefixes.Split(',');
             FillListBoxFromPrefixes(grod, systemList, listBoxSystem);
 
             List<string> extraKeys = [];
@@ -356,11 +366,11 @@ namespace editgrif
                     !messageList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                     !valueList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
                     !vocabularyList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !commandList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !commandsPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
                     !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !directionList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !roomPrefix.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !itemPrefix.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
+                    !directionPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
+                    !roomsPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
+                    !itemsPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
                     !key.Equals(playerLocationKey, StringComparison.OrdinalIgnoreCase))
                 {
                     extraKeys.Add(key);
@@ -375,7 +385,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            ListBoxSelected(grod, listBoxFunctions, richTextBoxFunctions);
+            currentFunctionsValue = ListBoxSelected(grod, listBoxFunctions, richTextBoxFunctions);
             loading = saveLoading;
         }
 
@@ -383,7 +393,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            ListBoxSelected(grod, listBoxSystem, richTextBoxSystem);
+            currentSystemValue = ListBoxSelected(grod, listBoxSystem, richTextBoxSystem);
             loading = saveLoading;
         }
 
@@ -391,7 +401,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            ListBoxSelected(grod, listBoxScripts, richTextBoxScripts);
+            currentScriptsValue = ListBoxSelected(grod, listBoxScripts, richTextBoxScripts);
             loading = saveLoading;
         }
 
@@ -399,7 +409,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            ListBoxSelected(grod, listBoxCommands, richTextBoxCommands);
+            currentCommandsValue = ListBoxSelected(grod, listBoxCommands, richTextBoxCommands);
             loading = saveLoading;
         }
 
@@ -407,7 +417,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            ListBoxSelected(grod, listBoxVocabulary, richTextBoxVocabulary);
+            currentVocabularyValue = ListBoxSelected(grod, listBoxVocabulary, richTextBoxVocabulary);
             loading = saveLoading;
         }
 
@@ -415,7 +425,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            ListBoxSelected(grod, listBoxValues, richTextBoxValues);
+            currentValuesValue = ListBoxSelected(grod, listBoxValues, richTextBoxValues);
             loading = saveLoading;
         }
 
@@ -423,7 +433,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            ListBoxSelected(grod, listBoxMessages, richTextBoxMessages);
+            currentMessagesValue = ListBoxSelected(grod, listBoxMessages, richTextBoxMessages);
             loading = saveLoading;
         }
 
@@ -432,6 +442,7 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
 
+            currentRoomName = null;
             textBoxRoomsShortDesc.Text = "";
             textBoxRoomsLongDesc.Text = "";
             listBoxRoomsExits.Items.Clear();
@@ -440,13 +451,21 @@ namespace editgrif
             richTextBoxRoomsOther.Clear();
             if (listBoxRooms.SelectedIndex < 0) return;
 
-            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
-            var shortDescKey = DEFAULT_PATTERN_ROOM_SHORTDESC.Replace("{room}", roomName);
-            textBoxRoomsShortDesc.Text = grod.Get(shortDescKey, true) ?? "";
-            var longDescKey = DEFAULT_PATTERN_ROOM_LONGDESC.Replace("{room}", roomName);
-            textBoxRoomsLongDesc.Text = grod.Get(longDescKey, true) ?? "";
+            currentRoomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
+            currentRoomShortDescKey = roomsShortDescPattern!
+                .Replace("{roomprefix}", roomsPrefix)
+                .Replace("{room}", currentRoomName);
+            currentRoomLongDescKey = roomsLongDescPattern!
+                .Replace("{roomprefix}", roomsPrefix)
+                .Replace("{room}", currentRoomName);
 
-            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT_PREFIX.Replace("{room}", roomName);
+            textBoxRoomsShortDesc.Text = grod.Get(currentRoomShortDescKey, true) ?? "";
+            textBoxRoomsLongDesc.Text = grod.Get(currentRoomLongDescKey, true) ?? "";
+
+            var exitsPrefix = roomsExitsPattern!
+                .Replace("{roomprefix}", roomsPrefix)
+                .Replace("{room}", currentRoomName)
+                .Replace("{direction}", "");
             var exitsKeys = grod.Keys(exitsPrefix, true, true);
             foreach (var key in exitsKeys)
             {
@@ -454,12 +473,12 @@ namespace editgrif
                 listBoxRoomsExits.Items.Add(exitKey);
             }
 
-            var otherPrefix = $"{DEFAULT_PREFIX_ROOM}.{roomName}.";
+            var otherPrefix = $"{roomsPrefix}.{currentRoomName}.";
             var otherKeys = grod.Keys(otherPrefix, true, true);
             foreach (var key in otherKeys)
             {
-                if (key.Equals(shortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
-                if (key.Equals(longDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(currentRoomShortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(currentRoomLongDescKey, StringComparison.OrdinalIgnoreCase)) continue;
                 if (key.StartsWith(exitsPrefix, StringComparison.OrdinalIgnoreCase)) continue;
                 var otherKey = key[otherPrefix.Length..];
                 listBoxRoomsOther.Items.Add(otherKey);
@@ -472,29 +491,41 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
+
+            currentItemName = null;
             textBoxItemsShortDesc.Text = "";
             textBoxItemsLongDesc.Text = "";
             textBoxItemsLocation.Text = "";
             listBoxItemsOther.Items.Clear();
             richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0) return;
-            var itemName = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
-            var shortDescKey = DEFAULT_PATTERN_ITEM_SHORTDESC.Replace("{item}", itemName);
-            textBoxItemsShortDesc.Text = grod.Get(shortDescKey, true) ?? "";
-            var longDescKey = DEFAULT_PATTERN_ITEM_LONGDESC.Replace("{item}", itemName);
-            textBoxItemsLongDesc.Text = grod.Get(longDescKey, true) ?? "";
-            var locationKey = DEFAULT_PATTERN_ITEM_LOCATION.Replace("{item}", itemName);
-            textBoxItemsLocation.Text = grod.Get(locationKey, true) ?? "";
-            var otherPrefix = $"{DEFAULT_PREFIX_ITEM}.{itemName}.";
+
+            currentItemName = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
+            currentItemShortDescKey = itemsShortDescPattern!
+                .Replace("{itemprefix}", itemsPrefix)
+                .Replace("{item}", currentItemName);
+            currentItemLongDescKey = itemsLongDescPattern!
+                .Replace("{itemprefix}", itemsPrefix)
+                .Replace("{item}", currentItemName);
+            currentItemLocationKey = itemsLocationPattern!
+                .Replace("{itemprefix}", itemsPrefix)
+                .Replace("{item}", currentItemName);
+
+            textBoxItemsShortDesc.Text = grod.Get(currentItemShortDescKey, true) ?? "";
+            textBoxItemsLongDesc.Text = grod.Get(currentItemLongDescKey, true) ?? "";
+            textBoxItemsLocation.Text = grod.Get(currentItemLocationKey, true) ?? "";
+
+            var otherPrefix = $"{itemsPrefix}.{currentItemName}.";
             var otherKeys = grod.Keys(otherPrefix, true, true);
             foreach (var key in otherKeys)
             {
-                if (key.Equals(shortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
-                if (key.Equals(longDescKey, StringComparison.OrdinalIgnoreCase)) continue;
-                if (key.Equals(locationKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(currentItemShortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(currentItemLongDescKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(currentItemLocationKey, StringComparison.OrdinalIgnoreCase)) continue;
                 var otherKey = key[otherPrefix.Length..];
                 listBoxItemsOther.Items.Add(otherKey);
             }
+
             loading = saveLoading;
         }
 
@@ -502,12 +533,8 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            richTextBoxItemsOther.Clear();
-            if (listBoxItems.SelectedIndex < 0) return;
-            if (listBoxItemsOther.SelectedIndex < 0) return;
-            var itemName = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
-            var otherPrefix = $"{DEFAULT_PREFIX_ITEM}.{itemName}.";
-            ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
+            var otherPrefix = $"{itemsPrefix}.{currentItemName}.";
+            currentItemsOtherValue = ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
             loading = saveLoading;
         }
 
@@ -515,12 +542,11 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            richTextBoxRoomsExits.Clear();
-            if (listBoxRooms.SelectedIndex < 0) return;
-            if (listBoxRoomsExits.SelectedIndex < 0) return;
-            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
-            var exitsPrefix = DEFAULT_PATTERN_ROOM_EXIT_PREFIX.Replace("{room}", roomName);
-            ListBoxSelected(grod, listBoxRoomsExits, richTextBoxRoomsExits, exitsPrefix);
+            var exitsPrefix = roomsExitsPattern!
+                .Replace("{roomprefix}", roomsPrefix)
+                .Replace("{room}", currentRoomName)
+                .Replace("{direction}", "");
+            currentRoomsExitsValue = ListBoxSelected(grod, listBoxRoomsExits, richTextBoxRoomsExits, exitsPrefix);
             loading = saveLoading;
         }
 
@@ -528,12 +554,8 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            richTextBoxRoomsOther.Clear();
-            if (listBoxRooms.SelectedIndex < 0) return;
-            if (listBoxRoomsOther.SelectedIndex < 0) return;
-            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
-            var otherPrefix = $"{DEFAULT_PREFIX_ROOM}.{roomName}.";
-            ListBoxSelected(grod, listBoxRoomsOther, richTextBoxRoomsOther, otherPrefix);
+            var roomsOtherPrefix = $"{roomsPrefix}.{currentRoomName}.";
+            currentRoomsOtherValue = ListBoxSelected(grod, listBoxRoomsOther, richTextBoxRoomsOther, roomsOtherPrefix);
             loading = saveLoading;
         }
 
@@ -541,10 +563,8 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            richTextBoxStartDirections.Clear();
-            if (listBoxStartDirection.SelectedIndex < 0) return;
-            var directionPrefix = $"{DEFAULT_PREFIX_DIRECTION}.";
-            ListBoxSelected(grod, listBoxStartDirection, richTextBoxStartDirections, directionPrefix);
+            var directionsPrefix = $"{directionPrefix}.";
+            currentStartDirectionValue = ListBoxSelected(grod, listBoxStartDirection, richTextBoxStartDirections, directionsPrefix);
             loading = saveLoading;
         }
 
@@ -568,9 +588,7 @@ namespace editgrif
         private void textBoxRoomsShortDesc_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            var roomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
-            var shortDescKey = DEFAULT_PATTERN_ROOM_SHORTDESC.Replace("{room}", roomName);
-            overlay.Set(shortDescKey, textBoxRoomsShortDesc.Text);
+            overlay.Set(currentRoomShortDescKey!, textBoxRoomsShortDesc.Text);
         }
     }
 }

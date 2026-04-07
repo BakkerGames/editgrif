@@ -399,7 +399,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 54);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(63, 15);
+            labelStartGameTitle.Size = new Size(64, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -462,7 +462,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 206);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.Size = new Size(30, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -1353,7 +1353,6 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
-            Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
@@ -1363,6 +1362,7 @@
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
+            Controls.Add(groupBoxRooms);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Grif";
