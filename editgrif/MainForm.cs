@@ -1,8 +1,8 @@
 using GrifLib;
-using static GrifLib.Common;
 using static editgrif.ConfigValues;
-using static editgrif.StaticRoutines;
 using static editgrif.CurrentValues;
+using static editgrif.StaticRoutines;
+using static GrifLib.Common;
 
 namespace editgrif
 {
@@ -59,6 +59,7 @@ namespace editgrif
             // TODO ### temp file for now
             IO.WriteGrif("C:\\Temp\\testgrod.grif", grod.Parent!.Items(true, true), false);
             IO.WriteGrif("C:\\Temp\\testgrod.grifwip", overlay.Items(false, true), false);
+            IO.WriteGrif("C:\\Temp\\testgrod.json", overlay.Items(false, true), true);
         }
 
         #endregion
@@ -393,7 +394,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            currentSystemValue = ListBoxSelected(grod, listBoxSystem, richTextBoxSystem);
+            currentSystemKey = ListBoxSelected(grod, listBoxSystem, richTextBoxSystem);
             loading = saveLoading;
         }
 
@@ -401,7 +402,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            currentScriptsValue = ListBoxSelected(grod, listBoxScripts, richTextBoxScripts);
+            currentScriptsKey = ListBoxSelected(grod, listBoxScripts, richTextBoxScripts);
             loading = saveLoading;
         }
 
@@ -409,7 +410,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            currentCommandsValue = ListBoxSelected(grod, listBoxCommands, richTextBoxCommands);
+            currentCommandsKey = ListBoxSelected(grod, listBoxCommands, richTextBoxCommands);
             loading = saveLoading;
         }
 
@@ -417,7 +418,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            currentVocabularyValue = ListBoxSelected(grod, listBoxVocabulary, richTextBoxVocabulary);
+            currentVocabularyKey = ListBoxSelected(grod, listBoxVocabulary, richTextBoxVocabulary);
             loading = saveLoading;
         }
 
@@ -425,7 +426,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            currentValuesValue = ListBoxSelected(grod, listBoxValues, richTextBoxValues);
+            currentValuesKey = ListBoxSelected(grod, listBoxValues, richTextBoxValues);
             loading = saveLoading;
         }
 
@@ -433,7 +434,7 @@ namespace editgrif
         {
             var saveLoading = loading;
             loading = true;
-            currentMessagesValue = ListBoxSelected(grod, listBoxMessages, richTextBoxMessages);
+            currentMessagesKey = ListBoxSelected(grod, listBoxMessages, richTextBoxMessages);
             loading = saveLoading;
         }
 
@@ -534,7 +535,7 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             var otherPrefix = $"{itemsPrefix}.{currentItemName}.";
-            currentItemsOtherValue = ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
+            currentItemsOtherKey = ListBoxSelected(grod, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
             loading = saveLoading;
         }
 
@@ -546,7 +547,7 @@ namespace editgrif
                 .Replace("{roomprefix}", roomsPrefix)
                 .Replace("{room}", currentRoomName)
                 .Replace("{direction}", "");
-            currentRoomsExitsValue = ListBoxSelected(grod, listBoxRoomsExits, richTextBoxRoomsExits, exitsPrefix);
+            currentRoomsExitsKey = ListBoxSelected(grod, listBoxRoomsExits, richTextBoxRoomsExits, exitsPrefix);
             loading = saveLoading;
         }
 
@@ -555,7 +556,7 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             var roomsOtherPrefix = $"{roomsPrefix}.{currentRoomName}.";
-            currentRoomsOtherValue = ListBoxSelected(grod, listBoxRoomsOther, richTextBoxRoomsOther, roomsOtherPrefix);
+            currentRoomsOtherKey = ListBoxSelected(grod, listBoxRoomsOther, richTextBoxRoomsOther, roomsOtherPrefix);
             loading = saveLoading;
         }
 
@@ -564,7 +565,7 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             var directionsPrefix = $"{directionPrefix}.";
-            currentStartDirectionValue = ListBoxSelected(grod, listBoxStartDirection, richTextBoxStartDirections, directionsPrefix);
+            currentDirectionKey = ListBoxSelected(grod, listBoxStartDirection, richTextBoxStartDirections, directionsPrefix);
             loading = saveLoading;
         }
 
@@ -585,10 +586,148 @@ namespace editgrif
             loading = saveLoading;
         }
 
+
+        private void textBoxStartGameName_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            overlay.Set(SYSTEM_GAMENAME, textBoxStartGameName.Text);
+        }
+
+        private void textBoxStartGameTitle_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            overlay.Set(SYSTEM_GAMETITLE, textBoxStartGameTitle.Text);
+        }
+
+        private void textBoxStartVersion_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            overlay.Set(SYSTEM_VERSION, textBoxStartVersion.Text);
+        }
+
+        private void richTextBoxStartIntroduction_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            overlay.Set(SYSTEM_INTRO, richTextBoxStartIntroduction.Text);
+        }
+
+        private void textBoxStartStartingRoom_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (playerLocationKey == null) return;
+            overlay.Set(playerLocationKey, textBoxStartStartingRoom.Text);
+        }
+
+        private void richTextBoxStartDirections_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentDirectionKey == null) return;
+            overlay.Set(currentDirectionKey, richTextBoxStartDirections.Text);
+        }
+
         private void textBoxRoomsShortDesc_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            overlay.Set(currentRoomShortDescKey!, textBoxRoomsShortDesc.Text);
+            if (currentRoomShortDescKey == null) return;
+            overlay.Set(currentRoomShortDescKey, textBoxRoomsShortDesc.Text);
+        }
+
+        private void textBoxRoomsLongDesc_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentRoomLongDescKey == null) return;
+            overlay.Set(currentRoomLongDescKey, textBoxRoomsLongDesc.Text);
+        }
+
+        private void richTextBoxRoomsExits_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentRoomsExitsKey == null) return;
+            overlay.Set(currentRoomsExitsKey, richTextBoxRoomsExits.Text);
+        }
+
+        private void richTextBoxRoomsOther_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentRoomsOtherKey == null) return;
+            overlay.Set(currentRoomsOtherKey, richTextBoxRoomsOther.Text);
+        }
+
+        private void richTextBoxFunctions_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentFunctionsValue == null) return;
+            overlay.Set(currentFunctionsValue, richTextBoxFunctions.Text);
+        }
+
+        private void richTextBoxSystem_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentSystemKey == null) return;
+            overlay.Set(currentSystemKey, richTextBoxSystem.Text);
+        }
+
+        private void richTextBoxScripts_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentScriptsKey == null) return;
+            overlay.Set(currentScriptsKey, richTextBoxScripts.Text);
+        }
+
+        private void richTextBoxCommands_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentCommandsKey == null) return;
+            overlay.Set(currentCommandsKey, richTextBoxCommands.Text);
+        }
+
+        private void richTextBoxVocabulary_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentVocabularyKey == null) return;
+            overlay.Set(currentVocabularyKey, richTextBoxVocabulary.Text);
+        }
+
+        private void richTextBoxValues_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentValuesKey == null) return;
+            overlay.Set(currentValuesKey, richTextBoxValues.Text);
+        }
+
+        private void richTextBoxMessages_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentMessagesKey == null) return;
+            overlay.Set(currentMessagesKey, richTextBoxMessages.Text);
+        }
+
+        private void textBoxItemsShortDesc_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentItemShortDescKey == null) return;
+            overlay.Set(currentItemShortDescKey, textBoxItemsShortDesc.Text);
+        }
+
+        private void textBoxItemsLongDesc_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentItemLongDescKey == null) return;
+            overlay.Set(currentItemLongDescKey, textBoxItemsLongDesc.Text);
+        }
+
+        private void textBoxItemsLocation_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentItemLocationKey == null) return;
+            overlay.Set(currentItemLocationKey, textBoxItemsLocation.Text);
+        }
+
+        private void richTextBoxItemsOther_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentItemsOtherKey == null) return;
+            overlay.Set(currentItemsOtherKey, richTextBoxItemsOther.Text);
         }
     }
 }

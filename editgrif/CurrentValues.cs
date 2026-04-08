@@ -5,7 +5,7 @@ internal static class CurrentValues
     // Start
     public static string? playerLocationKey;
     public static string? directionPrefix;
-    public static string? currentStartDirectionValue;
+    public static string? currentDirectionKey;
 
     // Rooms
     public static string? roomsPrefix;
@@ -15,8 +15,8 @@ internal static class CurrentValues
     public static string? currentRoomName;
     public static string? currentRoomShortDescKey;
     public static string? currentRoomLongDescKey;
-    public static string? currentRoomsExitsValue;
-    public static string? currentRoomsOtherValue;
+    public static string? currentRoomsExitsKey;
+    public static string? currentRoomsOtherKey;
 
     // Items
     public static string? itemsPrefix;
@@ -27,32 +27,32 @@ internal static class CurrentValues
     public static string? currentItemShortDescKey;
     public static string? currentItemLongDescKey;
     public static string? currentItemLocationKey;
-    public static string? currentItemsOtherValue;
+    public static string? currentItemsOtherKey;
 
     // Messages
     public static string? messagePrefixes;
-    public static string? currentMessagesValue;
+    public static string? currentMessagesKey;
 
     // Values
     public static string? valuesPrefixes;
-    public static string? currentValuesValue;
+    public static string? currentValuesKey;
 
     // Vocabulary
     public static string? vocabularyPrefixes;
-    public static string? currentVocabularyValue;
+    public static string? currentVocabularyKey;
 
     // Commands
     public static string? commandsPrefix;
-    public static string? currentCommandsValue;
+    public static string? currentCommandsKey;
 
     // Scripts
     public static string? scriptsPrefixes;
-    public static string? currentScriptsValue;
+    public static string? currentScriptsKey;
 
     // Functions
     public static string? currentFunctionsValue;
 
     // System
     public static string? systemPrefixes;
-    public static string? currentSystemValue;
+    public static string? currentSystemKey;
 }

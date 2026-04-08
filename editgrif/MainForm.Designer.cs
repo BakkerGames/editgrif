@@ -317,6 +317,7 @@
             richTextBoxStartDirections.Size = new Size(761, 240);
             richTextBoxStartDirections.TabIndex = 23;
             richTextBoxStartDirections.Text = "";
+            richTextBoxStartDirections.TextChanged += richTextBoxStartDirections_TextChanged;
             // 
             // listBoxStartDirection
             // 
@@ -339,6 +340,7 @@
             richTextBoxStartIntroduction.Size = new Size(951, 314);
             richTextBoxStartIntroduction.TabIndex = 21;
             richTextBoxStartIntroduction.Text = "";
+            richTextBoxStartIntroduction.TextChanged += richTextBoxStartIntroduction_TextChanged;
             // 
             // buttonVersionToday
             // 
@@ -366,6 +368,7 @@
             textBoxStartStartingRoom.Name = "textBoxStartStartingRoom";
             textBoxStartStartingRoom.Size = new Size(205, 23);
             textBoxStartStartingRoom.TabIndex = 10;
+            textBoxStartStartingRoom.TextChanged += textBoxStartStartingRoom_TextChanged;
             // 
             // labelStartVersion
             // 
@@ -384,6 +387,7 @@
             textBoxStartVersion.Name = "textBoxStartVersion";
             textBoxStartVersion.Size = new Size(136, 23);
             textBoxStartVersion.TabIndex = 3;
+            textBoxStartVersion.TextChanged += textBoxStartVersion_TextChanged;
             // 
             // labelStartIntroduction
             // 
@@ -409,6 +413,7 @@
             textBoxStartGameTitle.Name = "textBoxStartGameTitle";
             textBoxStartGameTitle.Size = new Size(273, 23);
             textBoxStartGameTitle.TabIndex = 6;
+            textBoxStartGameTitle.TextChanged += textBoxStartGameTitle_TextChanged;
             // 
             // labelStartGameName
             // 
@@ -425,6 +430,7 @@
             textBoxStartGameName.Name = "textBoxStartGameName";
             textBoxStartGameName.Size = new Size(195, 23);
             textBoxStartGameName.TabIndex = 1;
+            textBoxStartGameName.TextChanged += textBoxStartGameName_TextChanged;
             // 
             // groupBoxRooms
             // 
@@ -476,6 +482,7 @@
             richTextBoxRoomsExits.Size = new Size(596, 228);
             richTextBoxRoomsExits.TabIndex = 20;
             richTextBoxRoomsExits.Text = "";
+            richTextBoxRoomsExits.TextChanged += richTextBoxRoomsExits_TextChanged;
             // 
             // buttonRoomsExitsDelete
             // 
@@ -533,6 +540,7 @@
             richTextBoxRoomsOther.Size = new Size(596, 228);
             richTextBoxRoomsOther.TabIndex = 13;
             richTextBoxRoomsOther.Text = "";
+            richTextBoxRoomsOther.TextChanged += richTextBoxRoomsOther_TextChanged;
             // 
             // buttonRoomsOtherDelete
             // 
@@ -579,6 +587,7 @@
             textBoxRoomsLongDesc.Name = "textBoxRoomsLongDesc";
             textBoxRoomsLongDesc.Size = new Size(786, 90);
             textBoxRoomsLongDesc.TabIndex = 7;
+            textBoxRoomsLongDesc.TextChanged += textBoxRoomsLongDesc_TextChanged;
             // 
             // labelRoomsLongDesc
             // 
@@ -690,6 +699,7 @@
             richTextBoxItemsOther.Size = new Size(596, 456);
             richTextBoxItemsOther.TabIndex = 25;
             richTextBoxItemsOther.Text = "";
+            richTextBoxItemsOther.TextChanged += richTextBoxItemsOther_TextChanged;
             // 
             // buttonItemsOtherAdd
             // 
@@ -736,6 +746,7 @@
             textBoxItemsLocation.Name = "textBoxItemsLocation";
             textBoxItemsLocation.Size = new Size(786, 23);
             textBoxItemsLocation.TabIndex = 20;
+            textBoxItemsLocation.TextChanged += textBoxItemsLocation_TextChanged;
             // 
             // labelItemsLocation
             // 
@@ -754,6 +765,7 @@
             textBoxItemsLongDesc.Name = "textBoxItemsLongDesc";
             textBoxItemsLongDesc.Size = new Size(786, 90);
             textBoxItemsLongDesc.TabIndex = 18;
+            textBoxItemsLongDesc.TextChanged += textBoxItemsLongDesc_TextChanged;
             // 
             // labelItemsLongDesc
             // 
@@ -771,6 +783,7 @@
             textBoxItemsShortDesc.Name = "textBoxItemsShortDesc";
             textBoxItemsShortDesc.Size = new Size(786, 23);
             textBoxItemsShortDesc.TabIndex = 16;
+            textBoxItemsShortDesc.TextChanged += textBoxItemsShortDesc_TextChanged;
             // 
             // labelItemsShortDesc
             // 
@@ -845,6 +858,7 @@
             richTextBoxMessages.Size = new Size(862, 647);
             richTextBoxMessages.TabIndex = 9;
             richTextBoxMessages.Text = "";
+            richTextBoxMessages.TextChanged += richTextBoxMessages_TextChanged;
             // 
             // buttonMessagesDelete
             // 
@@ -910,6 +924,7 @@
             richTextBoxValues.Size = new Size(862, 647);
             richTextBoxValues.TabIndex = 9;
             richTextBoxValues.Text = "";
+            richTextBoxValues.TextChanged += richTextBoxValues_TextChanged;
             // 
             // buttonValuesDelete
             // 
@@ -975,6 +990,7 @@
             richTextBoxVocabulary.Size = new Size(862, 647);
             richTextBoxVocabulary.TabIndex = 9;
             richTextBoxVocabulary.Text = "";
+            richTextBoxVocabulary.TextChanged += richTextBoxVocabulary_TextChanged;
             // 
             // buttonVocabularyDelete
             // 
@@ -1040,6 +1056,7 @@
             richTextBoxCommands.Size = new Size(862, 647);
             richTextBoxCommands.TabIndex = 9;
             richTextBoxCommands.Text = "";
+            richTextBoxCommands.TextChanged += richTextBoxCommands_TextChanged;
             // 
             // buttonCommandsDelete
             // 
@@ -1105,6 +1122,7 @@
             richTextBoxScripts.Size = new Size(862, 647);
             richTextBoxScripts.TabIndex = 9;
             richTextBoxScripts.Text = "";
+            richTextBoxScripts.TextChanged += richTextBoxScripts_TextChanged;
             // 
             // buttonScriptsDelete
             // 
@@ -1171,6 +1189,7 @@
             richTextBoxSystem.Size = new Size(862, 647);
             richTextBoxSystem.TabIndex = 9;
             richTextBoxSystem.Text = "";
+            richTextBoxSystem.TextChanged += richTextBoxSystem_TextChanged;
             // 
             // buttonSystemDelete
             // 
@@ -1297,6 +1316,7 @@
             richTextBoxFunctions.Size = new Size(862, 647);
             richTextBoxFunctions.TabIndex = 4;
             richTextBoxFunctions.Text = "";
+            richTextBoxFunctions.TextChanged += richTextBoxFunctions_TextChanged;
             // 
             // buttonFunctionsDelete
             // 
@@ -1353,6 +1373,8 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxItems);
+            Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
@@ -1361,8 +1383,6 @@
             Controls.Add(groupBoxVocabulary);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
-            Controls.Add(groupBoxItems);
-            Controls.Add(groupBoxRooms);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Grif";
