@@ -151,7 +151,7 @@ namespace editgrif
 
         private void buttonVersionToday_Click(object sender, EventArgs e)
         {
-            textBoxStartVersion.Text = DateTime.Today.ToString("yyyy.MM.dd");
+            richTextBoxStartVersion.Text = DateTime.Today.ToString("yyyy.MM.dd");
         }
 
         private void buttonFunctionsAdd_Click(object sender, EventArgs e)
@@ -193,19 +193,19 @@ namespace editgrif
 
         private void ClearStartTab()
         {
-            textBoxStartGameName.Text = "";
-            textBoxStartGameTitle.Text = "";
-            textBoxStartVersion.Text = "";
+            richTextBoxStartGameName.Clear();
+            richTextBoxStartGameTitle.Clear();
+            richTextBoxStartVersion.Clear();
             richTextBoxStartIntroduction.Clear();
-            textBoxStartStartingRoom.Text = "";
+            richTextBoxStartStartingRoom.Clear();
             listBoxStartDirection.Items.Clear();
         }
 
         private void ClearRoomsTab()
         {
             listBoxRooms.Items.Clear();
-            textBoxRoomsShortDesc.Text = "";
-            textBoxRoomsLongDesc.Text = "";
+            richTextBoxRoomsShortDesc.Clear();
+            richTextBoxRoomsLongDesc.Clear();
             listBoxRoomsExits.Items.Clear();
             richTextBoxRoomsExits.Clear();
             listBoxRoomsOther.Items.Clear();
@@ -215,9 +215,9 @@ namespace editgrif
         private void ClearItemsTab()
         {
             listBoxItems.Items.Clear();
-            textBoxItemsShortDesc.Text = "";
-            textBoxItemsLongDesc.Text = "";
-            textBoxItemsLocation.Text = "";
+            richTextBoxItemsShortDesc.Clear();
+            richTextBoxItemsLongDesc.Clear();
+            richTextBoxItemsLocation.Clear();
             listBoxItemsOther.Items.Clear();
             richTextBoxItemsOther.Clear();
         }
@@ -321,12 +321,11 @@ namespace editgrif
                 throw new SystemException("Command can only have one prefix");
             }
 
-            textBoxStartGameName.Text = grod.Get(SYSTEM_GAMENAME, true) ?? "";
-            textBoxStartGameTitle.Text = grod.Get(SYSTEM_GAMETITLE, true) ?? "";
-            textBoxStartVersion.Text = grod.Get(SYSTEM_VERSION, true) ?? "";
-            var script = grod.Get(SYSTEM_INTRO, true);
-            FillRichTextBox(richTextBoxStartIntroduction, script);
-            textBoxStartStartingRoom.Text = grod.Get(playerLocationKey, true) ?? "";
+            FillRichTextBox(richTextBoxStartGameName, grod.Get(SYSTEM_GAMENAME, true));
+            FillRichTextBox(richTextBoxStartGameTitle, grod.Get(SYSTEM_GAMETITLE, true));
+            FillRichTextBox(richTextBoxStartVersion, grod.Get(SYSTEM_VERSION, true));
+            FillRichTextBox(richTextBoxStartIntroduction, grod.Get(SYSTEM_INTRO, true));
+            FillRichTextBox(richTextBoxStartStartingRoom, grod.Get(playerLocationKey, true));
             FillListBoxFromPrefixUnique(grod, [directionPrefix], listBoxStartDirection);
 
             FillListBoxFromPrefixUnique(grod, [roomsPrefix], listBoxRooms);
@@ -444,8 +443,8 @@ namespace editgrif
             loading = true;
 
             currentRoomName = null;
-            textBoxRoomsShortDesc.Text = "";
-            textBoxRoomsLongDesc.Text = "";
+            richTextBoxRoomsShortDesc.Clear();
+            richTextBoxRoomsLongDesc.Clear();
             listBoxRoomsExits.Items.Clear();
             richTextBoxRoomsExits.Clear();
             listBoxRoomsOther.Items.Clear();
@@ -460,8 +459,8 @@ namespace editgrif
                 .Replace("{roomprefix}", roomsPrefix)
                 .Replace("{room}", currentRoomName);
 
-            textBoxRoomsShortDesc.Text = grod.Get(currentRoomShortDescKey, true) ?? "";
-            textBoxRoomsLongDesc.Text = grod.Get(currentRoomLongDescKey, true) ?? "";
+            FillRichTextBox(richTextBoxRoomsShortDesc, grod.Get(currentRoomShortDescKey, true));
+            FillRichTextBox(richTextBoxRoomsLongDesc, grod.Get(currentRoomLongDescKey, true));
 
             var exitsPrefix = roomsExitsPattern!
                 .Replace("{roomprefix}", roomsPrefix)
@@ -494,9 +493,9 @@ namespace editgrif
             loading = true;
 
             currentItemName = null;
-            textBoxItemsShortDesc.Text = "";
-            textBoxItemsLongDesc.Text = "";
-            textBoxItemsLocation.Text = "";
+            richTextBoxItemsShortDesc.Clear();
+            richTextBoxItemsLongDesc.Clear();
+            richTextBoxItemsLocation.Clear();
             listBoxItemsOther.Items.Clear();
             richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0) return;
@@ -512,9 +511,9 @@ namespace editgrif
                 .Replace("{itemprefix}", itemsPrefix)
                 .Replace("{item}", currentItemName);
 
-            textBoxItemsShortDesc.Text = grod.Get(currentItemShortDescKey, true) ?? "";
-            textBoxItemsLongDesc.Text = grod.Get(currentItemLongDescKey, true) ?? "";
-            textBoxItemsLocation.Text = grod.Get(currentItemLocationKey, true) ?? "";
+            FillRichTextBox(richTextBoxItemsShortDesc, grod.Get(currentItemShortDescKey, true));
+            FillRichTextBox(richTextBoxItemsLongDesc, grod.Get(currentItemLongDescKey, true));
+            FillRichTextBox(richTextBoxItemsLocation, grod.Get(currentItemLocationKey, true));
 
             var otherPrefix = $"{itemsPrefix}.{currentItemName}.";
             var otherKeys = grod.Keys(otherPrefix, true, true);
@@ -586,23 +585,22 @@ namespace editgrif
             loading = saveLoading;
         }
 
-
-        private void textBoxStartGameName_TextChanged(object sender, EventArgs e)
+        private void richTextBoxStartGameName_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            overlay.Set(SYSTEM_GAMENAME, textBoxStartGameName.Text);
+            overlay.Set(SYSTEM_GAMENAME, richTextBoxStartGameName.Text);
         }
 
-        private void textBoxStartGameTitle_TextChanged(object sender, EventArgs e)
+        private void richTextBoxStartGameTitle_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            overlay.Set(SYSTEM_GAMETITLE, textBoxStartGameTitle.Text);
+            overlay.Set(SYSTEM_GAMETITLE, richTextBoxStartGameTitle.Text);
         }
 
-        private void textBoxStartVersion_TextChanged(object sender, EventArgs e)
+        private void richTextBoxStartVersion_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            overlay.Set(SYSTEM_VERSION, textBoxStartVersion.Text);
+            overlay.Set(SYSTEM_VERSION, richTextBoxStartVersion.Text);
         }
 
         private void richTextBoxStartIntroduction_TextChanged(object sender, EventArgs e)
@@ -611,11 +609,11 @@ namespace editgrif
             overlay.Set(SYSTEM_INTRO, richTextBoxStartIntroduction.Text);
         }
 
-        private void textBoxStartStartingRoom_TextChanged(object sender, EventArgs e)
+        private void richTextBoxStartStartingRoom_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
             if (playerLocationKey == null) return;
-            overlay.Set(playerLocationKey, textBoxStartStartingRoom.Text);
+            overlay.Set(playerLocationKey, richTextBoxStartStartingRoom.Text);
         }
 
         private void richTextBoxStartDirections_TextChanged(object sender, EventArgs e)
@@ -625,18 +623,18 @@ namespace editgrif
             overlay.Set(currentDirectionKey, richTextBoxStartDirections.Text);
         }
 
-        private void textBoxRoomsShortDesc_TextChanged(object sender, EventArgs e)
+        private void richTextBoxRoomsShortDesc_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
             if (currentRoomShortDescKey == null) return;
-            overlay.Set(currentRoomShortDescKey, textBoxRoomsShortDesc.Text);
+            overlay.Set(currentRoomShortDescKey, richTextBoxRoomsShortDesc.Text);
         }
 
-        private void textBoxRoomsLongDesc_TextChanged(object sender, EventArgs e)
+        private void richTextBoxRoomsLongDesc_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
             if (currentRoomLongDescKey == null) return;
-            overlay.Set(currentRoomLongDescKey, textBoxRoomsLongDesc.Text);
+            overlay.Set(currentRoomLongDescKey, richTextBoxRoomsLongDesc.Text);
         }
 
         private void richTextBoxRoomsExits_TextChanged(object sender, EventArgs e)
@@ -702,25 +700,25 @@ namespace editgrif
             overlay.Set(currentMessagesKey, richTextBoxMessages.Text);
         }
 
-        private void textBoxItemsShortDesc_TextChanged(object sender, EventArgs e)
+        private void richTextBoxItemsShortDesc_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
             if (currentItemShortDescKey == null) return;
-            overlay.Set(currentItemShortDescKey, textBoxItemsShortDesc.Text);
+            overlay.Set(currentItemShortDescKey, richTextBoxItemsShortDesc.Text);
         }
 
-        private void textBoxItemsLongDesc_TextChanged(object sender, EventArgs e)
+        private void richTextBoxItemsLongDesc_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
             if (currentItemLongDescKey == null) return;
-            overlay.Set(currentItemLongDescKey, textBoxItemsLongDesc.Text);
+            overlay.Set(currentItemLongDescKey, richTextBoxItemsLongDesc.Text);
         }
 
-        private void textBoxItemsLocation_TextChanged(object sender, EventArgs e)
+        private void richTextBoxItemsLocation_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
             if (currentItemLocationKey == null) return;
-            overlay.Set(currentItemLocationKey, textBoxItemsLocation.Text);
+            overlay.Set(currentItemLocationKey, richTextBoxItemsLocation.Text);
         }
 
         private void richTextBoxItemsOther_TextChanged(object sender, EventArgs e)
