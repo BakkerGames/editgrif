@@ -9,7 +9,7 @@ internal static class StaticRoutines
         return textColor switch
         {
             TextColorEnum.Default => Color.Black,
-            TextColorEnum.PunctuationColor => Color.LightGray,
+            TextColorEnum.PunctuationColor => Color.Gray,
             TextColorEnum.ParenthesisColor => Color.Brown,
             TextColorEnum.TokenColor => Color.Blue,
             TextColorEnum.IfColor => Color.DeepSkyBlue,
@@ -17,6 +17,7 @@ internal static class StaticRoutines
             TextColorEnum.QuoteColor => Color.ForestGreen,
             TextColorEnum.ParameterColor => Color.DeepPink,
             TextColorEnum.CommentColor => Color.LightGreen,
+            TextColorEnum.SpecialCharColor => Color.Firebrick,
             _ => Color.Black,
         };
     }

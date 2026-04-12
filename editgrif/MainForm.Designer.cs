@@ -266,7 +266,7 @@
             groupBoxStart.Controls.Add(labelStartGameName);
             groupBoxStart.Location = new Point(105, 40);
             groupBoxStart.Name = "groupBoxStart";
-            groupBoxStart.Size = new Size(1066, 705);
+            groupBoxStart.Size = new Size(1189, 804);
             groupBoxStart.TabIndex = 11;
             groupBoxStart.TabStop = false;
             groupBoxStart.Text = "Start";
@@ -286,7 +286,7 @@
             // 
             richTextBoxStartVersion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             richTextBoxStartVersion.Font = new Font("Consolas", 12F);
-            richTextBoxStartVersion.Location = new Point(857, 20);
+            richTextBoxStartVersion.Location = new Point(980, 20);
             richTextBoxStartVersion.Multiline = false;
             richTextBoxStartVersion.Name = "richTextBoxStartVersion";
             richTextBoxStartVersion.Size = new Size(136, 26);
@@ -359,7 +359,7 @@
             richTextBoxStartDirections.Font = new Font("Consolas", 12F);
             richTextBoxStartDirections.Location = new Point(299, 458);
             richTextBoxStartDirections.Name = "richTextBoxStartDirections";
-            richTextBoxStartDirections.Size = new Size(761, 240);
+            richTextBoxStartDirections.Size = new Size(884, 339);
             richTextBoxStartDirections.TabIndex = 23;
             richTextBoxStartDirections.Text = "";
             richTextBoxStartDirections.TextChanged += richTextBoxStartDirections_TextChanged;
@@ -372,7 +372,7 @@
             listBoxStartDirection.IntegralHeight = false;
             listBoxStartDirection.Location = new Point(109, 458);
             listBoxStartDirection.Name = "listBoxStartDirection";
-            listBoxStartDirection.Size = new Size(184, 240);
+            listBoxStartDirection.Size = new Size(184, 339);
             listBoxStartDirection.TabIndex = 22;
             listBoxStartDirection.SelectedIndexChanged += listBoxStartDirection_SelectedIndexChanged;
             // 
@@ -383,7 +383,7 @@
             richTextBoxStartIntroduction.Font = new Font("Consolas", 12F);
             richTextBoxStartIntroduction.Location = new Point(109, 83);
             richTextBoxStartIntroduction.Name = "richTextBoxStartIntroduction";
-            richTextBoxStartIntroduction.Size = new Size(951, 308);
+            richTextBoxStartIntroduction.Size = new Size(1074, 308);
             richTextBoxStartIntroduction.TabIndex = 21;
             richTextBoxStartIntroduction.Text = "";
             richTextBoxStartIntroduction.TextChanged += richTextBoxStartIntroduction_TextChanged;
@@ -391,7 +391,7 @@
             // buttonVersionToday
             // 
             buttonVersionToday.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonVersionToday.Location = new Point(999, 21);
+            buttonVersionToday.Location = new Point(1122, 21);
             buttonVersionToday.Name = "buttonVersionToday";
             buttonVersionToday.Size = new Size(53, 23);
             buttonVersionToday.TabIndex = 4;
@@ -412,7 +412,7 @@
             // 
             labelStartVersion.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelStartVersion.AutoSize = true;
-            labelStartVersion.Location = new Point(806, 26);
+            labelStartVersion.Location = new Point(929, 26);
             labelStartVersion.Name = "labelStartVersion";
             labelStartVersion.Size = new Size(45, 15);
             labelStartVersion.TabIndex = 2;
@@ -432,7 +432,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(63, 15);
+            labelStartGameTitle.Size = new Size(64, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -470,7 +470,7 @@
             groupBoxRooms.Controls.Add(listBoxRooms);
             groupBoxRooms.Location = new Point(105, 40);
             groupBoxRooms.Name = "groupBoxRooms";
-            groupBoxRooms.Size = new Size(1066, 705);
+            groupBoxRooms.Size = new Size(1189, 804);
             groupBoxRooms.TabIndex = 12;
             groupBoxRooms.TabStop = false;
             groupBoxRooms.Text = "Rooms";
@@ -482,7 +482,7 @@
             richTextBoxRoomsLongDesc.Font = new Font("Consolas", 12F);
             richTextBoxRoomsLongDesc.Location = new Point(274, 81);
             richTextBoxRoomsLongDesc.Name = "richTextBoxRoomsLongDesc";
-            richTextBoxRoomsLongDesc.Size = new Size(786, 90);
+            richTextBoxRoomsLongDesc.Size = new Size(909, 90);
             richTextBoxRoomsLongDesc.TabIndex = 23;
             richTextBoxRoomsLongDesc.Text = "";
             richTextBoxRoomsLongDesc.TextChanged += richTextBoxRoomsLongDesc_TextChanged;
@@ -494,7 +494,7 @@
             richTextBoxRoomsShortDesc.Location = new Point(274, 52);
             richTextBoxRoomsShortDesc.Multiline = false;
             richTextBoxRoomsShortDesc.Name = "richTextBoxRoomsShortDesc";
-            richTextBoxRoomsShortDesc.Size = new Size(786, 23);
+            richTextBoxRoomsShortDesc.Size = new Size(909, 23);
             richTextBoxRoomsShortDesc.TabIndex = 22;
             richTextBoxRoomsShortDesc.Text = "";
             richTextBoxRoomsShortDesc.TextChanged += richTextBoxRoomsShortDesc_TextChanged;
@@ -504,7 +504,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 206);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.Size = new Size(30, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -515,7 +515,7 @@
             richTextBoxRoomsExits.Font = new Font("Consolas", 12F);
             richTextBoxRoomsExits.Location = new Point(464, 206);
             richTextBoxRoomsExits.Name = "richTextBoxRoomsExits";
-            richTextBoxRoomsExits.Size = new Size(596, 228);
+            richTextBoxRoomsExits.Size = new Size(719, 228);
             richTextBoxRoomsExits.TabIndex = 20;
             richTextBoxRoomsExits.Text = "";
             richTextBoxRoomsExits.TextChanged += richTextBoxRoomsExits_TextChanged;
@@ -574,7 +574,7 @@
             richTextBoxRoomsOther.Font = new Font("Consolas", 12F);
             richTextBoxRoomsOther.Location = new Point(464, 470);
             richTextBoxRoomsOther.Name = "richTextBoxRoomsOther";
-            richTextBoxRoomsOther.Size = new Size(596, 228);
+            richTextBoxRoomsOther.Size = new Size(719, 327);
             richTextBoxRoomsOther.TabIndex = 13;
             richTextBoxRoomsOther.Text = "";
             richTextBoxRoomsOther.TextChanged += richTextBoxRoomsOther_TextChanged;
@@ -614,7 +614,7 @@
             listBoxRoomsOther.IntegralHeight = false;
             listBoxRoomsOther.Location = new Point(274, 470);
             listBoxRoomsOther.Name = "listBoxRoomsOther";
-            listBoxRoomsOther.Size = new Size(184, 228);
+            listBoxRoomsOther.Size = new Size(184, 327);
             listBoxRoomsOther.TabIndex = 9;
             listBoxRoomsOther.SelectedIndexChanged += listBoxRoomsOther_SelectedIndexChanged;
             // 
@@ -671,7 +671,7 @@
             listBoxRooms.IntegralHeight = false;
             listBoxRooms.Location = new Point(8, 52);
             listBoxRooms.Name = "listBoxRooms";
-            listBoxRooms.Size = new Size(184, 647);
+            listBoxRooms.Size = new Size(184, 746);
             listBoxRooms.TabIndex = 3;
             listBoxRooms.SelectedIndexChanged += listBoxRooms_SelectedIndexChanged;
             // 
@@ -696,7 +696,7 @@
             groupBoxItems.Controls.Add(listBoxItems);
             groupBoxItems.Location = new Point(105, 40);
             groupBoxItems.Name = "groupBoxItems";
-            groupBoxItems.Size = new Size(1066, 705);
+            groupBoxItems.Size = new Size(1189, 804);
             groupBoxItems.TabIndex = 13;
             groupBoxItems.TabStop = false;
             groupBoxItems.Text = "Items";
@@ -709,7 +709,7 @@
             richTextBoxItemsLocation.Location = new Point(274, 177);
             richTextBoxItemsLocation.Multiline = false;
             richTextBoxItemsLocation.Name = "richTextBoxItemsLocation";
-            richTextBoxItemsLocation.Size = new Size(786, 23);
+            richTextBoxItemsLocation.Size = new Size(909, 23);
             richTextBoxItemsLocation.TabIndex = 29;
             richTextBoxItemsLocation.Text = "";
             richTextBoxItemsLocation.TextChanged += richTextBoxItemsLocation_TextChanged;
@@ -720,7 +720,7 @@
             richTextBoxItemsLongDesc.Font = new Font("Consolas", 12F);
             richTextBoxItemsLongDesc.Location = new Point(274, 81);
             richTextBoxItemsLongDesc.Name = "richTextBoxItemsLongDesc";
-            richTextBoxItemsLongDesc.Size = new Size(786, 90);
+            richTextBoxItemsLongDesc.Size = new Size(909, 90);
             richTextBoxItemsLongDesc.TabIndex = 28;
             richTextBoxItemsLongDesc.Text = "";
             richTextBoxItemsLongDesc.TextChanged += richTextBoxItemsLongDesc_TextChanged;
@@ -732,7 +732,7 @@
             richTextBoxItemsShortDesc.Location = new Point(274, 52);
             richTextBoxItemsShortDesc.Multiline = false;
             richTextBoxItemsShortDesc.Name = "richTextBoxItemsShortDesc";
-            richTextBoxItemsShortDesc.Size = new Size(786, 23);
+            richTextBoxItemsShortDesc.Size = new Size(909, 23);
             richTextBoxItemsShortDesc.TabIndex = 27;
             richTextBoxItemsShortDesc.Text = "";
             richTextBoxItemsShortDesc.TextChanged += richTextBoxItemsShortDesc_TextChanged;
@@ -753,7 +753,7 @@
             richTextBoxItemsOther.Font = new Font("Consolas", 12F);
             richTextBoxItemsOther.Location = new Point(464, 243);
             richTextBoxItemsOther.Name = "richTextBoxItemsOther";
-            richTextBoxItemsOther.Size = new Size(596, 456);
+            richTextBoxItemsOther.Size = new Size(719, 555);
             richTextBoxItemsOther.TabIndex = 25;
             richTextBoxItemsOther.Text = "";
             richTextBoxItemsOther.TextChanged += richTextBoxItemsOther_TextChanged;
@@ -793,7 +793,7 @@
             listBoxItemsOther.IntegralHeight = false;
             listBoxItemsOther.Location = new Point(274, 242);
             listBoxItemsOther.Name = "listBoxItemsOther";
-            listBoxItemsOther.Size = new Size(184, 456);
+            listBoxItemsOther.Size = new Size(184, 555);
             listBoxItemsOther.TabIndex = 21;
             listBoxItemsOther.SelectedIndexChanged += listBoxItemsOther_SelectedIndexChanged;
             // 
@@ -859,7 +859,7 @@
             listBoxItems.IntegralHeight = false;
             listBoxItems.Location = new Point(8, 52);
             listBoxItems.Name = "listBoxItems";
-            listBoxItems.Size = new Size(184, 647);
+            listBoxItems.Size = new Size(184, 746);
             listBoxItems.TabIndex = 11;
             listBoxItems.SelectedIndexChanged += listBoxItems_SelectedIndexChanged;
             // 
@@ -873,7 +873,7 @@
             groupBoxMessages.Controls.Add(listBoxMessages);
             groupBoxMessages.Location = new Point(105, 40);
             groupBoxMessages.Name = "groupBoxMessages";
-            groupBoxMessages.Size = new Size(1066, 705);
+            groupBoxMessages.Size = new Size(1189, 804);
             groupBoxMessages.TabIndex = 14;
             groupBoxMessages.TabStop = false;
             groupBoxMessages.Text = "Messages";
@@ -886,7 +886,7 @@
             richTextBoxMessages.Font = new Font("Consolas", 12F);
             richTextBoxMessages.Location = new Point(289, 52);
             richTextBoxMessages.Name = "richTextBoxMessages";
-            richTextBoxMessages.Size = new Size(771, 647);
+            richTextBoxMessages.Size = new Size(894, 746);
             richTextBoxMessages.TabIndex = 9;
             richTextBoxMessages.Text = "";
             richTextBoxMessages.TextChanged += richTextBoxMessages_TextChanged;
@@ -926,7 +926,7 @@
             listBoxMessages.IntegralHeight = false;
             listBoxMessages.Location = new Point(8, 52);
             listBoxMessages.Name = "listBoxMessages";
-            listBoxMessages.Size = new Size(275, 647);
+            listBoxMessages.Size = new Size(275, 746);
             listBoxMessages.TabIndex = 5;
             listBoxMessages.SelectedIndexChanged += listBoxMessages_SelectedIndexChanged;
             // 
@@ -940,7 +940,7 @@
             groupBoxValues.Controls.Add(listBoxValues);
             groupBoxValues.Location = new Point(105, 40);
             groupBoxValues.Name = "groupBoxValues";
-            groupBoxValues.Size = new Size(1066, 705);
+            groupBoxValues.Size = new Size(1189, 804);
             groupBoxValues.TabIndex = 15;
             groupBoxValues.TabStop = false;
             groupBoxValues.Text = "Values";
@@ -953,7 +953,7 @@
             richTextBoxValues.Font = new Font("Consolas", 12F);
             richTextBoxValues.Location = new Point(289, 52);
             richTextBoxValues.Name = "richTextBoxValues";
-            richTextBoxValues.Size = new Size(771, 647);
+            richTextBoxValues.Size = new Size(894, 746);
             richTextBoxValues.TabIndex = 9;
             richTextBoxValues.Text = "";
             richTextBoxValues.TextChanged += richTextBoxValues_TextChanged;
@@ -993,7 +993,7 @@
             listBoxValues.IntegralHeight = false;
             listBoxValues.Location = new Point(8, 52);
             listBoxValues.Name = "listBoxValues";
-            listBoxValues.Size = new Size(275, 647);
+            listBoxValues.Size = new Size(275, 746);
             listBoxValues.TabIndex = 5;
             listBoxValues.SelectedIndexChanged += listBoxValues_SelectedIndexChanged;
             // 
@@ -1007,7 +1007,7 @@
             groupBoxVocabulary.Controls.Add(listBoxVocabulary);
             groupBoxVocabulary.Location = new Point(105, 40);
             groupBoxVocabulary.Name = "groupBoxVocabulary";
-            groupBoxVocabulary.Size = new Size(1066, 705);
+            groupBoxVocabulary.Size = new Size(1189, 804);
             groupBoxVocabulary.TabIndex = 16;
             groupBoxVocabulary.TabStop = false;
             groupBoxVocabulary.Text = "Vocabulary";
@@ -1020,7 +1020,7 @@
             richTextBoxVocabulary.Font = new Font("Consolas", 12F);
             richTextBoxVocabulary.Location = new Point(289, 52);
             richTextBoxVocabulary.Name = "richTextBoxVocabulary";
-            richTextBoxVocabulary.Size = new Size(771, 647);
+            richTextBoxVocabulary.Size = new Size(894, 746);
             richTextBoxVocabulary.TabIndex = 9;
             richTextBoxVocabulary.Text = "";
             richTextBoxVocabulary.TextChanged += richTextBoxVocabulary_TextChanged;
@@ -1060,7 +1060,7 @@
             listBoxVocabulary.IntegralHeight = false;
             listBoxVocabulary.Location = new Point(8, 52);
             listBoxVocabulary.Name = "listBoxVocabulary";
-            listBoxVocabulary.Size = new Size(275, 647);
+            listBoxVocabulary.Size = new Size(275, 746);
             listBoxVocabulary.TabIndex = 5;
             listBoxVocabulary.SelectedIndexChanged += listBoxVocabulary_SelectedIndexChanged;
             // 
@@ -1074,7 +1074,7 @@
             groupBoxCommands.Controls.Add(listBoxCommands);
             groupBoxCommands.Location = new Point(105, 40);
             groupBoxCommands.Name = "groupBoxCommands";
-            groupBoxCommands.Size = new Size(1066, 705);
+            groupBoxCommands.Size = new Size(1189, 804);
             groupBoxCommands.TabIndex = 17;
             groupBoxCommands.TabStop = false;
             groupBoxCommands.Text = "Commands";
@@ -1087,7 +1087,7 @@
             richTextBoxCommands.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBoxCommands.Location = new Point(289, 52);
             richTextBoxCommands.Name = "richTextBoxCommands";
-            richTextBoxCommands.Size = new Size(771, 647);
+            richTextBoxCommands.Size = new Size(894, 746);
             richTextBoxCommands.TabIndex = 9;
             richTextBoxCommands.Text = "";
             richTextBoxCommands.TextChanged += richTextBoxCommands_TextChanged;
@@ -1127,7 +1127,7 @@
             listBoxCommands.IntegralHeight = false;
             listBoxCommands.Location = new Point(8, 52);
             listBoxCommands.Name = "listBoxCommands";
-            listBoxCommands.Size = new Size(275, 647);
+            listBoxCommands.Size = new Size(275, 746);
             listBoxCommands.TabIndex = 5;
             listBoxCommands.SelectedIndexChanged += listBoxCommands_SelectedIndexChanged;
             // 
@@ -1141,7 +1141,7 @@
             groupBoxScripts.Controls.Add(listBoxScripts);
             groupBoxScripts.Location = new Point(105, 40);
             groupBoxScripts.Name = "groupBoxScripts";
-            groupBoxScripts.Size = new Size(1066, 705);
+            groupBoxScripts.Size = new Size(1189, 804);
             groupBoxScripts.TabIndex = 18;
             groupBoxScripts.TabStop = false;
             groupBoxScripts.Text = "Scripts";
@@ -1154,7 +1154,7 @@
             richTextBoxScripts.Font = new Font("Consolas", 12F);
             richTextBoxScripts.Location = new Point(289, 52);
             richTextBoxScripts.Name = "richTextBoxScripts";
-            richTextBoxScripts.Size = new Size(771, 647);
+            richTextBoxScripts.Size = new Size(894, 746);
             richTextBoxScripts.TabIndex = 9;
             richTextBoxScripts.Text = "";
             richTextBoxScripts.TextChanged += richTextBoxScripts_TextChanged;
@@ -1194,7 +1194,7 @@
             listBoxScripts.IntegralHeight = false;
             listBoxScripts.Location = new Point(8, 52);
             listBoxScripts.Name = "listBoxScripts";
-            listBoxScripts.Size = new Size(275, 647);
+            listBoxScripts.Size = new Size(275, 746);
             listBoxScripts.Sorted = true;
             listBoxScripts.TabIndex = 5;
             listBoxScripts.SelectedIndexChanged += listBoxScripts_SelectedIndexChanged;
@@ -1209,7 +1209,7 @@
             groupBoxSystem.Controls.Add(listBoxSystem);
             groupBoxSystem.Location = new Point(105, 40);
             groupBoxSystem.Name = "groupBoxSystem";
-            groupBoxSystem.Size = new Size(1066, 705);
+            groupBoxSystem.Size = new Size(1189, 804);
             groupBoxSystem.TabIndex = 20;
             groupBoxSystem.TabStop = false;
             groupBoxSystem.Text = "System";
@@ -1222,7 +1222,7 @@
             richTextBoxSystem.Font = new Font("Consolas", 12F);
             richTextBoxSystem.Location = new Point(289, 52);
             richTextBoxSystem.Name = "richTextBoxSystem";
-            richTextBoxSystem.Size = new Size(771, 647);
+            richTextBoxSystem.Size = new Size(894, 746);
             richTextBoxSystem.TabIndex = 9;
             richTextBoxSystem.Text = "";
             richTextBoxSystem.TextChanged += richTextBoxSystem_TextChanged;
@@ -1262,7 +1262,7 @@
             listBoxSystem.IntegralHeight = false;
             listBoxSystem.Location = new Point(8, 52);
             listBoxSystem.Name = "listBoxSystem";
-            listBoxSystem.Size = new Size(275, 647);
+            listBoxSystem.Size = new Size(275, 746);
             listBoxSystem.TabIndex = 5;
             listBoxSystem.SelectedIndexChanged += listBoxSystem_SelectedIndexChanged;
             // 
@@ -1275,7 +1275,7 @@
             panelToolbar.Controls.Add(buttonFileNew);
             panelToolbar.Location = new Point(0, 0);
             panelToolbar.Name = "panelToolbar";
-            panelToolbar.Size = new Size(1184, 34);
+            panelToolbar.Size = new Size(1307, 34);
             panelToolbar.TabIndex = 0;
             // 
             // comboBoxFileNames
@@ -1337,7 +1337,7 @@
             groupBoxFunctions.Controls.Add(listBoxFunctions);
             groupBoxFunctions.Location = new Point(105, 40);
             groupBoxFunctions.Name = "groupBoxFunctions";
-            groupBoxFunctions.Size = new Size(1066, 705);
+            groupBoxFunctions.Size = new Size(1189, 804);
             groupBoxFunctions.TabIndex = 19;
             groupBoxFunctions.TabStop = false;
             groupBoxFunctions.Text = "Functions";
@@ -1350,7 +1350,7 @@
             richTextBoxFunctions.Font = new Font("Consolas", 12F);
             richTextBoxFunctions.Location = new Point(289, 52);
             richTextBoxFunctions.Name = "richTextBoxFunctions";
-            richTextBoxFunctions.Size = new Size(771, 647);
+            richTextBoxFunctions.Size = new Size(894, 746);
             richTextBoxFunctions.TabIndex = 4;
             richTextBoxFunctions.Text = "";
             richTextBoxFunctions.TextChanged += richTextBoxFunctions_TextChanged;
@@ -1391,7 +1391,7 @@
             listBoxFunctions.IntegralHeight = false;
             listBoxFunctions.Location = new Point(8, 52);
             listBoxFunctions.Name = "listBoxFunctions";
-            listBoxFunctions.Size = new Size(275, 647);
+            listBoxFunctions.Size = new Size(275, 746);
             listBoxFunctions.TabIndex = 0;
             listBoxFunctions.SelectedIndexChanged += listBoxFunctions_SelectedIndexChanged;
             // 
@@ -1399,7 +1399,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1183, 757);
+            ClientSize = new Size(1306, 856);
             Controls.Add(buttonFunctions);
             Controls.Add(panelToolbar);
             Controls.Add(buttonSystem);
@@ -1411,6 +1411,7 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
             Controls.Add(groupBoxScripts);
@@ -1420,7 +1421,7 @@
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
-            Controls.Add(groupBoxStart);
+            MinimumSize = new Size(1000, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Grif";

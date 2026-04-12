@@ -56,10 +56,11 @@ namespace editgrif
 
         private void buttonFileSave_Click(object sender, EventArgs e)
         {
-            // TODO ### temp file for now
-            IO.WriteGrif("C:\\Temp\\testgrod.grif", grod.Parent!.Items(true, true), false);
-            IO.WriteGrif("C:\\Temp\\testgrod.grifwip", overlay.Items(false, true), false);
-            IO.WriteGrif("C:\\Temp\\testgrod.json", overlay.Items(false, true), true);
+            if (comboBoxFileNames.SelectedIndex < 0) return;
+            string? filename = comboBoxFileNames.Items[comboBoxFileNames.SelectedIndex]!.ToString();
+            if (filename == null) return;
+            IO.WriteGrif(Path.Combine(basePath, filename), grod.Items(true, true), false);
+            MessageBox.Show($"File saved: {filename}");
         }
 
         #endregion
