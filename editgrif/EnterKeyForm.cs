@@ -10,12 +10,24 @@ public partial class EnterKeyForm : Form
     {
         get
         {
-            if (!ValidKey(textBoxKey.Text, IsFunctionKey)) return "";
+            if (!ValidKey(labelPrefix.Text + textBoxKey.Text, IsFunctionKey)) return "";
             return textBoxKey.Text;
         }
         set
         {
             textBoxKey.Text = value;
+        }
+    }
+
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public string Prefix
+    {
+        set
+        {
+            labelPrefix.Text = value;
+            var width = textBoxKey.Width;
+            textBoxKey.Location = new Point(labelPrefix.Left + labelPrefix.Width, textBoxKey.Top);
+            textBoxKey.Width = width - labelPrefix.Width;
         }
     }
 
@@ -29,7 +41,7 @@ public partial class EnterKeyForm : Form
 
     private void buttonOK_Click(object sender, EventArgs e)
     {
-        if (!ValidKey(textBoxKey.Text, IsFunctionKey))
+        if (!ValidKey(labelPrefix.Text + textBoxKey.Text, IsFunctionKey))
         {
             if (IsFunctionKey)
             {

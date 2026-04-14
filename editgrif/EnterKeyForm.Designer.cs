@@ -28,27 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            labelKey = new Label();
             textBoxKey = new TextBox();
             buttonOK = new Button();
             buttonCancel = new Button();
             labelError = new Label();
+            labelPrefix = new Label();
             SuspendLayout();
-            // 
-            // labelKey
-            // 
-            labelKey.AutoSize = true;
-            labelKey.Location = new Point(12, 15);
-            labelKey.Name = "labelKey";
-            labelKey.Size = new Size(26, 15);
-            labelKey.TabIndex = 0;
-            labelKey.Text = "Key";
             // 
             // textBoxKey
             // 
-            textBoxKey.Location = new Point(44, 12);
+            textBoxKey.Font = new Font("Consolas", 12F);
+            textBoxKey.Location = new Point(12, 12);
             textBoxKey.Name = "textBoxKey";
-            textBoxKey.Size = new Size(432, 23);
+            textBoxKey.Size = new Size(465, 26);
             textBoxKey.TabIndex = 1;
             // 
             // buttonOK
@@ -84,6 +76,15 @@
             labelError.Text = "Error";
             labelError.Visible = false;
             // 
+            // labelPrefix
+            // 
+            labelPrefix.AutoSize = true;
+            labelPrefix.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelPrefix.Location = new Point(12, 15);
+            labelPrefix.Name = "labelPrefix";
+            labelPrefix.Size = new Size(0, 19);
+            labelPrefix.TabIndex = 5;
+            // 
             // EnterKeyForm
             // 
             AcceptButton = buttonOK;
@@ -91,11 +92,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
             ClientSize = new Size(489, 84);
+            Controls.Add(textBoxKey);
+            Controls.Add(labelPrefix);
             Controls.Add(labelError);
             Controls.Add(buttonCancel);
             Controls.Add(buttonOK);
-            Controls.Add(textBoxKey);
-            Controls.Add(labelKey);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -107,11 +108,10 @@
         }
 
         #endregion
-
-        private Label labelKey;
         private TextBox textBoxKey;
         private Button buttonOK;
         private Button buttonCancel;
         private Label labelError;
+        private Label labelPrefix;
     }
 }

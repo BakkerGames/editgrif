@@ -342,6 +342,7 @@
             buttonStartDirectionsAdd.TabIndex = 26;
             buttonStartDirectionsAdd.Text = "Add";
             buttonStartDirectionsAdd.UseVisualStyleBackColor = true;
+            buttonStartDirectionsAdd.Click += buttonStartDirectionsAdd_Click;
             // 
             // labelStartDirections
             // 

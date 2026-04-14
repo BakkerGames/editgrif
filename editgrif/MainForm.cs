@@ -728,5 +728,26 @@ namespace editgrif
             if (currentItemsOtherKey == null) return;
             overlay.Set(currentItemsOtherKey, richTextBoxItemsOther.Text);
         }
+
+        private void buttonStartDirectionsAdd_Click(object sender, EventArgs e)
+        {
+            var dialog = new EnterKeyForm();
+            if (directionPrefix != null)
+            {
+                dialog.Prefix = directionPrefix + '.';
+            }
+            dialog.ShowDialog();
+            var newKey = dialog.Key;
+            if (dialog.DialogResult == DialogResult.OK && !string.IsNullOrEmpty(newKey))
+            {
+                if (listBoxStartDirection.Items.Contains(newKey))
+                {
+                    MessageBox.Show($"Key already exists: {newKey}");
+                    return;
+                }
+                AddListBox([newKey], listBoxStartDirection);
+                listBoxStartDirection.SelectedItem = newKey;
+            }
+        }
     }
 }
