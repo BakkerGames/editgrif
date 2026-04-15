@@ -318,6 +318,7 @@
             // 
             // buttonStartDirectionsDelete
             // 
+            buttonStartDirectionsDelete.Enabled = false;
             buttonStartDirectionsDelete.Location = new Point(235, 429);
             buttonStartDirectionsDelete.Name = "buttonStartDirectionsDelete";
             buttonStartDirectionsDelete.Size = new Size(58, 23);
@@ -327,6 +328,7 @@
             // 
             // buttonStartDirectionsRename
             // 
+            buttonStartDirectionsRename.Enabled = false;
             buttonStartDirectionsRename.Location = new Point(171, 429);
             buttonStartDirectionsRename.Name = "buttonStartDirectionsRename";
             buttonStartDirectionsRename.Size = new Size(58, 23);
@@ -433,7 +435,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(64, 15);
+            labelStartGameTitle.Size = new Size(63, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -483,7 +485,7 @@
             richTextBoxRoomsLongDesc.Font = new Font("Consolas", 12F);
             richTextBoxRoomsLongDesc.Location = new Point(274, 81);
             richTextBoxRoomsLongDesc.Name = "richTextBoxRoomsLongDesc";
-            richTextBoxRoomsLongDesc.Size = new Size(909, 90);
+            richTextBoxRoomsLongDesc.Size = new Size(909, 200);
             richTextBoxRoomsLongDesc.TabIndex = 23;
             richTextBoxRoomsLongDesc.Text = "";
             richTextBoxRoomsLongDesc.TextChanged += richTextBoxRoomsLongDesc_TextChanged;
@@ -503,9 +505,9 @@
             // labelRoomsExits
             // 
             labelRoomsExits.AutoSize = true;
-            labelRoomsExits.Location = new Point(198, 206);
+            labelRoomsExits.Location = new Point(198, 316);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(30, 15);
+            labelRoomsExits.Size = new Size(31, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -514,7 +516,7 @@
             richTextBoxRoomsExits.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxRoomsExits.DetectUrls = false;
             richTextBoxRoomsExits.Font = new Font("Consolas", 12F);
-            richTextBoxRoomsExits.Location = new Point(464, 206);
+            richTextBoxRoomsExits.Location = new Point(464, 316);
             richTextBoxRoomsExits.Name = "richTextBoxRoomsExits";
             richTextBoxRoomsExits.Size = new Size(719, 228);
             richTextBoxRoomsExits.TabIndex = 20;
@@ -523,7 +525,8 @@
             // 
             // buttonRoomsExitsDelete
             // 
-            buttonRoomsExitsDelete.Location = new Point(402, 177);
+            buttonRoomsExitsDelete.Enabled = false;
+            buttonRoomsExitsDelete.Location = new Point(402, 287);
             buttonRoomsExitsDelete.Name = "buttonRoomsExitsDelete";
             buttonRoomsExitsDelete.Size = new Size(58, 23);
             buttonRoomsExitsDelete.TabIndex = 19;
@@ -532,7 +535,8 @@
             // 
             // buttonRoomsExitsRename
             // 
-            buttonRoomsExitsRename.Location = new Point(338, 177);
+            buttonRoomsExitsRename.Enabled = false;
+            buttonRoomsExitsRename.Location = new Point(338, 287);
             buttonRoomsExitsRename.Name = "buttonRoomsExitsRename";
             buttonRoomsExitsRename.Size = new Size(58, 23);
             buttonRoomsExitsRename.TabIndex = 18;
@@ -541,7 +545,7 @@
             // 
             // buttonRoomsExitsAdd
             // 
-            buttonRoomsExitsAdd.Location = new Point(274, 177);
+            buttonRoomsExitsAdd.Location = new Point(274, 287);
             buttonRoomsExitsAdd.Name = "buttonRoomsExitsAdd";
             buttonRoomsExitsAdd.Size = new Size(58, 23);
             buttonRoomsExitsAdd.TabIndex = 17;
@@ -551,7 +555,7 @@
             // labelRoomsOther
             // 
             labelRoomsOther.AutoSize = true;
-            labelRoomsOther.Location = new Point(198, 470);
+            labelRoomsOther.Location = new Point(198, 580);
             labelRoomsOther.Name = "labelRoomsOther";
             labelRoomsOther.Size = new Size(37, 15);
             labelRoomsOther.TabIndex = 16;
@@ -562,7 +566,7 @@
             listBoxRoomsExits.Font = new Font("Consolas", 12F);
             listBoxRoomsExits.FormattingEnabled = true;
             listBoxRoomsExits.IntegralHeight = false;
-            listBoxRoomsExits.Location = new Point(274, 206);
+            listBoxRoomsExits.Location = new Point(274, 316);
             listBoxRoomsExits.Name = "listBoxRoomsExits";
             listBoxRoomsExits.Size = new Size(184, 228);
             listBoxRoomsExits.TabIndex = 15;
@@ -573,16 +577,17 @@
             richTextBoxRoomsOther.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxRoomsOther.DetectUrls = false;
             richTextBoxRoomsOther.Font = new Font("Consolas", 12F);
-            richTextBoxRoomsOther.Location = new Point(464, 470);
+            richTextBoxRoomsOther.Location = new Point(464, 580);
             richTextBoxRoomsOther.Name = "richTextBoxRoomsOther";
-            richTextBoxRoomsOther.Size = new Size(719, 327);
+            richTextBoxRoomsOther.Size = new Size(719, 217);
             richTextBoxRoomsOther.TabIndex = 13;
             richTextBoxRoomsOther.Text = "";
             richTextBoxRoomsOther.TextChanged += richTextBoxRoomsOther_TextChanged;
             // 
             // buttonRoomsOtherDelete
             // 
-            buttonRoomsOtherDelete.Location = new Point(400, 441);
+            buttonRoomsOtherDelete.Enabled = false;
+            buttonRoomsOtherDelete.Location = new Point(400, 551);
             buttonRoomsOtherDelete.Name = "buttonRoomsOtherDelete";
             buttonRoomsOtherDelete.Size = new Size(58, 23);
             buttonRoomsOtherDelete.TabIndex = 12;
@@ -591,7 +596,8 @@
             // 
             // buttonRoomsOtherRename
             // 
-            buttonRoomsOtherRename.Location = new Point(338, 441);
+            buttonRoomsOtherRename.Enabled = false;
+            buttonRoomsOtherRename.Location = new Point(338, 551);
             buttonRoomsOtherRename.Name = "buttonRoomsOtherRename";
             buttonRoomsOtherRename.Size = new Size(58, 23);
             buttonRoomsOtherRename.TabIndex = 11;
@@ -600,7 +606,7 @@
             // 
             // buttonRoomsOtherAdd
             // 
-            buttonRoomsOtherAdd.Location = new Point(274, 441);
+            buttonRoomsOtherAdd.Location = new Point(274, 551);
             buttonRoomsOtherAdd.Name = "buttonRoomsOtherAdd";
             buttonRoomsOtherAdd.Size = new Size(58, 23);
             buttonRoomsOtherAdd.TabIndex = 10;
@@ -613,9 +619,9 @@
             listBoxRoomsOther.Font = new Font("Consolas", 12F);
             listBoxRoomsOther.FormattingEnabled = true;
             listBoxRoomsOther.IntegralHeight = false;
-            listBoxRoomsOther.Location = new Point(274, 470);
+            listBoxRoomsOther.Location = new Point(274, 580);
             listBoxRoomsOther.Name = "listBoxRoomsOther";
-            listBoxRoomsOther.Size = new Size(184, 327);
+            listBoxRoomsOther.Size = new Size(184, 217);
             listBoxRoomsOther.TabIndex = 9;
             listBoxRoomsOther.SelectedIndexChanged += listBoxRoomsOther_SelectedIndexChanged;
             // 
@@ -639,6 +645,7 @@
             // 
             // buttonRoomsDelete
             // 
+            buttonRoomsDelete.Enabled = false;
             buttonRoomsDelete.Location = new Point(134, 23);
             buttonRoomsDelete.Name = "buttonRoomsDelete";
             buttonRoomsDelete.Size = new Size(58, 23);
@@ -648,6 +655,7 @@
             // 
             // buttonRoomsRename
             // 
+            buttonRoomsRename.Enabled = false;
             buttonRoomsRename.Location = new Point(70, 23);
             buttonRoomsRename.Name = "buttonRoomsRename";
             buttonRoomsRename.Size = new Size(58, 23);
@@ -707,7 +715,7 @@
             // 
             richTextBoxItemsLocation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxItemsLocation.Font = new Font("Consolas", 12F);
-            richTextBoxItemsLocation.Location = new Point(274, 177);
+            richTextBoxItemsLocation.Location = new Point(274, 287);
             richTextBoxItemsLocation.Multiline = false;
             richTextBoxItemsLocation.Name = "richTextBoxItemsLocation";
             richTextBoxItemsLocation.Size = new Size(909, 23);
@@ -721,7 +729,7 @@
             richTextBoxItemsLongDesc.Font = new Font("Consolas", 12F);
             richTextBoxItemsLongDesc.Location = new Point(274, 81);
             richTextBoxItemsLongDesc.Name = "richTextBoxItemsLongDesc";
-            richTextBoxItemsLongDesc.Size = new Size(909, 90);
+            richTextBoxItemsLongDesc.Size = new Size(909, 200);
             richTextBoxItemsLongDesc.TabIndex = 28;
             richTextBoxItemsLongDesc.Text = "";
             richTextBoxItemsLongDesc.TextChanged += richTextBoxItemsLongDesc_TextChanged;
@@ -741,7 +749,7 @@
             // labelItemsOther
             // 
             labelItemsOther.AutoSize = true;
-            labelItemsOther.Location = new Point(198, 249);
+            labelItemsOther.Location = new Point(198, 359);
             labelItemsOther.Name = "labelItemsOther";
             labelItemsOther.Size = new Size(37, 15);
             labelItemsOther.TabIndex = 26;
@@ -752,16 +760,16 @@
             richTextBoxItemsOther.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxItemsOther.DetectUrls = false;
             richTextBoxItemsOther.Font = new Font("Consolas", 12F);
-            richTextBoxItemsOther.Location = new Point(464, 243);
+            richTextBoxItemsOther.Location = new Point(464, 353);
             richTextBoxItemsOther.Name = "richTextBoxItemsOther";
-            richTextBoxItemsOther.Size = new Size(719, 555);
+            richTextBoxItemsOther.Size = new Size(719, 445);
             richTextBoxItemsOther.TabIndex = 25;
             richTextBoxItemsOther.Text = "";
             richTextBoxItemsOther.TextChanged += richTextBoxItemsOther_TextChanged;
             // 
             // buttonItemsOtherAdd
             // 
-            buttonItemsOtherAdd.Location = new Point(274, 214);
+            buttonItemsOtherAdd.Location = new Point(274, 324);
             buttonItemsOtherAdd.Name = "buttonItemsOtherAdd";
             buttonItemsOtherAdd.Size = new Size(58, 23);
             buttonItemsOtherAdd.TabIndex = 24;
@@ -770,7 +778,8 @@
             // 
             // buttonItemsOtherRename
             // 
-            buttonItemsOtherRename.Location = new Point(338, 214);
+            buttonItemsOtherRename.Enabled = false;
+            buttonItemsOtherRename.Location = new Point(338, 324);
             buttonItemsOtherRename.Name = "buttonItemsOtherRename";
             buttonItemsOtherRename.Size = new Size(58, 23);
             buttonItemsOtherRename.TabIndex = 23;
@@ -779,7 +788,8 @@
             // 
             // buttonItemsOtherDelete
             // 
-            buttonItemsOtherDelete.Location = new Point(402, 214);
+            buttonItemsOtherDelete.Enabled = false;
+            buttonItemsOtherDelete.Location = new Point(402, 324);
             buttonItemsOtherDelete.Name = "buttonItemsOtherDelete";
             buttonItemsOtherDelete.Size = new Size(58, 23);
             buttonItemsOtherDelete.TabIndex = 22;
@@ -792,16 +802,16 @@
             listBoxItemsOther.Font = new Font("Consolas", 12F);
             listBoxItemsOther.FormattingEnabled = true;
             listBoxItemsOther.IntegralHeight = false;
-            listBoxItemsOther.Location = new Point(274, 242);
+            listBoxItemsOther.Location = new Point(274, 352);
             listBoxItemsOther.Name = "listBoxItemsOther";
-            listBoxItemsOther.Size = new Size(184, 555);
+            listBoxItemsOther.Size = new Size(184, 445);
             listBoxItemsOther.TabIndex = 21;
             listBoxItemsOther.SelectedIndexChanged += listBoxItemsOther_SelectedIndexChanged;
             // 
             // labelItemsLocation
             // 
             labelItemsLocation.AutoSize = true;
-            labelItemsLocation.Location = new Point(197, 180);
+            labelItemsLocation.Location = new Point(197, 290);
             labelItemsLocation.Name = "labelItemsLocation";
             labelItemsLocation.Size = new Size(53, 15);
             labelItemsLocation.TabIndex = 19;
@@ -836,6 +846,7 @@
             // 
             // buttonItemsRename
             // 
+            buttonItemsRename.Enabled = false;
             buttonItemsRename.Location = new Point(70, 23);
             buttonItemsRename.Name = "buttonItemsRename";
             buttonItemsRename.Size = new Size(58, 23);
@@ -845,6 +856,7 @@
             // 
             // buttonItemsDelete
             // 
+            buttonItemsDelete.Enabled = false;
             buttonItemsDelete.Location = new Point(134, 23);
             buttonItemsDelete.Name = "buttonItemsDelete";
             buttonItemsDelete.Size = new Size(58, 23);
@@ -894,6 +906,7 @@
             // 
             // buttonMessagesDelete
             // 
+            buttonMessagesDelete.Enabled = false;
             buttonMessagesDelete.Location = new Point(134, 23);
             buttonMessagesDelete.Name = "buttonMessagesDelete";
             buttonMessagesDelete.Size = new Size(58, 23);
@@ -903,6 +916,7 @@
             // 
             // buttonMessagesRename
             // 
+            buttonMessagesRename.Enabled = false;
             buttonMessagesRename.Location = new Point(70, 23);
             buttonMessagesRename.Name = "buttonMessagesRename";
             buttonMessagesRename.Size = new Size(58, 23);
@@ -961,6 +975,7 @@
             // 
             // buttonValuesDelete
             // 
+            buttonValuesDelete.Enabled = false;
             buttonValuesDelete.Location = new Point(134, 23);
             buttonValuesDelete.Name = "buttonValuesDelete";
             buttonValuesDelete.Size = new Size(58, 23);
@@ -970,6 +985,7 @@
             // 
             // buttonValuesRename
             // 
+            buttonValuesRename.Enabled = false;
             buttonValuesRename.Location = new Point(70, 23);
             buttonValuesRename.Name = "buttonValuesRename";
             buttonValuesRename.Size = new Size(58, 23);
@@ -1028,6 +1044,7 @@
             // 
             // buttonVocabularyDelete
             // 
+            buttonVocabularyDelete.Enabled = false;
             buttonVocabularyDelete.Location = new Point(134, 23);
             buttonVocabularyDelete.Name = "buttonVocabularyDelete";
             buttonVocabularyDelete.Size = new Size(58, 23);
@@ -1037,6 +1054,7 @@
             // 
             // buttonVocabularyRename
             // 
+            buttonVocabularyRename.Enabled = false;
             buttonVocabularyRename.Location = new Point(70, 23);
             buttonVocabularyRename.Name = "buttonVocabularyRename";
             buttonVocabularyRename.Size = new Size(58, 23);
@@ -1095,6 +1113,7 @@
             // 
             // buttonCommandsDelete
             // 
+            buttonCommandsDelete.Enabled = false;
             buttonCommandsDelete.Location = new Point(134, 23);
             buttonCommandsDelete.Name = "buttonCommandsDelete";
             buttonCommandsDelete.Size = new Size(58, 23);
@@ -1104,6 +1123,7 @@
             // 
             // buttonCommandsRename
             // 
+            buttonCommandsRename.Enabled = false;
             buttonCommandsRename.Location = new Point(70, 23);
             buttonCommandsRename.Name = "buttonCommandsRename";
             buttonCommandsRename.Size = new Size(58, 23);
@@ -1162,6 +1182,7 @@
             // 
             // buttonScriptsDelete
             // 
+            buttonScriptsDelete.Enabled = false;
             buttonScriptsDelete.Location = new Point(134, 23);
             buttonScriptsDelete.Name = "buttonScriptsDelete";
             buttonScriptsDelete.Size = new Size(58, 23);
@@ -1171,6 +1192,7 @@
             // 
             // buttonScriptsRename
             // 
+            buttonScriptsRename.Enabled = false;
             buttonScriptsRename.Location = new Point(70, 23);
             buttonScriptsRename.Name = "buttonScriptsRename";
             buttonScriptsRename.Size = new Size(58, 23);
@@ -1230,6 +1252,7 @@
             // 
             // buttonSystemDelete
             // 
+            buttonSystemDelete.Enabled = false;
             buttonSystemDelete.Location = new Point(134, 23);
             buttonSystemDelete.Name = "buttonSystemDelete";
             buttonSystemDelete.Size = new Size(58, 23);
@@ -1239,6 +1262,7 @@
             // 
             // buttonSystemRename
             // 
+            buttonSystemRename.Enabled = false;
             buttonSystemRename.Location = new Point(70, 23);
             buttonSystemRename.Name = "buttonSystemRename";
             buttonSystemRename.Size = new Size(58, 23);
@@ -1291,6 +1315,7 @@
             // 
             // buttonFileSave
             // 
+            buttonFileSave.Enabled = false;
             buttonFileSave.Location = new Point(159, 0);
             buttonFileSave.Name = "buttonFileSave";
             buttonFileSave.Size = new Size(72, 34);
@@ -1317,6 +1342,7 @@
             buttonFileNew.TabIndex = 0;
             buttonFileNew.Text = "New";
             buttonFileNew.UseVisualStyleBackColor = true;
+            buttonFileNew.Click += buttonFileNew_Click;
             // 
             // buttonFunctions
             // 
@@ -1358,6 +1384,7 @@
             // 
             // buttonFunctionsDelete
             // 
+            buttonFunctionsDelete.Enabled = false;
             buttonFunctionsDelete.Location = new Point(134, 23);
             buttonFunctionsDelete.Name = "buttonFunctionsDelete";
             buttonFunctionsDelete.Size = new Size(58, 23);
@@ -1367,6 +1394,7 @@
             // 
             // buttonFunctionsRename
             // 
+            buttonFunctionsRename.Enabled = false;
             buttonFunctionsRename.Location = new Point(70, 23);
             buttonFunctionsRename.Name = "buttonFunctionsRename";
             buttonFunctionsRename.Size = new Size(58, 23);
@@ -1412,6 +1440,7 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
@@ -1421,7 +1450,6 @@
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
-            Controls.Add(groupBoxRooms);
             MinimumSize = new Size(1000, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;

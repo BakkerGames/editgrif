@@ -34,9 +34,10 @@ namespace editgrif
             basePath = Path.GetDirectoryName(filename) ?? "";
             filename = Path.GetFileName(filename);
             ClearData();
+            buttonFileSave.Enabled = true;
             comboBoxFileNames.SelectedIndex = -1;
             comboBoxFileNames.Items.Clear();
-            if (Path.GetExtension(filename).Equals(STACK_EXTENSION, StringComparison.OrdinalIgnoreCase))
+            if (Path.GetExtension(filename).Equals(STACK_EXTENSION, OIC))
             {
                 var lines = File.ReadAllLines(Path.Combine(basePath, filename));
                 foreach (var line in lines)
@@ -170,7 +171,7 @@ namespace editgrif
                     var keyStart = newKey[..(newKey.IndexOf('(') + 1)];
                     foreach (var key in listBoxFunctions.Items)
                     {
-                        if (key != null && key.ToString()!.StartsWith(keyStart, StringComparison.OrdinalIgnoreCase))
+                        if (key != null && key.ToString()!.StartsWith(keyStart, OIC))
                         {
                             MessageBox.Show($"Key already exists: {newKey}");
                             return;
@@ -181,7 +182,7 @@ namespace editgrif
                 {
                     foreach (var key in listBoxFunctions.Items)
                     {
-                        if (key != null && key.ToString()!.Equals(newKey, StringComparison.OrdinalIgnoreCase))
+                        if (key != null && key.ToString()!.Equals(newKey, OIC))
                         {
                             MessageBox.Show($"Key already exists: {newKey}");
                             return;
@@ -351,7 +352,23 @@ namespace editgrif
             FillListBox(grod, SCRIPT_CHAR.ToString(), listBoxFunctions);
 
             var systemList = systemPrefixes.Split(',');
-            FillListBoxFromPrefixes(grod, systemList, listBoxSystem);
+            var systemKeyList = new List<string>();
+            foreach (var prefix in systemList)
+            {
+                var keys = grod.Keys($"{prefix}.", true, false);
+                foreach (var key in keys)
+                {
+                    if (key.Equals(SYSTEM_GAMENAME, OIC)
+                        || key.Equals(SYSTEM_GAMETITLE, OIC)
+                        || key.Equals(SYSTEM_VERSION, OIC)
+                        || key.Equals(SYSTEM_INTRO, OIC))
+                    {
+                        continue;
+                    }
+                    systemKeyList.Add(key);
+                }
+            }
+            AddListBox(listBoxSystem, systemKeyList);
 
             List<string> extraKeys = [];
             foreach (var key in grod.Keys(true, true))
@@ -363,21 +380,21 @@ namespace editgrif
                     continue;
                 }
                 var prefix = key[..key.IndexOf('.')];
-                if (!systemList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !messageList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !valueList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !vocabularyList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !commandsPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
-                    !scriptList.Contains(prefix, StringComparer.OrdinalIgnoreCase) &&
-                    !directionPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
-                    !roomsPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
-                    !itemsPrefix.Equals(prefix, StringComparison.OrdinalIgnoreCase) &&
-                    !key.Equals(playerLocationKey, StringComparison.OrdinalIgnoreCase))
+                if (!ListContains(systemList, prefix) &&
+                    !ListContains(messageList, prefix) &&
+                    !ListContains(valueList, prefix) &&
+                    !ListContains(vocabularyList, prefix) &&
+                    !commandsPrefix.Equals(prefix, OIC) &&
+                    !ListContains(scriptList, prefix) &&
+                    !directionPrefix.Equals(prefix, OIC) &&
+                    !roomsPrefix.Equals(prefix, OIC) &&
+                    !itemsPrefix.Equals(prefix, OIC) &&
+                    !key.Equals(playerLocationKey, OIC))
                 {
                     extraKeys.Add(key);
                 }
             }
-            AddListBox(extraKeys, listBoxValues);
+            AddListBox(listBoxValues, extraKeys);
 
             loading = saveLoading;
         }
@@ -450,7 +467,12 @@ namespace editgrif
             richTextBoxRoomsExits.Clear();
             listBoxRoomsOther.Items.Clear();
             richTextBoxRoomsOther.Clear();
-            if (listBoxRooms.SelectedIndex < 0) return;
+            if (listBoxRooms.SelectedIndex < 0)
+            {
+                buttonRoomsRename.Enabled = false;
+                buttonRoomsDelete.Enabled = false;
+                return;
+            }
 
             currentRoomName = listBoxRooms.Items[listBoxRooms.SelectedIndex].ToString();
             currentRoomShortDescKey = roomsShortDescPattern!
@@ -478,12 +500,15 @@ namespace editgrif
             var otherKeys = grod.Keys(otherPrefix, true, true);
             foreach (var key in otherKeys)
             {
-                if (key.Equals(currentRoomShortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
-                if (key.Equals(currentRoomLongDescKey, StringComparison.OrdinalIgnoreCase)) continue;
-                if (key.StartsWith(exitsPrefix, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(currentRoomShortDescKey, OIC)) continue;
+                if (key.Equals(currentRoomLongDescKey, OIC)) continue;
+                if (key.StartsWith(exitsPrefix, OIC)) continue;
                 var otherKey = key[otherPrefix.Length..];
                 listBoxRoomsOther.Items.Add(otherKey);
             }
+
+            buttonRoomsRename.Enabled = true;
+            buttonRoomsDelete.Enabled = true;
 
             loading = saveLoading;
         }
@@ -499,7 +524,12 @@ namespace editgrif
             richTextBoxItemsLocation.Clear();
             listBoxItemsOther.Items.Clear();
             richTextBoxItemsOther.Clear();
-            if (listBoxItems.SelectedIndex < 0) return;
+            if (listBoxItems.SelectedIndex < 0)
+            {
+                buttonItemsRename.Enabled = false;
+                buttonItemsDelete.Enabled = false;
+                return;
+            }
 
             currentItemName = listBoxItems.Items[listBoxItems.SelectedIndex].ToString();
             currentItemShortDescKey = itemsShortDescPattern!
@@ -520,12 +550,15 @@ namespace editgrif
             var otherKeys = grod.Keys(otherPrefix, true, true);
             foreach (var key in otherKeys)
             {
-                if (key.Equals(currentItemShortDescKey, StringComparison.OrdinalIgnoreCase)) continue;
-                if (key.Equals(currentItemLongDescKey, StringComparison.OrdinalIgnoreCase)) continue;
-                if (key.Equals(currentItemLocationKey, StringComparison.OrdinalIgnoreCase)) continue;
+                if (key.Equals(currentItemShortDescKey, OIC)) continue;
+                if (key.Equals(currentItemLongDescKey, OIC)) continue;
+                if (key.Equals(currentItemLocationKey, OIC)) continue;
                 var otherKey = key[otherPrefix.Length..];
                 listBoxItemsOther.Items.Add(otherKey);
             }
+
+            buttonItemsRename.Enabled = true;
+            buttonItemsDelete.Enabled = true;
 
             loading = saveLoading;
         }
@@ -575,7 +608,19 @@ namespace editgrif
             loading = true;
             if (comboBoxFileNames.SelectedIndex < 0) return;
             var filename = comboBoxFileNames.SelectedItem?.ToString() ?? "";
-            grod = IO.OpenFile(Path.Combine(basePath, filename)) ?? new();
+            try
+            {
+                grod = IO.OpenFile(Path.Combine(basePath, filename)) ?? new();
+            }
+            catch (FileNotFoundException)
+            {
+                grod = new();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening file:\n{ex.Message}");
+                return;
+            }
             if (grod == null) return;
             LoadData(grod);
             overlay = new()
@@ -731,23 +776,52 @@ namespace editgrif
 
         private void buttonStartDirectionsAdd_Click(object sender, EventArgs e)
         {
-            var dialog = new EnterKeyForm();
-            if (directionPrefix != null)
+            ListBoxAddButton(listBoxStartDirection, directionPrefix + '.' ?? "");
+            richTextBoxStartDirections.Focus();
+        }
+
+        private void ListBoxAddButton(ListBox listBox, string prefix)
+        {
+            var dialog = new EnterKeyForm
             {
-                dialog.Prefix = directionPrefix + '.';
-            }
+                Prefix = prefix
+            };
             dialog.ShowDialog();
-            var newKey = dialog.Key;
-            if (dialog.DialogResult == DialogResult.OK && !string.IsNullOrEmpty(newKey))
+            if (dialog.DialogResult != DialogResult.OK || string.IsNullOrWhiteSpace(dialog.Key))
             {
-                if (listBoxStartDirection.Items.Contains(newKey))
-                {
-                    MessageBox.Show($"Key already exists: {newKey}");
-                    return;
-                }
-                AddListBox([newKey], listBoxStartDirection);
-                listBoxStartDirection.SelectedItem = newKey;
+                return;
             }
+            var newKey = dialog.Key;
+            var fullKey = prefix + newKey;
+            if (ListBoxContains(listBox, newKey))
+            {
+                MessageBox.Show($"Key already exists: {fullKey}");
+                return;
+            }
+            overlay.Set(fullKey, "");
+            AddListBox(listBox, [newKey]);
+            listBox.SelectedItem = newKey;
+        }
+
+        private void buttonFileNew_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                CheckFileExists = false,
+                Filter = "Grif files|*.grif",
+                AddExtension = true,
+            };
+            var result = dialog.ShowDialog();
+            if (result != DialogResult.OK) return;
+            var filename = dialog.FileName;
+            basePath = Path.GetDirectoryName(filename) ?? "";
+            filename = Path.GetFileName(filename);
+            ClearData();
+            buttonFileSave.Enabled = true;
+            comboBoxFileNames.SelectedIndex = -1;
+            comboBoxFileNames.Items.Clear();
+            comboBoxFileNames.Items.Add(filename);
+            comboBoxFileNames.SelectedIndex = 0;
         }
     }
 }

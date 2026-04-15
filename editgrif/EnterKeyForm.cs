@@ -22,6 +22,10 @@ public partial class EnterKeyForm : Form
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public string Prefix
     {
+        get
+        {
+            return labelPrefix.Text;
+        }
         set
         {
             labelPrefix.Text = value;

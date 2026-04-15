@@ -1,4 +1,5 @@
 ﻿using GrifLib;
+using static GrifLib.Common;
 
 namespace editgrif;
 
@@ -45,15 +46,51 @@ internal static class StaticRoutines
     internal static void FillListBox(Grod grod, string prefix, ListBox listbox)
     {
         var keys = grod.Keys(prefix, true, true) ?? [];
-        AddListBox(keys, listbox);
+        AddListBox(listbox, keys);
     }
 
-    internal static void AddListBox(List<string> keys, ListBox listbox)
+    internal static bool ListContains(string[] list, string value)
+    {
+        foreach (var item in list)
+        {
+            if (item != null && item.ToString()!.Equals(value, OIC))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    internal static bool ListContains(List<string> list, string value)
+    {
+        foreach (var item in list)
+        {
+            if (item != null && item.ToString()!.Equals(value, OIC))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    internal static bool ListBoxContains(ListBox listbox, string value)
+    {
+        foreach (var item in listbox.Items)
+        {
+            if (item != null && item.ToString()!.Equals(value, OIC))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    internal static void AddListBox(ListBox listbox, List<string> keys)
     {
         if (keys.Count == 0) return;
         foreach (var item in listbox.Items)
         {
-            if (!keys.Contains((string)item, StringComparer.OrdinalIgnoreCase))
+            if (!ListContains(keys, (string)item))
             {
                 keys.Add((string)item);
             }
@@ -97,12 +134,12 @@ internal static class StaticRoutines
             var keys = grod.Keys($"{prefix}.", true, false);
             foreach (var key in keys)
             {
-                var name = key[(prefix.Length + 1)..].ToLower();
+                var name = key[(prefix.Length + 1)..];
                 if (name.Contains('.'))
                 {
                     name = name[..name.IndexOf('.')];
                 }
-                if (!allKeys.Contains(name, StringComparer.OrdinalIgnoreCase))
+                if (!ListContains(allKeys, name))
                 {
                     allKeys.Add(name);
                 }
