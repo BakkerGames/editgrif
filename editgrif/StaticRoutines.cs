@@ -182,4 +182,26 @@ internal static class StaticRoutines
             }
         }
     }
+
+    internal static void ListBoxAddItem(ListBox listBox, string prefix)
+    {
+        var dialog = new EnterKeyForm
+        {
+            Prefix = prefix
+        };
+        dialog.ShowDialog();
+        if (dialog.DialogResult != DialogResult.OK || string.IsNullOrWhiteSpace(dialog.Key))
+        {
+            return;
+        }
+        var newKey = dialog.Key;
+        var fullKey = prefix + newKey;
+        if (ListBoxContains(listBox, newKey))
+        {
+            MessageBox.Show($"Key already exists: {fullKey}");
+            return;
+        }
+        AddListBox(listBox, [newKey]);
+        listBox.SelectedItem = newKey;
+    }
 }

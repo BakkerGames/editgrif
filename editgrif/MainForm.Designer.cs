@@ -435,7 +435,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(63, 15);
+            labelStartGameTitle.Size = new Size(64, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -507,7 +507,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 316);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.Size = new Size(30, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -551,6 +551,7 @@
             buttonRoomsExitsAdd.TabIndex = 17;
             buttonRoomsExitsAdd.Text = "Add";
             buttonRoomsExitsAdd.UseVisualStyleBackColor = true;
+            buttonRoomsExitsAdd.Click += buttonRoomsExitsAdd_Click;
             // 
             // labelRoomsOther
             // 
@@ -612,6 +613,7 @@
             buttonRoomsOtherAdd.TabIndex = 10;
             buttonRoomsOtherAdd.Text = "Add";
             buttonRoomsOtherAdd.UseVisualStyleBackColor = true;
+            buttonRoomsOtherAdd.Click += buttonRoomsOtherAdd_Click;
             // 
             // listBoxRoomsOther
             // 
@@ -671,6 +673,7 @@
             buttonRoomsAdd.TabIndex = 0;
             buttonRoomsAdd.Text = "Add";
             buttonRoomsAdd.UseVisualStyleBackColor = true;
+            buttonRoomsAdd.Click += buttonRoomsAdd_Click;
             // 
             // listBoxRooms
             // 
@@ -775,6 +778,7 @@
             buttonItemsOtherAdd.TabIndex = 24;
             buttonItemsOtherAdd.Text = "Add";
             buttonItemsOtherAdd.UseVisualStyleBackColor = true;
+            buttonItemsOtherAdd.Click += buttonItemsOtherAdd_Click;
             // 
             // buttonItemsOtherRename
             // 
@@ -843,6 +847,7 @@
             buttonItemsAdd.TabIndex = 14;
             buttonItemsAdd.Text = "Add";
             buttonItemsAdd.UseVisualStyleBackColor = true;
+            buttonItemsAdd.Click += buttonItemsAdd_Click;
             // 
             // buttonItemsRename
             // 
@@ -932,6 +937,7 @@
             buttonMessagesAdd.TabIndex = 6;
             buttonMessagesAdd.Text = "Add";
             buttonMessagesAdd.UseVisualStyleBackColor = true;
+            buttonMessagesAdd.Click += buttonMessagesAdd_Click;
             // 
             // listBoxMessages
             // 
@@ -1001,6 +1007,7 @@
             buttonValuesAdd.TabIndex = 6;
             buttonValuesAdd.Text = "Add";
             buttonValuesAdd.UseVisualStyleBackColor = true;
+            buttonValuesAdd.Click += buttonValuesAdd_Click;
             // 
             // listBoxValues
             // 
@@ -1070,6 +1077,7 @@
             buttonVocabularyAdd.TabIndex = 6;
             buttonVocabularyAdd.Text = "Add";
             buttonVocabularyAdd.UseVisualStyleBackColor = true;
+            buttonVocabularyAdd.Click += buttonVocabularyAdd_Click;
             // 
             // listBoxVocabulary
             // 
@@ -1139,6 +1147,7 @@
             buttonCommandsAdd.TabIndex = 6;
             buttonCommandsAdd.Text = "Add";
             buttonCommandsAdd.UseVisualStyleBackColor = true;
+            buttonCommandsAdd.Click += buttonCommandsAdd_Click;
             // 
             // listBoxCommands
             // 
@@ -1208,6 +1217,7 @@
             buttonScriptsAdd.TabIndex = 6;
             buttonScriptsAdd.Text = "Add";
             buttonScriptsAdd.UseVisualStyleBackColor = true;
+            buttonScriptsAdd.Click += buttonScriptsAdd_Click;
             // 
             // listBoxScripts
             // 
@@ -1278,6 +1288,7 @@
             buttonSystemAdd.TabIndex = 6;
             buttonSystemAdd.Text = "Add";
             buttonSystemAdd.UseVisualStyleBackColor = true;
+            buttonSystemAdd.Click += buttonSystemAdd_Click;
             // 
             // listBoxSystem
             // 
@@ -1440,8 +1451,6 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
-            Controls.Add(groupBoxRooms);
-            Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
             Controls.Add(groupBoxSystem);
             Controls.Add(groupBoxScripts);
@@ -1450,6 +1459,8 @@
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
+            Controls.Add(groupBoxRooms);
+            Controls.Add(groupBoxStart);
             MinimumSize = new Size(1000, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;

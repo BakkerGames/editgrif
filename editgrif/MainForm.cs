@@ -189,7 +189,9 @@ namespace editgrif
                         }
                     }
                 }
-                listBoxFunctions.Items.Add(newKey);
+                AddListBox(listBoxFunctions, [newKey]);
+                listBoxFunctions.SelectedItem = newKey;
+                richTextBoxFunctions.Focus();
             }
         }
 
@@ -776,32 +778,11 @@ namespace editgrif
 
         private void buttonStartDirectionsAdd_Click(object sender, EventArgs e)
         {
-            ListBoxAddButton(listBoxStartDirection, directionPrefix + '.' ?? "");
+            var prefix = directionPrefix + '.' ?? "";
+            ListBoxAddItem(listBoxStartDirection, prefix);
             richTextBoxStartDirections.Focus();
         }
 
-        private void ListBoxAddButton(ListBox listBox, string prefix)
-        {
-            var dialog = new EnterKeyForm
-            {
-                Prefix = prefix
-            };
-            dialog.ShowDialog();
-            if (dialog.DialogResult != DialogResult.OK || string.IsNullOrWhiteSpace(dialog.Key))
-            {
-                return;
-            }
-            var newKey = dialog.Key;
-            var fullKey = prefix + newKey;
-            if (ListBoxContains(listBox, newKey))
-            {
-                MessageBox.Show($"Key already exists: {fullKey}");
-                return;
-            }
-            overlay.Set(fullKey, "");
-            AddListBox(listBox, [newKey]);
-            listBox.SelectedItem = newKey;
-        }
 
         private void buttonFileNew_Click(object sender, EventArgs e)
         {
@@ -822,6 +803,78 @@ namespace editgrif
             comboBoxFileNames.Items.Clear();
             comboBoxFileNames.Items.Add(filename);
             comboBoxFileNames.SelectedIndex = 0;
+        }
+
+        private void buttonRoomsAdd_Click(object sender, EventArgs e)
+        {
+            var prefix = $"{roomsPrefix}.";
+            ListBoxAddItem(listBoxRooms, prefix);
+        }
+
+        private void buttonRoomsExitsAdd_Click(object sender, EventArgs e)
+        {
+            var prefix = roomsExitsPattern!
+                .Replace("{roomprefix}", roomsPrefix)
+                .Replace("{room}", currentRoomName)
+                .Replace("{direction}", "");
+            ListBoxAddItem(listBoxRoomsExits, prefix);
+            richTextBoxRoomsExits.Focus();
+        }
+
+        private void buttonRoomsOtherAdd_Click(object sender, EventArgs e)
+        {
+            var prefix = $"{roomsPrefix}.{currentRoomName}.";
+            ListBoxAddItem(listBoxRoomsOther, prefix);
+            richTextBoxRoomsOther.Focus();
+        }
+
+        private void buttonItemsAdd_Click(object sender, EventArgs e)
+        {
+            var prefix = $"{itemsPrefix}.";
+            ListBoxAddItem(listBoxItems, prefix);
+        }
+
+        private void buttonItemsOtherAdd_Click(object sender, EventArgs e)
+        {
+            var prefix = $"{itemsPrefix}.{currentItemName}.";
+            ListBoxAddItem(listBoxItemsOther, prefix);
+            richTextBoxItemsOther.Focus();
+        }
+
+        private void buttonSystemAdd_Click(object sender, EventArgs e)
+        {
+            ListBoxAddItem(listBoxSystem, "");
+            richTextBoxSystem.Focus();
+        }
+
+        private void buttonScriptsAdd_Click(object sender, EventArgs e)
+        {
+            ListBoxAddItem(listBoxScripts, "");
+            richTextBoxScripts.Focus();
+        }
+
+        private void buttonCommandsAdd_Click(object sender, EventArgs e)
+        {
+            ListBoxAddItem(listBoxCommands, "");
+            richTextBoxCommands.Focus();
+        }
+
+        private void buttonVocabularyAdd_Click(object sender, EventArgs e)
+        {
+            ListBoxAddItem(listBoxVocabulary, "");
+            richTextBoxVocabulary.Focus();
+        }
+
+        private void buttonValuesAdd_Click(object sender, EventArgs e)
+        {
+            ListBoxAddItem(listBoxValues, "");
+            richTextBoxValues.Focus();
+        }
+
+        private void buttonMessagesAdd_Click(object sender, EventArgs e)
+        {
+            ListBoxAddItem(listBoxMessages, "");
+            richTextBoxMessages.Focus();
         }
     }
 }
