@@ -325,6 +325,7 @@
             buttonStartDirectionsDelete.TabIndex = 27;
             buttonStartDirectionsDelete.Text = "Delete";
             buttonStartDirectionsDelete.UseVisualStyleBackColor = true;
+            buttonStartDirectionsDelete.Click += buttonStartDirectionsDelete_Click;
             // 
             // buttonStartDirectionsRename
             // 
@@ -335,6 +336,7 @@
             buttonStartDirectionsRename.TabIndex = 25;
             buttonStartDirectionsRename.Text = "Rename";
             buttonStartDirectionsRename.UseVisualStyleBackColor = true;
+            buttonStartDirectionsRename.Click += buttonStartDirectionsRename_Click;
             // 
             // buttonStartDirectionsAdd
             // 
@@ -532,6 +534,7 @@
             buttonRoomsExitsDelete.TabIndex = 19;
             buttonRoomsExitsDelete.Text = "Delete";
             buttonRoomsExitsDelete.UseVisualStyleBackColor = true;
+            buttonRoomsExitsDelete.Click += buttonRoomsExitsDelete_Click;
             // 
             // buttonRoomsExitsRename
             // 
@@ -542,6 +545,7 @@
             buttonRoomsExitsRename.TabIndex = 18;
             buttonRoomsExitsRename.Text = "Rename";
             buttonRoomsExitsRename.UseVisualStyleBackColor = true;
+            buttonRoomsExitsRename.Click += buttonRoomsExitsRename_Click;
             // 
             // buttonRoomsExitsAdd
             // 
@@ -594,6 +598,7 @@
             buttonRoomsOtherDelete.TabIndex = 12;
             buttonRoomsOtherDelete.Text = "Delete";
             buttonRoomsOtherDelete.UseVisualStyleBackColor = true;
+            buttonRoomsOtherDelete.Click += buttonRoomsOtherDelete_Click;
             // 
             // buttonRoomsOtherRename
             // 
@@ -604,6 +609,7 @@
             buttonRoomsOtherRename.TabIndex = 11;
             buttonRoomsOtherRename.Text = "Rename";
             buttonRoomsOtherRename.UseVisualStyleBackColor = true;
+            buttonRoomsOtherRename.Click += buttonRoomsOtherRename_Click;
             // 
             // buttonRoomsOtherAdd
             // 
@@ -654,6 +660,7 @@
             buttonRoomsDelete.TabIndex = 2;
             buttonRoomsDelete.Text = "Delete";
             buttonRoomsDelete.UseVisualStyleBackColor = true;
+            buttonRoomsDelete.Click += buttonRoomsDelete_Click;
             // 
             // buttonRoomsRename
             // 
@@ -664,6 +671,7 @@
             buttonRoomsRename.TabIndex = 1;
             buttonRoomsRename.Text = "Rename";
             buttonRoomsRename.UseVisualStyleBackColor = true;
+            buttonRoomsRename.Click += buttonRoomsRename_Click;
             // 
             // buttonRoomsAdd
             // 
@@ -789,6 +797,7 @@
             buttonItemsOtherRename.TabIndex = 23;
             buttonItemsOtherRename.Text = "Rename";
             buttonItemsOtherRename.UseVisualStyleBackColor = true;
+            buttonItemsOtherRename.Click += buttonItemsOtherRename_Click;
             // 
             // buttonItemsOtherDelete
             // 
@@ -799,6 +808,7 @@
             buttonItemsOtherDelete.TabIndex = 22;
             buttonItemsOtherDelete.Text = "Delete";
             buttonItemsOtherDelete.UseVisualStyleBackColor = true;
+            buttonItemsOtherDelete.Click += buttonItemsOtherDelete_Click;
             // 
             // listBoxItemsOther
             // 
@@ -858,6 +868,7 @@
             buttonItemsRename.TabIndex = 13;
             buttonItemsRename.Text = "Rename";
             buttonItemsRename.UseVisualStyleBackColor = true;
+            buttonItemsRename.Click += buttonItemsRename_Click;
             // 
             // buttonItemsDelete
             // 
@@ -868,6 +879,7 @@
             buttonItemsDelete.TabIndex = 12;
             buttonItemsDelete.Text = "Delete";
             buttonItemsDelete.UseVisualStyleBackColor = true;
+            buttonItemsDelete.Click += buttonItemsDelete_Click;
             // 
             // listBoxItems
             // 
@@ -918,6 +930,7 @@
             buttonMessagesDelete.TabIndex = 8;
             buttonMessagesDelete.Text = "Delete";
             buttonMessagesDelete.UseVisualStyleBackColor = true;
+            buttonMessagesDelete.Click += buttonMessagesDelete_Click;
             // 
             // buttonMessagesRename
             // 
@@ -928,6 +941,7 @@
             buttonMessagesRename.TabIndex = 7;
             buttonMessagesRename.Text = "Rename";
             buttonMessagesRename.UseVisualStyleBackColor = true;
+            buttonMessagesRename.Click += buttonMessagesRename_Click;
             // 
             // buttonMessagesAdd
             // 
@@ -988,6 +1002,7 @@
             buttonValuesDelete.TabIndex = 8;
             buttonValuesDelete.Text = "Delete";
             buttonValuesDelete.UseVisualStyleBackColor = true;
+            buttonValuesDelete.Click += buttonValuesDelete_Click;
             // 
             // buttonValuesRename
             // 
@@ -998,6 +1013,7 @@
             buttonValuesRename.TabIndex = 7;
             buttonValuesRename.Text = "Rename";
             buttonValuesRename.UseVisualStyleBackColor = true;
+            buttonValuesRename.Click += buttonValuesRename_Click;
             // 
             // buttonValuesAdd
             // 
@@ -1058,6 +1074,7 @@
             buttonVocabularyDelete.TabIndex = 8;
             buttonVocabularyDelete.Text = "Delete";
             buttonVocabularyDelete.UseVisualStyleBackColor = true;
+            buttonVocabularyDelete.Click += buttonVocabularyDelete_Click;
             // 
             // buttonVocabularyRename
             // 
@@ -1068,6 +1085,7 @@
             buttonVocabularyRename.TabIndex = 7;
             buttonVocabularyRename.Text = "Rename";
             buttonVocabularyRename.UseVisualStyleBackColor = true;
+            buttonVocabularyRename.Click += buttonVocabularyRename_Click;
             // 
             // buttonVocabularyAdd
             // 
@@ -1128,6 +1146,7 @@
             buttonCommandsDelete.TabIndex = 8;
             buttonCommandsDelete.Text = "Delete";
             buttonCommandsDelete.UseVisualStyleBackColor = true;
+            buttonCommandsDelete.Click += buttonCommandsDelete_Click;
             // 
             // buttonCommandsRename
             // 
@@ -1138,6 +1157,7 @@
             buttonCommandsRename.TabIndex = 7;
             buttonCommandsRename.Text = "Rename";
             buttonCommandsRename.UseVisualStyleBackColor = true;
+            buttonCommandsRename.Click += buttonCommandsRename_Click;
             // 
             // buttonCommandsAdd
             // 
@@ -1198,6 +1218,7 @@
             buttonScriptsDelete.TabIndex = 8;
             buttonScriptsDelete.Text = "Delete";
             buttonScriptsDelete.UseVisualStyleBackColor = true;
+            buttonScriptsDelete.Click += buttonScriptsDelete_Click;
             // 
             // buttonScriptsRename
             // 
@@ -1208,6 +1229,7 @@
             buttonScriptsRename.TabIndex = 7;
             buttonScriptsRename.Text = "Rename";
             buttonScriptsRename.UseVisualStyleBackColor = true;
+            buttonScriptsRename.Click += buttonScriptsRename_Click;
             // 
             // buttonScriptsAdd
             // 
@@ -1269,6 +1291,7 @@
             buttonSystemDelete.TabIndex = 8;
             buttonSystemDelete.Text = "Delete";
             buttonSystemDelete.UseVisualStyleBackColor = true;
+            buttonSystemDelete.Click += buttonSystemDelete_Click;
             // 
             // buttonSystemRename
             // 
@@ -1279,6 +1302,7 @@
             buttonSystemRename.TabIndex = 7;
             buttonSystemRename.Text = "Rename";
             buttonSystemRename.UseVisualStyleBackColor = true;
+            buttonSystemRename.Click += buttonSystemRename_Click;
             // 
             // buttonSystemAdd
             // 
@@ -1402,6 +1426,7 @@
             buttonFunctionsDelete.TabIndex = 3;
             buttonFunctionsDelete.Text = "Delete";
             buttonFunctionsDelete.UseVisualStyleBackColor = true;
+            buttonFunctionsDelete.Click += buttonFunctionsDelete_Click;
             // 
             // buttonFunctionsRename
             // 
@@ -1412,6 +1437,7 @@
             buttonFunctionsRename.TabIndex = 1;
             buttonFunctionsRename.Text = "Rename";
             buttonFunctionsRename.UseVisualStyleBackColor = true;
+            buttonFunctionsRename.Click += buttonFunctionsRename_Click;
             // 
             // buttonFunctionsAdd
             // 
@@ -1451,16 +1477,16 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
-            Controls.Add(groupBoxFunctions);
-            Controls.Add(groupBoxSystem);
-            Controls.Add(groupBoxScripts);
-            Controls.Add(groupBoxCommands);
-            Controls.Add(groupBoxVocabulary);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
+            Controls.Add(groupBoxFunctions);
+            Controls.Add(groupBoxSystem);
+            Controls.Add(groupBoxScripts);
+            Controls.Add(groupBoxCommands);
+            Controls.Add(groupBoxVocabulary);
             MinimumSize = new Size(1000, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;

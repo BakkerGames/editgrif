@@ -5,7 +5,7 @@ internal static class CurrentValues
     // Start
     public static string? playerLocationKey;
     public static string? directionPrefix;
-    public static string? currentDirectionKey;
+    public static string? currentStartDirectionsKey;
 
     // Rooms
     public static string? roomsPrefix;
@@ -50,7 +50,7 @@ internal static class CurrentValues
     public static string? currentScriptsKey;
 
     // Functions
-    public static string? currentFunctionsValue;
+    public static string? currentFunctionsKey;
 
     // System
     public static string? systemPrefixes;
