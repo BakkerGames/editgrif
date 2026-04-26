@@ -183,11 +183,12 @@ internal static class StaticRoutines
         }
     }
 
-    internal static string? ListBoxAddItem(ListBox listBox, string prefix)
+    internal static string? ListBoxAddItem(ListBox listBox, string prefix, string? defaultValue = null)
     {
         var dialog = new EnterKeyForm
         {
-            Prefix = prefix
+            Prefix = prefix,
+            Key = defaultValue ?? ""
         };
         dialog.ShowDialog();
         if (dialog.DialogResult != DialogResult.OK || string.IsNullOrWhiteSpace(dialog.Key))
@@ -204,5 +205,37 @@ internal static class StaticRoutines
         AddListBox(listBox, [newKey]);
         listBox.SelectedItem = newKey;
         return fullKey;
+    }
+
+    internal static string? ListBoxRenameItem(Grod grod, ListBox listBox, string prefix, string currentKey)
+    {
+        var oldValue = grod.Get(currentKey, true);
+        var newKey = ListBoxAddItem(listBox, prefix, currentKey);
+        if (newKey != null)
+        {
+            listBox.SelectedIndex = -1;
+            grod.Set(newKey, oldValue);
+            grod.Remove(currentKey, true);
+            listBox.Items.Remove(currentKey);
+            listBox.SelectedItem = newKey;
+        }
+        return newKey;
+    }
+
+    internal static bool ListBoxDeleteItem(Grod grod, ListBox listBox, string currentKey)
+    {
+        if (listBox.SelectedIndex < 0)
+        {
+            return false;
+        }
+        var result = MessageBox.Show(currentKey, "Delete this key?", MessageBoxButtons.OKCancel);
+        if (result != DialogResult.OK)
+        {
+            return false;
+        }
+        listBox.SelectedIndex = -1;
+        grod.Remove(currentKey, true);
+        listBox.Items.Remove(currentKey);
+        return true;
     }
 }

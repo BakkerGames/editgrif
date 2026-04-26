@@ -16,6 +16,8 @@ public partial class EnterKeyForm : Form
         set
         {
             textBoxKey.Text = value;
+            textBoxKey.SelectionLength = 0;
+            textBoxKey.SelectionStart = value.Length;
         }
     }
 

@@ -911,10 +911,7 @@ namespace editgrif
         private void buttonStartDirectionsAdd_Click(object sender, EventArgs e)
         {
             var prefix = directionPrefix + '.' ?? "";
-            if (ListBoxAddItem(listBoxStartDirection, prefix) != null)
-            {
-                richTextBoxStartDirections.Focus();
-            }
+            ListBoxAddItem(listBoxStartDirection, prefix);
         }
 
         private void buttonFileNew_Click(object sender, EventArgs e)
@@ -950,19 +947,13 @@ namespace editgrif
                 .Replace("{roomprefix}", roomsPrefix)
                 .Replace("{room}", currentRoomName)
                 .Replace("{direction}", "");
-            if (ListBoxAddItem(listBoxRoomsExits, prefix) != null)
-            {
-                richTextBoxRoomsExits.Focus();
-            }
+            ListBoxAddItem(listBoxRoomsExits, prefix);
         }
 
         private void buttonRoomsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            if (ListBoxAddItem(listBoxRoomsOther, prefix) != null)
-            {
-                richTextBoxRoomsOther.Focus();
-            }
+            ListBoxAddItem(listBoxRoomsOther, prefix);
         }
 
         private void buttonItemsAdd_Click(object sender, EventArgs e)
@@ -974,353 +965,203 @@ namespace editgrif
         private void buttonItemsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            if (ListBoxAddItem(listBoxItemsOther, prefix) != null)
-            {
-                richTextBoxItemsOther.Focus();
-            }
+            ListBoxAddItem(listBoxItemsOther, prefix);
         }
 
         private void buttonSystemAdd_Click(object sender, EventArgs e)
         {
-            if (ListBoxAddItem(listBoxSystem, "") != null)
-            {
-                richTextBoxSystem.Focus();
-            }
+            ListBoxAddItem(listBoxSystem, "");
         }
 
         private void buttonScriptsAdd_Click(object sender, EventArgs e)
         {
-            if (ListBoxAddItem(listBoxScripts, "") != null)
-            {
-                richTextBoxScripts.Focus();
-            }
+            ListBoxAddItem(listBoxScripts, "");
         }
 
         private void buttonCommandsAdd_Click(object sender, EventArgs e)
         {
-            if (ListBoxAddItem(listBoxCommands, "") != null)
-            {
-                richTextBoxCommands.Focus();
-            }
+            ListBoxAddItem(listBoxCommands, "");
         }
 
         private void buttonVocabularyAdd_Click(object sender, EventArgs e)
         {
-            if (ListBoxAddItem(listBoxVocabulary, "") != null)
-            {
-                richTextBoxVocabulary.Focus();
-            }
+            ListBoxAddItem(listBoxVocabulary, "");
         }
 
         private void buttonValuesAdd_Click(object sender, EventArgs e)
         {
-            if (ListBoxAddItem(listBoxValues, "") != null)
-            {
-                richTextBoxValues.Focus();
-            }
+            ListBoxAddItem(listBoxValues, "");
         }
 
         private void buttonMessagesAdd_Click(object sender, EventArgs e)
         {
-            if (ListBoxAddItem(listBoxMessages, "") != null)
-            {
-                richTextBoxMessages.Focus();
-            }
+            ListBoxAddItem(listBoxMessages, "");
         }
 
         private void buttonValuesRename_Click(object sender, EventArgs e)
         {
             if (listBoxValues.SelectedIndex < 0 || currentValuesKey == null) return;
-            string oldKey = currentValuesKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxValues, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxValues, currValue);
-                listBoxValues.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            ListBoxRenameItem(grod, listBoxValues, "", currentValuesKey);
         }
 
         private void buttonValuesDelete_Click(object sender, EventArgs e)
         {
             if (listBoxValues.SelectedIndex < 0 || currentValuesKey == null) return;
-            string oldKey = currentValuesKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxValues.Items.Remove(oldKey);
-            listBoxValues.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxValues, currentValuesKey);
         }
 
         private void buttonMessagesRename_Click(object sender, EventArgs e)
         {
             if (listBoxMessages.SelectedIndex < 0 || currentMessagesKey == null) return;
-            string oldKey = currentMessagesKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxMessages, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxMessages, currValue);
-                listBoxMessages.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            ListBoxRenameItem(grod, listBoxMessages, "", currentMessagesKey);
         }
 
         private void buttonMessagesDelete_Click(object sender, EventArgs e)
         {
             if (listBoxMessages.SelectedIndex < 0 || currentMessagesKey == null) return;
-            string oldKey = currentMessagesKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxMessages.Items.Remove(oldKey);
-            listBoxMessages.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxMessages, currentMessagesKey);
         }
 
         private void buttonItemsOtherRename_Click(object sender, EventArgs e)
         {
             if (listBoxItemsOther.SelectedIndex < 0 || currentItemsOtherKey == null) return;
-            string oldKey = currentItemsOtherKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxItemsOther, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxItemsOther, currValue);
-                listBoxItemsOther.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            var prefix = $"{itemsPrefix}.{currentItemName}.";
+            ListBoxRenameItem(grod, listBoxItemsOther, prefix, currentItemsOtherKey);
         }
 
         private void buttonItemsOtherDelete_Click(object sender, EventArgs e)
         {
             if (listBoxItemsOther.SelectedIndex < 0 || currentItemsOtherKey == null) return;
-            string oldKey = currentItemsOtherKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxItemsOther.Items.Remove(oldKey);
-            listBoxItemsOther.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxItemsOther, currentItemsOtherKey);
         }
 
         private void buttonItemsRename_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (listBoxItems.SelectedIndex < 0 || currentItemName == null) return;
+            var prefix = $"{itemsPrefix}.";
+            ListBoxRenameItem(grod, listBoxItems, prefix, currentItemName);
         }
 
         private void buttonItemsDelete_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (listBoxItems.SelectedIndex < 0 || currentItemName == null) return;
+            ListBoxDeleteItem(grod, listBoxItems, currentItemName);
         }
 
         private void buttonRoomsRename_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (listBoxRooms.SelectedIndex < 0 || currentRoomName == null) return;
+            var prefix = $"{roomsPrefix}.";
+            ListBoxRenameItem(grod, listBoxRooms, prefix, currentRoomName);
         }
 
         private void buttonRoomsDelete_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (listBoxRooms.SelectedIndex < 0 || currentRoomName == null) return;
+            ListBoxDeleteItem(grod, listBoxRooms, currentRoomName);
         }
 
         private void buttonRoomsExitsRename_Click(object sender, EventArgs e)
         {
             if (listBoxRoomsExits.SelectedIndex < 0 || currentRoomsExitsKey == null) return;
-            string oldKey = currentRoomsExitsKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxRoomsExits, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxRoomsExits, currValue);
-                listBoxRoomsExits.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            var prefix = roomsExitsPattern!
+                .Replace("{roomprefix}", roomsPrefix)
+                .Replace("{room}", currentRoomName)
+                .Replace("{direction}", "");
+            ListBoxRenameItem(grod, listBoxRoomsExits, prefix, currentRoomsExitsKey);
         }
 
         private void buttonRoomsExitsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxRoomsExits.SelectedIndex < 0 || currentRoomsExitsKey == null) return;
-            string oldKey = currentRoomsExitsKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxRoomsExits.Items.Remove(oldKey);
-            listBoxRoomsExits.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxRoomsExits, currentRoomsExitsKey);
         }
 
         private void buttonRoomsOtherRename_Click(object sender, EventArgs e)
         {
             if (listBoxRoomsOther.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
-            string oldKey = currentRoomsOtherKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxRoomsOther, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxRoomsOther, currValue);
-                listBoxRoomsOther.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            var prefix = $"{roomsPrefix}.{currentRoomName}.";
+            ListBoxRenameItem(grod, listBoxRoomsOther, prefix, currentRoomsOtherKey);
         }
 
         private void buttonRoomsOtherDelete_Click(object sender, EventArgs e)
         {
             if (listBoxRoomsOther.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
-            string oldKey = currentRoomsOtherKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxRoomsOther.Items.Remove(oldKey);
-            listBoxRoomsOther.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxRoomsOther, currentRoomsOtherKey);
         }
 
         private void buttonStartDirectionsRename_Click(object sender, EventArgs e)
         {
             if (listBoxStartDirection.SelectedIndex < 0 || currentStartDirectionsKey == null) return;
-            string oldKey = currentStartDirectionsKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxStartDirection, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxStartDirections, currValue);
-                listBoxStartDirection.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            var prefix = directionPrefix + '.' ?? "";
+            ListBoxRenameItem(grod, listBoxStartDirection, prefix, currentStartDirectionsKey);
         }
 
         private void buttonStartDirectionsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxStartDirection.SelectedIndex < 0 || currentStartDirectionsKey == null) return;
-            string oldKey = currentStartDirectionsKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxStartDirection.Items.Remove(oldKey);
-            listBoxStartDirection.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxStartDirection, currentStartDirectionsKey);
         }
 
         private void buttonFunctionsRename_Click(object sender, EventArgs e)
         {
             if (listBoxFunctions.SelectedIndex < 0 || currentFunctionsKey == null) return;
-            string oldKey = currentFunctionsKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxFunctions, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxFunctions, currValue);
-                listBoxFunctions.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            var prefix = "@";
+            ListBoxRenameItem(grod, listBoxFunctions, prefix, currentFunctionsKey);
         }
 
         private void buttonFunctionsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxFunctions.SelectedIndex < 0 || currentFunctionsKey == null) return;
-            string oldKey = currentFunctionsKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxFunctions.Items.Remove(oldKey);
-            listBoxFunctions.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxFunctions, currentFunctionsKey);
         }
 
         private void buttonSystemRename_Click(object sender, EventArgs e)
         {
             if (listBoxSystem.SelectedIndex < 0 || currentSystemKey == null) return;
-            string oldKey = currentSystemKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxSystem, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxSystem, currValue);
-                listBoxSystem.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            ListBoxRenameItem(grod, listBoxSystem, "", currentSystemKey);
         }
 
         private void buttonSystemDelete_Click(object sender, EventArgs e)
         {
             if (listBoxSystem.SelectedIndex < 0 || currentSystemKey == null) return;
-            string oldKey = currentSystemKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxSystem.Items.Remove(oldKey);
-            listBoxSystem.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxSystem, currentSystemKey);
         }
 
         private void buttonScriptsRename_Click(object sender, EventArgs e)
         {
             if (listBoxScripts.SelectedIndex < 0 || currentScriptsKey == null) return;
-            string oldKey = currentScriptsKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxScripts, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxScripts, currValue);
-                listBoxScripts.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            ListBoxRenameItem(grod, listBoxScripts, "", currentScriptsKey);
         }
 
         private void buttonScriptsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxScripts.SelectedIndex < 0 || currentScriptsKey == null) return;
-            string oldKey = currentScriptsKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxScripts.Items.Remove(oldKey);
-            listBoxScripts.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxScripts, currentScriptsKey);
         }
 
         private void buttonCommandsRename_Click(object sender, EventArgs e)
         {
             if (listBoxCommands.SelectedIndex < 0 || currentCommandsKey == null) return;
-            string oldKey = currentCommandsKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxCommands, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxCommands, currValue);
-                listBoxCommands.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            ListBoxRenameItem(grod, listBoxCommands, "", currentCommandsKey);
         }
 
         private void buttonCommandsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxCommands.SelectedIndex < 0 || currentCommandsKey == null) return;
-            string oldKey = currentCommandsKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxCommands.Items.Remove(oldKey);
-            listBoxCommands.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxCommands, currentCommandsKey);
         }
 
         private void buttonVocabularyRename_Click(object sender, EventArgs e)
         {
             if (listBoxVocabulary.SelectedIndex < 0 || currentVocabularyKey == null) return;
-            string oldKey = currentVocabularyKey;
-            var currValue = grod.Get(oldKey, true);
-            string? newKey = ListBoxAddItem(listBoxVocabulary, "");
-            if (newKey != null)
-            {
-                FillRichTextBox(richTextBoxVocabulary, currValue);
-                listBoxVocabulary.Items.Remove(oldKey);
-                overlay.Set(newKey, currValue);
-                overlay.Remove(oldKey, true);
-            }
+            ListBoxRenameItem(grod, listBoxVocabulary, "", currentVocabularyKey);
         }
 
         private void buttonVocabularyDelete_Click(object sender, EventArgs e)
         {
             if (listBoxVocabulary.SelectedIndex < 0 || currentVocabularyKey == null) return;
-            string oldKey = currentVocabularyKey;
-            var result = MessageBox.Show(oldKey, "Delete this key?", MessageBoxButtons.OKCancel);
-            if (result != DialogResult.OK) return;
-            listBoxVocabulary.Items.Remove(oldKey);
-            listBoxVocabulary.SelectedIndex = -1;
+            ListBoxDeleteItem(grod, listBoxVocabulary, currentVocabularyKey);
         }
     }
 }
