@@ -43,4 +43,6 @@ internal static class ConfigValues
 
     internal const string DEFAULT_PLAYER_LOCATION_KEY = "player.location";
     internal const string SYSTEM_PLAYER_LOCATION = "system.player.location";
+
+    internal const string OVERLAY_EXTENSION = ".overlay";
 }
