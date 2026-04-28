@@ -62,7 +62,12 @@ namespace editgrif
             if (comboBoxFileNames.SelectedIndex < 0) return;
             string? filename = comboBoxFileNames.Items[comboBoxFileNames.SelectedIndex]!.ToString();
             if (filename == null) return;
-            IO.WriteGrif(Path.Combine(basePath, filename), overlay.Items(true, true), false);
+            if (overlay.Count(false) > 0)
+            {
+                baseGrod.AddItems(overlay.Items(false, false));
+                overlay.Clear(false);
+            }
+            IO.WriteGrif(Path.Combine(basePath, filename), baseGrod.Items(true, true), false);
             if (!string.IsNullOrEmpty(overlayFilename))
             {
                 File.Delete(overlayFilename);
@@ -749,11 +754,7 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             // save existing overlay
-            if (!string.IsNullOrEmpty(overlayFilename))
-            {
-                IO.WriteGrif(overlayFilename, overlay.Items(false, true), false);
-                overlayFilename = null;
-            }
+            SaveOverlay();
             // load baseGrod
             var filename = comboBoxFileNames.SelectedItem?.ToString() ?? "";
             grodFilename = Path.Combine(basePath, filename);
@@ -1184,6 +1185,28 @@ namespace editgrif
         {
             if (listBoxVocabulary.SelectedIndex < 0 || currentVocabularyKey == null) return;
             ListBoxDeleteItem(overlay, listBoxVocabulary, currentVocabularyKey);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveOverlay();
+        }
+
+        private void SaveOverlay()
+        {
+            // save existing overlay
+            if (!string.IsNullOrEmpty(overlayFilename))
+            {
+                if (overlay.Count(false) > 0)
+                {
+                    IO.WriteGrif(overlayFilename, overlay.Items(false, true), false);
+                }
+                else
+                {
+                    File.Delete(overlayFilename);
+                }
+                overlayFilename = null;
+            }
         }
     }
 }
