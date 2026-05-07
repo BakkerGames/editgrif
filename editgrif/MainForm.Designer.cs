@@ -141,6 +141,10 @@
             buttonFunctionsRename = new Button();
             buttonFunctionsAdd = new Button();
             listBoxFunctions = new ListBox();
+            buttonHelp = new Button();
+            groupBoxHelp = new GroupBox();
+            richTextBoxHelp = new RichTextBox();
+            listBoxHelp = new ListBox();
             groupBoxStart.SuspendLayout();
             groupBoxRooms.SuspendLayout();
             groupBoxItems.SuspendLayout();
@@ -152,6 +156,7 @@
             groupBoxSystem.SuspendLayout();
             panelToolbar.SuspendLayout();
             groupBoxFunctions.SuspendLayout();
+            groupBoxHelp.SuspendLayout();
             SuspendLayout();
             // 
             // buttonStart
@@ -1461,11 +1466,59 @@
             listBoxFunctions.TabIndex = 0;
             listBoxFunctions.SelectedIndexChanged += listBoxFunctions_SelectedIndexChanged;
             // 
+            // buttonHelp
+            // 
+            buttonHelp.Location = new Point(3, 608);
+            buttonHelp.Name = "buttonHelp";
+            buttonHelp.Size = new Size(96, 50);
+            buttonHelp.TabIndex = 21;
+            buttonHelp.Text = "Help";
+            buttonHelp.UseVisualStyleBackColor = true;
+            buttonHelp.Click += buttonHelp_Click;
+            // 
+            // groupBoxHelp
+            // 
+            groupBoxHelp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxHelp.Controls.Add(richTextBoxHelp);
+            groupBoxHelp.Controls.Add(listBoxHelp);
+            groupBoxHelp.Location = new Point(105, 40);
+            groupBoxHelp.Name = "groupBoxHelp";
+            groupBoxHelp.Size = new Size(1189, 804);
+            groupBoxHelp.TabIndex = 22;
+            groupBoxHelp.TabStop = false;
+            groupBoxHelp.Text = "Help";
+            groupBoxHelp.Visible = false;
+            // 
+            // richTextBoxHelp
+            // 
+            richTextBoxHelp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxHelp.DetectUrls = false;
+            richTextBoxHelp.Font = new Font("Consolas", 12F);
+            richTextBoxHelp.Location = new Point(289, 52);
+            richTextBoxHelp.Name = "richTextBoxHelp";
+            richTextBoxHelp.ReadOnly = true;
+            richTextBoxHelp.Size = new Size(894, 746);
+            richTextBoxHelp.TabIndex = 9;
+            richTextBoxHelp.Text = "";
+            // 
+            // listBoxHelp
+            // 
+            listBoxHelp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxHelp.Font = new Font("Consolas", 12F);
+            listBoxHelp.FormattingEnabled = true;
+            listBoxHelp.IntegralHeight = false;
+            listBoxHelp.Location = new Point(8, 52);
+            listBoxHelp.Name = "listBoxHelp";
+            listBoxHelp.Size = new Size(275, 1450);
+            listBoxHelp.TabIndex = 5;
+            listBoxHelp.SelectedIndexChanged += listBoxHelp_SelectedIndexChanged;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1306, 856);
+            Controls.Add(buttonHelp);
             Controls.Add(buttonFunctions);
             Controls.Add(panelToolbar);
             Controls.Add(buttonSystem);
@@ -1477,6 +1530,7 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxHelp);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
@@ -1506,6 +1560,7 @@
             groupBoxSystem.ResumeLayout(false);
             panelToolbar.ResumeLayout(false);
             groupBoxFunctions.ResumeLayout(false);
+            groupBoxHelp.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1623,5 +1678,9 @@
         private RichTextBox richTextBoxItemsLocation;
         private RichTextBox richTextBoxRoomsLongDesc;
         private RichTextBox richTextBoxRoomsShortDesc;
+        private Button buttonHelp;
+        private GroupBox groupBoxHelp;
+        private RichTextBox richTextBoxHelp;
+        private ListBox listBoxHelp;
     }
 }

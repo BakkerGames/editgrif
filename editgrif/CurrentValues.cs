@@ -55,4 +55,7 @@ internal static class CurrentValues
     // System
     public static string? systemPrefixes;
     public static string? currentSystemKey;
+
+    // Help
+    public static string? currentHelpKey;
 }

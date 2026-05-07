@@ -10,6 +10,7 @@ namespace editgrif
     {
         Grod baseGrod = new();
         Grod overlay = new();
+        Grod helpGrod = new();
         string basePath = "";
         string? grodFilename = null;
         string? overlayFilename = null;
@@ -18,7 +19,15 @@ namespace editgrif
         public MainForm()
         {
             InitializeComponent();
+            FillHelpTab();
             SelectTab(buttonStart, groupBoxStart);
+        }
+
+        private void FillHelpTab()
+        {
+            helpGrod = Dags.Help() ?? new();
+            var helpKeysList = helpGrod.Keys(true, true);
+            AddListBox(listBoxHelp, helpKeysList);
         }
 
         #region Menu Buttons
@@ -149,6 +158,7 @@ namespace editgrif
             buttonScripts.BackColor = SystemColors.Control;
             buttonFunctions.BackColor = SystemColors.Control;
             buttonSystem.BackColor = SystemColors.Control;
+            buttonHelp.BackColor = SystemColors.Control;
             groupBoxStart.Visible = false;
             groupBoxRooms.Visible = false;
             groupBoxItems.Visible = false;
@@ -159,6 +169,7 @@ namespace editgrif
             groupBoxScripts.Visible = false;
             groupBoxFunctions.Visible = false;
             groupBoxSystem.Visible = false;
+            groupBoxHelp.Visible = false;
         }
 
         #endregion
@@ -1207,6 +1218,27 @@ namespace editgrif
                 }
                 overlayFilename = null;
             }
+        }
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+            SelectTab(buttonHelp, groupBoxHelp);
+        }
+
+        private void listBoxHelp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var saveLoading = loading;
+            loading = true;
+            if (listBoxHelp.SelectedIndex < 0)
+            {
+                currentHelpKey = null;
+                richTextBoxHelp.Clear();
+            }
+            else
+            {
+                currentHelpKey = ListBoxSelected(helpGrod, listBoxHelp, richTextBoxHelp);
+            }
+            loading = saveLoading;
         }
     }
 }
