@@ -442,7 +442,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(63, 15);
+            labelStartGameTitle.Size = new Size(64, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -514,7 +514,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 316);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.Size = new Size(30, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -554,6 +554,7 @@
             // 
             // buttonRoomsExitsAdd
             // 
+            buttonRoomsExitsAdd.Enabled = false;
             buttonRoomsExitsAdd.Location = new Point(274, 287);
             buttonRoomsExitsAdd.Name = "buttonRoomsExitsAdd";
             buttonRoomsExitsAdd.Size = new Size(58, 23);
@@ -618,6 +619,7 @@
             // 
             // buttonRoomsOtherAdd
             // 
+            buttonRoomsOtherAdd.Enabled = false;
             buttonRoomsOtherAdd.Location = new Point(274, 551);
             buttonRoomsOtherAdd.Name = "buttonRoomsOtherAdd";
             buttonRoomsOtherAdd.Size = new Size(58, 23);
@@ -785,6 +787,7 @@
             // 
             // buttonItemsOtherAdd
             // 
+            buttonItemsOtherAdd.Enabled = false;
             buttonItemsOtherAdd.Location = new Point(274, 324);
             buttonItemsOtherAdd.Name = "buttonItemsOtherAdd";
             buttonItemsOtherAdd.Size = new Size(58, 23);
@@ -1509,7 +1512,7 @@
             listBoxHelp.IntegralHeight = false;
             listBoxHelp.Location = new Point(8, 52);
             listBoxHelp.Name = "listBoxHelp";
-            listBoxHelp.Size = new Size(275, 1450);
+            listBoxHelp.Size = new Size(275, 746);
             listBoxHelp.TabIndex = 5;
             listBoxHelp.SelectedIndexChanged += listBoxHelp_SelectedIndexChanged;
             // 
@@ -1530,10 +1533,6 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
-            Controls.Add(groupBoxHelp);
-            Controls.Add(groupBoxValues);
-            Controls.Add(groupBoxMessages);
-            Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
@@ -1541,6 +1540,10 @@
             Controls.Add(groupBoxScripts);
             Controls.Add(groupBoxCommands);
             Controls.Add(groupBoxVocabulary);
+            Controls.Add(groupBoxHelp);
+            Controls.Add(groupBoxValues);
+            Controls.Add(groupBoxMessages);
+            Controls.Add(groupBoxItems);
             MinimumSize = new Size(1000, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;

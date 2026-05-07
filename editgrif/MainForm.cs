@@ -237,6 +237,8 @@ namespace editgrif
             richTextBoxRoomsExits.Clear();
             listBoxRoomsOther.Items.Clear();
             richTextBoxRoomsOther.Clear();
+            buttonRoomsExitsAdd.Enabled = false;
+            buttonRoomsOtherAdd.Enabled = false;
         }
 
         private void ClearItemsTab()
@@ -247,6 +249,7 @@ namespace editgrif
             richTextBoxItemsLocation.Clear();
             listBoxItemsOther.Items.Clear();
             richTextBoxItemsOther.Clear();
+            buttonItemsOtherAdd.Enabled = false;
         }
 
         private void ClearMessagesTab()
@@ -580,6 +583,8 @@ namespace editgrif
             {
                 buttonRoomsRename.Enabled = false;
                 buttonRoomsDelete.Enabled = false;
+                buttonRoomsExitsAdd.Enabled = false;
+                buttonRoomsOtherAdd.Enabled = false;
                 return;
             }
 
@@ -618,6 +623,8 @@ namespace editgrif
 
             buttonRoomsRename.Enabled = true;
             buttonRoomsDelete.Enabled = true;
+            buttonRoomsExitsAdd.Enabled = true;
+            buttonRoomsOtherAdd.Enabled = true;
 
             loading = saveLoading;
         }
@@ -637,6 +644,7 @@ namespace editgrif
             {
                 buttonItemsRename.Enabled = false;
                 buttonItemsDelete.Enabled = false;
+                buttonItemsOtherAdd.Enabled = false;
                 return;
             }
 
@@ -668,6 +676,7 @@ namespace editgrif
 
             buttonItemsRename.Enabled = true;
             buttonItemsDelete.Enabled = true;
+            buttonItemsOtherAdd.Enabled = true;
 
             loading = saveLoading;
         }
