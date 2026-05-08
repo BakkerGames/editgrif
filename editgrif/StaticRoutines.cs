@@ -202,29 +202,41 @@ internal static class StaticRoutines
         }
         var newKey = dialog.Key;
         var fullKey = prefix + newKey;
-        if (ListBoxContains(listBox, newKey))
+        var tempNewKey = newKey;
+        if (prefix == SCRIPT_CHAR.ToString()) // functions are different
+        {
+            tempNewKey = prefix + newKey;
+        }
+        if (ListBoxContains(listBox, tempNewKey))
         {
             MessageBox.Show($"Key already exists: {fullKey}");
             return null;
         }
-        AddListBox(listBox, [newKey]);
-        listBox.SelectedItem = newKey;
-        return fullKey;
+        AddListBox(listBox, [tempNewKey]);
+        listBox.SelectedItem = tempNewKey;
+        return newKey; // without prefix
     }
 
     internal static string? ListBoxRenameItem(Grod grod, ListBox listBox, string prefix, string currentKey)
     {
         var oldValue = grod.Get(currentKey, true);
-        var newKey = ListBoxAddItem(listBox, prefix, currentKey);
+        var newKey = ListBoxAddItem(listBox, prefix, currentKey[prefix.Length..]);
         if (newKey != null)
         {
+            var tempNewKey = newKey;
+            var tempCurrentKey = currentKey[prefix.Length..];
+            if (prefix == SCRIPT_CHAR.ToString()) // functions are different
+            {
+                tempNewKey = prefix + tempNewKey;
+                tempCurrentKey = prefix + tempCurrentKey;
+            }
             listBox.SelectedIndex = -1;
-            grod.Set(newKey, oldValue);
+            grod.Set(prefix + newKey, oldValue);
             grod.Remove(currentKey, true);
-            listBox.Items.Remove(currentKey);
-            listBox.SelectedItem = newKey;
+            listBox.Items.Remove(tempCurrentKey);
+            listBox.SelectedItem = tempNewKey;
         }
-        return newKey;
+        return prefix + newKey;
     }
 
     internal static bool ListBoxDeleteItem(Grod grod, ListBox listBox, string currentKey)

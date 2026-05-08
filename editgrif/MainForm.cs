@@ -1,4 +1,5 @@
 using GrifLib;
+using System.Globalization;
 using static editgrif.ConfigValues;
 using static editgrif.CurrentValues;
 using static editgrif.StaticRoutines;
@@ -176,44 +177,35 @@ namespace editgrif
 
         private void buttonVersionToday_Click(object sender, EventArgs e)
         {
-            richTextBoxStartVersion.Text = DateTime.Today.ToString("yyyy.MM.dd");
+            richTextBoxStartVersion.Text = DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.InvariantCulture);
         }
 
         private void buttonFunctionsAdd_Click(object sender, EventArgs e)
         {
             var dialog = new EnterKeyForm
             {
-                IsFunctionKey = true
+                IsFunctionKey = true,
+                Prefix = SCRIPT_CHAR.ToString()
             };
             dialog.ShowDialog();
             var newKey = dialog.Key;
             if (dialog.DialogResult == DialogResult.OK && !string.IsNullOrEmpty(newKey))
             {
+                // check for same function with different parameters
                 if (newKey.Contains('('))
                 {
-                    var keyStart = newKey[..(newKey.IndexOf('(') + 1)];
+                    var keyStart = SCRIPT_CHAR + newKey[..(newKey.IndexOf('(') + 1)];
                     foreach (var key in listBoxFunctions.Items)
                     {
                         if (key != null && key.ToString()!.StartsWith(keyStart, OIC))
                         {
-                            MessageBox.Show($"Key already exists: {newKey}");
+                            MessageBox.Show($"Key already exists with different parameters: {key}");
                             return;
                         }
                     }
                 }
-                else
-                {
-                    foreach (var key in listBoxFunctions.Items)
-                    {
-                        if (key != null && key.ToString()!.Equals(newKey, OIC))
-                        {
-                            MessageBox.Show($"Key already exists: {newKey}");
-                            return;
-                        }
-                    }
-                }
-                AddListBox(listBoxFunctions, [newKey]);
-                listBoxFunctions.SelectedItem = newKey;
+                AddListBox(listBoxFunctions, [SCRIPT_CHAR + newKey]);
+                listBoxFunctions.SelectedItem = SCRIPT_CHAR + newKey;
                 richTextBoxFunctions.Focus();
             }
         }
@@ -957,7 +949,8 @@ namespace editgrif
             var newKey = ListBoxAddItem(listBoxStartDirection, prefix);
             if (newKey != null)
             {
-                overlay.Set(newKey, "");
+                overlay.Set(prefix + newKey, "");
+                richTextBoxStartDirections.Focus();
             }
         }
 
@@ -988,7 +981,7 @@ namespace editgrif
             var newKey = ListBoxAddItem(listBoxRooms, prefix);
             if (newKey != null)
             {
-                overlay.Set(newKey, "");
+                overlay.Set(prefix + newKey, "");
             }
         }
 
@@ -1001,7 +994,8 @@ namespace editgrif
             var newKey = ListBoxAddItem(listBoxRoomsExits, prefix);
             if (newKey != null)
             {
-                overlay.Set(newKey, "");
+                overlay.Set(prefix + newKey, "");
+                richTextBoxRoomsExits.Focus();
             }
         }
 
@@ -1011,7 +1005,8 @@ namespace editgrif
             var newKey = ListBoxAddItem(listBoxRoomsOther, prefix);
             if (newKey != null)
             {
-                overlay.Set(newKey, "");
+                overlay.Set(prefix + newKey, "");
+                richTextBoxRoomsOther.Focus();
             }
         }
 
@@ -1021,7 +1016,7 @@ namespace editgrif
             var newKey = ListBoxAddItem(listBoxItems, prefix);
             if (newKey != null)
             {
-                overlay.Set(newKey, "");
+                overlay.Set(prefix + newKey, "");
             }
         }
 
@@ -1031,7 +1026,8 @@ namespace editgrif
             var newKey = ListBoxAddItem(listBoxItemsOther, prefix);
             if (newKey != null)
             {
-                overlay.Set(newKey, "");
+                overlay.Set(prefix + newKey, "");
+                richTextBoxItemsOther.Focus();
             }
         }
 
@@ -1041,6 +1037,7 @@ namespace editgrif
             if (newKey != null)
             {
                 overlay.Set(newKey, "");
+                richTextBoxSystem.Focus();
             }
         }
 
@@ -1050,6 +1047,7 @@ namespace editgrif
             if (newKey != null)
             {
                 overlay.Set(newKey, "");
+                richTextBoxScripts.Focus();
             }
         }
 
@@ -1059,6 +1057,7 @@ namespace editgrif
             if (newKey != null)
             {
                 overlay.Set(newKey, "");
+                richTextBoxCommands.Focus();
             }
         }
 
@@ -1068,6 +1067,7 @@ namespace editgrif
             if (newKey != null)
             {
                 overlay.Set(newKey, "");
+                richTextBoxVocabulary.Focus();
             }
         }
 
@@ -1077,6 +1077,7 @@ namespace editgrif
             if (newKey != null)
             {
                 overlay.Set(newKey, "");
+                richTextBoxValues.Focus();
             }
         }
 
@@ -1086,6 +1087,7 @@ namespace editgrif
             if (newKey != null)
             {
                 overlay.Set(newKey, "");
+                richTextBoxMessages.Focus();
             }
         }
 
