@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using GrifLib;
 using static GrifLib.Common;
 
 namespace editgrif;
@@ -49,14 +50,6 @@ public partial class EnterKeyForm : Form
     {
         if (!ValidKey(labelPrefix.Text + textBoxKey.Text, IsFunctionKey))
         {
-            if (IsFunctionKey)
-            {
-                labelError.Text = "Invalid Function key";
-            }
-            else
-            {
-                labelError.Text = "Invalid key";
-            }
             labelError.Visible = true;
             return;
         }
@@ -70,67 +63,26 @@ public partial class EnterKeyForm : Form
         Close();
     }
 
-    private static bool ValidKey(string key, bool functionKey)
+    private bool ValidKey(string key, bool functionKey)
     {
-        if (string.IsNullOrEmpty(key)) return false;
-        bool inParen = false;
-        bool lastComma = false;
-        for (int index = 0; index < key.Length; index++)
+        try
         {
-            char c = key[index];
-            if (index == 0 && functionKey && c != SCRIPT_CHAR)
+            Grod.ValidateKey(key);
+            if (key.StartsWith(LOCAL_CHAR)) // allowed in Grod but not in saved files
             {
-                return false;
+                throw new ArgumentException($"Keys cannot start with {LOCAL_CHAR}: {key}", nameof(key));
             }
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9'))
+            if (functionKey && !key.StartsWith(SCRIPT_CHAR))
             {
-                lastComma = false;
-                continue;
+                throw new ArgumentException($"Function keys must start with {SCRIPT_CHAR}: {key}", nameof(key));
             }
-            if (!functionKey)
-            {
-                if (c == '.')
-                {
-                    lastComma = false;
-                    continue;
-                }
-                return false;
-            }
-            else
-            {
-                if (c == SCRIPT_CHAR)
-                {
-                    if (index > 0) return false;
-                    lastComma = false;
-                    continue;
-                }
-                if (c == '(')
-                {
-                    if (inParen) return false;
-                    inParen = true;
-                    lastComma = true; // so no initial comma
-                    continue;
-                }
-                if (inParen)
-                {
-                    if (c == ',')
-                    {
-                        if (lastComma) return false;
-                        lastComma = true;
-                        continue;
-                    }
-                    if (c == ')')
-                    {
-                        if (lastComma) return false; // so no trailing comma, no empty parens
-                        if (index < key.Length - 1) return false;
-                        inParen = false;
-                        continue;
-                    }
-                }
-                return false;
-            }
+            return true;
+
         }
-        if (inParen) return false;
-        return true;
+        catch (Exception ex)
+        {
+            labelError.Text = ex.Message;
+            return false;
+        }
     }
 }

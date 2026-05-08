@@ -568,9 +568,9 @@
             labelRoomsOther.AutoSize = true;
             labelRoomsOther.Location = new Point(198, 580);
             labelRoomsOther.Name = "labelRoomsOther";
-            labelRoomsOther.Size = new Size(37, 15);
+            labelRoomsOther.Size = new Size(40, 15);
             labelRoomsOther.TabIndex = 16;
-            labelRoomsOther.Text = "Other";
+            labelRoomsOther.Text = "Values";
             // 
             // listBoxRoomsExits
             // 
@@ -769,9 +769,9 @@
             labelItemsOther.AutoSize = true;
             labelItemsOther.Location = new Point(198, 359);
             labelItemsOther.Name = "labelItemsOther";
-            labelItemsOther.Size = new Size(37, 15);
+            labelItemsOther.Size = new Size(40, 15);
             labelItemsOther.TabIndex = 26;
-            labelItemsOther.Text = "Other";
+            labelItemsOther.Text = "Values";
             // 
             // richTextBoxItemsOther
             // 
@@ -1533,6 +1533,7 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
             Controls.Add(groupBoxFunctions);
@@ -1543,7 +1544,6 @@
             Controls.Add(groupBoxHelp);
             Controls.Add(groupBoxValues);
             Controls.Add(groupBoxMessages);
-            Controls.Add(groupBoxItems);
             MinimumSize = new Size(1000, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;

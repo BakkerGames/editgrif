@@ -32,14 +32,7 @@ internal static class StaticRoutines
         }
         var key = prefix + listbox.Items[listbox.SelectedIndex].ToString();
         var script = grod.Get(key, true);
-        if (script != null)
-        {
-            var items = Dags.ColorizeScript(script);
-            foreach (var item in items)
-            {
-                rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
-            }
-        }
+        FillRichTextBox(rtb, script);
         return key;
     }
 
@@ -175,12 +168,24 @@ internal static class StaticRoutines
         rtb.Clear();
         if (script != null)
         {
-            var items = Dags.ColorizeScript(script);
-            foreach (var item in items)
+            if (script.StartsWith(SCRIPT_CHAR))
             {
-                rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
+                var items = Dags.ColorizeScript(script);
+                foreach (var item in items)
+                {
+                    rtb.AppendText(item.Text, GetColorValue(item.ColorValue));
+                }
+            }
+            else
+            {
+                rtb.Text = FormatText(script);
             }
         }
+    }
+
+    private static string FormatText(string script)
+    {
+        return script.Replace("\\n", "\n").Replace("\\s", " ").Replace("\\t", "\t");
     }
 
     internal static string? ListBoxAddItem(ListBox listBox, string prefix, string? defaultValue = null)
