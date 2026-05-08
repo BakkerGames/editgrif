@@ -1533,6 +1533,8 @@
             Controls.Add(buttonItems);
             Controls.Add(buttonRooms);
             Controls.Add(buttonStart);
+            Controls.Add(groupBoxValues);
+            Controls.Add(groupBoxMessages);
             Controls.Add(groupBoxItems);
             Controls.Add(groupBoxRooms);
             Controls.Add(groupBoxStart);
@@ -1542,8 +1544,6 @@
             Controls.Add(groupBoxCommands);
             Controls.Add(groupBoxVocabulary);
             Controls.Add(groupBoxHelp);
-            Controls.Add(groupBoxValues);
-            Controls.Add(groupBoxMessages);
             MinimumSize = new Size(1000, 750);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;

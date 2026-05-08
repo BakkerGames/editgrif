@@ -954,7 +954,11 @@ namespace editgrif
         private void buttonStartDirectionsAdd_Click(object sender, EventArgs e)
         {
             var prefix = directionPrefix + '.' ?? "";
-            ListBoxAddItem(listBoxStartDirection, prefix);
+            var newKey = ListBoxAddItem(listBoxStartDirection, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonFileNew_Click(object sender, EventArgs e)
@@ -981,7 +985,11 @@ namespace editgrif
         private void buttonRoomsAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{roomsPrefix}.";
-            ListBoxAddItem(listBoxRooms, prefix);
+            var newKey = ListBoxAddItem(listBoxRooms, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonRoomsExitsAdd_Click(object sender, EventArgs e)
@@ -990,55 +998,95 @@ namespace editgrif
                 .Replace("{roomprefix}", roomsPrefix)
                 .Replace("{room}", currentRoomName)
                 .Replace("{direction}", "");
-            ListBoxAddItem(listBoxRoomsExits, prefix);
+            var newKey = ListBoxAddItem(listBoxRoomsExits, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonRoomsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            ListBoxAddItem(listBoxRoomsOther, prefix);
+            var newKey = ListBoxAddItem(listBoxRoomsOther, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonItemsAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{itemsPrefix}.";
-            ListBoxAddItem(listBoxItems, prefix);
+            var newKey = ListBoxAddItem(listBoxItems, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonItemsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            ListBoxAddItem(listBoxItemsOther, prefix);
+            var newKey = ListBoxAddItem(listBoxItemsOther, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonSystemAdd_Click(object sender, EventArgs e)
         {
-            ListBoxAddItem(listBoxSystem, "");
+            var newKey = ListBoxAddItem(listBoxSystem, "");
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonScriptsAdd_Click(object sender, EventArgs e)
         {
-            ListBoxAddItem(listBoxScripts, "");
+            var newKey = ListBoxAddItem(listBoxScripts, "");
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonCommandsAdd_Click(object sender, EventArgs e)
         {
-            ListBoxAddItem(listBoxCommands, "");
+            var newKey = ListBoxAddItem(listBoxCommands, "");
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonVocabularyAdd_Click(object sender, EventArgs e)
         {
-            ListBoxAddItem(listBoxVocabulary, "");
+            var newKey = ListBoxAddItem(listBoxVocabulary, "");
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonValuesAdd_Click(object sender, EventArgs e)
         {
-            ListBoxAddItem(listBoxValues, "");
+            var newKey = ListBoxAddItem(listBoxValues, "");
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonMessagesAdd_Click(object sender, EventArgs e)
         {
-            ListBoxAddItem(listBoxMessages, "");
+            var newKey = ListBoxAddItem(listBoxMessages, "");
+            if (newKey != null)
+            {
+                overlay.Set(newKey, "");
+            }
         }
 
         private void buttonValuesRename_Click(object sender, EventArgs e)
