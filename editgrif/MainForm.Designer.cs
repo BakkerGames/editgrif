@@ -130,10 +130,12 @@
             buttonSystemAdd = new Button();
             listBoxSystem = new ListBox();
             panelToolbar = new Panel();
-            comboBoxFileNames = new ComboBox();
+            buttonPlay = new Button();
+            buttonFileValidate = new Button();
             buttonFileSave = new Button();
             buttonFileOpen = new Button();
             buttonFileNew = new Button();
+            comboBoxFileNames = new ComboBox();
             buttonFunctions = new Button();
             groupBoxFunctions = new GroupBox();
             richTextBoxFunctions = new RichTextBox();
@@ -442,7 +444,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(63, 15);
+            labelStartGameTitle.Size = new Size(64, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -514,7 +516,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 316);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.Size = new Size(30, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -1337,29 +1339,43 @@
             // panelToolbar
             // 
             panelToolbar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panelToolbar.Controls.Add(comboBoxFileNames);
+            panelToolbar.Controls.Add(buttonPlay);
+            panelToolbar.Controls.Add(buttonFileValidate);
             panelToolbar.Controls.Add(buttonFileSave);
             panelToolbar.Controls.Add(buttonFileOpen);
             panelToolbar.Controls.Add(buttonFileNew);
+            panelToolbar.Controls.Add(comboBoxFileNames);
             panelToolbar.Location = new Point(0, 0);
             panelToolbar.Name = "panelToolbar";
             panelToolbar.Size = new Size(1307, 34);
             panelToolbar.TabIndex = 0;
             // 
-            // comboBoxFileNames
+            // buttonPlay
             // 
-            comboBoxFileNames.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxFileNames.FormattingEnabled = true;
-            comboBoxFileNames.Location = new Point(237, 5);
-            comboBoxFileNames.Name = "comboBoxFileNames";
-            comboBoxFileNames.Size = new Size(231, 23);
-            comboBoxFileNames.TabIndex = 3;
-            comboBoxFileNames.SelectedIndexChanged += comboBoxFileNames_SelectedIndexChanged;
+            buttonPlay.Enabled = false;
+            buttonPlay.Location = new Point(610, 0);
+            buttonPlay.Name = "buttonPlay";
+            buttonPlay.Size = new Size(72, 34);
+            buttonPlay.TabIndex = 5;
+            buttonPlay.Text = "Play";
+            buttonPlay.UseVisualStyleBackColor = true;
+            buttonPlay.Click += buttonPlay_Click;
+            // 
+            // buttonFileValidate
+            // 
+            buttonFileValidate.Enabled = false;
+            buttonFileValidate.Location = new Point(393, 0);
+            buttonFileValidate.Name = "buttonFileValidate";
+            buttonFileValidate.Size = new Size(72, 34);
+            buttonFileValidate.TabIndex = 4;
+            buttonFileValidate.Text = "Validate";
+            buttonFileValidate.UseVisualStyleBackColor = true;
+            buttonFileValidate.Click += buttonFileValidate_Click;
             // 
             // buttonFileSave
             // 
             buttonFileSave.Enabled = false;
-            buttonFileSave.Location = new Point(159, 0);
+            buttonFileSave.Location = new Point(471, 0);
             buttonFileSave.Name = "buttonFileSave";
             buttonFileSave.Size = new Size(72, 34);
             buttonFileSave.TabIndex = 2;
@@ -1369,7 +1385,7 @@
             // 
             // buttonFileOpen
             // 
-            buttonFileOpen.Location = new Point(81, 0);
+            buttonFileOpen.Location = new Point(78, 0);
             buttonFileOpen.Name = "buttonFileOpen";
             buttonFileOpen.Size = new Size(72, 34);
             buttonFileOpen.TabIndex = 1;
@@ -1379,13 +1395,24 @@
             // 
             // buttonFileNew
             // 
-            buttonFileNew.Location = new Point(3, 0);
+            buttonFileNew.Location = new Point(0, 0);
             buttonFileNew.Name = "buttonFileNew";
             buttonFileNew.Size = new Size(72, 34);
             buttonFileNew.TabIndex = 0;
             buttonFileNew.Text = "New";
             buttonFileNew.UseVisualStyleBackColor = true;
             buttonFileNew.Click += buttonFileNew_Click;
+            // 
+            // comboBoxFileNames
+            // 
+            comboBoxFileNames.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxFileNames.Font = new Font("Consolas", 12F);
+            comboBoxFileNames.FormattingEnabled = true;
+            comboBoxFileNames.Location = new Point(156, 4);
+            comboBoxFileNames.Name = "comboBoxFileNames";
+            comboBoxFileNames.Size = new Size(231, 27);
+            comboBoxFileNames.TabIndex = 3;
+            comboBoxFileNames.SelectedIndexChanged += comboBoxFileNames_SelectedIndexChanged;
             // 
             // buttonFunctions
             // 
@@ -1685,5 +1712,7 @@
         private GroupBox groupBoxHelp;
         private RichTextBox richTextBoxHelp;
         private ListBox listBoxHelp;
+        private Button buttonFileValidate;
+        private Button buttonPlay;
     }
 }

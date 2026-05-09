@@ -163,12 +163,16 @@ internal static class StaticRoutines
         }
     }
 
-    internal static void FillRichTextBox(RichTextBox rtb, string? script)
+    internal static void FillRichTextBox(RichTextBox rtb, string? script, bool format = true)
     {
         rtb.Clear();
         if (script != null)
         {
-            if (script.StartsWith(SCRIPT_CHAR))
+            if (!format)
+            {
+                rtb.Text = script;
+            }
+            else if (script.StartsWith(SCRIPT_CHAR))
             {
                 var items = Dags.ColorizeScript(script);
                 foreach (var item in items)

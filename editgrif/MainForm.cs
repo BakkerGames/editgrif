@@ -1,5 +1,6 @@
-using GrifLib;
 using System.Globalization;
+using System.Text;
+using GrifLib;
 using static editgrif.ConfigValues;
 using static editgrif.CurrentValues;
 using static editgrif.StaticRoutines;
@@ -38,7 +39,7 @@ namespace editgrif
             var dialog = new OpenFileDialog
             {
                 CheckFileExists = true,
-                Filter = $"Grif files|*{DATA_EXTENSION}|Grif Stack|*{STACK_EXTENSION}"
+                Filter = $"Grif files|*{DATA_EXTENSION};*{STACK_EXTENSION}|All files (*.*)|*.*"
             };
             var result = dialog.ShowDialog();
             if (result != DialogResult.OK) return;
@@ -46,7 +47,9 @@ namespace editgrif
             basePath = Path.GetDirectoryName(filename) ?? "";
             filename = Path.GetFileName(filename);
             ClearData();
+            buttonFileValidate.Enabled = true;
             buttonFileSave.Enabled = true;
+            buttonPlay.Enabled = true;
             comboBoxFileNames.SelectedIndex = -1;
             comboBoxFileNames.Items.Clear();
             if (Path.GetExtension(filename).Equals(STACK_EXTENSION, OIC))
@@ -343,11 +346,11 @@ namespace editgrif
                 throw new SystemException("Command can only have one prefix");
             }
 
-            FillRichTextBox(richTextBoxStartGameName, grod.Get(SYSTEM_GAMENAME, true));
-            FillRichTextBox(richTextBoxStartGameTitle, grod.Get(SYSTEM_GAMETITLE, true));
-            FillRichTextBox(richTextBoxStartVersion, grod.Get(SYSTEM_VERSION, true));
+            FillRichTextBox(richTextBoxStartGameName, grod.Get(SYSTEM_GAMENAME, true), false);
+            FillRichTextBox(richTextBoxStartGameTitle, grod.Get(SYSTEM_GAMETITLE, true), false);
+            FillRichTextBox(richTextBoxStartVersion, grod.Get(SYSTEM_VERSION, true), false);
             FillRichTextBox(richTextBoxStartIntroduction, grod.Get(SYSTEM_INTRO, true));
-            FillRichTextBox(richTextBoxStartStartingRoom, grod.Get(playerLocationKey, true));
+            FillRichTextBox(richTextBoxStartStartingRoom, grod.Get(playerLocationKey, true), false);
             FillListBoxFromPrefixUnique(overlay, [directionPrefix], listBoxStartDirection);
 
             FillListBoxFromPrefixUnique(overlay, [roomsPrefix], listBoxRooms);
@@ -588,7 +591,7 @@ namespace editgrif
                 .Replace("{roomprefix}", roomsPrefix)
                 .Replace("{room}", currentRoomName);
 
-            FillRichTextBox(richTextBoxRoomsShortDesc, overlay.Get(currentRoomShortDescKey, true));
+            FillRichTextBox(richTextBoxRoomsShortDesc, overlay.Get(currentRoomShortDescKey, true), false);
             FillRichTextBox(richTextBoxRoomsLongDesc, overlay.Get(currentRoomLongDescKey, true));
 
             var exitsPrefix = roomsExitsPattern!
@@ -651,9 +654,9 @@ namespace editgrif
                 .Replace("{itemprefix}", itemsPrefix)
                 .Replace("{item}", currentItemName);
 
-            FillRichTextBox(richTextBoxItemsShortDesc, overlay.Get(currentItemShortDescKey, true));
+            FillRichTextBox(richTextBoxItemsShortDesc, overlay.Get(currentItemShortDescKey, true), false);
             FillRichTextBox(richTextBoxItemsLongDesc, overlay.Get(currentItemLongDescKey, true));
-            FillRichTextBox(richTextBoxItemsLocation, overlay.Get(currentItemLocationKey, true));
+            FillRichTextBox(richTextBoxItemsLocation, overlay.Get(currentItemLocationKey, true), false);
 
             var otherPrefix = $"{itemsPrefix}.{currentItemName}.";
             var otherKeys = overlay.Keys(otherPrefix, true, true);
@@ -968,7 +971,9 @@ namespace editgrif
             basePath = Path.GetDirectoryName(filename) ?? "";
             filename = Path.GetFileName(filename);
             ClearData();
+            buttonFileValidate.Enabled = true;
             buttonFileSave.Enabled = true;
+            buttonPlay.Enabled = true;
             comboBoxFileNames.SelectedIndex = -1;
             comboBoxFileNames.Items.Clear();
             comboBoxFileNames.Items.Add(filename);
@@ -1298,6 +1303,40 @@ namespace editgrif
                 currentHelpKey = ListBoxSelected(helpGrod, listBoxHelp, richTextBoxHelp);
             }
             loading = saveLoading;
+        }
+
+        private void buttonPlay_Click(object sender, EventArgs e)
+        {
+            var playForm = new PlayForm();
+            playForm.ShowDialog();
+        }
+
+        private void buttonFileValidate_Click(object sender, EventArgs e)
+        {
+            var invalidKeys = new List<string>();
+            var keys = overlay.Keys(true, true);
+            foreach (var key in keys)
+            {
+                var value = overlay.Get(key, true);
+                if (!Dags.ValidateScript(value))
+                {
+                    invalidKeys.Add(key);
+                }
+            }
+            if (invalidKeys.Count > 0)
+            {
+                var sb = new StringBuilder();
+                foreach (var key in invalidKeys)
+                {
+                    sb.AppendLine();
+                    sb.Append(key);
+                }
+                MessageBox.Show($"Invalid scripts for keys:" + sb.ToString(), "Validate");
+            }
+            else
+            {
+                MessageBox.Show("All scripts pass validation", "Validate");
+            }
         }
     }
 }
