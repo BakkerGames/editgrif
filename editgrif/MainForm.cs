@@ -750,13 +750,16 @@ namespace editgrif
             if (listBoxStartDirection.SelectedIndex < 0)
             {
                 currentStartDirectionsKey = null;
-                richTextBoxStartDirections.Clear();
+                richTextBoxStartDirectionsCommand.Clear();
+                richTextBoxStartDirectionsSynonyms.Clear();
                 buttonStartDirectionsRename.Enabled = false;
                 buttonStartDirectionsDelete.Enabled = false;
             }
             else
             {
-                currentStartDirectionsKey = ListBoxSelected(overlay, listBoxStartDirection, richTextBoxStartDirections, directionsPrefix);
+                currentStartDirectionsKey = ListBoxSelected(overlay, listBoxStartDirection, richTextBoxStartDirectionsSynonyms, directionsPrefix);
+                var script = overlay.Get($"{currentStartDirectionsKey}.command", true);
+                FillRichTextBox(richTextBoxStartDirectionsCommand, script);
                 buttonStartDirectionsRename.Enabled = true;
                 buttonStartDirectionsDelete.Enabled = true;
             }
@@ -832,13 +835,6 @@ namespace editgrif
             if (loading) return;
             if (playerLocationKey == null) return;
             overlay.Set(playerLocationKey, richTextBoxStartStartingRoom.Text);
-        }
-
-        private void richTextBoxStartDirections_TextChanged(object sender, EventArgs e)
-        {
-            if (loading) return;
-            if (currentStartDirectionsKey == null) return;
-            overlay.Set(currentStartDirectionsKey, richTextBoxStartDirections.Text);
         }
 
         private void richTextBoxRoomsShortDesc_TextChanged(object sender, EventArgs e)
@@ -948,12 +944,12 @@ namespace editgrif
 
         private void buttonStartDirectionsAdd_Click(object sender, EventArgs e)
         {
-            var prefix = directionPrefix + '.' ?? "";
+            var prefix = directionPrefix + '.';
             var newKey = ListBoxAddItem(listBoxStartDirection, prefix);
             if (newKey != null)
             {
                 overlay.Set(prefix + newKey, "");
-                richTextBoxStartDirections.Focus();
+                richTextBoxStartDirectionsSynonyms.Focus();
             }
         }
 
@@ -1105,7 +1101,7 @@ namespace editgrif
         private void buttonValuesDelete_Click(object sender, EventArgs e)
         {
             if (listBoxValues.SelectedIndex < 0 || currentValuesKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxValues, currentValuesKey);
+            ListBoxDeleteItem(overlay, listBoxValues, "", currentValuesKey);
         }
 
         private void buttonMessagesRename_Click(object sender, EventArgs e)
@@ -1117,7 +1113,7 @@ namespace editgrif
         private void buttonMessagesDelete_Click(object sender, EventArgs e)
         {
             if (listBoxMessages.SelectedIndex < 0 || currentMessagesKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxMessages, currentMessagesKey);
+            ListBoxDeleteItem(overlay, listBoxMessages, "", currentMessagesKey);
         }
 
         private void buttonItemsOtherRename_Click(object sender, EventArgs e)
@@ -1130,7 +1126,8 @@ namespace editgrif
         private void buttonItemsOtherDelete_Click(object sender, EventArgs e)
         {
             if (listBoxItemsOther.SelectedIndex < 0 || currentItemsOtherKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxItemsOther, currentItemsOtherKey);
+            var prefix = $"{itemsPrefix}.{currentItemName}.";
+            ListBoxDeleteItem(overlay, listBoxItemsOther, prefix, currentItemsOtherKey);
         }
 
         private void buttonItemsRename_Click(object sender, EventArgs e)
@@ -1143,7 +1140,8 @@ namespace editgrif
         private void buttonItemsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxItems.SelectedIndex < 0 || currentItemName == null) return;
-            ListBoxDeleteItem(overlay, listBoxItems, currentItemName);
+            var prefix = $"{itemsPrefix}.";
+            ListBoxDeleteItem(overlay, listBoxItems, prefix, currentItemName);
         }
 
         private void buttonRoomsRename_Click(object sender, EventArgs e)
@@ -1156,7 +1154,8 @@ namespace editgrif
         private void buttonRoomsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxRooms.SelectedIndex < 0 || currentRoomName == null) return;
-            ListBoxDeleteItem(overlay, listBoxRooms, currentRoomName);
+            var prefix = $"{roomsPrefix}.";
+            ListBoxDeleteItem(overlay, listBoxRooms, prefix, currentRoomName);
         }
 
         private void buttonRoomsExitsRename_Click(object sender, EventArgs e)
@@ -1172,7 +1171,11 @@ namespace editgrif
         private void buttonRoomsExitsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxRoomsExits.SelectedIndex < 0 || currentRoomsExitsKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxRoomsExits, currentRoomsExitsKey);
+            var prefix = roomsExitsPattern!
+              .Replace("{roomprefix}", roomsPrefix)
+              .Replace("{room}", currentRoomName)
+              .Replace("{direction}", "");
+            ListBoxDeleteItem(overlay, listBoxRoomsExits, prefix, currentRoomsExitsKey);
         }
 
         private void buttonRoomsOtherRename_Click(object sender, EventArgs e)
@@ -1185,20 +1188,32 @@ namespace editgrif
         private void buttonRoomsOtherDelete_Click(object sender, EventArgs e)
         {
             if (listBoxRoomsOther.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxRoomsOther, currentRoomsOtherKey);
+            var prefix = $"{roomsPrefix}.{currentRoomName}.";
+            ListBoxDeleteItem(overlay, listBoxRoomsOther, prefix, currentRoomsOtherKey);
         }
 
         private void buttonStartDirectionsRename_Click(object sender, EventArgs e)
         {
             if (listBoxStartDirection.SelectedIndex < 0 || currentStartDirectionsKey == null) return;
-            var prefix = directionPrefix + '.' ?? "";
-            ListBoxRenameItem(overlay, listBoxStartDirection, prefix, currentStartDirectionsKey);
+            var oldKey = currentStartDirectionsKey;
+            var prefix = directionPrefix + '.';
+            var newKey = ListBoxRenameItem(overlay, listBoxStartDirection, prefix, currentStartDirectionsKey);
+            if (newKey != null)
+            {
+                RenameItem(overlay, $"{oldKey}.command", $"{newKey}.command");
+                FillRichTextBox(richTextBoxStartDirectionsCommand, overlay.Get($"{newKey}.command", true), false);
+            }
         }
 
         private void buttonStartDirectionsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxStartDirection.SelectedIndex < 0 || currentStartDirectionsKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxStartDirection, currentStartDirectionsKey);
+            var oldKey = currentStartDirectionsKey;
+            var prefix = directionPrefix + '.';
+            if (ListBoxDeleteItem(overlay, listBoxStartDirection, prefix, currentStartDirectionsKey))
+            {
+                overlay.Remove($"{oldKey}.command", true);
+            }
         }
 
         private void buttonFunctionsRename_Click(object sender, EventArgs e)
@@ -1211,7 +1226,8 @@ namespace editgrif
         private void buttonFunctionsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxFunctions.SelectedIndex < 0 || currentFunctionsKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxFunctions, currentFunctionsKey);
+            // prefix must be "" here to delete proper listbox item
+            ListBoxDeleteItem(overlay, listBoxFunctions, "", currentFunctionsKey);
         }
 
         private void buttonSystemRename_Click(object sender, EventArgs e)
@@ -1223,7 +1239,7 @@ namespace editgrif
         private void buttonSystemDelete_Click(object sender, EventArgs e)
         {
             if (listBoxSystem.SelectedIndex < 0 || currentSystemKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxSystem, currentSystemKey);
+            ListBoxDeleteItem(overlay, listBoxSystem, "", currentSystemKey);
         }
 
         private void buttonScriptsRename_Click(object sender, EventArgs e)
@@ -1235,7 +1251,7 @@ namespace editgrif
         private void buttonScriptsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxScripts.SelectedIndex < 0 || currentScriptsKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxScripts, currentScriptsKey);
+            ListBoxDeleteItem(overlay, listBoxScripts, "", currentScriptsKey);
         }
 
         private void buttonCommandsRename_Click(object sender, EventArgs e)
@@ -1247,7 +1263,7 @@ namespace editgrif
         private void buttonCommandsDelete_Click(object sender, EventArgs e)
         {
             if (listBoxCommands.SelectedIndex < 0 || currentCommandsKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxCommands, currentCommandsKey);
+            ListBoxDeleteItem(overlay, listBoxCommands, "", currentCommandsKey);
         }
 
         private void buttonVocabularyRename_Click(object sender, EventArgs e)
@@ -1259,7 +1275,7 @@ namespace editgrif
         private void buttonVocabularyDelete_Click(object sender, EventArgs e)
         {
             if (listBoxVocabulary.SelectedIndex < 0 || currentVocabularyKey == null) return;
-            ListBoxDeleteItem(overlay, listBoxVocabulary, currentVocabularyKey);
+            ListBoxDeleteItem(overlay, listBoxVocabulary, "", currentVocabularyKey);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1337,6 +1353,20 @@ namespace editgrif
             {
                 MessageBox.Show("All scripts pass validation", "Validate");
             }
+        }
+
+        private void richTextBoxStartDirectionsSynonyms_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentStartDirectionsKey == null) return;
+            overlay.Set(currentStartDirectionsKey, richTextBoxStartDirectionsSynonyms.Text);
+        }
+
+        private void richTextBoxStartDirectionsCommand_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentStartDirectionsKey == null) return;
+            overlay.Set($"{currentStartDirectionsKey}.command", richTextBoxStartDirectionsCommand.Text);
         }
     }
 }

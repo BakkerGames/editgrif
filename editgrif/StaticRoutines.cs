@@ -223,10 +223,10 @@ internal static class StaticRoutines
 
     internal static string? ListBoxRenameItem(Grod grod, ListBox listBox, string prefix, string currentKey)
     {
-        var oldValue = grod.Get(currentKey, true);
         var newKey = ListBoxAddItem(listBox, prefix, currentKey[prefix.Length..]);
         if (newKey != null)
         {
+            RenameItem(grod, currentKey, prefix + newKey);
             var tempNewKey = newKey;
             var tempCurrentKey = currentKey[prefix.Length..];
             if (prefix == SCRIPT_CHAR.ToString()) // functions are different
@@ -235,15 +235,20 @@ internal static class StaticRoutines
                 tempCurrentKey = prefix + tempCurrentKey;
             }
             listBox.SelectedIndex = -1;
-            grod.Set(prefix + newKey, oldValue);
-            grod.Remove(currentKey, true);
             listBox.Items.Remove(tempCurrentKey);
             listBox.SelectedItem = tempNewKey;
         }
         return prefix + newKey;
     }
 
-    internal static bool ListBoxDeleteItem(Grod grod, ListBox listBox, string currentKey)
+    internal static void RenameItem(Grod grod, string oldKey, string newKey)
+    {
+        var oldValue = grod.Get(oldKey, true);
+        grod.Set(newKey, oldValue);
+        grod.Remove(oldKey, true);
+    }
+
+    internal static bool ListBoxDeleteItem(Grod grod, ListBox listBox, string prefix, string currentKey)
     {
         if (listBox.SelectedIndex < 0)
         {
@@ -256,7 +261,8 @@ internal static class StaticRoutines
         }
         listBox.SelectedIndex = -1;
         grod.Remove(currentKey, true);
-        listBox.Items.Remove(currentKey);
+        var itemKey = currentKey[prefix.Length..];
+        listBox.Items.Remove(itemKey);
         return true;
     }
 }

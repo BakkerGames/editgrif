@@ -38,6 +38,9 @@
             buttonSystem = new Button();
             buttonScripts = new Button();
             groupBoxStart = new GroupBox();
+            labelStartDirectionsSynonym = new Label();
+            richTextBoxStartDirectionsCommand = new RichTextBox();
+            labelStartDirectionsCommand = new Label();
             richTextBoxStartStartingRoom = new RichTextBox();
             richTextBoxStartVersion = new RichTextBox();
             richTextBoxStartGameTitle = new RichTextBox();
@@ -46,7 +49,7 @@
             buttonStartDirectionsRename = new Button();
             buttonStartDirectionsAdd = new Button();
             labelStartDirections = new Label();
-            richTextBoxStartDirections = new RichTextBox();
+            richTextBoxStartDirectionsSynonyms = new RichTextBox();
             listBoxStartDirection = new ListBox();
             richTextBoxStartIntroduction = new RichTextBox();
             buttonVersionToday = new Button();
@@ -254,6 +257,9 @@
             // groupBoxStart
             // 
             groupBoxStart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBoxStart.Controls.Add(labelStartDirectionsSynonym);
+            groupBoxStart.Controls.Add(richTextBoxStartDirectionsCommand);
+            groupBoxStart.Controls.Add(labelStartDirectionsCommand);
             groupBoxStart.Controls.Add(richTextBoxStartStartingRoom);
             groupBoxStart.Controls.Add(richTextBoxStartVersion);
             groupBoxStart.Controls.Add(richTextBoxStartGameTitle);
@@ -262,7 +268,7 @@
             groupBoxStart.Controls.Add(buttonStartDirectionsRename);
             groupBoxStart.Controls.Add(buttonStartDirectionsAdd);
             groupBoxStart.Controls.Add(labelStartDirections);
-            groupBoxStart.Controls.Add(richTextBoxStartDirections);
+            groupBoxStart.Controls.Add(richTextBoxStartDirectionsSynonyms);
             groupBoxStart.Controls.Add(listBoxStartDirection);
             groupBoxStart.Controls.Add(richTextBoxStartIntroduction);
             groupBoxStart.Controls.Add(buttonVersionToday);
@@ -277,6 +283,36 @@
             groupBoxStart.TabIndex = 11;
             groupBoxStart.TabStop = false;
             groupBoxStart.Text = "Start";
+            // 
+            // labelStartDirectionsSynonym
+            // 
+            labelStartDirectionsSynonym.AutoSize = true;
+            labelStartDirectionsSynonym.Location = new Point(299, 464);
+            labelStartDirectionsSynonym.Name = "labelStartDirectionsSynonym";
+            labelStartDirectionsSynonym.Size = new Size(62, 15);
+            labelStartDirectionsSynonym.TabIndex = 35;
+            labelStartDirectionsSynonym.Text = "Synonyms";
+            // 
+            // richTextBoxStartDirectionsCommand
+            // 
+            richTextBoxStartDirectionsCommand.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxStartDirectionsCommand.Font = new Font("Consolas", 12F);
+            richTextBoxStartDirectionsCommand.Location = new Point(391, 490);
+            richTextBoxStartDirectionsCommand.Multiline = false;
+            richTextBoxStartDirectionsCommand.Name = "richTextBoxStartDirectionsCommand";
+            richTextBoxStartDirectionsCommand.Size = new Size(792, 26);
+            richTextBoxStartDirectionsCommand.TabIndex = 34;
+            richTextBoxStartDirectionsCommand.Text = "";
+            richTextBoxStartDirectionsCommand.TextChanged += richTextBoxStartDirectionsCommand_TextChanged;
+            // 
+            // labelStartDirectionsCommand
+            // 
+            labelStartDirectionsCommand.AutoSize = true;
+            labelStartDirectionsCommand.Location = new Point(299, 496);
+            labelStartDirectionsCommand.Name = "labelStartDirectionsCommand";
+            labelStartDirectionsCommand.Size = new Size(86, 15);
+            labelStartDirectionsCommand.TabIndex = 33;
+            labelStartDirectionsCommand.Text = "Command Key";
             // 
             // richTextBoxStartStartingRoom
             // 
@@ -364,17 +400,17 @@
             labelStartDirections.TabIndex = 24;
             labelStartDirections.Text = "Directions";
             // 
-            // richTextBoxStartDirections
+            // richTextBoxStartDirectionsSynonyms
             // 
-            richTextBoxStartDirections.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBoxStartDirections.DetectUrls = false;
-            richTextBoxStartDirections.Font = new Font("Consolas", 12F);
-            richTextBoxStartDirections.Location = new Point(299, 458);
-            richTextBoxStartDirections.Name = "richTextBoxStartDirections";
-            richTextBoxStartDirections.Size = new Size(884, 339);
-            richTextBoxStartDirections.TabIndex = 23;
-            richTextBoxStartDirections.Text = "";
-            richTextBoxStartDirections.TextChanged += richTextBoxStartDirections_TextChanged;
+            richTextBoxStartDirectionsSynonyms.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            richTextBoxStartDirectionsSynonyms.DetectUrls = false;
+            richTextBoxStartDirectionsSynonyms.Font = new Font("Consolas", 12F);
+            richTextBoxStartDirectionsSynonyms.Location = new Point(391, 456);
+            richTextBoxStartDirectionsSynonyms.Name = "richTextBoxStartDirectionsSynonyms";
+            richTextBoxStartDirectionsSynonyms.Size = new Size(792, 26);
+            richTextBoxStartDirectionsSynonyms.TabIndex = 23;
+            richTextBoxStartDirectionsSynonyms.Text = "";
+            richTextBoxStartDirectionsSynonyms.TextChanged += richTextBoxStartDirectionsSynonyms_TextChanged;
             // 
             // listBoxStartDirection
             // 
@@ -444,7 +480,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(64, 15);
+            labelStartGameTitle.Size = new Size(63, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -516,7 +552,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 316);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(30, 15);
+            labelRoomsExits.Size = new Size(31, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -1692,7 +1728,7 @@
         private Label labelRoomsExits;
         private RichTextBox richTextBoxStartIntroduction;
         private Label labelStartDirections;
-        private RichTextBox richTextBoxStartDirections;
+        private RichTextBox richTextBoxStartDirectionsSynonyms;
         private ListBox listBoxStartDirection;
         private Button buttonStartDirectionsDelete;
         private Button buttonStartDirectionsRename;
@@ -1714,5 +1750,8 @@
         private ListBox listBoxHelp;
         private Button buttonFileValidate;
         private Button buttonPlay;
+        private RichTextBox richTextBoxStartDirectionsCommand;
+        private Label labelStartDirectionsCommand;
+        private Label labelStartDirectionsSynonym;
     }
 }
