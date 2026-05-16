@@ -50,6 +50,7 @@ namespace editgrif
             buttonFileValidate.Enabled = true;
             buttonFileSave.Enabled = true;
             buttonPlay.Enabled = true;
+            EnableGroupBoxes();
             comboBoxFileNames.SelectedIndex = -1;
             comboBoxFileNames.Items.Clear();
             if (Path.GetExtension(filename).Equals(STACK_EXTENSION, OIC))
@@ -68,6 +69,21 @@ namespace editgrif
                 comboBoxFileNames.Items.Add(filename);
                 comboBoxFileNames.SelectedIndex = 0;
             }
+        }
+
+        private void EnableGroupBoxes()
+        {
+            // help is always enabled
+            groupBoxStart.Enabled = true;
+            groupBoxCommands.Enabled = true;
+            groupBoxFunctions.Enabled = true;
+            groupBoxItems.Enabled = true;
+            groupBoxMessages.Enabled = true;
+            groupBoxRooms.Enabled = true;
+            groupBoxScripts.Enabled = true;
+            groupBoxSystem.Enabled = true;
+            groupBoxValues.Enabled = true;
+            groupBoxVocabulary.Enabled = true;
         }
 
         private void buttonFileSave_Click(object sender, EventArgs e)
@@ -221,6 +237,8 @@ namespace editgrif
             richTextBoxStartIntroduction.Clear();
             richTextBoxStartStartingRoom.Clear();
             listBoxStartDirection.Items.Clear();
+            richTextBoxStartDirectionsSynonyms.Clear();
+            richTextBoxStartDirectionsCommand.Clear();
         }
 
         private void ClearRoomsTab()
@@ -1324,7 +1342,11 @@ namespace editgrif
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             var playForm = new PlayForm();
-            playForm.ShowDialog();
+            if (playForm.Init(overlay))
+            {
+                playForm.ShowDialog();
+            }
+            playForm.Dispose();
         }
 
         private void buttonFileValidate_Click(object sender, EventArgs e)

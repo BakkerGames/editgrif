@@ -277,6 +277,7 @@
             groupBoxStart.Controls.Add(labelStartIntroduction);
             groupBoxStart.Controls.Add(labelStartGameTitle);
             groupBoxStart.Controls.Add(labelStartGameName);
+            groupBoxStart.Enabled = false;
             groupBoxStart.Location = new Point(105, 40);
             groupBoxStart.Name = "groupBoxStart";
             groupBoxStart.Size = new Size(1189, 804);
@@ -480,7 +481,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(63, 15);
+            labelStartGameTitle.Size = new Size(64, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -516,6 +517,7 @@
             groupBoxRooms.Controls.Add(buttonRoomsRename);
             groupBoxRooms.Controls.Add(buttonRoomsAdd);
             groupBoxRooms.Controls.Add(listBoxRooms);
+            groupBoxRooms.Enabled = false;
             groupBoxRooms.Location = new Point(105, 40);
             groupBoxRooms.Name = "groupBoxRooms";
             groupBoxRooms.Size = new Size(1189, 804);
@@ -552,7 +554,7 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 316);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.Size = new Size(30, 15);
             labelRoomsExits.TabIndex = 21;
             labelRoomsExits.Text = "Exits";
             // 
@@ -759,6 +761,7 @@
             groupBoxItems.Controls.Add(buttonItemsRename);
             groupBoxItems.Controls.Add(buttonItemsDelete);
             groupBoxItems.Controls.Add(listBoxItems);
+            groupBoxItems.Enabled = false;
             groupBoxItems.Location = new Point(105, 40);
             groupBoxItems.Name = "groupBoxItems";
             groupBoxItems.Size = new Size(1189, 804);
@@ -947,6 +950,7 @@
             groupBoxMessages.Controls.Add(buttonMessagesRename);
             groupBoxMessages.Controls.Add(buttonMessagesAdd);
             groupBoxMessages.Controls.Add(listBoxMessages);
+            groupBoxMessages.Enabled = false;
             groupBoxMessages.Location = new Point(105, 40);
             groupBoxMessages.Name = "groupBoxMessages";
             groupBoxMessages.Size = new Size(1189, 804);
@@ -1019,6 +1023,7 @@
             groupBoxValues.Controls.Add(buttonValuesRename);
             groupBoxValues.Controls.Add(buttonValuesAdd);
             groupBoxValues.Controls.Add(listBoxValues);
+            groupBoxValues.Enabled = false;
             groupBoxValues.Location = new Point(105, 40);
             groupBoxValues.Name = "groupBoxValues";
             groupBoxValues.Size = new Size(1189, 804);
@@ -1091,6 +1096,7 @@
             groupBoxVocabulary.Controls.Add(buttonVocabularyRename);
             groupBoxVocabulary.Controls.Add(buttonVocabularyAdd);
             groupBoxVocabulary.Controls.Add(listBoxVocabulary);
+            groupBoxVocabulary.Enabled = false;
             groupBoxVocabulary.Location = new Point(105, 40);
             groupBoxVocabulary.Name = "groupBoxVocabulary";
             groupBoxVocabulary.Size = new Size(1189, 804);
@@ -1163,6 +1169,7 @@
             groupBoxCommands.Controls.Add(buttonCommandsRename);
             groupBoxCommands.Controls.Add(buttonCommandsAdd);
             groupBoxCommands.Controls.Add(listBoxCommands);
+            groupBoxCommands.Enabled = false;
             groupBoxCommands.Location = new Point(105, 40);
             groupBoxCommands.Name = "groupBoxCommands";
             groupBoxCommands.Size = new Size(1189, 804);
@@ -1235,6 +1242,7 @@
             groupBoxScripts.Controls.Add(buttonScriptsRename);
             groupBoxScripts.Controls.Add(buttonScriptsAdd);
             groupBoxScripts.Controls.Add(listBoxScripts);
+            groupBoxScripts.Enabled = false;
             groupBoxScripts.Location = new Point(105, 40);
             groupBoxScripts.Name = "groupBoxScripts";
             groupBoxScripts.Size = new Size(1189, 804);
@@ -1308,6 +1316,7 @@
             groupBoxSystem.Controls.Add(buttonSystemRename);
             groupBoxSystem.Controls.Add(buttonSystemAdd);
             groupBoxSystem.Controls.Add(listBoxSystem);
+            groupBoxSystem.Enabled = false;
             groupBoxSystem.Location = new Point(105, 40);
             groupBoxSystem.Name = "groupBoxSystem";
             groupBoxSystem.Size = new Size(1189, 804);
@@ -1468,6 +1477,7 @@
             groupBoxFunctions.Controls.Add(buttonFunctionsRename);
             groupBoxFunctions.Controls.Add(buttonFunctionsAdd);
             groupBoxFunctions.Controls.Add(listBoxFunctions);
+            groupBoxFunctions.Enabled = false;
             groupBoxFunctions.Location = new Point(105, 40);
             groupBoxFunctions.Name = "groupBoxFunctions";
             groupBoxFunctions.Size = new Size(1189, 804);

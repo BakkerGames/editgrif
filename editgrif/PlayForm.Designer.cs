@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             textBoxPlay = new TextBox();
+            textBoxInput = new TextBox();
             SuspendLayout();
             // 
             // textBoxPlay
             // 
-            textBoxPlay.BackColor = SystemColors.Control;
-            textBoxPlay.Dock = DockStyle.Fill;
+            textBoxPlay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxPlay.BackColor = Color.LightCyan;
             textBoxPlay.Font = new Font("Consolas", 12F);
             textBoxPlay.Location = new Point(0, 0);
             textBoxPlay.MinimumSize = new Size(800, 450);
@@ -42,21 +43,33 @@
             textBoxPlay.Name = "textBoxPlay";
             textBoxPlay.ReadOnly = true;
             textBoxPlay.ScrollBars = ScrollBars.Vertical;
-            textBoxPlay.Size = new Size(800, 650);
-            textBoxPlay.TabIndex = 0;
+            textBoxPlay.Size = new Size(984, 732);
+            textBoxPlay.TabIndex = 1;
+            textBoxPlay.TabStop = false;
+            // 
+            // textBoxInput
+            // 
+            textBoxInput.Dock = DockStyle.Bottom;
+            textBoxInput.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxInput.Location = new Point(0, 735);
+            textBoxInput.Name = "textBoxInput";
+            textBoxInput.Size = new Size(984, 26);
+            textBoxInput.TabIndex = 0;
+            textBoxInput.KeyPress += textBoxInput_KeyPress;
             // 
             // PlayForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(800, 650);
+            ClientSize = new Size(984, 761);
+            Controls.Add(textBoxInput);
             Controls.Add(textBoxPlay);
             KeyPreview = true;
             Name = "PlayForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "PlayForm";
-            KeyPress += PlayForm_KeyPress;
+            Shown += PlayForm_Shown;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -64,5 +77,6 @@
         #endregion
 
         private TextBox textBoxPlay;
+        private TextBox textBoxInput;
     }
 }
