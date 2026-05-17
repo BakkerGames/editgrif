@@ -1,10 +1,42 @@
-﻿using GrifLib;
+﻿using System.Reflection;
+using GrifLib;
+using static editgrif.ConfigValues;
 using static GrifLib.Common;
 
 namespace editgrif;
 
 internal static class StaticRoutines
 {
+    internal static Grod? LoadConfigValues()
+    {
+        var configGrif = GetResourceStream(configValuesResource);
+        if (configGrif == null)
+        {
+            return null;
+        }
+        var result = new Grod("configvalues");
+        result.AddItems(IO.ReadGrif(new StreamReader(configGrif)));
+        return result;
+    }
+
+    internal static Stream? GetResourceStream(string resourceName)
+    {
+        try
+        {
+            var _assembly = Assembly.GetExecutingAssembly();
+            if (_assembly != null)
+            {
+                var stream = _assembly?.GetManifestResourceStream(resourceName);
+                return stream;
+            }
+            return null;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     internal static Color GetColorValue(TextColorEnum textColor)
     {
         return textColor switch

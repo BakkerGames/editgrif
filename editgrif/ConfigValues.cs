@@ -2,9 +2,11 @@
 
 internal static class ConfigValues
 {
+    internal const string configValuesResource = "editgrif.configvalues.grif";
+
     internal const string DEFAULT_PREFIX_ROOM = "room";
     internal const string DEFAULT_PREFIX_ITEM = "item";
-    internal const string DEFAULT_PREFIX_MESSAGE = "message";
+    internal const string DEFAULT_PREFIX_MESSAGE = "message,modmsg";
     internal const string DEFAULT_PREFIX_VALUE = "value";
     internal const string DEFAULT_PREFIX_VOCABULARY = "verb,noun,adjective,preposition,article";
     internal const string DEFAULT_PREFIX_COMMAND = "command";
@@ -13,13 +15,13 @@ internal static class ConfigValues
     internal const string DEFAULT_PREFIX_DIRECTION = "direction";
 
     internal const string SYSTEM_PREFIX_ROOM_KEY = "system.prefix.room";
-    internal const string SYSTEM_PREFIX_ROOM_SHORTDESC_KEY = "system.prefix.room.shortdesc";
-    internal const string SYSTEM_PREFIX_ROOM_LONGDESC_KEY = "system.prefix.room.longdesc";
-    internal const string SYSTEM_PREFIX_ROOM_EXIT_KEY = "system.prefix.room.exit";
+    internal const string SYSTEM_PATTERN_ROOM_SHORTDESC_KEY = "system.pattern.room.shortdesc";
+    internal const string SYSTEM_PATTERN_ROOM_LONGDESC_KEY = "system.pattern.room.longdesc";
+    internal const string SYSTEM_PATTERN_ROOM_EXIT_KEY = "system.pattern.room.exit";
     internal const string SYSTEM_PREFIX_ITEM_KEY = "system.prefix.item";
-    internal const string SYSTEM_PREFIX_ITEM_SHORTDESC_KEY = "system.prefix.item.shortdesc";
-    internal const string SYSTEM_PREFIX_ITEM_LONGDESC_KEY = "system.prefix.item.longdesc";
-    internal const string SYSTEM_PREFIX_ITEM_LOCATION_KEY = "system.prefix.item.location";
+    internal const string SYSTEM_PATTERN_ITEM_SHORTDESC_KEY = "system.pattern.item.shortdesc";
+    internal const string SYSTEM_PATTERN_ITEM_LONGDESC_KEY = "system.pattern.item.longdesc";
+    internal const string SYSTEM_PATTERN_ITEM_LOCATION_KEY = "system.pattern.item.location";
     internal const string SYSTEM_PREFIX_MESSAGE_KEY = "system.prefix.message";
     internal const string SYSTEM_PREFIX_VALUE_KEY = "system.prefix.value";
     internal const string SYSTEM_PREFIX_VOCABULARY_KEY = "system.prefix.vocabulary";

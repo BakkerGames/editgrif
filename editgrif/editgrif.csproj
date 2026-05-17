@@ -18,6 +18,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="configvalues.grif" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\griflib\griflib\griflib.csproj" />
   </ItemGroup>
 

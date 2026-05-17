@@ -10,6 +10,7 @@ namespace editgrif
 {
     public partial class MainForm : Form
     {
+        readonly Grod? configGrod;
         Grod baseGrod = new();
         Grod overlay = new();
         Grod helpGrod = new();
@@ -21,6 +22,7 @@ namespace editgrif
         public MainForm()
         {
             InitializeComponent();
+            configGrod = LoadConfigValues();
             FillHelpTab();
             SelectTab(buttonStart, groupBoxStart);
         }
@@ -331,14 +333,14 @@ namespace editgrif
             directionPrefix = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true) ?? DEFAULT_PREFIX_DIRECTION;
 
             roomsPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true) ?? DEFAULT_PREFIX_ROOM;
-            roomsShortDescPattern = grod.Get(SYSTEM_PREFIX_ROOM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_SHORTDESC;
-            roomsLongDescPattern = grod.Get(SYSTEM_PREFIX_ROOM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_LONGDESC;
-            roomsExitsPattern = grod.Get(SYSTEM_PREFIX_ROOM_EXIT_KEY, true) ?? DEFAULT_PATTERN_ROOM_EXIT;
+            roomsShortDescPattern = grod.Get(SYSTEM_PATTERN_ROOM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_SHORTDESC;
+            roomsLongDescPattern = grod.Get(SYSTEM_PATTERN_ROOM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_LONGDESC;
+            roomsExitsPattern = grod.Get(SYSTEM_PATTERN_ROOM_EXIT_KEY, true) ?? DEFAULT_PATTERN_ROOM_EXIT;
 
             itemsPrefix = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true) ?? DEFAULT_PREFIX_ITEM;
-            itemsShortDescPattern = grod.Get(SYSTEM_PREFIX_ITEM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_SHORTDESC;
-            itemsLongDescPattern = grod.Get(SYSTEM_PREFIX_ITEM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_LONGDESC;
-            itemsLocationPattern = grod.Get(SYSTEM_PREFIX_ITEM_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ITEM_LOCATION;
+            itemsShortDescPattern = grod.Get(SYSTEM_PATTERN_ITEM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_SHORTDESC;
+            itemsLongDescPattern = grod.Get(SYSTEM_PATTERN_ITEM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_LONGDESC;
+            itemsLocationPattern = grod.Get(SYSTEM_PATTERN_ITEM_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ITEM_LOCATION;
 
             messagePrefixes = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true) ?? DEFAULT_PREFIX_MESSAGE;
             valuesPrefixes = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true) ?? DEFAULT_PREFIX_VALUE;
@@ -809,6 +811,10 @@ namespace editgrif
                 return;
             }
             if (baseGrod == null) return;
+            if (configGrod != null)
+            {
+                baseGrod.Parent = configGrod;
+            }
             // check for existing overlay file
             overlayFilename = Path.Combine(basePath, Path.GetFileNameWithoutExtension(filename) + OVERLAY_EXTENSION);
             try

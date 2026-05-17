@@ -1,0 +1,33 @@
+// configvalues.grif - GRIF format
+system.pattern.item.location
+	{itemprefix}.{item}.location
+system.pattern.item.longdesc
+	{itemprefix}.{item}.longdesc
+system.pattern.item.shortdesc
+	{itemprefix}.{item}.shortdesc
+system.pattern.room.exit
+	{roomprefix}.{room}.exit.{direction}
+system.pattern.room.longdesc
+	{roomprefix}.{room}.longdesc
+system.pattern.room.shortdesc
+	{roomprefix}.{room}.shortdesc
+system.player.location
+	player.location
+system.prefix.command
+	command
+system.prefix.direction
+	direction
+system.prefix.item
+	item
+system.prefix.message
+	message,modmsg
+system.prefix.room
+	room
+system.prefix.script
+	script,background
+system.prefix.system
+	system
+system.prefix.value
+	value
+system.prefix.vocabulary
+	verb,noun,adjective,preposition,article
