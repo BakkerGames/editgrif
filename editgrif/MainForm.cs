@@ -45,16 +45,17 @@ namespace editgrif
             };
             var result = dialog.ShowDialog();
             if (result != DialogResult.OK) return;
+            SaveOverlay();
+            comboBoxFileNames.SelectedIndex = -1;
+            comboBoxFileNames.Items.Clear();
+            ClearData();
             var filename = dialog.FileName;
             basePath = Path.GetDirectoryName(filename) ?? "";
             filename = Path.GetFileName(filename);
-            ClearData();
             buttonFileValidate.Enabled = true;
             buttonFileSave.Enabled = true;
             buttonPlay.Enabled = true;
             EnableGroupBoxes();
-            comboBoxFileNames.SelectedIndex = -1;
-            comboBoxFileNames.Items.Clear();
             if (Path.GetExtension(filename).Equals(STACK_EXTENSION, OIC))
             {
                 var lines = File.ReadAllLines(Path.Combine(basePath, filename));
