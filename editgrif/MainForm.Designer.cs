@@ -169,7 +169,7 @@
             buttonStart.Location = new Point(3, 48);
             buttonStart.Name = "buttonStart";
             buttonStart.Size = new Size(96, 50);
-            buttonStart.TabIndex = 1;
+            buttonStart.TabIndex = 7;
             buttonStart.Text = "Start";
             buttonStart.UseVisualStyleBackColor = true;
             buttonStart.Click += buttonStart_Click;
@@ -179,7 +179,7 @@
             buttonRooms.Location = new Point(3, 104);
             buttonRooms.Name = "buttonRooms";
             buttonRooms.Size = new Size(96, 50);
-            buttonRooms.TabIndex = 2;
+            buttonRooms.TabIndex = 8;
             buttonRooms.Text = "Rooms";
             buttonRooms.UseVisualStyleBackColor = true;
             buttonRooms.Click += buttonRooms_Click;
@@ -189,7 +189,7 @@
             buttonItems.Location = new Point(3, 160);
             buttonItems.Name = "buttonItems";
             buttonItems.Size = new Size(96, 50);
-            buttonItems.TabIndex = 3;
+            buttonItems.TabIndex = 9;
             buttonItems.Text = "Items";
             buttonItems.UseVisualStyleBackColor = true;
             buttonItems.Click += buttonItems_Click;
@@ -199,7 +199,7 @@
             buttonMessages.Location = new Point(3, 216);
             buttonMessages.Name = "buttonMessages";
             buttonMessages.Size = new Size(96, 50);
-            buttonMessages.TabIndex = 4;
+            buttonMessages.TabIndex = 10;
             buttonMessages.Text = "Messages";
             buttonMessages.UseVisualStyleBackColor = true;
             buttonMessages.Click += buttonMessages_Click;
@@ -209,7 +209,7 @@
             buttonValues.Location = new Point(3, 272);
             buttonValues.Name = "buttonValues";
             buttonValues.Size = new Size(96, 50);
-            buttonValues.TabIndex = 5;
+            buttonValues.TabIndex = 11;
             buttonValues.Text = "Values";
             buttonValues.UseVisualStyleBackColor = true;
             buttonValues.Click += buttonValues_Click;
@@ -219,7 +219,7 @@
             buttonVocabulary.Location = new Point(3, 328);
             buttonVocabulary.Name = "buttonVocabulary";
             buttonVocabulary.Size = new Size(96, 50);
-            buttonVocabulary.TabIndex = 6;
+            buttonVocabulary.TabIndex = 12;
             buttonVocabulary.Text = "Vocabulary";
             buttonVocabulary.UseVisualStyleBackColor = true;
             buttonVocabulary.Click += buttonVocabulary_Click;
@@ -229,7 +229,7 @@
             buttonCommands.Location = new Point(3, 384);
             buttonCommands.Name = "buttonCommands";
             buttonCommands.Size = new Size(96, 50);
-            buttonCommands.TabIndex = 7;
+            buttonCommands.TabIndex = 13;
             buttonCommands.Text = "Commands";
             buttonCommands.UseVisualStyleBackColor = true;
             buttonCommands.Click += buttonCommands_Click;
@@ -239,7 +239,7 @@
             buttonSystem.Location = new Point(3, 552);
             buttonSystem.Name = "buttonSystem";
             buttonSystem.Size = new Size(96, 50);
-            buttonSystem.TabIndex = 10;
+            buttonSystem.TabIndex = 16;
             buttonSystem.Text = "System";
             buttonSystem.UseVisualStyleBackColor = true;
             buttonSystem.Click += buttonSystem_Click;
@@ -249,7 +249,7 @@
             buttonScripts.Location = new Point(3, 440);
             buttonScripts.Name = "buttonScripts";
             buttonScripts.Size = new Size(96, 50);
-            buttonScripts.TabIndex = 8;
+            buttonScripts.TabIndex = 14;
             buttonScripts.Text = "Scripts";
             buttonScripts.UseVisualStyleBackColor = true;
             buttonScripts.Click += buttonScripts_Click;
@@ -281,7 +281,7 @@
             groupBoxStart.Location = new Point(105, 40);
             groupBoxStart.Name = "groupBoxStart";
             groupBoxStart.Size = new Size(1189, 804);
-            groupBoxStart.TabIndex = 11;
+            groupBoxStart.TabIndex = 18;
             groupBoxStart.TabStop = false;
             groupBoxStart.Text = "Start";
             // 
@@ -291,7 +291,7 @@
             labelStartDirectionsSynonym.Location = new Point(299, 464);
             labelStartDirectionsSynonym.Name = "labelStartDirectionsSynonym";
             labelStartDirectionsSynonym.Size = new Size(62, 15);
-            labelStartDirectionsSynonym.TabIndex = 35;
+            labelStartDirectionsSynonym.TabIndex = 16;
             labelStartDirectionsSynonym.Text = "Synonyms";
             // 
             // richTextBoxStartDirectionsCommand
@@ -302,7 +302,7 @@
             richTextBoxStartDirectionsCommand.Multiline = false;
             richTextBoxStartDirectionsCommand.Name = "richTextBoxStartDirectionsCommand";
             richTextBoxStartDirectionsCommand.Size = new Size(792, 26);
-            richTextBoxStartDirectionsCommand.TabIndex = 34;
+            richTextBoxStartDirectionsCommand.TabIndex = 19;
             richTextBoxStartDirectionsCommand.Text = "";
             richTextBoxStartDirectionsCommand.TextChanged += richTextBoxStartDirectionsCommand_TextChanged;
             // 
@@ -312,7 +312,7 @@
             labelStartDirectionsCommand.Location = new Point(299, 496);
             labelStartDirectionsCommand.Name = "labelStartDirectionsCommand";
             labelStartDirectionsCommand.Size = new Size(86, 15);
-            labelStartDirectionsCommand.TabIndex = 33;
+            labelStartDirectionsCommand.TabIndex = 18;
             labelStartDirectionsCommand.Text = "Command Key";
             // 
             // richTextBoxStartStartingRoom
@@ -322,7 +322,7 @@
             richTextBoxStartStartingRoom.Multiline = false;
             richTextBoxStartStartingRoom.Name = "richTextBoxStartStartingRoom";
             richTextBoxStartStartingRoom.Size = new Size(273, 26);
-            richTextBoxStartStartingRoom.TabIndex = 32;
+            richTextBoxStartStartingRoom.TabIndex = 10;
             richTextBoxStartStartingRoom.Text = "";
             richTextBoxStartStartingRoom.TextChanged += richTextBoxStartStartingRoom_TextChanged;
             // 
@@ -334,7 +334,7 @@
             richTextBoxStartVersion.Multiline = false;
             richTextBoxStartVersion.Name = "richTextBoxStartVersion";
             richTextBoxStartVersion.Size = new Size(136, 26);
-            richTextBoxStartVersion.TabIndex = 31;
+            richTextBoxStartVersion.TabIndex = 3;
             richTextBoxStartVersion.Text = "";
             richTextBoxStartVersion.TextChanged += richTextBoxStartVersion_TextChanged;
             // 
@@ -345,7 +345,7 @@
             richTextBoxStartGameTitle.Multiline = false;
             richTextBoxStartGameTitle.Name = "richTextBoxStartGameTitle";
             richTextBoxStartGameTitle.Size = new Size(273, 26);
-            richTextBoxStartGameTitle.TabIndex = 30;
+            richTextBoxStartGameTitle.TabIndex = 6;
             richTextBoxStartGameTitle.Text = "";
             richTextBoxStartGameTitle.TextChanged += richTextBoxStartGameTitle_TextChanged;
             // 
@@ -356,7 +356,7 @@
             richTextBoxStartGameName.Multiline = false;
             richTextBoxStartGameName.Name = "richTextBoxStartGameName";
             richTextBoxStartGameName.Size = new Size(273, 26);
-            richTextBoxStartGameName.TabIndex = 29;
+            richTextBoxStartGameName.TabIndex = 1;
             richTextBoxStartGameName.Text = "";
             richTextBoxStartGameName.TextChanged += richTextBoxStartGameName_TextChanged;
             // 
@@ -366,7 +366,7 @@
             buttonStartDirectionsDelete.Location = new Point(235, 429);
             buttonStartDirectionsDelete.Name = "buttonStartDirectionsDelete";
             buttonStartDirectionsDelete.Size = new Size(58, 23);
-            buttonStartDirectionsDelete.TabIndex = 27;
+            buttonStartDirectionsDelete.TabIndex = 13;
             buttonStartDirectionsDelete.Text = "Delete";
             buttonStartDirectionsDelete.UseVisualStyleBackColor = true;
             buttonStartDirectionsDelete.Click += buttonStartDirectionsDelete_Click;
@@ -377,7 +377,7 @@
             buttonStartDirectionsRename.Location = new Point(171, 429);
             buttonStartDirectionsRename.Name = "buttonStartDirectionsRename";
             buttonStartDirectionsRename.Size = new Size(58, 23);
-            buttonStartDirectionsRename.TabIndex = 25;
+            buttonStartDirectionsRename.TabIndex = 12;
             buttonStartDirectionsRename.Text = "Rename";
             buttonStartDirectionsRename.UseVisualStyleBackColor = true;
             buttonStartDirectionsRename.Click += buttonStartDirectionsRename_Click;
@@ -387,7 +387,7 @@
             buttonStartDirectionsAdd.Location = new Point(109, 429);
             buttonStartDirectionsAdd.Name = "buttonStartDirectionsAdd";
             buttonStartDirectionsAdd.Size = new Size(58, 23);
-            buttonStartDirectionsAdd.TabIndex = 26;
+            buttonStartDirectionsAdd.TabIndex = 11;
             buttonStartDirectionsAdd.Text = "Add";
             buttonStartDirectionsAdd.UseVisualStyleBackColor = true;
             buttonStartDirectionsAdd.Click += buttonStartDirectionsAdd_Click;
@@ -398,7 +398,7 @@
             labelStartDirections.Location = new Point(20, 470);
             labelStartDirections.Name = "labelStartDirections";
             labelStartDirections.Size = new Size(60, 15);
-            labelStartDirections.TabIndex = 24;
+            labelStartDirections.TabIndex = 14;
             labelStartDirections.Text = "Directions";
             // 
             // richTextBoxStartDirectionsSynonyms
@@ -409,7 +409,7 @@
             richTextBoxStartDirectionsSynonyms.Location = new Point(391, 456);
             richTextBoxStartDirectionsSynonyms.Name = "richTextBoxStartDirectionsSynonyms";
             richTextBoxStartDirectionsSynonyms.Size = new Size(792, 26);
-            richTextBoxStartDirectionsSynonyms.TabIndex = 23;
+            richTextBoxStartDirectionsSynonyms.TabIndex = 17;
             richTextBoxStartDirectionsSynonyms.Text = "";
             richTextBoxStartDirectionsSynonyms.TextChanged += richTextBoxStartDirectionsSynonyms_TextChanged;
             // 
@@ -422,7 +422,7 @@
             listBoxStartDirection.Location = new Point(109, 458);
             listBoxStartDirection.Name = "listBoxStartDirection";
             listBoxStartDirection.Size = new Size(184, 339);
-            listBoxStartDirection.TabIndex = 22;
+            listBoxStartDirection.TabIndex = 15;
             listBoxStartDirection.SelectedIndexChanged += listBoxStartDirection_SelectedIndexChanged;
             // 
             // richTextBoxStartIntroduction
@@ -433,7 +433,7 @@
             richTextBoxStartIntroduction.Location = new Point(109, 83);
             richTextBoxStartIntroduction.Name = "richTextBoxStartIntroduction";
             richTextBoxStartIntroduction.Size = new Size(1074, 308);
-            richTextBoxStartIntroduction.TabIndex = 21;
+            richTextBoxStartIntroduction.TabIndex = 8;
             richTextBoxStartIntroduction.Text = "";
             richTextBoxStartIntroduction.TextChanged += richTextBoxStartIntroduction_TextChanged;
             // 
@@ -481,7 +481,7 @@
             labelStartGameTitle.AutoSize = true;
             labelStartGameTitle.Location = new Point(20, 57);
             labelStartGameTitle.Name = "labelStartGameTitle";
-            labelStartGameTitle.Size = new Size(64, 15);
+            labelStartGameTitle.Size = new Size(63, 15);
             labelStartGameTitle.TabIndex = 5;
             labelStartGameTitle.Text = "Game Title";
             // 
@@ -521,7 +521,7 @@
             groupBoxRooms.Location = new Point(105, 40);
             groupBoxRooms.Name = "groupBoxRooms";
             groupBoxRooms.Size = new Size(1189, 804);
-            groupBoxRooms.TabIndex = 12;
+            groupBoxRooms.TabIndex = 19;
             groupBoxRooms.TabStop = false;
             groupBoxRooms.Text = "Rooms";
             groupBoxRooms.Visible = false;
@@ -533,7 +533,7 @@
             richTextBoxRoomsLongDesc.Location = new Point(274, 81);
             richTextBoxRoomsLongDesc.Name = "richTextBoxRoomsLongDesc";
             richTextBoxRoomsLongDesc.Size = new Size(909, 200);
-            richTextBoxRoomsLongDesc.TabIndex = 23;
+            richTextBoxRoomsLongDesc.TabIndex = 7;
             richTextBoxRoomsLongDesc.Text = "";
             richTextBoxRoomsLongDesc.TextChanged += richTextBoxRoomsLongDesc_TextChanged;
             // 
@@ -545,7 +545,7 @@
             richTextBoxRoomsShortDesc.Multiline = false;
             richTextBoxRoomsShortDesc.Name = "richTextBoxRoomsShortDesc";
             richTextBoxRoomsShortDesc.Size = new Size(909, 23);
-            richTextBoxRoomsShortDesc.TabIndex = 22;
+            richTextBoxRoomsShortDesc.TabIndex = 5;
             richTextBoxRoomsShortDesc.Text = "";
             richTextBoxRoomsShortDesc.TextChanged += richTextBoxRoomsShortDesc_TextChanged;
             // 
@@ -554,8 +554,8 @@
             labelRoomsExits.AutoSize = true;
             labelRoomsExits.Location = new Point(198, 316);
             labelRoomsExits.Name = "labelRoomsExits";
-            labelRoomsExits.Size = new Size(30, 15);
-            labelRoomsExits.TabIndex = 21;
+            labelRoomsExits.Size = new Size(31, 15);
+            labelRoomsExits.TabIndex = 11;
             labelRoomsExits.Text = "Exits";
             // 
             // richTextBoxRoomsExits
@@ -566,7 +566,7 @@
             richTextBoxRoomsExits.Location = new Point(464, 316);
             richTextBoxRoomsExits.Name = "richTextBoxRoomsExits";
             richTextBoxRoomsExits.Size = new Size(719, 228);
-            richTextBoxRoomsExits.TabIndex = 20;
+            richTextBoxRoomsExits.TabIndex = 13;
             richTextBoxRoomsExits.Text = "";
             richTextBoxRoomsExits.TextChanged += richTextBoxRoomsExits_TextChanged;
             // 
@@ -576,7 +576,7 @@
             buttonRoomsExitsDelete.Location = new Point(402, 287);
             buttonRoomsExitsDelete.Name = "buttonRoomsExitsDelete";
             buttonRoomsExitsDelete.Size = new Size(58, 23);
-            buttonRoomsExitsDelete.TabIndex = 19;
+            buttonRoomsExitsDelete.TabIndex = 10;
             buttonRoomsExitsDelete.Text = "Delete";
             buttonRoomsExitsDelete.UseVisualStyleBackColor = true;
             buttonRoomsExitsDelete.Click += buttonRoomsExitsDelete_Click;
@@ -587,7 +587,7 @@
             buttonRoomsExitsRename.Location = new Point(338, 287);
             buttonRoomsExitsRename.Name = "buttonRoomsExitsRename";
             buttonRoomsExitsRename.Size = new Size(58, 23);
-            buttonRoomsExitsRename.TabIndex = 18;
+            buttonRoomsExitsRename.TabIndex = 9;
             buttonRoomsExitsRename.Text = "Rename";
             buttonRoomsExitsRename.UseVisualStyleBackColor = true;
             buttonRoomsExitsRename.Click += buttonRoomsExitsRename_Click;
@@ -598,7 +598,7 @@
             buttonRoomsExitsAdd.Location = new Point(274, 287);
             buttonRoomsExitsAdd.Name = "buttonRoomsExitsAdd";
             buttonRoomsExitsAdd.Size = new Size(58, 23);
-            buttonRoomsExitsAdd.TabIndex = 17;
+            buttonRoomsExitsAdd.TabIndex = 8;
             buttonRoomsExitsAdd.Text = "Add";
             buttonRoomsExitsAdd.UseVisualStyleBackColor = true;
             buttonRoomsExitsAdd.Click += buttonRoomsExitsAdd_Click;
@@ -609,7 +609,7 @@
             labelRoomsOther.Location = new Point(198, 580);
             labelRoomsOther.Name = "labelRoomsOther";
             labelRoomsOther.Size = new Size(40, 15);
-            labelRoomsOther.TabIndex = 16;
+            labelRoomsOther.TabIndex = 17;
             labelRoomsOther.Text = "Values";
             // 
             // listBoxRoomsExits
@@ -620,7 +620,7 @@
             listBoxRoomsExits.Location = new Point(274, 316);
             listBoxRoomsExits.Name = "listBoxRoomsExits";
             listBoxRoomsExits.Size = new Size(184, 228);
-            listBoxRoomsExits.TabIndex = 15;
+            listBoxRoomsExits.TabIndex = 12;
             listBoxRoomsExits.SelectedIndexChanged += listBoxRoomsExits_SelectedIndexChanged;
             // 
             // richTextBoxRoomsOther
@@ -631,7 +631,7 @@
             richTextBoxRoomsOther.Location = new Point(464, 580);
             richTextBoxRoomsOther.Name = "richTextBoxRoomsOther";
             richTextBoxRoomsOther.Size = new Size(719, 217);
-            richTextBoxRoomsOther.TabIndex = 13;
+            richTextBoxRoomsOther.TabIndex = 19;
             richTextBoxRoomsOther.Text = "";
             richTextBoxRoomsOther.TextChanged += richTextBoxRoomsOther_TextChanged;
             // 
@@ -641,7 +641,7 @@
             buttonRoomsOtherDelete.Location = new Point(400, 551);
             buttonRoomsOtherDelete.Name = "buttonRoomsOtherDelete";
             buttonRoomsOtherDelete.Size = new Size(58, 23);
-            buttonRoomsOtherDelete.TabIndex = 12;
+            buttonRoomsOtherDelete.TabIndex = 16;
             buttonRoomsOtherDelete.Text = "Delete";
             buttonRoomsOtherDelete.UseVisualStyleBackColor = true;
             buttonRoomsOtherDelete.Click += buttonRoomsOtherDelete_Click;
@@ -652,7 +652,7 @@
             buttonRoomsOtherRename.Location = new Point(338, 551);
             buttonRoomsOtherRename.Name = "buttonRoomsOtherRename";
             buttonRoomsOtherRename.Size = new Size(58, 23);
-            buttonRoomsOtherRename.TabIndex = 11;
+            buttonRoomsOtherRename.TabIndex = 15;
             buttonRoomsOtherRename.Text = "Rename";
             buttonRoomsOtherRename.UseVisualStyleBackColor = true;
             buttonRoomsOtherRename.Click += buttonRoomsOtherRename_Click;
@@ -663,7 +663,7 @@
             buttonRoomsOtherAdd.Location = new Point(274, 551);
             buttonRoomsOtherAdd.Name = "buttonRoomsOtherAdd";
             buttonRoomsOtherAdd.Size = new Size(58, 23);
-            buttonRoomsOtherAdd.TabIndex = 10;
+            buttonRoomsOtherAdd.TabIndex = 14;
             buttonRoomsOtherAdd.Text = "Add";
             buttonRoomsOtherAdd.UseVisualStyleBackColor = true;
             buttonRoomsOtherAdd.Click += buttonRoomsOtherAdd_Click;
@@ -677,7 +677,7 @@
             listBoxRoomsOther.Location = new Point(274, 580);
             listBoxRoomsOther.Name = "listBoxRoomsOther";
             listBoxRoomsOther.Size = new Size(184, 217);
-            listBoxRoomsOther.TabIndex = 9;
+            listBoxRoomsOther.TabIndex = 18;
             listBoxRoomsOther.SelectedIndexChanged += listBoxRoomsOther_SelectedIndexChanged;
             // 
             // labelRoomsLongDesc
@@ -765,7 +765,7 @@
             groupBoxItems.Location = new Point(105, 40);
             groupBoxItems.Name = "groupBoxItems";
             groupBoxItems.Size = new Size(1189, 804);
-            groupBoxItems.TabIndex = 13;
+            groupBoxItems.TabIndex = 20;
             groupBoxItems.TabStop = false;
             groupBoxItems.Text = "Items";
             groupBoxItems.Visible = false;
@@ -778,7 +778,7 @@
             richTextBoxItemsLocation.Multiline = false;
             richTextBoxItemsLocation.Name = "richTextBoxItemsLocation";
             richTextBoxItemsLocation.Size = new Size(909, 23);
-            richTextBoxItemsLocation.TabIndex = 29;
+            richTextBoxItemsLocation.TabIndex = 9;
             richTextBoxItemsLocation.Text = "";
             richTextBoxItemsLocation.TextChanged += richTextBoxItemsLocation_TextChanged;
             // 
@@ -789,7 +789,7 @@
             richTextBoxItemsLongDesc.Location = new Point(274, 81);
             richTextBoxItemsLongDesc.Name = "richTextBoxItemsLongDesc";
             richTextBoxItemsLongDesc.Size = new Size(909, 200);
-            richTextBoxItemsLongDesc.TabIndex = 28;
+            richTextBoxItemsLongDesc.TabIndex = 7;
             richTextBoxItemsLongDesc.Text = "";
             richTextBoxItemsLongDesc.TextChanged += richTextBoxItemsLongDesc_TextChanged;
             // 
@@ -801,7 +801,7 @@
             richTextBoxItemsShortDesc.Multiline = false;
             richTextBoxItemsShortDesc.Name = "richTextBoxItemsShortDesc";
             richTextBoxItemsShortDesc.Size = new Size(909, 23);
-            richTextBoxItemsShortDesc.TabIndex = 27;
+            richTextBoxItemsShortDesc.TabIndex = 5;
             richTextBoxItemsShortDesc.Text = "";
             richTextBoxItemsShortDesc.TextChanged += richTextBoxItemsShortDesc_TextChanged;
             // 
@@ -811,7 +811,7 @@
             labelItemsOther.Location = new Point(198, 359);
             labelItemsOther.Name = "labelItemsOther";
             labelItemsOther.Size = new Size(40, 15);
-            labelItemsOther.TabIndex = 26;
+            labelItemsOther.TabIndex = 13;
             labelItemsOther.Text = "Values";
             // 
             // richTextBoxItemsOther
@@ -822,7 +822,7 @@
             richTextBoxItemsOther.Location = new Point(464, 353);
             richTextBoxItemsOther.Name = "richTextBoxItemsOther";
             richTextBoxItemsOther.Size = new Size(719, 445);
-            richTextBoxItemsOther.TabIndex = 25;
+            richTextBoxItemsOther.TabIndex = 15;
             richTextBoxItemsOther.Text = "";
             richTextBoxItemsOther.TextChanged += richTextBoxItemsOther_TextChanged;
             // 
@@ -832,7 +832,7 @@
             buttonItemsOtherAdd.Location = new Point(274, 324);
             buttonItemsOtherAdd.Name = "buttonItemsOtherAdd";
             buttonItemsOtherAdd.Size = new Size(58, 23);
-            buttonItemsOtherAdd.TabIndex = 24;
+            buttonItemsOtherAdd.TabIndex = 10;
             buttonItemsOtherAdd.Text = "Add";
             buttonItemsOtherAdd.UseVisualStyleBackColor = true;
             buttonItemsOtherAdd.Click += buttonItemsOtherAdd_Click;
@@ -843,7 +843,7 @@
             buttonItemsOtherRename.Location = new Point(338, 324);
             buttonItemsOtherRename.Name = "buttonItemsOtherRename";
             buttonItemsOtherRename.Size = new Size(58, 23);
-            buttonItemsOtherRename.TabIndex = 23;
+            buttonItemsOtherRename.TabIndex = 11;
             buttonItemsOtherRename.Text = "Rename";
             buttonItemsOtherRename.UseVisualStyleBackColor = true;
             buttonItemsOtherRename.Click += buttonItemsOtherRename_Click;
@@ -854,7 +854,7 @@
             buttonItemsOtherDelete.Location = new Point(402, 324);
             buttonItemsOtherDelete.Name = "buttonItemsOtherDelete";
             buttonItemsOtherDelete.Size = new Size(58, 23);
-            buttonItemsOtherDelete.TabIndex = 22;
+            buttonItemsOtherDelete.TabIndex = 12;
             buttonItemsOtherDelete.Text = "Delete";
             buttonItemsOtherDelete.UseVisualStyleBackColor = true;
             buttonItemsOtherDelete.Click += buttonItemsOtherDelete_Click;
@@ -868,7 +868,7 @@
             listBoxItemsOther.Location = new Point(274, 352);
             listBoxItemsOther.Name = "listBoxItemsOther";
             listBoxItemsOther.Size = new Size(184, 445);
-            listBoxItemsOther.TabIndex = 21;
+            listBoxItemsOther.TabIndex = 14;
             listBoxItemsOther.SelectedIndexChanged += listBoxItemsOther_SelectedIndexChanged;
             // 
             // labelItemsLocation
@@ -877,7 +877,7 @@
             labelItemsLocation.Location = new Point(197, 290);
             labelItemsLocation.Name = "labelItemsLocation";
             labelItemsLocation.Size = new Size(53, 15);
-            labelItemsLocation.TabIndex = 19;
+            labelItemsLocation.TabIndex = 8;
             labelItemsLocation.Text = "Location";
             // 
             // labelItemsLongDesc
@@ -886,7 +886,7 @@
             labelItemsLongDesc.Location = new Point(198, 89);
             labelItemsLongDesc.Name = "labelItemsLongDesc";
             labelItemsLongDesc.Size = new Size(62, 15);
-            labelItemsLongDesc.TabIndex = 17;
+            labelItemsLongDesc.TabIndex = 6;
             labelItemsLongDesc.Text = "Long Desc";
             // 
             // labelItemsShortDesc
@@ -895,7 +895,7 @@
             labelItemsShortDesc.Location = new Point(197, 58);
             labelItemsShortDesc.Name = "labelItemsShortDesc";
             labelItemsShortDesc.Size = new Size(63, 15);
-            labelItemsShortDesc.TabIndex = 15;
+            labelItemsShortDesc.TabIndex = 4;
             labelItemsShortDesc.Text = "Short Desc";
             // 
             // buttonItemsAdd
@@ -903,7 +903,7 @@
             buttonItemsAdd.Location = new Point(6, 23);
             buttonItemsAdd.Name = "buttonItemsAdd";
             buttonItemsAdd.Size = new Size(58, 23);
-            buttonItemsAdd.TabIndex = 14;
+            buttonItemsAdd.TabIndex = 0;
             buttonItemsAdd.Text = "Add";
             buttonItemsAdd.UseVisualStyleBackColor = true;
             buttonItemsAdd.Click += buttonItemsAdd_Click;
@@ -914,7 +914,7 @@
             buttonItemsRename.Location = new Point(70, 23);
             buttonItemsRename.Name = "buttonItemsRename";
             buttonItemsRename.Size = new Size(58, 23);
-            buttonItemsRename.TabIndex = 13;
+            buttonItemsRename.TabIndex = 1;
             buttonItemsRename.Text = "Rename";
             buttonItemsRename.UseVisualStyleBackColor = true;
             buttonItemsRename.Click += buttonItemsRename_Click;
@@ -925,7 +925,7 @@
             buttonItemsDelete.Location = new Point(134, 23);
             buttonItemsDelete.Name = "buttonItemsDelete";
             buttonItemsDelete.Size = new Size(58, 23);
-            buttonItemsDelete.TabIndex = 12;
+            buttonItemsDelete.TabIndex = 2;
             buttonItemsDelete.Text = "Delete";
             buttonItemsDelete.UseVisualStyleBackColor = true;
             buttonItemsDelete.Click += buttonItemsDelete_Click;
@@ -939,7 +939,7 @@
             listBoxItems.Location = new Point(8, 52);
             listBoxItems.Name = "listBoxItems";
             listBoxItems.Size = new Size(184, 746);
-            listBoxItems.TabIndex = 11;
+            listBoxItems.TabIndex = 3;
             listBoxItems.SelectedIndexChanged += listBoxItems_SelectedIndexChanged;
             // 
             // groupBoxMessages
@@ -954,7 +954,7 @@
             groupBoxMessages.Location = new Point(105, 40);
             groupBoxMessages.Name = "groupBoxMessages";
             groupBoxMessages.Size = new Size(1189, 804);
-            groupBoxMessages.TabIndex = 14;
+            groupBoxMessages.TabIndex = 21;
             groupBoxMessages.TabStop = false;
             groupBoxMessages.Text = "Messages";
             groupBoxMessages.Visible = false;
@@ -967,7 +967,7 @@
             richTextBoxMessages.Location = new Point(289, 52);
             richTextBoxMessages.Name = "richTextBoxMessages";
             richTextBoxMessages.Size = new Size(894, 746);
-            richTextBoxMessages.TabIndex = 9;
+            richTextBoxMessages.TabIndex = 4;
             richTextBoxMessages.Text = "";
             richTextBoxMessages.TextChanged += richTextBoxMessages_TextChanged;
             // 
@@ -977,7 +977,7 @@
             buttonMessagesDelete.Location = new Point(134, 23);
             buttonMessagesDelete.Name = "buttonMessagesDelete";
             buttonMessagesDelete.Size = new Size(58, 23);
-            buttonMessagesDelete.TabIndex = 8;
+            buttonMessagesDelete.TabIndex = 2;
             buttonMessagesDelete.Text = "Delete";
             buttonMessagesDelete.UseVisualStyleBackColor = true;
             buttonMessagesDelete.Click += buttonMessagesDelete_Click;
@@ -988,7 +988,7 @@
             buttonMessagesRename.Location = new Point(70, 23);
             buttonMessagesRename.Name = "buttonMessagesRename";
             buttonMessagesRename.Size = new Size(58, 23);
-            buttonMessagesRename.TabIndex = 7;
+            buttonMessagesRename.TabIndex = 1;
             buttonMessagesRename.Text = "Rename";
             buttonMessagesRename.UseVisualStyleBackColor = true;
             buttonMessagesRename.Click += buttonMessagesRename_Click;
@@ -998,7 +998,7 @@
             buttonMessagesAdd.Location = new Point(6, 23);
             buttonMessagesAdd.Name = "buttonMessagesAdd";
             buttonMessagesAdd.Size = new Size(58, 23);
-            buttonMessagesAdd.TabIndex = 6;
+            buttonMessagesAdd.TabIndex = 0;
             buttonMessagesAdd.Text = "Add";
             buttonMessagesAdd.UseVisualStyleBackColor = true;
             buttonMessagesAdd.Click += buttonMessagesAdd_Click;
@@ -1012,7 +1012,7 @@
             listBoxMessages.Location = new Point(8, 52);
             listBoxMessages.Name = "listBoxMessages";
             listBoxMessages.Size = new Size(275, 746);
-            listBoxMessages.TabIndex = 5;
+            listBoxMessages.TabIndex = 3;
             listBoxMessages.SelectedIndexChanged += listBoxMessages_SelectedIndexChanged;
             // 
             // groupBoxValues
@@ -1027,7 +1027,7 @@
             groupBoxValues.Location = new Point(105, 40);
             groupBoxValues.Name = "groupBoxValues";
             groupBoxValues.Size = new Size(1189, 804);
-            groupBoxValues.TabIndex = 15;
+            groupBoxValues.TabIndex = 22;
             groupBoxValues.TabStop = false;
             groupBoxValues.Text = "Values";
             groupBoxValues.Visible = false;
@@ -1040,7 +1040,7 @@
             richTextBoxValues.Location = new Point(289, 52);
             richTextBoxValues.Name = "richTextBoxValues";
             richTextBoxValues.Size = new Size(894, 746);
-            richTextBoxValues.TabIndex = 9;
+            richTextBoxValues.TabIndex = 4;
             richTextBoxValues.Text = "";
             richTextBoxValues.TextChanged += richTextBoxValues_TextChanged;
             // 
@@ -1050,7 +1050,7 @@
             buttonValuesDelete.Location = new Point(134, 23);
             buttonValuesDelete.Name = "buttonValuesDelete";
             buttonValuesDelete.Size = new Size(58, 23);
-            buttonValuesDelete.TabIndex = 8;
+            buttonValuesDelete.TabIndex = 2;
             buttonValuesDelete.Text = "Delete";
             buttonValuesDelete.UseVisualStyleBackColor = true;
             buttonValuesDelete.Click += buttonValuesDelete_Click;
@@ -1061,7 +1061,7 @@
             buttonValuesRename.Location = new Point(70, 23);
             buttonValuesRename.Name = "buttonValuesRename";
             buttonValuesRename.Size = new Size(58, 23);
-            buttonValuesRename.TabIndex = 7;
+            buttonValuesRename.TabIndex = 1;
             buttonValuesRename.Text = "Rename";
             buttonValuesRename.UseVisualStyleBackColor = true;
             buttonValuesRename.Click += buttonValuesRename_Click;
@@ -1071,7 +1071,7 @@
             buttonValuesAdd.Location = new Point(6, 23);
             buttonValuesAdd.Name = "buttonValuesAdd";
             buttonValuesAdd.Size = new Size(58, 23);
-            buttonValuesAdd.TabIndex = 6;
+            buttonValuesAdd.TabIndex = 0;
             buttonValuesAdd.Text = "Add";
             buttonValuesAdd.UseVisualStyleBackColor = true;
             buttonValuesAdd.Click += buttonValuesAdd_Click;
@@ -1085,7 +1085,7 @@
             listBoxValues.Location = new Point(8, 52);
             listBoxValues.Name = "listBoxValues";
             listBoxValues.Size = new Size(275, 746);
-            listBoxValues.TabIndex = 5;
+            listBoxValues.TabIndex = 3;
             listBoxValues.SelectedIndexChanged += listBoxValues_SelectedIndexChanged;
             // 
             // groupBoxVocabulary
@@ -1100,7 +1100,7 @@
             groupBoxVocabulary.Location = new Point(105, 40);
             groupBoxVocabulary.Name = "groupBoxVocabulary";
             groupBoxVocabulary.Size = new Size(1189, 804);
-            groupBoxVocabulary.TabIndex = 16;
+            groupBoxVocabulary.TabIndex = 23;
             groupBoxVocabulary.TabStop = false;
             groupBoxVocabulary.Text = "Vocabulary";
             groupBoxVocabulary.Visible = false;
@@ -1113,7 +1113,7 @@
             richTextBoxVocabulary.Location = new Point(289, 52);
             richTextBoxVocabulary.Name = "richTextBoxVocabulary";
             richTextBoxVocabulary.Size = new Size(894, 746);
-            richTextBoxVocabulary.TabIndex = 9;
+            richTextBoxVocabulary.TabIndex = 4;
             richTextBoxVocabulary.Text = "";
             richTextBoxVocabulary.TextChanged += richTextBoxVocabulary_TextChanged;
             // 
@@ -1123,7 +1123,7 @@
             buttonVocabularyDelete.Location = new Point(134, 23);
             buttonVocabularyDelete.Name = "buttonVocabularyDelete";
             buttonVocabularyDelete.Size = new Size(58, 23);
-            buttonVocabularyDelete.TabIndex = 8;
+            buttonVocabularyDelete.TabIndex = 2;
             buttonVocabularyDelete.Text = "Delete";
             buttonVocabularyDelete.UseVisualStyleBackColor = true;
             buttonVocabularyDelete.Click += buttonVocabularyDelete_Click;
@@ -1134,7 +1134,7 @@
             buttonVocabularyRename.Location = new Point(70, 23);
             buttonVocabularyRename.Name = "buttonVocabularyRename";
             buttonVocabularyRename.Size = new Size(58, 23);
-            buttonVocabularyRename.TabIndex = 7;
+            buttonVocabularyRename.TabIndex = 1;
             buttonVocabularyRename.Text = "Rename";
             buttonVocabularyRename.UseVisualStyleBackColor = true;
             buttonVocabularyRename.Click += buttonVocabularyRename_Click;
@@ -1144,7 +1144,7 @@
             buttonVocabularyAdd.Location = new Point(6, 23);
             buttonVocabularyAdd.Name = "buttonVocabularyAdd";
             buttonVocabularyAdd.Size = new Size(58, 23);
-            buttonVocabularyAdd.TabIndex = 6;
+            buttonVocabularyAdd.TabIndex = 0;
             buttonVocabularyAdd.Text = "Add";
             buttonVocabularyAdd.UseVisualStyleBackColor = true;
             buttonVocabularyAdd.Click += buttonVocabularyAdd_Click;
@@ -1158,7 +1158,7 @@
             listBoxVocabulary.Location = new Point(8, 52);
             listBoxVocabulary.Name = "listBoxVocabulary";
             listBoxVocabulary.Size = new Size(275, 746);
-            listBoxVocabulary.TabIndex = 5;
+            listBoxVocabulary.TabIndex = 3;
             listBoxVocabulary.SelectedIndexChanged += listBoxVocabulary_SelectedIndexChanged;
             // 
             // groupBoxCommands
@@ -1173,7 +1173,7 @@
             groupBoxCommands.Location = new Point(105, 40);
             groupBoxCommands.Name = "groupBoxCommands";
             groupBoxCommands.Size = new Size(1189, 804);
-            groupBoxCommands.TabIndex = 17;
+            groupBoxCommands.TabIndex = 24;
             groupBoxCommands.TabStop = false;
             groupBoxCommands.Text = "Commands";
             groupBoxCommands.Visible = false;
@@ -1186,7 +1186,7 @@
             richTextBoxCommands.Location = new Point(289, 52);
             richTextBoxCommands.Name = "richTextBoxCommands";
             richTextBoxCommands.Size = new Size(894, 746);
-            richTextBoxCommands.TabIndex = 9;
+            richTextBoxCommands.TabIndex = 4;
             richTextBoxCommands.Text = "";
             richTextBoxCommands.TextChanged += richTextBoxCommands_TextChanged;
             // 
@@ -1196,7 +1196,7 @@
             buttonCommandsDelete.Location = new Point(134, 23);
             buttonCommandsDelete.Name = "buttonCommandsDelete";
             buttonCommandsDelete.Size = new Size(58, 23);
-            buttonCommandsDelete.TabIndex = 8;
+            buttonCommandsDelete.TabIndex = 2;
             buttonCommandsDelete.Text = "Delete";
             buttonCommandsDelete.UseVisualStyleBackColor = true;
             buttonCommandsDelete.Click += buttonCommandsDelete_Click;
@@ -1207,7 +1207,7 @@
             buttonCommandsRename.Location = new Point(70, 23);
             buttonCommandsRename.Name = "buttonCommandsRename";
             buttonCommandsRename.Size = new Size(58, 23);
-            buttonCommandsRename.TabIndex = 7;
+            buttonCommandsRename.TabIndex = 1;
             buttonCommandsRename.Text = "Rename";
             buttonCommandsRename.UseVisualStyleBackColor = true;
             buttonCommandsRename.Click += buttonCommandsRename_Click;
@@ -1217,7 +1217,7 @@
             buttonCommandsAdd.Location = new Point(6, 23);
             buttonCommandsAdd.Name = "buttonCommandsAdd";
             buttonCommandsAdd.Size = new Size(58, 23);
-            buttonCommandsAdd.TabIndex = 6;
+            buttonCommandsAdd.TabIndex = 0;
             buttonCommandsAdd.Text = "Add";
             buttonCommandsAdd.UseVisualStyleBackColor = true;
             buttonCommandsAdd.Click += buttonCommandsAdd_Click;
@@ -1231,7 +1231,7 @@
             listBoxCommands.Location = new Point(8, 52);
             listBoxCommands.Name = "listBoxCommands";
             listBoxCommands.Size = new Size(275, 746);
-            listBoxCommands.TabIndex = 5;
+            listBoxCommands.TabIndex = 3;
             listBoxCommands.SelectedIndexChanged += listBoxCommands_SelectedIndexChanged;
             // 
             // groupBoxScripts
@@ -1246,7 +1246,7 @@
             groupBoxScripts.Location = new Point(105, 40);
             groupBoxScripts.Name = "groupBoxScripts";
             groupBoxScripts.Size = new Size(1189, 804);
-            groupBoxScripts.TabIndex = 18;
+            groupBoxScripts.TabIndex = 25;
             groupBoxScripts.TabStop = false;
             groupBoxScripts.Text = "Scripts";
             groupBoxScripts.Visible = false;
@@ -1259,7 +1259,7 @@
             richTextBoxScripts.Location = new Point(289, 52);
             richTextBoxScripts.Name = "richTextBoxScripts";
             richTextBoxScripts.Size = new Size(894, 746);
-            richTextBoxScripts.TabIndex = 9;
+            richTextBoxScripts.TabIndex = 4;
             richTextBoxScripts.Text = "";
             richTextBoxScripts.TextChanged += richTextBoxScripts_TextChanged;
             // 
@@ -1269,7 +1269,7 @@
             buttonScriptsDelete.Location = new Point(134, 23);
             buttonScriptsDelete.Name = "buttonScriptsDelete";
             buttonScriptsDelete.Size = new Size(58, 23);
-            buttonScriptsDelete.TabIndex = 8;
+            buttonScriptsDelete.TabIndex = 2;
             buttonScriptsDelete.Text = "Delete";
             buttonScriptsDelete.UseVisualStyleBackColor = true;
             buttonScriptsDelete.Click += buttonScriptsDelete_Click;
@@ -1280,7 +1280,7 @@
             buttonScriptsRename.Location = new Point(70, 23);
             buttonScriptsRename.Name = "buttonScriptsRename";
             buttonScriptsRename.Size = new Size(58, 23);
-            buttonScriptsRename.TabIndex = 7;
+            buttonScriptsRename.TabIndex = 1;
             buttonScriptsRename.Text = "Rename";
             buttonScriptsRename.UseVisualStyleBackColor = true;
             buttonScriptsRename.Click += buttonScriptsRename_Click;
@@ -1290,7 +1290,7 @@
             buttonScriptsAdd.Location = new Point(6, 23);
             buttonScriptsAdd.Name = "buttonScriptsAdd";
             buttonScriptsAdd.Size = new Size(58, 23);
-            buttonScriptsAdd.TabIndex = 6;
+            buttonScriptsAdd.TabIndex = 0;
             buttonScriptsAdd.Text = "Add";
             buttonScriptsAdd.UseVisualStyleBackColor = true;
             buttonScriptsAdd.Click += buttonScriptsAdd_Click;
@@ -1305,7 +1305,7 @@
             listBoxScripts.Name = "listBoxScripts";
             listBoxScripts.Size = new Size(275, 746);
             listBoxScripts.Sorted = true;
-            listBoxScripts.TabIndex = 5;
+            listBoxScripts.TabIndex = 3;
             listBoxScripts.SelectedIndexChanged += listBoxScripts_SelectedIndexChanged;
             // 
             // groupBoxSystem
@@ -1320,7 +1320,7 @@
             groupBoxSystem.Location = new Point(105, 40);
             groupBoxSystem.Name = "groupBoxSystem";
             groupBoxSystem.Size = new Size(1189, 804);
-            groupBoxSystem.TabIndex = 20;
+            groupBoxSystem.TabIndex = 27;
             groupBoxSystem.TabStop = false;
             groupBoxSystem.Text = "System";
             groupBoxSystem.Visible = false;
@@ -1333,7 +1333,7 @@
             richTextBoxSystem.Location = new Point(289, 52);
             richTextBoxSystem.Name = "richTextBoxSystem";
             richTextBoxSystem.Size = new Size(894, 746);
-            richTextBoxSystem.TabIndex = 9;
+            richTextBoxSystem.TabIndex = 4;
             richTextBoxSystem.Text = "";
             richTextBoxSystem.TextChanged += richTextBoxSystem_TextChanged;
             // 
@@ -1343,7 +1343,7 @@
             buttonSystemDelete.Location = new Point(134, 23);
             buttonSystemDelete.Name = "buttonSystemDelete";
             buttonSystemDelete.Size = new Size(58, 23);
-            buttonSystemDelete.TabIndex = 8;
+            buttonSystemDelete.TabIndex = 2;
             buttonSystemDelete.Text = "Delete";
             buttonSystemDelete.UseVisualStyleBackColor = true;
             buttonSystemDelete.Click += buttonSystemDelete_Click;
@@ -1354,7 +1354,7 @@
             buttonSystemRename.Location = new Point(70, 23);
             buttonSystemRename.Name = "buttonSystemRename";
             buttonSystemRename.Size = new Size(58, 23);
-            buttonSystemRename.TabIndex = 7;
+            buttonSystemRename.TabIndex = 1;
             buttonSystemRename.Text = "Rename";
             buttonSystemRename.UseVisualStyleBackColor = true;
             buttonSystemRename.Click += buttonSystemRename_Click;
@@ -1364,7 +1364,7 @@
             buttonSystemAdd.Location = new Point(6, 23);
             buttonSystemAdd.Name = "buttonSystemAdd";
             buttonSystemAdd.Size = new Size(58, 23);
-            buttonSystemAdd.TabIndex = 6;
+            buttonSystemAdd.TabIndex = 0;
             buttonSystemAdd.Text = "Add";
             buttonSystemAdd.UseVisualStyleBackColor = true;
             buttonSystemAdd.Click += buttonSystemAdd_Click;
@@ -1378,7 +1378,7 @@
             listBoxSystem.Location = new Point(8, 52);
             listBoxSystem.Name = "listBoxSystem";
             listBoxSystem.Size = new Size(275, 746);
-            listBoxSystem.TabIndex = 5;
+            listBoxSystem.TabIndex = 3;
             listBoxSystem.SelectedIndexChanged += listBoxSystem_SelectedIndexChanged;
             // 
             // panelToolbar
@@ -1401,7 +1401,7 @@
             buttonPlay.Location = new Point(610, 0);
             buttonPlay.Name = "buttonPlay";
             buttonPlay.Size = new Size(72, 34);
-            buttonPlay.TabIndex = 5;
+            buttonPlay.TabIndex = 6;
             buttonPlay.Text = "Play";
             buttonPlay.UseVisualStyleBackColor = true;
             buttonPlay.Click += buttonPlay_Click;
@@ -1423,7 +1423,7 @@
             buttonFileSave.Location = new Point(471, 0);
             buttonFileSave.Name = "buttonFileSave";
             buttonFileSave.Size = new Size(72, 34);
-            buttonFileSave.TabIndex = 2;
+            buttonFileSave.TabIndex = 5;
             buttonFileSave.Text = "Save";
             buttonFileSave.UseVisualStyleBackColor = true;
             buttonFileSave.Click += buttonFileSave_Click;
@@ -1433,7 +1433,7 @@
             buttonFileOpen.Location = new Point(78, 0);
             buttonFileOpen.Name = "buttonFileOpen";
             buttonFileOpen.Size = new Size(72, 34);
-            buttonFileOpen.TabIndex = 1;
+            buttonFileOpen.TabIndex = 2;
             buttonFileOpen.Text = "Open";
             buttonFileOpen.UseVisualStyleBackColor = true;
             buttonFileOpen.Click += buttonFileOpen_Click;
@@ -1443,7 +1443,7 @@
             buttonFileNew.Location = new Point(0, 0);
             buttonFileNew.Name = "buttonFileNew";
             buttonFileNew.Size = new Size(72, 34);
-            buttonFileNew.TabIndex = 0;
+            buttonFileNew.TabIndex = 1;
             buttonFileNew.Text = "New";
             buttonFileNew.UseVisualStyleBackColor = true;
             buttonFileNew.Click += buttonFileNew_Click;
@@ -1464,7 +1464,7 @@
             buttonFunctions.Location = new Point(3, 496);
             buttonFunctions.Name = "buttonFunctions";
             buttonFunctions.Size = new Size(96, 50);
-            buttonFunctions.TabIndex = 9;
+            buttonFunctions.TabIndex = 15;
             buttonFunctions.Text = "Functions";
             buttonFunctions.UseVisualStyleBackColor = true;
             buttonFunctions.Click += buttonFunctions_Click;
@@ -1481,7 +1481,7 @@
             groupBoxFunctions.Location = new Point(105, 40);
             groupBoxFunctions.Name = "groupBoxFunctions";
             groupBoxFunctions.Size = new Size(1189, 804);
-            groupBoxFunctions.TabIndex = 19;
+            groupBoxFunctions.TabIndex = 26;
             groupBoxFunctions.TabStop = false;
             groupBoxFunctions.Text = "Functions";
             groupBoxFunctions.Visible = false;
@@ -1504,7 +1504,7 @@
             buttonFunctionsDelete.Location = new Point(134, 23);
             buttonFunctionsDelete.Name = "buttonFunctionsDelete";
             buttonFunctionsDelete.Size = new Size(58, 23);
-            buttonFunctionsDelete.TabIndex = 3;
+            buttonFunctionsDelete.TabIndex = 2;
             buttonFunctionsDelete.Text = "Delete";
             buttonFunctionsDelete.UseVisualStyleBackColor = true;
             buttonFunctionsDelete.Click += buttonFunctionsDelete_Click;
@@ -1525,7 +1525,7 @@
             buttonFunctionsAdd.Location = new Point(6, 23);
             buttonFunctionsAdd.Name = "buttonFunctionsAdd";
             buttonFunctionsAdd.Size = new Size(58, 23);
-            buttonFunctionsAdd.TabIndex = 2;
+            buttonFunctionsAdd.TabIndex = 0;
             buttonFunctionsAdd.Text = "Add";
             buttonFunctionsAdd.UseVisualStyleBackColor = true;
             buttonFunctionsAdd.Click += buttonFunctionsAdd_Click;
@@ -1539,7 +1539,7 @@
             listBoxFunctions.Location = new Point(8, 52);
             listBoxFunctions.Name = "listBoxFunctions";
             listBoxFunctions.Size = new Size(275, 746);
-            listBoxFunctions.TabIndex = 0;
+            listBoxFunctions.TabIndex = 3;
             listBoxFunctions.SelectedIndexChanged += listBoxFunctions_SelectedIndexChanged;
             // 
             // buttonHelp
@@ -1547,7 +1547,7 @@
             buttonHelp.Location = new Point(3, 608);
             buttonHelp.Name = "buttonHelp";
             buttonHelp.Size = new Size(96, 50);
-            buttonHelp.TabIndex = 21;
+            buttonHelp.TabIndex = 17;
             buttonHelp.Text = "Help";
             buttonHelp.UseVisualStyleBackColor = true;
             buttonHelp.Click += buttonHelp_Click;
@@ -1560,7 +1560,7 @@
             groupBoxHelp.Location = new Point(105, 40);
             groupBoxHelp.Name = "groupBoxHelp";
             groupBoxHelp.Size = new Size(1189, 804);
-            groupBoxHelp.TabIndex = 22;
+            groupBoxHelp.TabIndex = 28;
             groupBoxHelp.TabStop = false;
             groupBoxHelp.Text = "Help";
             groupBoxHelp.Visible = false;
@@ -1574,7 +1574,7 @@
             richTextBoxHelp.Name = "richTextBoxHelp";
             richTextBoxHelp.ReadOnly = true;
             richTextBoxHelp.Size = new Size(894, 746);
-            richTextBoxHelp.TabIndex = 9;
+            richTextBoxHelp.TabIndex = 1;
             richTextBoxHelp.Text = "";
             // 
             // listBoxHelp
@@ -1586,7 +1586,7 @@
             listBoxHelp.Location = new Point(8, 52);
             listBoxHelp.Name = "listBoxHelp";
             listBoxHelp.Size = new Size(275, 746);
-            listBoxHelp.TabIndex = 5;
+            listBoxHelp.TabIndex = 0;
             listBoxHelp.SelectedIndexChanged += listBoxHelp_SelectedIndexChanged;
             // 
             // MainForm
