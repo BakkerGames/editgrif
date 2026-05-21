@@ -105,7 +105,7 @@ namespace editgrif
                 File.Delete(overlayFilename);
                 overlayFilename = null;
             }
-            MessageBox.Show($"File saved: {filename}");
+            MessageBox.Show($"File saved: {filename}", "Save");
         }
 
         #endregion

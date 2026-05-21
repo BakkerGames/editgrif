@@ -35,6 +35,8 @@ public partial class PlayForm : Form
             Close();
             return false;
         }
+        var gameTitle = baseGrod.Get(GAMETITLE, true) ?? gameName;
+        this.Text = gameTitle;
         game.Initialize(baseGrod, gameName, null);
         // get settings
         maxOutputWidth = (int)(baseGrod.GetNumber(OUTPUT_WIDTH, true) ?? 0);
@@ -83,6 +85,11 @@ public partial class PlayForm : Form
         waitingForInput = false;
         game.InputMessages.Enqueue(message);
         game.GameStep();
+        if (game.GameOver)
+        {
+            textBoxInput.Enabled = false;
+            return;
+        }
     }
 
     /// <summary>

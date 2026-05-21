@@ -12,7 +12,7 @@ system.pattern.room.longdesc
 system.pattern.room.shortdesc
 	{roomprefix}.{room}.shortdesc
 system.player.location
-	player.location
+	value.room
 system.prefix.command
 	command
 system.prefix.direction

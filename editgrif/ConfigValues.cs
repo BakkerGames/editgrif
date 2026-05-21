@@ -43,7 +43,7 @@ internal static class ConfigValues
     internal const string SYSTEM_VERSION = "system.version";
     internal const string SYSTEM_INTRO = "system.intro";
 
-    internal const string DEFAULT_PLAYER_LOCATION_KEY = "player.location";
+    internal const string DEFAULT_PLAYER_LOCATION_KEY = "value.room";
     internal const string SYSTEM_PLAYER_LOCATION = "system.player.location";
 
     internal const string OVERLAY_EXTENSION = ".overlay";
