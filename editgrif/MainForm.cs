@@ -1,6 +1,6 @@
+using GrifLib;
 using System.Globalization;
 using System.Text;
-using GrifLib;
 using static editgrif.ConfigValues;
 using static editgrif.CurrentValues;
 using static editgrif.StaticRoutines;
@@ -17,6 +17,7 @@ namespace editgrif
         string basePath = "";
         string? grodFilename = null;
         string? overlayFilename = null;
+        string? stackFilename = null;
         bool loading = false;
 
         public MainForm()
@@ -50,14 +51,15 @@ namespace editgrif
             comboBoxFileNames.Items.Clear();
             ClearData();
             var filename = dialog.FileName;
+            stackFilename = null;
             basePath = Path.GetDirectoryName(filename) ?? "";
             filename = Path.GetFileName(filename);
             buttonFileValidate.Enabled = true;
             buttonFileSave.Enabled = true;
             buttonPlay.Enabled = true;
-            EnableGroupBoxes();
             if (Path.GetExtension(filename).Equals(STACK_EXTENSION, OIC))
             {
+                stackFilename = filename;
                 var lines = File.ReadAllLines(Path.Combine(basePath, filename));
                 foreach (var line in lines)
                 {
@@ -72,6 +74,7 @@ namespace editgrif
                 comboBoxFileNames.Items.Add(filename);
                 comboBoxFileNames.SelectedIndex = 0;
             }
+            EnableGroupBoxes();
         }
 
         private void EnableGroupBoxes()
@@ -1348,8 +1351,28 @@ namespace editgrif
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
+            SaveOverlay();
+            var playGrod = new Grod("playGrod");
+            foreach (var item in comboBoxFileNames.Items)
+            {
+                var filename = item.ToString();
+                if (string.IsNullOrEmpty(filename)) continue;
+                var tempGrodFilename = Path.Combine(basePath, filename);
+                if (File.Exists(tempGrodFilename))
+                {
+                    var tempGrod = IO.OpenFile(tempGrodFilename) ?? new();
+                    var tempOverlayFilename = Path.Combine(basePath, Path.GetFileNameWithoutExtension(filename) + OVERLAY_EXTENSION);
+                    if (File.Exists(tempOverlayFilename))
+                    {
+                        var tempOverlay = IO.OpenFile(tempOverlayFilename) ?? new();
+                        tempGrod.AddItems(tempOverlay.Items(false, false));
+                    }
+                    tempGrod.Parent = playGrod.Parent;
+                    playGrod.Parent = tempGrod;
+                }
+            }
             var playForm = new PlayForm();
-            if (playForm.Init(overlay))
+            if (playForm.Init(playGrod))
             {
                 playForm.ShowDialog();
             }
