@@ -6,7 +6,6 @@ namespace editgrif;
 
 public partial class PlayForm : Form
 {
-    private readonly StringBuilder keyBuffer = new();
     private readonly List<string> inputLines = [];
     private int outputCount = 0;
     private int maxOutputWidth = 0;
@@ -15,13 +14,17 @@ public partial class PlayForm : Form
     private int readyForInput = 0;
     private bool waitingForInput = false;
     private IFGame game = new();
+    private readonly Grod baseGrod = new();
 
     public PlayForm()
     {
         InitializeComponent();
     }
 
-    private readonly Grod baseGrod = new();
+    private void PlayForm_Shown(object sender, EventArgs e)
+    {
+        game.Intro();
+    }
 
     public bool Init(Grod grod)
     {
@@ -78,8 +81,8 @@ public partial class PlayForm : Form
         {
             input = input.ToUpper();
         }
-        textBoxPlay.AppendText(input);
-        textBoxPlay.AppendText(Environment.NewLine);
+        richTextBoxPlay.AppendText(input);
+        richTextBoxPlay.AppendText(Environment.NewLine);
         var message = new GrifMessage(MessageType.Text, input);
         OutputText(game.AfterPrompt() ?? "");
         waitingForInput = false;
@@ -136,8 +139,8 @@ public partial class PlayForm : Form
             var lines = IO.Wordwrap(before, outputCount, maxOutputWidth);
             foreach (var line in lines)
             {
-                textBoxPlay.AppendText(line);
-                textBoxPlay.AppendText(Environment.NewLine);
+                richTextBoxPlay.AppendText(line);
+                richTextBoxPlay.AppendText(Environment.NewLine);
                 outputCount = 0;
             }
         }
@@ -148,23 +151,20 @@ public partial class PlayForm : Form
             for (int i = 0; i < lines.Count - 1; i++)
             {
                 var line = lines[i];
-                textBoxPlay.AppendText(line);
-                textBoxPlay.AppendText(Environment.NewLine);
+                richTextBoxPlay.AppendText(line);
+                richTextBoxPlay.AppendText(Environment.NewLine);
                 outputCount = 0;
             }
             // Write last line with no NL
             if (lines.Count > 0)
             {
                 var line = lines[^1];
-                textBoxPlay.AppendText(line);
+                richTextBoxPlay.AppendText(line);
+                richTextBoxPlay.ScrollToCaret();
                 outputCount = line.Length;
             }
         }
-    }
-
-    private void PlayForm_Shown(object sender, EventArgs e)
-    {
-        game.Intro();
+        richTextBoxPlay.ScrollToCaret();
     }
 
     private void textBoxInput_KeyPress(object sender, KeyPressEventArgs e)

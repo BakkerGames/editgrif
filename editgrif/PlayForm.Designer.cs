@@ -28,25 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBoxPlay = new TextBox();
             textBoxInput = new TextBox();
             labelEntry = new Label();
+            richTextBoxPlay = new RichTextBox();
             SuspendLayout();
-            // 
-            // textBoxPlay
-            // 
-            textBoxPlay.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxPlay.BackColor = Color.LightCyan;
-            textBoxPlay.Font = new Font("Consolas", 12F);
-            textBoxPlay.Location = new Point(0, 0);
-            textBoxPlay.MinimumSize = new Size(800, 450);
-            textBoxPlay.Multiline = true;
-            textBoxPlay.Name = "textBoxPlay";
-            textBoxPlay.ReadOnly = true;
-            textBoxPlay.ScrollBars = ScrollBars.Vertical;
-            textBoxPlay.Size = new Size(984, 729);
-            textBoxPlay.TabIndex = 1;
-            textBoxPlay.TabStop = false;
             // 
             // textBoxInput
             // 
@@ -69,15 +54,25 @@
             labelEntry.TabIndex = 2;
             labelEntry.Text = ">";
             // 
+            // richTextBoxPlay
+            // 
+            richTextBoxPlay.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            richTextBoxPlay.Location = new Point(0, 0);
+            richTextBoxPlay.Name = "richTextBoxPlay";
+            richTextBoxPlay.ReadOnly = true;
+            richTextBoxPlay.Size = new Size(981, 726);
+            richTextBoxPlay.TabIndex = 3;
+            richTextBoxPlay.Text = "";
+            // 
             // PlayForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(984, 761);
+            Controls.Add(richTextBoxPlay);
             Controls.Add(labelEntry);
             Controls.Add(textBoxInput);
-            Controls.Add(textBoxPlay);
             KeyPreview = true;
             Name = "PlayForm";
             StartPosition = FormStartPosition.CenterParent;
@@ -88,9 +83,8 @@
         }
 
         #endregion
-
-        private TextBox textBoxPlay;
         private TextBox textBoxInput;
         private Label labelEntry;
+        private RichTextBox richTextBoxPlay;
     }
 }
