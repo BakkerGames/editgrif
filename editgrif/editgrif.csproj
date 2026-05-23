@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="griflib" Version="2.2026.5.21-rev1" />
+    <PackageReference Include="griflib" Version="2.2026.5.22-rev1" />
   </ItemGroup>
 
 </Project>

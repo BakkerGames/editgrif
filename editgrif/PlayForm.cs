@@ -1,5 +1,4 @@
-﻿using System.Text;
-using GrifLib;
+﻿using GrifLib;
 using static GrifLib.Common;
 
 namespace editgrif;
@@ -24,6 +23,10 @@ public partial class PlayForm : Form
     private void PlayForm_Shown(object sender, EventArgs e)
     {
         game.Intro();
+        if (game.GameOver)
+        {
+            textBoxInput.Enabled = false;
+        }
     }
 
     public bool Init(Grod grod)
@@ -91,7 +94,6 @@ public partial class PlayForm : Form
         if (game.GameOver)
         {
             textBoxInput.Enabled = false;
-            return;
         }
     }
 
@@ -112,6 +114,9 @@ public partial class PlayForm : Form
             OutputText(e.Value);
             return;
         }
+        OutputText(NL_CHAR);
+        OutputText($"### UNKNOWN TYPE: {e.Type} - ");
+        OutputText(e.Value);
     }
 
     /// <summary>

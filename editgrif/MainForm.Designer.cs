@@ -150,6 +150,7 @@
             groupBoxHelp = new GroupBox();
             richTextBoxHelp = new RichTextBox();
             listBoxHelp = new ListBox();
+            labelVersion = new Label();
             groupBoxStart.SuspendLayout();
             groupBoxRooms.SuspendLayout();
             groupBoxItems.SuspendLayout();
@@ -1589,11 +1590,20 @@
             listBoxHelp.TabIndex = 0;
             listBoxHelp.SelectedIndexChanged += listBoxHelp_SelectedIndexChanged;
             // 
+            // labelVersion
+            // 
+            labelVersion.AutoSize = true;
+            labelVersion.Location = new Point(12, 822);
+            labelVersion.Name = "labelVersion";
+            labelVersion.Size = new Size(0, 15);
+            labelVersion.TabIndex = 29;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1306, 856);
+            Controls.Add(labelVersion);
             Controls.Add(buttonHelp);
             Controls.Add(buttonFunctions);
             Controls.Add(panelToolbar);
@@ -1622,6 +1632,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Grif";
             FormClosing += MainForm_FormClosing;
+            Shown += MainForm_Shown;
             groupBoxStart.ResumeLayout(false);
             groupBoxStart.PerformLayout();
             groupBoxRooms.ResumeLayout(false);
@@ -1638,6 +1649,7 @@
             groupBoxFunctions.ResumeLayout(false);
             groupBoxHelp.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -1763,5 +1775,6 @@
         private RichTextBox richTextBoxStartDirectionsCommand;
         private Label labelStartDirectionsCommand;
         private Label labelStartDirectionsSynonym;
+        private Label labelVersion;
     }
 }

@@ -1420,5 +1420,10 @@ namespace editgrif
             if (currentStartDirectionsKey == null) return;
             overlay.Set($"{currentStartDirectionsKey}.command", richTextBoxStartDirectionsCommand.Text);
         }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            labelVersion.Text = GetType().Assembly.GetName().Version?.ToString();
+        }
     }
 }
