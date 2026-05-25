@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\griflib\griflib\griflib.csproj" />
+    <PackageReference Include="griflib" Version="2.2026.5.25" />
   </ItemGroup>
 
 </Project>
