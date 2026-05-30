@@ -202,7 +202,7 @@ namespace editgrif
 
         private void buttonVersionToday_Click(object sender, EventArgs e)
         {
-            richTextBoxStartVersion.Text = DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.InvariantCulture);
+            richTextBoxStartVersion.Text = DateTime.Now.ToString("yyyy.M.d", CultureInfo.InvariantCulture);
         }
 
         private void buttonFunctionsAdd_Click(object sender, EventArgs e)
