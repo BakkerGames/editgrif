@@ -81,15 +81,16 @@ namespace editgrif
         {
             // help is always enabled
             groupBoxStart.Enabled = true;
-            groupBoxCommands.Enabled = true;
-            groupBoxFunctions.Enabled = true;
-            groupBoxItems.Enabled = true;
-            groupBoxMessages.Enabled = true;
             groupBoxRooms.Enabled = true;
-            groupBoxScripts.Enabled = true;
-            groupBoxSystem.Enabled = true;
+            groupBoxItems.Enabled = true;
+            groupBoxActors.Enabled = true;
+            groupBoxMessages.Enabled = true;
             groupBoxValues.Enabled = true;
             groupBoxVocabulary.Enabled = true;
+            groupBoxCommands.Enabled = true;
+            groupBoxScripts.Enabled = true;
+            groupBoxFunctions.Enabled = true;
+            groupBoxSystem.Enabled = true;
         }
 
         private void buttonFileSave_Click(object sender, EventArgs e)
@@ -177,6 +178,7 @@ namespace editgrif
             buttonStart.BackColor = SystemColors.Control;
             buttonRooms.BackColor = SystemColors.Control;
             buttonItems.BackColor = SystemColors.Control;
+            buttonActors.BackColor = SystemColors.Control;
             buttonMessages.BackColor = SystemColors.Control;
             buttonValues.BackColor = SystemColors.Control;
             buttonVocabulary.BackColor = SystemColors.Control;
@@ -188,6 +190,7 @@ namespace editgrif
             groupBoxStart.Visible = false;
             groupBoxRooms.Visible = false;
             groupBoxItems.Visible = false;
+            groupBoxActors.Visible = false;
             groupBoxMessages.Visible = false;
             groupBoxValues.Visible = false;
             groupBoxVocabulary.Visible = false;
@@ -254,7 +257,7 @@ namespace editgrif
             richTextBoxRoomsLongDesc.Clear();
             listBoxRoomsExits.Items.Clear();
             richTextBoxRoomsExits.Clear();
-            listBoxRoomsOther.Items.Clear();
+            listBoxRoomsValues.Items.Clear();
             richTextBoxRoomsOther.Clear();
             buttonRoomsExitsAdd.Enabled = false;
             buttonRoomsOtherAdd.Enabled = false;
@@ -266,7 +269,7 @@ namespace editgrif
             richTextBoxItemsShortDesc.Clear();
             richTextBoxItemsLongDesc.Clear();
             richTextBoxItemsLocation.Clear();
-            listBoxItemsOther.Items.Clear();
+            listBoxItemsValues.Items.Clear();
             richTextBoxItemsOther.Clear();
             buttonItemsOtherAdd.Enabled = false;
         }
@@ -596,7 +599,7 @@ namespace editgrif
             richTextBoxRoomsLongDesc.Clear();
             listBoxRoomsExits.Items.Clear();
             richTextBoxRoomsExits.Clear();
-            listBoxRoomsOther.Items.Clear();
+            listBoxRoomsValues.Items.Clear();
             richTextBoxRoomsOther.Clear();
             if (listBoxRooms.SelectedIndex < 0)
             {
@@ -637,7 +640,7 @@ namespace editgrif
                 if (key.Equals(currentRoomLongDescKey, OIC)) continue;
                 if (key.StartsWith(exitsPrefix, OIC)) continue;
                 var otherKey = key[otherPrefix.Length..];
-                listBoxRoomsOther.Items.Add(otherKey);
+                listBoxRoomsValues.Items.Add(otherKey);
             }
 
             buttonRoomsRename.Enabled = true;
@@ -657,7 +660,7 @@ namespace editgrif
             richTextBoxItemsShortDesc.Clear();
             richTextBoxItemsLongDesc.Clear();
             richTextBoxItemsLocation.Clear();
-            listBoxItemsOther.Items.Clear();
+            listBoxItemsValues.Items.Clear();
             richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0)
             {
@@ -690,7 +693,7 @@ namespace editgrif
                 if (key.Equals(currentItemLongDescKey, OIC)) continue;
                 if (key.Equals(currentItemLocationKey, OIC)) continue;
                 var otherKey = key[otherPrefix.Length..];
-                listBoxItemsOther.Items.Add(otherKey);
+                listBoxItemsValues.Items.Add(otherKey);
             }
 
             buttonItemsRename.Enabled = true;
@@ -705,7 +708,7 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             var otherPrefix = $"{itemsPrefix}.{currentItemName}.";
-            if (listBoxItemsOther.SelectedIndex < 0)
+            if (listBoxItemsValues.SelectedIndex < 0)
             {
                 currentItemsOtherKey = null;
                 richTextBoxItemsOther.Clear();
@@ -714,7 +717,7 @@ namespace editgrif
             }
             else
             {
-                currentItemsOtherKey = ListBoxSelected(overlay, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
+                currentItemsOtherKey = ListBoxSelected(overlay, listBoxItemsValues, richTextBoxItemsOther, otherPrefix);
                 buttonItemsOtherRename.Enabled = true;
                 buttonItemsOtherDelete.Enabled = true;
             }
@@ -750,7 +753,7 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             var roomsOtherPrefix = $"{roomsPrefix}.{currentRoomName}.";
-            if (listBoxRoomsOther.SelectedIndex < 0)
+            if (listBoxRoomsValues.SelectedIndex < 0)
             {
                 currentRoomsOtherKey = null;
                 richTextBoxRoomsOther.Clear();
@@ -759,7 +762,7 @@ namespace editgrif
             }
             else
             {
-                currentRoomsOtherKey = ListBoxSelected(overlay, listBoxRoomsOther, richTextBoxRoomsOther, roomsOtherPrefix);
+                currentRoomsOtherKey = ListBoxSelected(overlay, listBoxRoomsValues, richTextBoxRoomsOther, roomsOtherPrefix);
                 buttonRoomsOtherRename.Enabled = true;
                 buttonRoomsOtherDelete.Enabled = true;
             }
@@ -1031,7 +1034,7 @@ namespace editgrif
         private void buttonRoomsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            var newKey = ListBoxAddItem(listBoxRoomsOther, prefix);
+            var newKey = ListBoxAddItem(listBoxRoomsValues, prefix);
             if (newKey != null)
             {
                 overlay.Set(prefix + newKey, "");
@@ -1052,7 +1055,7 @@ namespace editgrif
         private void buttonItemsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            var newKey = ListBoxAddItem(listBoxItemsOther, prefix);
+            var newKey = ListBoxAddItem(listBoxItemsValues, prefix);
             if (newKey != null)
             {
                 overlay.Set(prefix + newKey, "");
@@ -1146,16 +1149,16 @@ namespace editgrif
 
         private void buttonItemsOtherRename_Click(object sender, EventArgs e)
         {
-            if (listBoxItemsOther.SelectedIndex < 0 || currentItemsOtherKey == null) return;
+            if (listBoxItemsValues.SelectedIndex < 0 || currentItemsOtherKey == null) return;
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            ListBoxRenameItem(overlay, listBoxItemsOther, prefix, currentItemsOtherKey);
+            ListBoxRenameItem(overlay, listBoxItemsValues, prefix, currentItemsOtherKey);
         }
 
         private void buttonItemsOtherDelete_Click(object sender, EventArgs e)
         {
-            if (listBoxItemsOther.SelectedIndex < 0 || currentItemsOtherKey == null) return;
+            if (listBoxItemsValues.SelectedIndex < 0 || currentItemsOtherKey == null) return;
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            ListBoxDeleteItem(overlay, listBoxItemsOther, prefix, currentItemsOtherKey);
+            ListBoxDeleteItem(overlay, listBoxItemsValues, prefix, currentItemsOtherKey);
         }
 
         private void buttonItemsRename_Click(object sender, EventArgs e)
@@ -1208,16 +1211,16 @@ namespace editgrif
 
         private void buttonRoomsOtherRename_Click(object sender, EventArgs e)
         {
-            if (listBoxRoomsOther.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
+            if (listBoxRoomsValues.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            ListBoxRenameItem(overlay, listBoxRoomsOther, prefix, currentRoomsOtherKey);
+            ListBoxRenameItem(overlay, listBoxRoomsValues, prefix, currentRoomsOtherKey);
         }
 
         private void buttonRoomsOtherDelete_Click(object sender, EventArgs e)
         {
-            if (listBoxRoomsOther.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
+            if (listBoxRoomsValues.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            ListBoxDeleteItem(overlay, listBoxRoomsOther, prefix, currentRoomsOtherKey);
+            ListBoxDeleteItem(overlay, listBoxRoomsValues, prefix, currentRoomsOtherKey);
         }
 
         private void buttonStartDirectionsRename_Click(object sender, EventArgs e)
@@ -1424,6 +1427,11 @@ namespace editgrif
         private void MainForm_Shown(object sender, EventArgs e)
         {
             labelVersion.Text = GetType().Assembly.GetName().Version?.ToString();
+        }
+
+        private void buttonActors_Click(object sender, EventArgs e)
+        {
+            SelectTab(buttonActors, groupBoxActors);
         }
     }
 }

@@ -6,6 +6,7 @@ internal static class ConfigValues
 
     internal const string DEFAULT_PREFIX_ROOM = "room";
     internal const string DEFAULT_PREFIX_ITEM = "item";
+    internal const string DEFAULT_PREFIX_ACTOR = "actor";
     internal const string DEFAULT_PREFIX_MESSAGE = "message,modmsg";
     internal const string DEFAULT_PREFIX_VALUE = "value";
     internal const string DEFAULT_PREFIX_VOCABULARY = "verb,noun,adjective,preposition,article";
@@ -22,6 +23,10 @@ internal static class ConfigValues
     internal const string SYSTEM_PATTERN_ITEM_SHORTDESC_KEY = "system.pattern.item.shortdesc";
     internal const string SYSTEM_PATTERN_ITEM_LONGDESC_KEY = "system.pattern.item.longdesc";
     internal const string SYSTEM_PATTERN_ITEM_LOCATION_KEY = "system.pattern.item.location";
+    internal const string SYSTEM_PREFIX_ACTOR_KEY = "system.prefix.actor";
+    internal const string SYSTEM_PATTERN_ACTOR_SHORTDESC_KEY = "system.pattern.actor.shortdesc";
+    internal const string SYSTEM_PATTERN_ACTOR_LONGDESC_KEY = "system.pattern.actor.longdesc";
+    internal const string SYSTEM_PATTERN_ACTOR_LOCATION_KEY = "system.pattern.actor.location";
     internal const string SYSTEM_PREFIX_MESSAGE_KEY = "system.prefix.message";
     internal const string SYSTEM_PREFIX_VALUE_KEY = "system.prefix.value";
     internal const string SYSTEM_PREFIX_VOCABULARY_KEY = "system.prefix.vocabulary";
@@ -37,6 +42,10 @@ internal static class ConfigValues
     internal const string DEFAULT_PATTERN_ITEM_SHORTDESC = "{itemprefix}.{item}.shortdesc";
     internal const string DEFAULT_PATTERN_ITEM_LONGDESC = "{itemprefix}.{item}.longdesc";
     internal const string DEFAULT_PATTERN_ITEM_LOCATION = "{itemprefix}.{item}.location";
+
+    internal const string DEFAULT_PATTERN_ACTOR_SHORTDESC = "{actorprefix}.{actor}.shortdesc";
+    internal const string DEFAULT_PATTERN_ACTOR_LONGDESC = "{actorprefix}.{actor}.longdesc";
+    internal const string DEFAULT_PATTERN_ACTOR_LOCATION = "{actorprefix}.{actor}.location";
 
     internal const string SYSTEM_GAMENAME = "system.gamename";
     internal const string SYSTEM_GAMETITLE = "system.gametitle";
