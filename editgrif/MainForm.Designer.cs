@@ -153,10 +153,6 @@
             labelVersion = new Label();
             buttonActors = new Button();
             groupBoxActors = new GroupBox();
-            buttonActorsAdd = new Button();
-            buttonActorsRename = new Button();
-            buttonActorsDelete = new Button();
-            listBoxActors = new ListBox();
             richTextBoxActorsLocation = new RichTextBox();
             richTextBoxActorsLongDesc = new RichTextBox();
             richTextBoxActorsShortDesc = new RichTextBox();
@@ -169,6 +165,10 @@
             labelActorsLocation = new Label();
             labelActorsLongDesc = new Label();
             labelActorsShortDesc = new Label();
+            buttonActorsAdd = new Button();
+            buttonActorsRename = new Button();
+            buttonActorsDelete = new Button();
+            listBoxActors = new ListBox();
             groupBoxStart.SuspendLayout();
             groupBoxRooms.SuspendLayout();
             groupBoxItems.SuspendLayout();
@@ -1654,46 +1654,6 @@
             groupBoxActors.TabStop = false;
             groupBoxActors.Text = "Actors";
             // 
-            // buttonActorsAdd
-            // 
-            buttonActorsAdd.Location = new Point(6, 23);
-            buttonActorsAdd.Name = "buttonActorsAdd";
-            buttonActorsAdd.Size = new Size(58, 23);
-            buttonActorsAdd.TabIndex = 4;
-            buttonActorsAdd.Text = "Add";
-            buttonActorsAdd.UseVisualStyleBackColor = true;
-            // 
-            // buttonActorsRename
-            // 
-            buttonActorsRename.Enabled = false;
-            buttonActorsRename.Location = new Point(70, 23);
-            buttonActorsRename.Name = "buttonActorsRename";
-            buttonActorsRename.Size = new Size(58, 23);
-            buttonActorsRename.TabIndex = 5;
-            buttonActorsRename.Text = "Rename";
-            buttonActorsRename.UseVisualStyleBackColor = true;
-            // 
-            // buttonActorsDelete
-            // 
-            buttonActorsDelete.Enabled = false;
-            buttonActorsDelete.Location = new Point(134, 23);
-            buttonActorsDelete.Name = "buttonActorsDelete";
-            buttonActorsDelete.Size = new Size(58, 23);
-            buttonActorsDelete.TabIndex = 6;
-            buttonActorsDelete.Text = "Delete";
-            buttonActorsDelete.UseVisualStyleBackColor = true;
-            // 
-            // listBoxActors
-            // 
-            listBoxActors.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            listBoxActors.Font = new Font("Consolas", 12F);
-            listBoxActors.FormattingEnabled = true;
-            listBoxActors.IntegralHeight = false;
-            listBoxActors.Location = new Point(8, 52);
-            listBoxActors.Name = "listBoxActors";
-            listBoxActors.Size = new Size(184, 746);
-            listBoxActors.TabIndex = 7;
-            // 
             // richTextBoxActorsLocation
             // 
             richTextBoxActorsLocation.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -1704,6 +1664,7 @@
             richTextBoxActorsLocation.Size = new Size(909, 23);
             richTextBoxActorsLocation.TabIndex = 21;
             richTextBoxActorsLocation.Text = "";
+            richTextBoxActorsLocation.TextChanged += richTextBoxActorsLocation_TextChanged;
             // 
             // richTextBoxActorsLongDesc
             // 
@@ -1714,6 +1675,7 @@
             richTextBoxActorsLongDesc.Size = new Size(909, 200);
             richTextBoxActorsLongDesc.TabIndex = 19;
             richTextBoxActorsLongDesc.Text = "";
+            richTextBoxActorsLongDesc.TextChanged += richTextBoxActorsLongDesc_TextChanged;
             // 
             // richTextBoxActorsShortDesc
             // 
@@ -1725,6 +1687,7 @@
             richTextBoxActorsShortDesc.Size = new Size(909, 23);
             richTextBoxActorsShortDesc.TabIndex = 17;
             richTextBoxActorsShortDesc.Text = "";
+            richTextBoxActorsShortDesc.TextChanged += richTextBoxActorsShortDesc_TextChanged;
             // 
             // labelActorsValues
             // 
@@ -1745,6 +1708,7 @@
             richTextBoxActorsValues.Size = new Size(719, 445);
             richTextBoxActorsValues.TabIndex = 27;
             richTextBoxActorsValues.Text = "";
+            richTextBoxActorsValues.TextChanged += richTextBoxActorsValues_TextChanged;
             // 
             // buttonActorsValuesAdd
             // 
@@ -1755,6 +1719,7 @@
             buttonActorsValuesAdd.TabIndex = 22;
             buttonActorsValuesAdd.Text = "Add";
             buttonActorsValuesAdd.UseVisualStyleBackColor = true;
+            buttonActorsValuesAdd.Click += buttonActorsValuesAdd_Click;
             // 
             // buttonActorsValuesRename
             // 
@@ -1765,6 +1730,7 @@
             buttonActorsValuesRename.TabIndex = 23;
             buttonActorsValuesRename.Text = "Rename";
             buttonActorsValuesRename.UseVisualStyleBackColor = true;
+            buttonActorsValuesRename.Click += buttonActorsValuesRename_Click;
             // 
             // buttonActorsValuesDelete
             // 
@@ -1775,6 +1741,7 @@
             buttonActorsValuesDelete.TabIndex = 24;
             buttonActorsValuesDelete.Text = "Delete";
             buttonActorsValuesDelete.UseVisualStyleBackColor = true;
+            buttonActorsValuesDelete.Click += buttonActorsValuesDelete_Click;
             // 
             // listBoxActorsValues
             // 
@@ -1813,6 +1780,50 @@
             labelActorsShortDesc.Size = new Size(63, 15);
             labelActorsShortDesc.TabIndex = 16;
             labelActorsShortDesc.Text = "Short Desc";
+            // 
+            // buttonActorsAdd
+            // 
+            buttonActorsAdd.Location = new Point(6, 23);
+            buttonActorsAdd.Name = "buttonActorsAdd";
+            buttonActorsAdd.Size = new Size(58, 23);
+            buttonActorsAdd.TabIndex = 4;
+            buttonActorsAdd.Text = "Add";
+            buttonActorsAdd.UseVisualStyleBackColor = true;
+            buttonActorsAdd.Click += buttonActorsAdd_Click;
+            // 
+            // buttonActorsRename
+            // 
+            buttonActorsRename.Enabled = false;
+            buttonActorsRename.Location = new Point(70, 23);
+            buttonActorsRename.Name = "buttonActorsRename";
+            buttonActorsRename.Size = new Size(58, 23);
+            buttonActorsRename.TabIndex = 5;
+            buttonActorsRename.Text = "Rename";
+            buttonActorsRename.UseVisualStyleBackColor = true;
+            buttonActorsRename.Click += buttonActorsRename_Click;
+            // 
+            // buttonActorsDelete
+            // 
+            buttonActorsDelete.Enabled = false;
+            buttonActorsDelete.Location = new Point(134, 23);
+            buttonActorsDelete.Name = "buttonActorsDelete";
+            buttonActorsDelete.Size = new Size(58, 23);
+            buttonActorsDelete.TabIndex = 6;
+            buttonActorsDelete.Text = "Delete";
+            buttonActorsDelete.UseVisualStyleBackColor = true;
+            buttonActorsDelete.Click += buttonActorsDelete_Click;
+            // 
+            // listBoxActors
+            // 
+            listBoxActors.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            listBoxActors.Font = new Font("Consolas", 12F);
+            listBoxActors.FormattingEnabled = true;
+            listBoxActors.IntegralHeight = false;
+            listBoxActors.Location = new Point(8, 52);
+            listBoxActors.Name = "listBoxActors";
+            listBoxActors.Size = new Size(184, 746);
+            listBoxActors.TabIndex = 7;
+            listBoxActors.SelectedIndexChanged += listBoxActors_SelectedIndexChanged;
             // 
             // MainForm
             // 
