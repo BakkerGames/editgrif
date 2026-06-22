@@ -81,15 +81,16 @@ namespace editgrif
         {
             // help is always enabled
             groupBoxStart.Enabled = true;
-            groupBoxCommands.Enabled = true;
-            groupBoxFunctions.Enabled = true;
-            groupBoxItems.Enabled = true;
-            groupBoxMessages.Enabled = true;
             groupBoxRooms.Enabled = true;
-            groupBoxScripts.Enabled = true;
-            groupBoxSystem.Enabled = true;
+            groupBoxItems.Enabled = true;
+            groupBoxActors.Enabled = true;
+            groupBoxMessages.Enabled = true;
             groupBoxValues.Enabled = true;
             groupBoxVocabulary.Enabled = true;
+            groupBoxCommands.Enabled = true;
+            groupBoxScripts.Enabled = true;
+            groupBoxFunctions.Enabled = true;
+            groupBoxSystem.Enabled = true;
         }
 
         private void buttonFileSave_Click(object sender, EventArgs e)
@@ -177,6 +178,7 @@ namespace editgrif
             buttonStart.BackColor = SystemColors.Control;
             buttonRooms.BackColor = SystemColors.Control;
             buttonItems.BackColor = SystemColors.Control;
+            buttonActors.BackColor = SystemColors.Control;
             buttonMessages.BackColor = SystemColors.Control;
             buttonValues.BackColor = SystemColors.Control;
             buttonVocabulary.BackColor = SystemColors.Control;
@@ -188,6 +190,7 @@ namespace editgrif
             groupBoxStart.Visible = false;
             groupBoxRooms.Visible = false;
             groupBoxItems.Visible = false;
+            groupBoxActors.Visible = false;
             groupBoxMessages.Visible = false;
             groupBoxValues.Visible = false;
             groupBoxVocabulary.Visible = false;
@@ -254,7 +257,7 @@ namespace editgrif
             richTextBoxRoomsLongDesc.Clear();
             listBoxRoomsExits.Items.Clear();
             richTextBoxRoomsExits.Clear();
-            listBoxRoomsOther.Items.Clear();
+            listBoxRoomsValues.Items.Clear();
             richTextBoxRoomsOther.Clear();
             buttonRoomsExitsAdd.Enabled = false;
             buttonRoomsOtherAdd.Enabled = false;
@@ -266,9 +269,20 @@ namespace editgrif
             richTextBoxItemsShortDesc.Clear();
             richTextBoxItemsLongDesc.Clear();
             richTextBoxItemsLocation.Clear();
-            listBoxItemsOther.Items.Clear();
+            listBoxItemsValues.Items.Clear();
             richTextBoxItemsOther.Clear();
             buttonItemsOtherAdd.Enabled = false;
+        }
+
+        private void ClearActorsTab()
+        {
+            listBoxActors.Items.Clear();
+            richTextBoxActorsShortDesc.Clear();
+            richTextBoxActorsLongDesc.Clear();
+            richTextBoxActorsLocation.Clear();
+            listBoxActorsValues.Items.Clear();
+            richTextBoxActorsValues.Clear();
+            buttonActorsValuesAdd.Enabled = false;
         }
 
         private void ClearMessagesTab()
@@ -318,6 +332,7 @@ namespace editgrif
             ClearStartTab();
             ClearRoomsTab();
             ClearItemsTab();
+            ClearActorsTab();
             ClearMessagesTab();
             ClearValuesTab();
             ClearVocabularyTab();
@@ -346,6 +361,11 @@ namespace editgrif
             itemsLongDescPattern = grod.Get(SYSTEM_PATTERN_ITEM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_LONGDESC;
             itemsLocationPattern = grod.Get(SYSTEM_PATTERN_ITEM_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ITEM_LOCATION;
 
+            actorsPrefix = grod.Get(SYSTEM_PREFIX_ACTOR_KEY, true) ?? DEFAULT_PREFIX_ACTOR;
+            actorsShortDescPattern = grod.Get(SYSTEM_PATTERN_ACTOR_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ACTOR_SHORTDESC;
+            actorsLongDescPattern = grod.Get(SYSTEM_PATTERN_ACTOR_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ACTOR_LONGDESC;
+            actorsLocationPattern = grod.Get(SYSTEM_PATTERN_ACTOR_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ACTOR_LOCATION;
+
             messagePrefixes = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true) ?? DEFAULT_PREFIX_MESSAGE;
             valuesPrefixes = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true) ?? DEFAULT_PREFIX_VALUE;
             vocabularyPrefixes = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true) ?? DEFAULT_PREFIX_VOCABULARY;
@@ -360,6 +380,10 @@ namespace editgrif
             if (itemsPrefix.Split(',').Length > 1)
             {
                 throw new SystemException("Item can only have one prefix");
+            }
+            if (actorsPrefix.Split(',').Length > 1)
+            {
+                throw new SystemException("Actor can only have one prefix");
             }
             if (directionPrefix.Split(',').Length > 1)
             {
@@ -380,6 +404,8 @@ namespace editgrif
             FillListBoxFromPrefixUnique(overlay, [roomsPrefix], listBoxRooms);
 
             FillListBoxFromPrefixUnique(overlay, [itemsPrefix], listBoxItems);
+
+            FillListBoxFromPrefixUnique(overlay, [actorsPrefix], listBoxActors);
 
             var messageList = messagePrefixes.Split(',');
             FillListBoxFromPrefixes(overlay, messageList, listBoxMessages);
@@ -436,6 +462,7 @@ namespace editgrif
                     !directionPrefix.Equals(prefix, OIC) &&
                     !roomsPrefix.Equals(prefix, OIC) &&
                     !itemsPrefix.Equals(prefix, OIC) &&
+                    !actorsPrefix.Equals(prefix, OIC) &&
                     !key.Equals(playerLocationKey, OIC))
                 {
                     extraKeys.Add(key);
@@ -596,7 +623,7 @@ namespace editgrif
             richTextBoxRoomsLongDesc.Clear();
             listBoxRoomsExits.Items.Clear();
             richTextBoxRoomsExits.Clear();
-            listBoxRoomsOther.Items.Clear();
+            listBoxRoomsValues.Items.Clear();
             richTextBoxRoomsOther.Clear();
             if (listBoxRooms.SelectedIndex < 0)
             {
@@ -637,7 +664,7 @@ namespace editgrif
                 if (key.Equals(currentRoomLongDescKey, OIC)) continue;
                 if (key.StartsWith(exitsPrefix, OIC)) continue;
                 var otherKey = key[otherPrefix.Length..];
-                listBoxRoomsOther.Items.Add(otherKey);
+                listBoxRoomsValues.Items.Add(otherKey);
             }
 
             buttonRoomsRename.Enabled = true;
@@ -657,7 +684,7 @@ namespace editgrif
             richTextBoxItemsShortDesc.Clear();
             richTextBoxItemsLongDesc.Clear();
             richTextBoxItemsLocation.Clear();
-            listBoxItemsOther.Items.Clear();
+            listBoxItemsValues.Items.Clear();
             richTextBoxItemsOther.Clear();
             if (listBoxItems.SelectedIndex < 0)
             {
@@ -690,7 +717,7 @@ namespace editgrif
                 if (key.Equals(currentItemLongDescKey, OIC)) continue;
                 if (key.Equals(currentItemLocationKey, OIC)) continue;
                 var otherKey = key[otherPrefix.Length..];
-                listBoxItemsOther.Items.Add(otherKey);
+                listBoxItemsValues.Items.Add(otherKey);
             }
 
             buttonItemsRename.Enabled = true;
@@ -705,16 +732,16 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             var otherPrefix = $"{itemsPrefix}.{currentItemName}.";
-            if (listBoxItemsOther.SelectedIndex < 0)
+            if (listBoxItemsValues.SelectedIndex < 0)
             {
-                currentItemsOtherKey = null;
+                currentItemsValuesKey = null;
                 richTextBoxItemsOther.Clear();
                 buttonItemsOtherRename.Enabled = false;
                 buttonItemsOtherDelete.Enabled = false;
             }
             else
             {
-                currentItemsOtherKey = ListBoxSelected(overlay, listBoxItemsOther, richTextBoxItemsOther, otherPrefix);
+                currentItemsValuesKey = ListBoxSelected(overlay, listBoxItemsValues, richTextBoxItemsOther, otherPrefix);
                 buttonItemsOtherRename.Enabled = true;
                 buttonItemsOtherDelete.Enabled = true;
             }
@@ -750,16 +777,16 @@ namespace editgrif
             var saveLoading = loading;
             loading = true;
             var roomsOtherPrefix = $"{roomsPrefix}.{currentRoomName}.";
-            if (listBoxRoomsOther.SelectedIndex < 0)
+            if (listBoxRoomsValues.SelectedIndex < 0)
             {
-                currentRoomsOtherKey = null;
+                currentRoomsValuesKey = null;
                 richTextBoxRoomsOther.Clear();
                 buttonRoomsOtherRename.Enabled = false;
                 buttonRoomsOtherDelete.Enabled = false;
             }
             else
             {
-                currentRoomsOtherKey = ListBoxSelected(overlay, listBoxRoomsOther, richTextBoxRoomsOther, roomsOtherPrefix);
+                currentRoomsValuesKey = ListBoxSelected(overlay, listBoxRoomsValues, richTextBoxRoomsOther, roomsOtherPrefix);
                 buttonRoomsOtherRename.Enabled = true;
                 buttonRoomsOtherDelete.Enabled = true;
             }
@@ -889,8 +916,8 @@ namespace editgrif
         private void richTextBoxRoomsOther_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            if (currentRoomsOtherKey == null) return;
-            overlay.Set(currentRoomsOtherKey, richTextBoxRoomsOther.Text);
+            if (currentRoomsValuesKey == null) return;
+            overlay.Set(currentRoomsValuesKey, richTextBoxRoomsOther.Text);
         }
 
         private void richTextBoxFunctions_TextChanged(object sender, EventArgs e)
@@ -966,8 +993,8 @@ namespace editgrif
         private void richTextBoxItemsOther_TextChanged(object sender, EventArgs e)
         {
             if (loading) return;
-            if (currentItemsOtherKey == null) return;
-            overlay.Set(currentItemsOtherKey, richTextBoxItemsOther.Text);
+            if (currentItemsValuesKey == null) return;
+            overlay.Set(currentItemsValuesKey, richTextBoxItemsOther.Text);
         }
 
         private void buttonStartDirectionsAdd_Click(object sender, EventArgs e)
@@ -1031,7 +1058,7 @@ namespace editgrif
         private void buttonRoomsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            var newKey = ListBoxAddItem(listBoxRoomsOther, prefix);
+            var newKey = ListBoxAddItem(listBoxRoomsValues, prefix);
             if (newKey != null)
             {
                 overlay.Set(prefix + newKey, "");
@@ -1052,7 +1079,7 @@ namespace editgrif
         private void buttonItemsOtherAdd_Click(object sender, EventArgs e)
         {
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            var newKey = ListBoxAddItem(listBoxItemsOther, prefix);
+            var newKey = ListBoxAddItem(listBoxItemsValues, prefix);
             if (newKey != null)
             {
                 overlay.Set(prefix + newKey, "");
@@ -1146,16 +1173,16 @@ namespace editgrif
 
         private void buttonItemsOtherRename_Click(object sender, EventArgs e)
         {
-            if (listBoxItemsOther.SelectedIndex < 0 || currentItemsOtherKey == null) return;
+            if (listBoxItemsValues.SelectedIndex < 0 || currentItemsValuesKey == null) return;
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            ListBoxRenameItem(overlay, listBoxItemsOther, prefix, currentItemsOtherKey);
+            ListBoxRenameItem(overlay, listBoxItemsValues, prefix, currentItemsValuesKey);
         }
 
         private void buttonItemsOtherDelete_Click(object sender, EventArgs e)
         {
-            if (listBoxItemsOther.SelectedIndex < 0 || currentItemsOtherKey == null) return;
+            if (listBoxItemsValues.SelectedIndex < 0 || currentItemsValuesKey == null) return;
             var prefix = $"{itemsPrefix}.{currentItemName}.";
-            ListBoxDeleteItem(overlay, listBoxItemsOther, prefix, currentItemsOtherKey);
+            ListBoxDeleteItem(overlay, listBoxItemsValues, prefix, currentItemsValuesKey);
         }
 
         private void buttonItemsRename_Click(object sender, EventArgs e)
@@ -1208,16 +1235,16 @@ namespace editgrif
 
         private void buttonRoomsOtherRename_Click(object sender, EventArgs e)
         {
-            if (listBoxRoomsOther.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
+            if (listBoxRoomsValues.SelectedIndex < 0 || currentRoomsValuesKey == null) return;
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            ListBoxRenameItem(overlay, listBoxRoomsOther, prefix, currentRoomsOtherKey);
+            ListBoxRenameItem(overlay, listBoxRoomsValues, prefix, currentRoomsValuesKey);
         }
 
         private void buttonRoomsOtherDelete_Click(object sender, EventArgs e)
         {
-            if (listBoxRoomsOther.SelectedIndex < 0 || currentRoomsOtherKey == null) return;
+            if (listBoxRoomsValues.SelectedIndex < 0 || currentRoomsValuesKey == null) return;
             var prefix = $"{roomsPrefix}.{currentRoomName}.";
-            ListBoxDeleteItem(overlay, listBoxRoomsOther, prefix, currentRoomsOtherKey);
+            ListBoxDeleteItem(overlay, listBoxRoomsValues, prefix, currentRoomsValuesKey);
         }
 
         private void buttonStartDirectionsRename_Click(object sender, EventArgs e)
@@ -1424,6 +1451,140 @@ namespace editgrif
         private void MainForm_Shown(object sender, EventArgs e)
         {
             labelVersion.Text = GetType().Assembly.GetName().Version?.ToString();
+        }
+
+        private void buttonActors_Click(object sender, EventArgs e)
+        {
+            SelectTab(buttonActors, groupBoxActors);
+        }
+
+        private void buttonActorsAdd_Click(object sender, EventArgs e)
+        {
+            var prefix = $"{actorsPrefix}.";
+            var newKey = ListBoxAddItem(listBoxActors, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(prefix + newKey, "");
+            }
+        }
+
+        private void buttonActorsRename_Click(object sender, EventArgs e)
+        {
+            if (listBoxActors.SelectedIndex < 0 || currentActorName == null) return;
+            var prefix = $"{actorsPrefix}.";
+            ListBoxRenameItem(overlay, listBoxActors, prefix, currentActorName);
+        }
+
+        private void buttonActorsDelete_Click(object sender, EventArgs e)
+        {
+            if (listBoxActors.SelectedIndex < 0 || currentActorName == null) return;
+            var prefix = $"{actorsPrefix}.";
+            ListBoxDeleteItem(overlay, listBoxActors, prefix, currentActorName);
+        }
+
+        private void buttonActorsValuesAdd_Click(object sender, EventArgs e)
+        {
+            var prefix = $"{actorsPrefix}.{currentActorName}.";
+            var newKey = ListBoxAddItem(listBoxActorsValues, prefix);
+            if (newKey != null)
+            {
+                overlay.Set(prefix + newKey, "");
+                richTextBoxActorsValues.Focus();
+            }
+        }
+
+        private void buttonActorsValuesRename_Click(object sender, EventArgs e)
+        {
+            if (listBoxActorsValues.SelectedIndex < 0 || currentActorsValuesKey == null) return;
+            var prefix = $"{actorsPrefix}.{currentActorName}.";
+            ListBoxRenameItem(overlay, listBoxActorsValues, prefix, currentActorsValuesKey);
+        }
+
+        private void buttonActorsValuesDelete_Click(object sender, EventArgs e)
+        {
+            if (listBoxActorsValues.SelectedIndex < 0 || currentActorsValuesKey == null) return;
+            var prefix = $"{actorsPrefix}.{currentActorName}.";
+            ListBoxDeleteItem(overlay, listBoxActorsValues, prefix, currentActorsValuesKey);
+        }
+
+        private void listBoxActors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var saveLoading = loading;
+            loading = true;
+
+            currentActorName = null;
+            richTextBoxActorsShortDesc.Clear();
+            richTextBoxActorsLongDesc.Clear();
+            richTextBoxActorsLocation.Clear();
+            listBoxActorsValues.Items.Clear();
+            richTextBoxActorsValues.Clear();
+            if (listBoxActors.SelectedIndex < 0)
+            {
+                buttonActorsRename.Enabled = false;
+                buttonActorsDelete.Enabled = false;
+                buttonActorsValuesAdd.Enabled = false;
+                return;
+            }
+
+            currentActorName = listBoxActors.Items[listBoxActors.SelectedIndex].ToString();
+            currentActorShortDescKey = actorsShortDescPattern!
+                .Replace("{actorprefix}", actorsPrefix)
+                .Replace("{actor}", currentActorName);
+            currentActorLongDescKey = actorsLongDescPattern!
+                .Replace("{actorprefix}", actorsPrefix)
+                .Replace("{actor}", currentActorName);
+            currentActorLocationKey = actorsLocationPattern!
+                .Replace("{actorprefix}", actorsPrefix)
+                .Replace("{actor}", currentActorName);
+
+            FillRichTextBox(richTextBoxActorsShortDesc, overlay.Get(currentActorShortDescKey, true), false);
+            FillRichTextBox(richTextBoxActorsLongDesc, overlay.Get(currentActorLongDescKey, true));
+            FillRichTextBox(richTextBoxActorsLocation, overlay.Get(currentActorLocationKey, true), false);
+
+            var otherPrefix = $"{actorsPrefix}.{currentActorName}.";
+            var otherKeys = overlay.Keys(otherPrefix, true, true);
+            foreach (var key in otherKeys)
+            {
+                if (key.Equals(currentActorShortDescKey, OIC)) continue;
+                if (key.Equals(currentActorLongDescKey, OIC)) continue;
+                if (key.Equals(currentActorLocationKey, OIC)) continue;
+                var otherKey = key[otherPrefix.Length..];
+                listBoxActorsValues.Items.Add(otherKey);
+            }
+
+            buttonActorsRename.Enabled = true;
+            buttonActorsDelete.Enabled = true;
+            buttonActorsValuesAdd.Enabled = true;
+
+            loading = saveLoading;
+        }
+
+        private void richTextBoxActorsShortDesc_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentActorShortDescKey == null) return;
+            overlay.Set(currentActorShortDescKey, richTextBoxActorsShortDesc.Text);
+        }
+
+        private void richTextBoxActorsLongDesc_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentActorLongDescKey == null) return;
+            overlay.Set(currentActorLongDescKey, richTextBoxActorsLongDesc.Text);
+        }
+
+        private void richTextBoxActorsLocation_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentActorLocationKey == null) return;
+            overlay.Set(currentActorLocationKey, richTextBoxActorsLocation.Text);
+        }
+
+        private void richTextBoxActorsValues_TextChanged(object sender, EventArgs e)
+        {
+            if (loading) return;
+            if (currentActorsValuesKey == null) return;
+            overlay.Set(currentActorsValuesKey, richTextBoxActorsValues.Text);
         }
     }
 }

@@ -16,7 +16,7 @@ internal static class CurrentValues
     public static string? currentRoomShortDescKey;
     public static string? currentRoomLongDescKey;
     public static string? currentRoomsExitsKey;
-    public static string? currentRoomsOtherKey;
+    public static string? currentRoomsValuesKey;
 
     // Items
     public static string? itemsPrefix;
@@ -27,7 +27,18 @@ internal static class CurrentValues
     public static string? currentItemShortDescKey;
     public static string? currentItemLongDescKey;
     public static string? currentItemLocationKey;
-    public static string? currentItemsOtherKey;
+    public static string? currentItemsValuesKey;
+
+    // Actors
+    public static string? actorsPrefix;
+    public static string? actorsShortDescPattern;
+    public static string? actorsLongDescPattern;
+    public static string? actorsLocationPattern;
+    public static string? currentActorName;
+    public static string? currentActorShortDescKey;
+    public static string? currentActorLongDescKey;
+    public static string? currentActorLocationKey;
+    public static string? currentActorsValuesKey;
 
     // Messages
     public static string? messagePrefixes;
