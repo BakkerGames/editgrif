@@ -45,12 +45,14 @@ public partial class PlayForm : Form
         this.Text = gameTitle;
         game.Initialize(baseGrod, gameName, null);
         // get settings
-        maxOutputWidth = (int)(baseGrod.GetNumber(OUTPUT_WIDTH, true) ?? 0);
-        if ((baseGrod.GetNumber(OUTPUT_TAB_LENGTH, true) ?? 0) > 0)
+        maxOutputWidth = (int)(baseGrod.GetNumber(OUTPUT_WIDTH, true));
+        if ((baseGrod.GetNumber(OUTPUT_TAB_LENGTH, true)) > 0)
         {
-            tabChars = new string(' ', (int)(baseGrod.GetNumber(OUTPUT_TAB_LENGTH, true) ?? 4));
+            var tabLen = baseGrod.GetNumber(OUTPUT_TAB_LENGTH, true);
+            if (tabLen <= 0) tabLen = 4;
+            tabChars = new string(' ', (int)tabLen);
         }
-        uppercaseInput = baseGrod.GetBool(UPPERCASE, true) ?? false;
+        uppercaseInput = baseGrod.GetBool(UPPERCASE, true);
         // connect the event handlers
         game.InputEvent += Input;
         game.OutputEvent += Output;
