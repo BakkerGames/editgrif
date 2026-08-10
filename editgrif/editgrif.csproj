@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>2.2026.711.2</Version>
+    <Version>2.2026.810.0</Version>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="griflib" Version="2.2026.725" />
+    <PackageReference Include="griflib" Version="2.2026.809.2" />
   </ItemGroup>
 
 </Project>

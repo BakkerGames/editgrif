@@ -72,7 +72,11 @@ public partial class PlayForm : Form
     {
         if (!waitingForInput && readyForInput > 0)
         {
-            OutputText(game.Prompt() ?? "");
+            var promptList = game.Prompt();
+            foreach (var item in promptList)
+            {
+                game.ProcessOutputMessage(item);
+            }
             waitingForInput = true;
             readyForInput--;
         }
@@ -89,7 +93,11 @@ public partial class PlayForm : Form
         richTextBoxPlay.AppendText(input);
         richTextBoxPlay.AppendText(Environment.NewLine);
         var message = new GrifMessage(MessageType.Text, input);
-        OutputText(game.AfterPrompt() ?? "");
+        var afterPromptList = game.AfterPrompt();
+        foreach (var item in afterPromptList)
+        {
+            game.ProcessOutputMessage(item);
+        }
         waitingForInput = false;
         game.InputMessages.Enqueue(message);
         game.GameStep();
