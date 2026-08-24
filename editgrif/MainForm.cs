@@ -348,30 +348,30 @@ namespace editgrif
 
             ClearData();
 
-            playerLocationKey = grod.Get(SYSTEM_PLAYER_LOCATION, true) ?? DEFAULT_PLAYER_LOCATION_KEY;
-            directionPrefix = grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true) ?? DEFAULT_PREFIX_DIRECTION;
+            playerLocationKey = IfNull(grod.Get(SYSTEM_PLAYER_LOCATION, true), DEFAULT_PLAYER_LOCATION_KEY);
+            directionPrefix = IfNull(grod.Get(SYSTEM_PREFIX_DIRECTION_KEY, true), DEFAULT_PREFIX_DIRECTION);
 
-            roomsPrefix = grod.Get(SYSTEM_PREFIX_ROOM_KEY, true) ?? DEFAULT_PREFIX_ROOM;
-            roomsShortDescPattern = grod.Get(SYSTEM_PATTERN_ROOM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_SHORTDESC;
-            roomsLongDescPattern = grod.Get(SYSTEM_PATTERN_ROOM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ROOM_LONGDESC;
-            roomsExitsPattern = grod.Get(SYSTEM_PATTERN_ROOM_EXIT_KEY, true) ?? DEFAULT_PATTERN_ROOM_EXIT;
+            roomsPrefix = IfNull(grod.Get(SYSTEM_PREFIX_ROOM_KEY, true), DEFAULT_PREFIX_ROOM);
+            roomsShortDescPattern = IfNull(grod.Get(SYSTEM_PATTERN_ROOM_SHORTDESC_KEY, true), DEFAULT_PATTERN_ROOM_SHORTDESC);
+            roomsLongDescPattern = IfNull(grod.Get(SYSTEM_PATTERN_ROOM_LONGDESC_KEY, true), DEFAULT_PATTERN_ROOM_LONGDESC);
+            roomsExitsPattern = IfNull(grod.Get(SYSTEM_PATTERN_ROOM_EXIT_KEY, true), DEFAULT_PATTERN_ROOM_EXIT);
 
-            itemsPrefix = grod.Get(SYSTEM_PREFIX_ITEM_KEY, true) ?? DEFAULT_PREFIX_ITEM;
-            itemsShortDescPattern = grod.Get(SYSTEM_PATTERN_ITEM_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_SHORTDESC;
-            itemsLongDescPattern = grod.Get(SYSTEM_PATTERN_ITEM_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ITEM_LONGDESC;
-            itemsLocationPattern = grod.Get(SYSTEM_PATTERN_ITEM_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ITEM_LOCATION;
+            itemsPrefix = IfNull(grod.Get(SYSTEM_PREFIX_ITEM_KEY, true), DEFAULT_PREFIX_ITEM);
+            itemsShortDescPattern = IfNull(grod.Get(SYSTEM_PATTERN_ITEM_SHORTDESC_KEY, true), DEFAULT_PATTERN_ITEM_SHORTDESC);
+            itemsLongDescPattern = IfNull(grod.Get(SYSTEM_PATTERN_ITEM_LONGDESC_KEY, true), DEFAULT_PATTERN_ITEM_LONGDESC);
+            itemsLocationPattern = IfNull(grod.Get(SYSTEM_PATTERN_ITEM_LOCATION_KEY, true), DEFAULT_PATTERN_ITEM_LOCATION);
 
-            actorsPrefix = grod.Get(SYSTEM_PREFIX_ACTOR_KEY, true) ?? DEFAULT_PREFIX_ACTOR;
-            actorsShortDescPattern = grod.Get(SYSTEM_PATTERN_ACTOR_SHORTDESC_KEY, true) ?? DEFAULT_PATTERN_ACTOR_SHORTDESC;
-            actorsLongDescPattern = grod.Get(SYSTEM_PATTERN_ACTOR_LONGDESC_KEY, true) ?? DEFAULT_PATTERN_ACTOR_LONGDESC;
-            actorsLocationPattern = grod.Get(SYSTEM_PATTERN_ACTOR_LOCATION_KEY, true) ?? DEFAULT_PATTERN_ACTOR_LOCATION;
+            actorsPrefix = IfNull(grod.Get(SYSTEM_PREFIX_ACTOR_KEY, true), DEFAULT_PREFIX_ACTOR);
+            actorsShortDescPattern = IfNull(grod.Get(SYSTEM_PATTERN_ACTOR_SHORTDESC_KEY, true), DEFAULT_PATTERN_ACTOR_SHORTDESC);
+            actorsLongDescPattern = IfNull(grod.Get(SYSTEM_PATTERN_ACTOR_LONGDESC_KEY, true), DEFAULT_PATTERN_ACTOR_LONGDESC);
+            actorsLocationPattern = IfNull(grod.Get(SYSTEM_PATTERN_ACTOR_LOCATION_KEY, true), DEFAULT_PATTERN_ACTOR_LOCATION);
 
-            messagePrefixes = grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true) ?? DEFAULT_PREFIX_MESSAGE;
-            valuesPrefixes = grod.Get(SYSTEM_PREFIX_VALUE_KEY, true) ?? DEFAULT_PREFIX_VALUE;
-            vocabularyPrefixes = grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true) ?? DEFAULT_PREFIX_VOCABULARY;
-            commandsPrefix = grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true) ?? DEFAULT_PREFIX_COMMAND;
-            scriptsPrefixes = grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true) ?? DEFAULT_PREFIX_SCRIPT;
-            systemPrefixes = grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true) ?? DEFAULT_PREFIX_SYSTEM;
+            messagePrefixes = IfNull(grod.Get(SYSTEM_PREFIX_MESSAGE_KEY, true), DEFAULT_PREFIX_MESSAGE);
+            valuesPrefixes = IfNull(grod.Get(SYSTEM_PREFIX_VALUE_KEY, true), DEFAULT_PREFIX_VALUE);
+            vocabularyPrefixes = IfNull(grod.Get(SYSTEM_PREFIX_VOCABULARY_KEY, true), DEFAULT_PREFIX_VOCABULARY);
+            commandsPrefix = IfNull(grod.Get(SYSTEM_PREFIX_COMMAND_KEY, true), DEFAULT_PREFIX_COMMAND);
+            scriptsPrefixes = IfNull(grod.Get(SYSTEM_PREFIX_SCRIPT_KEY, true), DEFAULT_PREFIX_SCRIPT);
+            systemPrefixes = IfNull(grod.Get(SYSTEM_PREFIX_SYSTEM_KEY, true), DEFAULT_PREFIX_SYSTEM);
 
             if (roomsPrefix.Split(',').Length > 1)
             {
@@ -1585,6 +1585,32 @@ namespace editgrif
             if (loading) return;
             if (currentActorsValuesKey == null) return;
             overlay.Set(currentActorsValuesKey, richTextBoxActorsValues.Text);
+        }
+
+        private static string IfNull(string? value1, string? value2)
+        {
+            return !Dags.IsNull(value1 ?? "") ? (value1 ?? "") : (value2 ?? "");
+        }
+
+        private void listBoxActorsValues_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var saveLoading = loading;
+            loading = true;
+            var otherPrefix = $"{actorsPrefix}.{currentActorName}.";
+            if (listBoxActorsValues.SelectedIndex < 0)
+            {
+                currentActorsValuesKey = null;
+                richTextBoxActorsValues.Clear();
+                buttonActorsValuesRename.Enabled = false;
+                buttonActorsValuesDelete.Enabled = false;
+            }
+            else
+            {
+                currentActorsValuesKey = ListBoxSelected(overlay, listBoxActorsValues, richTextBoxActorsValues, otherPrefix);
+                buttonActorsValuesRename.Enabled = true;
+                buttonActorsValuesDelete.Enabled = true;
+            }
+            loading = saveLoading;
         }
     }
 }
