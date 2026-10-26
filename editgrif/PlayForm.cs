@@ -1,4 +1,5 @@
-﻿using GrifLib;
+﻿using griflib.Models;
+using GrifLib;
 using static GrifLib.Common;
 
 namespace editgrif;
